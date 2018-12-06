@@ -1,16 +1,13 @@
-import socket
 from AdamModule import adam
 
-
-
-
 try:
-	iomodule = adam.adam6000("192.168.1.1")
+	iomodule = adam.adam6000("192.168.50.15")
 	succes = iomodule.connect()
-	if succes:
-		print("ss")
-	else:
-		print(" ! ERROR: Could not load Tool Environment, tool not started")
+	iomodule.writepoutputport(0,True)
+	stat = iomodule.readinputno(0)
+
+		
+	
 
 except Exception, errormsg:
     print "\n"
