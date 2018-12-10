@@ -15,3 +15,4 @@ class Prize():
             prize = GetDBStdPrize()
         if prizetype == self._Prize['GoldPrize']:
             prize = GetDBGoldPrize()
+            

@@ -6,6 +6,7 @@ import time
 import threading
 import tkinter as tk
 from AdamModule import adam
+from PrizeModule import Prize as Pr
 from tkinter.scrolledtext import ScrolledText
 from tkinter import ttk, VERTICAL, HORIZONTAL, N, S, E, W
 
@@ -22,6 +23,7 @@ class MainTask(threading.Thread):
     def __init__(self):
         super().__init__()
         self._stop_event = threading.Event()
+        Pr
 
     def run(self):
         logger.debug('Main Task Started')
