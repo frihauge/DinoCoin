@@ -7,7 +7,6 @@ try:
 	stat = iomodule.readinputno(0)
 
 		
-	
 
 except Exception, errormsg:
     print "\n"

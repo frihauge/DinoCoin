@@ -43,8 +43,8 @@ class adam6000():
     def receive(self):
         try:
             indata, inaddr = self.hnd.recvfrom(self.buf)
-        except errormsg:
-            print ("Error")
+        except :
+            print ("Not Connected")
             indata = -1
         return indata
     
@@ -59,16 +59,22 @@ class adam6000():
     
     def readinputno (self, in_num):
         portdata = self.readinput()
-        mask = 1 << in_num
-        res = (portdata & mask) >> in_num
-        return res
+        if portdata != -1:
+            mask = 1 << in_num
+            res = (portdata & mask) >> in_num
+            return res
+        else:
+            return portdata
     
     def writepoutputport(self, port, state):
         self.send('#011'+self._CMDLIST[port]+'0'+str(int(state))+'\r')
         rx = self.receive()
         if str(rx).find('>') != -1:
             return True
-        return False
+        if rx != -1:
+            return False
+        else:
+            return rx
         
     def readmodulename (self):
         self.send('$01M\r')

@@ -5,8 +5,8 @@ import signal
 import time
 import threading
 import tkinter as tk
-from AdamModule import adam
-from PrizeModule import Prize as Pr
+from TaskRun import TaskRun
+
 from tkinter.scrolledtext import ScrolledText
 from tkinter import ttk, VERTICAL, HORIZONTAL, N, S, E, W
 
@@ -23,14 +23,10 @@ class MainTask(threading.Thread):
     def __init__(self):
         super().__init__()
         self._stop_event = threading.Event()
-        Pr
-
+       
     def run(self):
         logger.debug('Main Task Started')
-        logger.info("Connecting iomodule ip 192.168.50.15")
-        iomodule = adam.adam6000("192.168.50.15")
-        succes = iomodule.connect()
-        iomodule.writepoutputport(0,True)
+        tr = TaskRun(logger)
         previous = -1
         while not self._stop_event.is_set():
             now = datetime.datetime.now()
@@ -38,10 +34,8 @@ class MainTask(threading.Thread):
                 previous = now.second
                 if (previous % 10) == 0: 
                     level = logging.INFO
-                    stat = iomodule.readinputno(0)
-                    if (stat > 0 ):
-                       Generateprize()
-                    logger.log(level,"Pinging port 0 stat:"+ str(stat))
+                    tr.run()
+   
             time.sleep(0.2)
 
     def stop(self):
@@ -116,9 +110,9 @@ class FormUi:
     def __init__(self, frame):
         self.frame = frame
         # Create a combobbox to select the logging level
-        values = ['DEBUG', 'INFO', 'WARNING', 'ERROR', 'CRITICAL']
+        values = ['DEBUG', 'INFO']
         self.level = tk.StringVar()
-        ttk.Label(self.frame, text='Level:').grid(column=0, row=0, sticky=W)
+        ttk.Label(self.frame, text='Command:').grid(column=0, row=0, sticky=W)
         self.combobox = ttk.Combobox(
             self.frame,
             textvariable=self.level,
@@ -162,7 +156,7 @@ class App:
         vertical_pane.grid(row=0, column=0, sticky="nsew")
         horizontal_pane = ttk.PanedWindow(vertical_pane, orient=HORIZONTAL)
         vertical_pane.add(horizontal_pane)
-        form_frame = ttk.Labelframe(horizontal_pane, text="MyForm")
+        form_frame = ttk.Labelframe(horizontal_pane, text="Manuel control")
         form_frame.columnconfigure(1, weight=1)
         horizontal_pane.add(form_frame, weight=1)
         console_frame = ttk.Labelframe(horizontal_pane, text="Console")

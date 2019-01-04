@@ -19,8 +19,8 @@ class custom():
         return True
 
     def send(self, tx):
-       # self.hnd.sendto(tx, self.addr)
-          
+        #self.hnd.sendto(tx, self.addr)
+        return True   
     def receive(self, tx):
         # indata, inaddr = self.hnd.recvfrom(self.buf)
         return indata
