@@ -1,0 +1,5 @@
+{
+"StationName":"MyStation",
+"Prize_1":{ "prize:type":"Standard_prize","prizes":[{"id": 0, "Name": "Toffifee", "Description":"","Stock_cnt":72, "delivered":6, "Last_Date_Delivered":"2018-08-03T10:51:42.990239"}, {"id": 1, "Name": "Kong Fu Panda", "Description":"", "Stock_cnt":72, "delivered":6, "Last_Date_Delivered":"2018-08-03T10:51:42.990239"}]},
+"Prize_2":{ "prize:type":"Special_prize", "prizes":[{"id": 0, "Name": "Weekly_prize", "Description":"","Stock_cnt":72, "delivered":6, "Last_Date_Delivered":"2018-08-03T10:51:42.990239"}, {"id": 1, "Name": "Monthly_prize", "Description":"", "Stock_cnt":72, "delivered":6, "Last_Date_Delivered":"2018-08-03T10:51:42.990239"}]}
+}

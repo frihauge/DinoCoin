@@ -1,5 +1,7 @@
 import logging
-from PrizeModule import Prize as Pr
+import time
+
+from PrizeModule import Prize
 from AdamModule import adam
 
 
@@ -11,17 +13,44 @@ class TaskRun():
         self.Version = 1.0
         self.logger = log
         self.Description = "Module TaskRun"
+        self.pr = Prize(self.logger)
         self.logger.info("Connecting iomodule ip 192.168.50.15")
-        self.iomodule = adam.adam6000("192.168.50.15")
+        self.iomodule = adam.adam6000(self.logger, "192.168.50.15")
         succes = self.iomodule.connect()
-        self.iomodule.writepoutputport(0,True)
+
      
   
-    def run(self):
-        stat = self.iomodule.readinputno(0)
-        if (stat > 0 ):
-            self.logger.log(logging.INFO,"Generateprize()")
-        if stat == -1:
-            self.logger.log(logging.INFO,"Pinging port 0 stat:"+ str(stat))
+    def run1s(self):
+        CoounterInPort = 1
+        stat = False
+        cnt = self.iomodule.readcounter(CoounterInPort)
+        self.logger.log(logging.INFO,"Counter log: "+ str(cnt))
+        if (cnt > 0 ):
+            time.sleep(0.1) # If between 2 pulses
+            cnt = self.iomodule.readcounter(CoounterInPort)
+            self.logger.log(logging.INFO,"Generateprize Type: "+ str(cnt))
+            if cnt == 1:
+                self.pr.newprize(1)
+            elif cnt == 2:
+                self.pr.newprize(2)
+            stat = self.iomodule.ClearCounter(CoounterInPort)
                     
+    def run1m(self):
+        self.logger.log(logging.INFO,"Update from google drive")
+        self.pr.load_prizelist_to_local()
+        
+        
+    def  TestGenPrize(pr_str):
+        if pr_st == '1':
+            self.iomodule.SetOutputbit(1,1)
+            self.iomodule.SetOutputbit(1,0)
+        elif pr_st == '2':
+            self.iomodule.SetOutputbit(1,1)
+            self.iomodule.SetOutputbit(1,0)
+            self.iomodule.SetOutputbit(1,1)
+            self.iomodule.SetOutputbit(1,0)
+        else:
+            Print ('Wrong entry'+ str(pr_str))
             
+        
+                

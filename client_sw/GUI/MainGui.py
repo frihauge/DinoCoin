@@ -12,7 +12,7 @@ from tkinter import ttk, VERTICAL, HORIZONTAL, N, S, E, W
 
 
 logger = logging.getLogger(__name__)
-
+cmd_queue = queue.Queue()
 
 class MainTask(threading.Thread):
     """Class to display the time every seconds
@@ -23,19 +23,22 @@ class MainTask(threading.Thread):
     def __init__(self):
         super().__init__()
         self._stop_event = threading.Event()
-       
+
     def run(self):
         logger.debug('Main Task Started')
-        tr = TaskRun(logger)
-        previous = -1
+        self.tr = TaskRun(logger)
+        previous_sec = -1
+        previous_min = -1 
         while not self._stop_event.is_set():
             now = datetime.datetime.now()
-            if previous != now.second:
-                previous = now.second
-                if (previous % 10) == 0: 
+            if previous_sec != now.second:
+                previous_sec = now.second
+                if (previous_sec % 1) == 0: 
                     level = logging.INFO
-                    tr.run()
-   
+                    self.tr.run1s()
+                if (previous_sec % 60) == 0: 
+                    level = logging.INFO
+                    self.tr.run1m()
             time.sleep(0.2)
 
     def stop(self):
@@ -110,7 +113,7 @@ class FormUi:
     def __init__(self, frame):
         self.frame = frame
         # Create a combobbox to select the logging level
-        values = ['DEBUG', 'INFO']
+        values = ['DEBUG', 'INFO','Prize']
         self.level = tk.StringVar()
         ttk.Label(self.frame, text='Command:').grid(column=0, row=0, sticky=W)
         self.combobox = ttk.Combobox(
@@ -132,8 +135,9 @@ class FormUi:
 
     def submit_message(self):
         # Get the logging level numeric value
-        lvl = getattr(logging, self.level.get())
-        logger.log(lvl, self.message.get())
+#        if self.level.get() =='Prize':
+         lvl = getattr(logging, self.level.get())
+         logger.log(lvl, self.message.get())
 
 
 class ThirdUi:
@@ -148,7 +152,8 @@ class App:
 
     def __init__(self, root):
         self.root = root
-        root.title('MikroTaurus')
+        root.title('DINOCOIN Service Application')
+        root.attributes("-topmost", True)
         root.columnconfigure(0, weight=1)
         root.rowconfigure(0, weight=1)
         # Create the panes and frames
@@ -166,6 +171,7 @@ class App:
         third_frame = ttk.Labelframe(vertical_pane, text="Status ")
         vertical_pane.add(third_frame, weight=1)
         # Initialize all frames
+
         self.form = FormUi(form_frame)
         self.console = ConsoleUi(console_frame)
         self.third = ThirdUi(third_frame)
@@ -174,6 +180,9 @@ class App:
         self.root.protocol('WM_DELETE_WINDOW', self.quit)
         self.root.bind('<Control-q>', self.quit)
         signal.signal(signal.SIGINT, self.quit)
+
+
+
 
     def quit(self, *args):
         self.MainTask.stop()
