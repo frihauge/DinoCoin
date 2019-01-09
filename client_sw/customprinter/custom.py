@@ -11,7 +11,7 @@ import time
 import random, string
 import os, sys
 import win32print
-import receiptrenderer
+from . import receiptrenderer
 
 class custom():
     
@@ -42,7 +42,6 @@ class custom():
             ".",
             0
             )
-    print (test)
 if __name__ == '__main__':
     co = custom(None)
     co.printlabel("prizeLabel")
