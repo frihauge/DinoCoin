@@ -4,6 +4,7 @@ import logging
 import signal
 import time
 import threading
+import json
 import tkinter as tk
 from TaskRun import TaskRun
 
@@ -26,7 +27,9 @@ class MainTask(threading.Thread):
 
     def run(self):
         logger.debug('Main Task Started')
-        self.tr = TaskRun(logger)
+        logger.info('Loading appsettings')
+        appsettings = self.ReadSetupFile()
+        self.tr = TaskRun(logger, appsettings)
         previous_sec = -1
         previous_min = -1 
         while not self._stop_event.is_set():
@@ -43,7 +46,17 @@ class MainTask(threading.Thread):
 
     def stop(self):
         self._stop_event.set()
-
+    
+    def ReadSetupFile(self):
+        data = None
+        try:
+            jsonFile = open('MainSetup.json', "r") # Open the JSON file for reading
+            data = json.load(jsonFile) # Read the JSON into the buffer
+        except Exception as e:
+            print('Json read error: ' , e)
+        finally:   
+            jsonFile.close() # Close the JSON file
+        return data  
 
 class QueueHandler(logging.Handler):
     """Class to send logging records to a queue
@@ -144,8 +157,8 @@ class ThirdUi:
 
     def __init__(self, frame):
         self.frame = frame
-        ttk.Label(self.frame, text='Text for third frame').grid(column=0, row=1, sticky=W)
-        ttk.Label(self.frame, text='here!').grid(column=0, row=4, sticky=W)
+    #    ttk.Label(self.frame, text='Text for third frame').grid(column=0, row=1, sticky=W)
+    #    ttk.Label(self.frame, text='here!').grid(column=0, row=4, sticky=W)
 
 
 class App:
