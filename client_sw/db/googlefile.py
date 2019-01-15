@@ -79,7 +79,6 @@ class googlefile():
                                     fields='id').execute()
         print ('Folder ID: %s' % file.get('id')	)
         self.folder_id = file.get('id')  
-        self.uploadFile()
   
     
     def uploadFile(self):
@@ -177,7 +176,7 @@ class googlefile():
     def SaveFile(self,data):
         ## Save our changes to JSON file
         jsonFile = open(self.filename, "w+")
-        jsonFile.write(json.dumps(data))
+        jsonFile.write(json.dumps(data, indent=4, ensure_ascii=False))
         jsonFile.close()
         if self.network:
             self.update_file(self.filename,self.file_id)

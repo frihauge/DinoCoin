@@ -21,19 +21,19 @@ class TaskRun():
      
   
     def run1s(self):
-        CoounterInPort = 1
+        CounterInPort = 0
         stat = False
-        cnt = self.iomodule.readcounter(CoounterInPort)
+        cnt = self.iomodule.readcounter(CounterInPort)
         self.logger.log(logging.INFO,"Counter log: "+ str(cnt))
         if (cnt > 0 ):
             time.sleep(0.1) # If between 2 pulses
-            cnt = self.iomodule.readcounter(CoounterInPort)
+            cnt = self.iomodule.readcounter(CounterInPort)
             self.logger.log(logging.INFO,"Generateprize Type: "+ str(cnt))
             if cnt == 1:
                 self.pr.newprize(1)
             elif cnt == 2:
                 self.pr.newprize(2)
-            stat = self.iomodule.ClearCounter(CoounterInPort)
+            stat = self.iomodule.ClearCounter(CounterInPort)
                     
     def run1m(self):
         self.logger.log(logging.INFO,"Update from google drive")

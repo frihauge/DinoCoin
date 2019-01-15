@@ -11,6 +11,7 @@ class Prize():
         self.Description = "Module handlng prize"
         self._Prize = {0 : 'StdPrize', 1 : 'GoldPrize'}
         self.logger = log
+        self.db = dbif.dbif(self.logger)
         self.prn = custom.custom( self.logger)
 
     def newprize(self, prizetype):

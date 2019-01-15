@@ -6,7 +6,6 @@
 """
 
 import time
-import socket
 import logging
 from pymodbus.client.sync import ModbusTcpClient as ModbusClient
 
@@ -44,9 +43,10 @@ class adam6000():
     
     def readcounter(self, num):
         try:
-            rr = self.client.read_input_registers(1,8)
+            rr = self.client.read_input_registers(0,7)
             cnt = rr.registers[num]
         except:
+            self.logger.error("No connection to ADAM on ip: " + str(self.host))
             cnt = -1
         return cnt
         
@@ -72,4 +72,4 @@ class adam6000():
 if __name__ == '__main__':
     ad = adam6000(None, '192.168.50.15')
     ad.connect()
-    cnt = ad.readcounter(1)
+    print(ad.readcounter(1))

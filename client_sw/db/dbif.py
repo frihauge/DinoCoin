@@ -7,7 +7,6 @@ Frihauge IT
 """
 import logging
 import random
-import time
 from . import googlefile as gf
 
 
