@@ -22,8 +22,9 @@ class custom():
         self.logger = log
         self.printer_name = 'CUSTOM VKP80 II'
         self.printfilepath = './tmp'
-        self.hPrinter = win32print.OpenPrinter (self.printer_name)
-        if self.hPrinter == None:
+        try:
+            self.hPrinter = win32print.OpenPrinter (self.printer_name)
+        except:
             print('No printer installed')
         if not os.path.isdir(self.printfilepath): 
             os.mkdir(self.printfilepath)       # line B
