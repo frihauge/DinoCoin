@@ -9,13 +9,15 @@ from AdamModule import adam
 class TaskRun():
     
     
-    def __init__(self, log):
+    def __init__(self, log, appsettings):
         self.Version = 1.0
         self.logger = log
+        self.appsettings = appsettings
+        self.adamhost = appsettings['AdamHost']
         self.Description = "Module TaskRun"
         self.pr = Prize(self.logger)
-        self.logger.info("Connecting iomodule ip 192.168.50.15")
-        self.iomodule = adam.adam6000(self.logger, "192.168.50.15")
+        self.logger.info("Connecting iomodule ip " + str(self.adamhost))
+        self.iomodule = adam.adam6000(self.logger, str(self.adamhost))
         succes = self.iomodule.connect()
 
      
