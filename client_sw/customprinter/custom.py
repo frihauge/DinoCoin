@@ -52,9 +52,9 @@ class custom():
                 ".",
                 0
                 )
-            time.sleep(2)
+            time.sleep(5)
             os.system("TASKKILL /F /IM AcroRD32.exe")
-            os.remove(filename)
+#            os.remove(filename)
         else:
             return False
         

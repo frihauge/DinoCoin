@@ -1,5 +1,5 @@
 import datetime
-import queue
+import queue 
 import logging
 import signal
 import time
@@ -33,6 +33,13 @@ class MainTask(threading.Thread):
         previous_sec = -1
         previous_min = -1 
         while not self._stop_event.is_set():
+            if not cmd_queue.empty():
+                try:
+                    item = cmd_queue.get(block=True, timeout=2)
+                    logger.info( "CMD Exe:: %s" % (item))
+                    self.tr.customcmd(item)
+                except:
+                   print("Queue Error")     
             now = datetime.datetime.now()
             if previous_sec != now.second:
                 previous_sec = now.second
@@ -57,6 +64,7 @@ class MainTask(threading.Thread):
         finally:   
             jsonFile.close() # Close the JSON file
         return data  
+
 
 class QueueHandler(logging.Handler):
     """Class to send logging records to a queue
@@ -151,6 +159,7 @@ class FormUi:
 #        if self.level.get() =='Prize':
          lvl = getattr(logging, self.level.get())
          logger.log(lvl, self.message.get())
+         cmd_queue.put( self.message.get())
 
 
 class ThirdUi:

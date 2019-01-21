@@ -30,7 +30,7 @@ class googlefile():
             print ("Local file exists and is readable")
         else:
             with io.open(self.filename, 'w') as db_file:
-                db_file.write(json.dumps({}))             
+                db_file.write(json.dumps({"StationName": self.pcname}))             
         store = file.Storage('token.json')
         creds = store.get()
         if not creds or creds.invalid:
@@ -68,7 +68,7 @@ class googlefile():
             print("Create File")
             self.uploadFile()
 	
-    
+ #       self.download_file()
     def createFolder(self,folderName):
         file_metadata = {
                         'name': folderName,
@@ -88,7 +88,7 @@ class googlefile():
                     'parents': [self.folder_id]
                         }
         media = MediaFileUpload(self.filename,
-                        mimetype='text/plain',
+                        mimetype='application/json',
                         resumable=True)
         file = self.service.files().create(body=file_metadata,
                                     media_body=media,
@@ -98,7 +98,7 @@ class googlefile():
     
     def update_file(self, file_path, fileId):
 
-        mimetype='text/plain'
+        mimetype='application/json'
         media_body = MediaFileUpload(file_path, mimetype, resumable=True)
 
         results = self.service.files().update(
@@ -123,7 +123,7 @@ class googlefile():
     
     def download_googledocs(self, file_id):
         request = self.service.files().export_media(fileId=file_id,
-                                             mimeType='text/plain')
+                                             mimeType='application/json')
         fh = io.FileIO(self.filename, 'wb')
         downloader = MediaIoBaseDownload(fh, request)
         done = False
@@ -165,7 +165,7 @@ class googlefile():
     def ReadFile(self):
         data = None
         try:
-            jsonFile = open(self.filename, "r") # Open the JSON file for reading
+            jsonFile = open(self.filename, "r", encoding='utf-8') # Open the JSON file for reading
             data = json.load(jsonFile) # Read the JSON into the buffer
         except Exception as e:
             print('Json read error: ' , e)
@@ -175,7 +175,7 @@ class googlefile():
       
     def SaveFile(self,data):
         ## Save our changes to JSON file
-        jsonFile = open(self.filename, "w+")
+        jsonFile = open(self.filename, "w+", encoding='utf-8')
         jsonFile.write(json.dumps(data, indent=4, ensure_ascii=False))
         jsonFile.close()
         if self.network:

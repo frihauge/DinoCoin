@@ -33,7 +33,10 @@ class adam6000():
     
     def ClearCounter(self, num):
         adr = 33,37,41,45,49,53,57,61,65
-        self.client.write_coils(adr[num],1)
+        try:
+            self.client.write_coils(adr[num],1)
+        except:
+            return False
         if self.readcounter(num) ==0:
             return True
         else:

@@ -3,6 +3,7 @@ import time
 
 from PrizeModule import Prize
 from AdamModule import adam
+from symbol import except_clause
 
 
 
@@ -11,10 +12,14 @@ class TaskRun():
     
     def __init__(self, log, appsettings):
         self.Version = 1.0
+        self.Description = "Module TaskRun"
         self.logger = log
         self.appsettings = appsettings
-        self.adamhost = appsettings['AdamHost']
-        self.Description = "Module TaskRun"
+        try:
+            self.adamhost = appsettings['Adam'][0]['host']
+        except Exception as e:
+             self.logger.error("Main setup error"+ str(e)) 
+             self.adamhost = "192.168.1.100"  
         self.pr = Prize(self.logger)
         self.logger.info("Connecting iomodule ip " + str(self.adamhost))
         self.iomodule = adam.adam6000(self.logger, str(self.adamhost))
@@ -27,6 +32,7 @@ class TaskRun():
         stat = False
         cnt = self.iomodule.readcounter(CounterInPort)
         self.logger.log(logging.INFO,"Counter log: "+ str(cnt))
+        # cnt = 1
         if (cnt > 0 ):
             time.sleep(0.1) # If between 2 pulses
             cnt = self.iomodule.readcounter(CounterInPort)
@@ -54,5 +60,10 @@ class TaskRun():
         else:
             Print ('Wrong entry'+ str(pr_str))
             
-        
+    def customcmd(self, cmd):
+        if cmd == "cmd_1p":
+            self.pr.newprize(1)
+        if cmd == "cmd_2p":
+            self.pr.newprize(2)
+            
                 
