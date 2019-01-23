@@ -27,9 +27,11 @@ class db_mysql():
   
 # Select data from table using SQL query.
         cur.execute("CREATE TABLE IF NOT EXISTS Clients (id int(11) NOT NULL AUTO_INCREMENT,clientname varchar(45),PRIMARY KEY (id))")
- 
+        #cur.execute("CREATE TABLE IF NOT EXISTS Prizetype (id int(11) NOT NULL,PrizeName varchar(45),PRIMARY KEY (id))")
+       
         sql = "INSERT IGNORE INTO Clients (clientname) VALUES (%s)"
         cur.execute(sql, (self.pcname,))
+       
         self.mydb.commit()
 
 
