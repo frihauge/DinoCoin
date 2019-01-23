@@ -24,9 +24,9 @@ class db_mysql():
         if not self.mysqlconnected:
             return False
         cur = self.mydb.cursor()
-  
+        #cur.execute("DROP TABLE Clients")
 # Select data from table using SQL query.
-        cur.execute("CREATE TABLE IF NOT EXISTS Clients (id int(11) NOT NULL AUTO_INCREMENT,clientname varchar(45),PRIMARY KEY (id))")
+        cur.execute("CREATE TABLE IF NOT EXISTS Clients (id int(11) NOT NULL AUTO_INCREMENT,clientname varchar(45),PRIMARY KEY (id), UNIQUE(clientname))")
         #cur.execute("CREATE TABLE IF NOT EXISTS Prizetype (id int(11) NOT NULL,PrizeName varchar(45),PRIMARY KEY (id))")
        
         sql = "INSERT IGNORE INTO Clients (clientname) VALUES (%s)"
