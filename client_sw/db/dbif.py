@@ -15,17 +15,23 @@ class db_mysql():
     def __init__(self):
         self.mydb=None
         self.pcname = os.environ['COMPUTERNAME']
+        self.mysqlconnected = False
         self.connect()
                 
     def connect(self):
         self.mydb = mysql.connector.connect(host="mysql4.gigahost.dk",user="frihaugedk",passwd="Thisisnot4u", database="frihaugedk_dc2019")
+        self.mysqlconnected = self.mydb.is_connected()
+        if not self.mysqlconnected:
+            return False
         cur = self.mydb.cursor()
   
 # Select data from table using SQL query.
         cur.execute("CREATE TABLE IF NOT EXISTS Clients (id int(11) NOT NULL AUTO_INCREMENT,clientname varchar(45),PRIMARY KEY (id))")
-        cur.execute("INSERT INTO Clients(description) VALUES (12)")
-      
-        
+ 
+        sql = "INSERT IGNORE INTO Clients (clientname) VALUES (%s)"
+        cur.execute(sql, (self.pcname,))
+        self.mydb.commit()
+
 
         print(self.mydb)
            
