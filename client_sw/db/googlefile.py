@@ -165,8 +165,9 @@ class googlefile():
     def ReadFile(self):
         data = None
         try:
-            jsonFile = open(self.filename, "r", encoding='utf-8') # Open the JSON file for reading
+            jsonFile = open(self.filename, "r", encoding='utf-8-sig') # Open the JSON file for reading
             data = json.load(jsonFile) # Read the JSON into the buffer
+            
         except Exception as e:
             print('Json read error: ' , e)
         finally:   
