@@ -9,33 +9,158 @@ import logging
 import random
 import mysql.connector
 import os
+import time
+import datetime
+import json
+VersionNumber = "Ver 0.3 BETA"
 #from . import googlefile as gf
 
 class db_mysql():
     def __init__(self):
         self.mydb=None
         self.pcname = os.environ['COMPUTERNAME']
+        self.filename = self.pcname + '_prize.json'
         self.mysqlconnected = False
+       
         self.connect()
                 
     def connect(self):
-        self.mydb = mysql.connector.connect(host="mysql4.gigahost.dk",user="frihaugedk",passwd="Thisisnot4u", database="frihaugedk_dc2019")
+        try:
+            self.mydb = mysql.connector.connect(host="mysql4.gigahost.dk",user="frihaugedk",passwd="Thisisnot4u", database="frihaugedk_dc2019")
+        except Exception as e:
+            print("Can't connect to db")
+            return False
         self.mysqlconnected = self.mydb.is_connected()
         if not self.mysqlconnected:
             return False
         cur = self.mydb.cursor()
-  
+        
+        #cur.execute("DROP TABLE Prizes")
+       # cur.execute("DROP TABLE PrizeTypes")
+        #cur.execute("DROP TABLE Clients")
+        
 # Select data from table using SQL query.
-        cur.execute("CREATE TABLE IF NOT EXISTS Clients (id int(11) NOT NULL AUTO_INCREMENT,clientname varchar(45),PRIMARY KEY (id))")
+        cur.execute("CREATE TABLE IF NOT EXISTS Clients (id int(11) NOT NULL AUTO_INCREMENT,clientname varchar(45),Version varchar(45),LastOnline TIMESTAMP, PRIMARY KEY (id), UNIQUE (clientname))")
         #cur.execute("CREATE TABLE IF NOT EXISTS Prizetype (id int(11) NOT NULL,PrizeName varchar(45),PRIMARY KEY (id))")
        
-        sql = "INSERT IGNORE INTO Clients (clientname) VALUES (%s)"
-        cur.execute(sql, (self.pcname,))
+        sql = "INSERT IGNORE INTO Clients (clientname, Version) VALUES (%s,%s)"
+        cur.execute(sql, (self.pcname,VersionNumber))
        
         self.mydb.commit()
-
-
+        self.updatetimestamp()
+        self.CreatePrizetableExist()
+        
+  
         print(self.mydb)
+    
+    def DoesTablesExist(self):
+        cur = self.mydb.cursor()
+        sql = cur.execute("SHOW TABLES")
+        for x in mycursor:
+            print(x)
+            
+    def CheckifDatainPrizes(self):
+        cur = self.mydb.cursor()
+        sql = cur.execute("SELECT count(*) FROM `Prizes`")
+        for x in mycursor:
+            print(x)
+        
+                
+    def CreatePrizetableExist(self):
+        cur = self.mydb.cursor()
+         
+        sql =   ("""CREATE TABLE IF NOT EXISTS Prizes(
+                                id int(11) NOT NULL AUTO_INCREMENT,
+                                ClientName varchar(45),
+                                PrizeType INT,
+                                Name varchar(45),
+                                Description varchar(45),
+                                Stock_cnt INT,
+                                delivered INT,
+                                PrizeTypeDescription varchar(45),
+                                FOREIGN KEY(ClientName) REFERENCES Clients(clientname), PRIMARY KEY (id))""")
+
+        cur.execute(sql)
+        self.mydb.commit()
+        
+        
+    def updatetimestamp(self):
+        cur = self.mydb.cursor()
+        ts = time.time()
+        self.timestamp = datetime.datetime.fromtimestamp(ts).strftime('%Y-%m-%d %H:%M:%S')
+        sql = "UPDATE Clients SET LastOnline = %s WHERE  clientname = %s"
+        cur.execute(sql, (self.timestamp, self.pcname))
+        self.mydb.commit()
+  
+     
+        
+    def createlocalfile(self):
+        if os.path.isfile(self.filename) and os.access(self.filename, os.R_OK):
+            print ("Local file exists and is readable")
+        else:
+            with io.open(self.filename, 'w') as db_file:
+                db_file.write(json.dumps({"StationName": self.pcname}))
+  
+    def Download_to_local_json(self):
+        cur = self.mydb.cursor()
+        sql = """SELECT id, ClientName, PrizeType, Name, Description, Stock_cnt, delivered, PrizeTypeDescription FROM `Prizes` WHERE `ClientName` = %s"""
+        val = (self.pcname,)
+        cur.execute(sql, val)
+        row_headers=[x[0] for x in cur.description] #this will extract row headers
+        rv = cur.fetchall()
+        json_data=[]
+        if not len(rv):
+            return False
+        for result in rv:
+            json_data.append(dict(zip(row_headers,result)))
+            
+        jsonFile = open(self.filename, "w+", encoding='utf-8')
+        jsonFile.write(json.dumps(json_data, indent=4, ensure_ascii=False))
+        jsonFile.close()
+        return True
+        
+    def Upload_LocalJsonTodb(self):
+        data = self.ReadFile()
+        if data is None:
+            self.logger.error("Data input is none!")
+            return None
+        for PrizeType in data:
+            Prizetypedata = (data.get(PrizeType, None))
+            if Prizetypedata:
+                for prize in Prizetypedata["prizes"]:
+                    cur = self.mydb.cursor()
+                    sql = "INSERT INTO Prizes (ID,ClientName, PrizeType, Name, Description,Stock_cnt, delivered, PrizeTypeDescription) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)"
+                    val = (0,self.pcname, PrizeType,prize['Name'],prize['Description'],prize['Stock_cnt'],prize['delivered'],Prizetypedata['PrizeTypeDescription'], )
+                    cur.execute(sql, val)
+                self.mydb.commit()
+
+    def Upload_to_server_json(self):
+        if data is None:
+            self.logger.error("Data input is none!")
+            return None
+        for i in data:
+            print (data[i])
+    
+    def ReadFile(self):
+        data = None
+        try:
+            jsonFile = open(self.filename, "r", encoding='utf-8-sig') # Open the JSON file for reading
+            data = json.load(jsonFile) # Read the JSON into the buffer
+            
+        except Exception as e:
+            print('Json read error: ' , e)
+        finally:   
+            jsonFile.close() # Close the JSON file
+        return data        
+
+    def SaveFile(self,data):
+        ## Save our changes to JSON file
+        jsonFile = open(self.filename, "w+", encoding='utf-8')
+        jsonFile.write(json.dumps(data, indent=4, ensure_ascii=False))
+        jsonFile.close()
+        if self.network:
+            self.update_file(self.filename,self.file_id)      
+        
            
 class dbif():
 
@@ -76,13 +201,30 @@ class dbif():
         self.g.SaveFile(data)
         return winnerLabel
         
-    def download_file(self):
-        self.logger.info("Downloading local prize file")
-        self.g.download_file()
-           
-    
-
+    def ReadFile(self):
+        data = None
+        try:
+            jsonFile = open(self.filename, "r", encoding='utf-8-sig') # Open the JSON file for reading
+            data = json.load(jsonFile) # Read the JSON into the buffer
+            
+        except Exception as e:
+            print('Json read error: ' , e)
+        finally:   
+            jsonFile.close() # Close the JSON file
+        return data     
+      
+    def SaveFile(self,data):
+        ## Save our changes to JSON file
+        jsonFile = open(self.filename, "w+", encoding='utf-8')
+        jsonFile.write(json.dumps(data, indent=4, ensure_ascii=False))
+        jsonFile.close()
+        if self.db_mysql.connected():
+            self.db_mysql.Upload_to_server_json(data)
+        
          
 if __name__ == '__main__':
     db = db_mysql()
+    db.updatetimestamp()
+    db.Upload_LocalJsonTodb()
+    db.Download_to_local_json()
       

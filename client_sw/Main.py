@@ -4,8 +4,6 @@ import tkinter as tk
 from GUI import  MainGui
 
 
-
-
    
 def main():
     logging.basicConfig(level=logging.DEBUG)

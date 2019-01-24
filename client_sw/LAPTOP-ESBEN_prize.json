@@ -1,0 +1,56 @@
+{
+
+	"1": {
+		"prize:type": "Standard_prize",
+		"prizes": [{
+				"id": 0,
+				"Name": "Toffifee",
+				"Description": "",
+				"Stock_cnt": 68,
+				"delivered": 10,
+				"Last_Date_Delivered": "2018-08-03T10:51:42.990239"
+			}, {
+				"id": 1,
+				"Name": "Kong Fu Is",
+				"Description": "",
+				"Stock_cnt": 69,
+				"delivered": 9,
+				"Last_Date_Delivered": "2018-08-03T10:51:42.990239"
+			}, {
+				"id": 2,
+				"Name": "Mars-Bar",
+				"Description": "",
+				"Stock_cnt": 69,
+				"delivered": 9,
+				"Last_Date_Delivered": "2018-08-03T10:51:42.990239"
+			}, {
+				"id": 3,
+				"Name": "stor is",
+				"Description": "",
+				"Stock_cnt": 68,
+				"delivered": 10,
+				"Last_Date_Delivered": "2018-08-03T10:51:42.990239"
+			}
+		]
+	},
+	"2": {
+		"prize:type": "Special_prize",
+		"prizes": [{
+				"id": 0,
+				"Name": "Ugens Præmie",
+				"Description": "",
+				"Stock_cnt": 54,
+				"delivered": 18,
+				"Last_Date_Delivered": "2018-08-03T10:51:42.990239"
+			}, {
+				"id": 1,
+				"Name": "Måneds Præmie",
+				"Description": "",
+				"Stock_cnt": 64,
+				"delivered": 14,
+				"Last_Date_Delivered": "2018-08-03T10:51:42.990239"
+			}
+		]
+	}
+
+}
