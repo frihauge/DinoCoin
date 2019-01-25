@@ -121,21 +121,32 @@ class db_mysql():
         jsonFile.write(json.dumps(json_data, indent=4, ensure_ascii=False))
         jsonFile.close()
         return True
+      
+    def Update_Values_LocalJsonTodb(self):
+        data = self.ReadFile()
+        if data is None:
+            self.logger.error("Data input is none!")
+            return None
+        for prize in data:
+            cur = self.mydb.cursor()
+            sql = """UPDATE `Prizes` SET ,PrizeType=%s,Name=%s,Description =%s WHERE id = %s AND Clientname= self.pcname"""
+            val = (0,self.pcname, prize["PrizeType"],prize['Name'],prize['Description'],prize['Stock_cnt'],prize['delivered'],prize['PrizeTypeDescription'])
+            cur.execute(sql, val)
+
+        self.mydb.commit()
         
     def Upload_LocalJsonTodb(self):
         data = self.ReadFile()
         if data is None:
             self.logger.error("Data input is none!")
             return None
-        for PrizeType in data:
-            Prizetypedata = (data.get(PrizeType, None))
-            if Prizetypedata:
-                for prize in Prizetypedata["prizes"]:
-                    cur = self.mydb.cursor()
-                    sql = "INSERT INTO Prizes (ID,ClientName, PrizeType, Name, Description,Stock_cnt, delivered, PrizeTypeDescription) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)"
-                    val = (0,self.pcname, PrizeType,prize['Name'],prize['Description'],prize['Stock_cnt'],prize['delivered'],Prizetypedata['PrizeTypeDescription'], )
-                    cur.execute(sql, val)
-                self.mydb.commit()
+        for prize in data:
+            cur = self.mydb.cursor()
+            sql = """INSERT INTO Prizes (ID,ClientName, PrizeType, Name, Description,Stock_cnt, delivered, PrizeTypeDescription) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)"""
+            val = (0,self.pcname, prize["PrizeType"],prize['Name'],prize['Description'],prize['Stock_cnt'],prize['delivered'],prize['PrizeTypeDescription'])
+            cur.execute(sql, val)
+
+        self.mydb.commit()
 
     def Upload_to_server_json(self):
         if data is None:
