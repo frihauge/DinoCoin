@@ -106,7 +106,7 @@ class db_mysql():
   
     def Download_to_local_json(self):
         cur = self.mydb.cursor()
-        sql = """SELECT id, ClientName, PrizeType, Name, Description, Stock_cnt, delivered, PrizeTypeDescription FROM `Prizes` WHERE `ClientName` = %s"""
+        sql = """SELECT id,  PrizeType, Name, Description, Stock_cnt, delivered, PrizeTypeDescription FROM `Prizes` WHERE `ClientName` = %s"""
         val = (self.pcname,)
         cur.execute(sql, val)
         row_headers=[x[0] for x in cur.description] #this will extract row headers
@@ -129,8 +129,8 @@ class db_mysql():
             return None
         for prize in data:
             cur = self.mydb.cursor()
-            sql = """UPDATE `Prizes` SET ,PrizeType=%s,Name=%s,Description =%s WHERE id = %s AND Clientname= self.pcname"""
-            val = (0,self.pcname, prize["PrizeType"],prize['Name'],prize['Description'],prize['Stock_cnt'],prize['delivered'],prize['PrizeTypeDescription'])
+            sql = """UPDATE Prizes SET PrizeType=%s,Name=%s,Stock_cnt = %s, delivered = %s, Description =%s WHERE id = %s"""
+            val = (prize["PrizeType"],prize['Name'],prize['Stock_cnt'],prize['delivered'],prize['Description'], prize["id"])
             cur.execute(sql, val)
 
         self.mydb.commit()
@@ -239,6 +239,6 @@ class dbif():
 if __name__ == '__main__':
     db = db_mysql()
     db.updatetimestamp()
-    db.Upload_LocalJsonTodb()
-    db.Download_to_local_json()
+    db.Update_Values_LocalJsonTodb()
+   # db.Download_to_local_json()
       
