@@ -34,23 +34,18 @@ class db_mysql():
         if not self.mysqlconnected:
             return False
         cur = self.mydb.cursor()
-<<<<<<< HEAD
+
         
         #cur.execute("DROP TABLE Prizes")
        # cur.execute("DROP TABLE PrizeTypes")
         #cur.execute("DROP TABLE Clients")
-        
-=======
+
         #cur.execute("DROP TABLE Clients")
->>>>>>> branch 'master' of https://github.com/frihauge/DinoCoin.git
+
 # Select data from table using SQL query.
-<<<<<<< HEAD
+
         cur.execute("CREATE TABLE IF NOT EXISTS Clients (id int(11) NOT NULL AUTO_INCREMENT,clientname varchar(45),Version varchar(45),LastOnline TIMESTAMP, PRIMARY KEY (id), UNIQUE (clientname))")
-=======
-        cur.execute("CREATE TABLE IF NOT EXISTS Clients (id int(11) NOT NULL AUTO_INCREMENT,clientname varchar(45),PRIMARY KEY (id), UNIQUE(clientname))")
->>>>>>> branch 'master' of https://github.com/frihauge/DinoCoin.git
-        #cur.execute("CREATE TABLE IF NOT EXISTS Prizetype (id int(11) NOT NULL,PrizeName varchar(45),PRIMARY KEY (id))")
-       
+
         sql = "INSERT IGNORE INTO Clients (clientname, Version) VALUES (%s,%s)"
         cur.execute(sql, (self.pcname,VersionNumber))
        
