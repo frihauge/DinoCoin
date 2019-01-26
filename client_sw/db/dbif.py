@@ -12,6 +12,7 @@ import os
 import time
 import datetime
 import json
+import io
 VersionNumber = "Ver 0.3 BETA"
 from . import googlefile as gf
 
@@ -58,14 +59,18 @@ class db_mysql():
     
     def DoesTablesExist(self):
         cur = self.mydb.cursor()
-        sql = cur.execute("SHOW TABLES")
-        for x in mycursor:
+        cur.execute("SHOW TABLES")
+        rv = cur.fetchall()
+        for x in rv:
             print(x)
             
     def CheckifDatainPrizes(self):
         cur = self.mydb.cursor()
-        sql = cur.execute("SELECT count(*) FROM `Prizes`")
-        for x in mycursor:
+        sql = ("SELECT count(*) FROM `Prizes` WHERE `ClientName` = %s")
+        val = (self.pcname,)
+        cur.execute(sql, val)
+        rv = cur.fetchall()
+        for x in rv:
             print(x)
         
                 
@@ -148,12 +153,6 @@ class db_mysql():
 
         self.mydb.commit()
 
-    def Upload_to_server_json(self):
-        if data is None:
-            self.logger.error("Data input is none!")
-            return None
-        for i in data:
-            print (data[i])
     
     def ReadFile(self):
         data = None
@@ -166,6 +165,7 @@ class db_mysql():
         finally:   
             jsonFile.close() # Close the JSON file
         return data        
+
 
     def SaveFile(self,data):
         ## Save our changes to JSON file
@@ -183,22 +183,24 @@ class dbif():
         self.Description = "Interface for database"
         self.data = None
         self.logger = log
-        self.logger.info("Connecting Google")
-        self.g = gf.googlefile(self.logger)
+        #self.logger.info("Connecting Google")
+        #self.g = gf.googlefile(self.logger)
+        self.logger.info("Connecting DataBase")
+        self.db_mysql = db_mysql()
 
 
 
     def getRandomPrice(self, prizeType): # 1 or 2
         self.logger.info("Downloading local prize file")
-        self.g.download_file()
+        self.db_mysql.Download_to_local_json()
         availbleprize = []
-        data = self.g.ReadFile()
+        data = self.db_mysql.ReadFile()
         if data is None:
             self.logger.error("Data from google drive is none!")
             return None
         prizeypecnt = 0
         prizecat = ('Prize_' + str(prizeType))
-        prizeypecnt = len(data[prizecat]['prizes'])
+        prizeypecnt = len(data[0]['PrizeType'])
         for i in data[prizecat]['prizes']:
             if i['Stock_cnt'] > 0:
                 availbleprize.append(i)
@@ -215,30 +217,14 @@ class dbif():
         self.g.SaveFile(data)
         return winnerLabel
         
-    def ReadFile(self):
-        data = None
-        try:
-            jsonFile = open(self.filename, "r", encoding='utf-8-sig') # Open the JSON file for reading
-            data = json.load(jsonFile) # Read the JSON into the buffer
-            
-        except Exception as e:
-            print('Json read error: ' , e)
-        finally:   
-            jsonFile.close() # Close the JSON file
-        return data     
+  
       
-    def SaveFile(self,data):
-        ## Save our changes to JSON file
-        jsonFile = open(self.filename, "w+", encoding='utf-8')
-        jsonFile.write(json.dumps(data, indent=4, ensure_ascii=False))
-        jsonFile.close()
-        if self.db_mysql.connected():
-            self.db_mysql.Upload_to_server_json(data)
         
          
 if __name__ == '__main__':
-    db = db_mysql()
+    db = dbif(logging)
+    db.getRandomPrice(1)
     db.updatetimestamp()
     db.Update_Values_LocalJsonTodb()
-   # db.Download_to_local_json()
+    db.Download_to_local_json()
       
