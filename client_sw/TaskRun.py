@@ -39,7 +39,7 @@ class TaskRun():
         self.CounterInPort = 0
         stat = False
         self.cnt = self.iomodule.readcounter(self.CounterInPort)
-        time.sleep(0.010)
+        time.sleep(0.100)
         # cnt = 1
         if (self.cnt > 0 ):
             time.sleep(self.timebetween_pulse) # If between 2 pulses

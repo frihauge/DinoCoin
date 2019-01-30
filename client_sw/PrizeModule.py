@@ -5,10 +5,11 @@ import queue
 from db import dbif
 from customprinter import custom 
 #prn_queue = queue.Queue()
-class Prize():
+class Prize(threading.Thread):
     
     
     def __init__(self, log):
+        threading.Thread.__init__(self)
         self.Version = 1.0
         self.Description = "Module handlng prize"
         self._Prize = {0 : 'StdPrize', 1 : 'GoldPrize'}
@@ -20,7 +21,6 @@ class Prize():
         while True:
             item = prn_queue.get()
             # item = prn_queue.get(block=True, timeout=2)
-            time.sleep(0.01)
             if item is None:
                 break
             self.newprize(item)
