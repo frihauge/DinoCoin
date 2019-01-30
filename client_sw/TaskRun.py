@@ -22,15 +22,17 @@ class TaskRun():
         try:
             self.adamhost = appsettings['Adam'][0]['host']
         except Exception as e:
-             self.logger.error("Main setup error"+ str(e)) 
-             self.adamhost = "192.168.1.100"  
+            self.logger.error("Main setup error"+ str(e)) 
+            self.adamhost = "192.168.1.100"  
              
-        self.pr = Prize(self.logger)
-        t= threading.Thread(target=self.pr.worker, args=(prn_queue,))
-        t.start()
         self.logger.info("Connecting iomodule ip " + str(self.adamhost))
         self.iomodule = adam.adam6000(self.logger, str(self.adamhost))
         succes = self.iomodule.connect()
+        self.pr = Prize(self.logger)
+        t= threading.Thread(target=self.pr.worker, args=(prn_queue,))
+        t.start()
+        # start downloading file
+        prn_queue.put(0)
 
     def run1s(self):
         self.logger.log(logging.INFO,"Counter log: "+ str(self.cnt))
@@ -45,7 +47,7 @@ class TaskRun():
             time.sleep(self.timebetween_pulse) # If between 2 pulses
             self.cnt = self.iomodule.readcounter(self.CounterInPort)
             self.logger.log(logging.INFO,"Generateprize Type: "+ str(self.cnt))
-            prn_queue.put(self.cnt )
+            prn_queue.put(self.cnt)
             #if self.cnt == 1:
                # self.pr#.newprize(1)
             #elif self.cnt == 2:
@@ -54,21 +56,9 @@ class TaskRun():
                     
     def run1m(self):
         self.logger.log(logging.INFO,"Update from OnLine Database")
-        self.pr.load_prizelist_to_local()
+        prn_queue.put(0)
+        #self.pr.load_prizelist_to_local()
         
-        
-    def  TestGenPrize(pr_str):
-        if pr_st == '1':
-            self.iomodule.SetOutputbit(1,1)
-            self.iomodule.SetOutputbit(1,0)
-        elif pr_st == '2':
-            self.iomodule.SetOutputbit(1,1)
-            self.iomodule.SetOutputbit(1,0)
-            self.iomodule.SetOutputbit(1,1)
-            self.iomodule.SetOutputbit(1,0)
-        else:
-            Print ('Wrong entry'+ str(pr_str))
-            
     def customcmd(self, cmd):
         if cmd == "cmd_1p":
             self.pr.newprize(1)

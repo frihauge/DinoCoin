@@ -23,7 +23,12 @@ class Prize(threading.Thread):
             # item = prn_queue.get(block=True, timeout=2)
             if item is None:
                 break
-            self.newprize(item)
+            if item == 1 or item == 2:
+                self.newprize(item)
+            elif item == 0:
+                self.load_prizelist_to_local()
+            else:
+                self.logger.error("Wrong queue cmd:" + str(item))  
             prn_queue.task_done()
 
                     
@@ -36,3 +41,4 @@ class Prize(threading.Thread):
     
     def load_prizelist_to_local(self):
         self.db.download_file()
+        self.db.db_mysql.updatetimestamp()
