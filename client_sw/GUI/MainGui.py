@@ -33,6 +33,7 @@ class MainTask(threading.Thread):
         previous_sec = -1
         previous_min = -1 
         while not self._stop_event.is_set():
+            self.tr.runfast()
             if not cmd_queue.empty():
                 try:
                     item = cmd_queue.get(block=True, timeout=2)

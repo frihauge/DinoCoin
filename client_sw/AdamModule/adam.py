@@ -6,7 +6,6 @@
 """
 
 import time
-import logging
 from pymodbus.client.sync import ModbusTcpClient as ModbusClient
 
 class adam6000():

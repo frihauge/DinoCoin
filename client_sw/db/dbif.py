@@ -17,23 +17,30 @@ VersionNumber = "Ver 0.3 BETA"
 from . import googlefile as gf
 
 class db_mysql():
-    def __init__(self):
+    def __init__(self, log):
+        self.logger = log
         self.mydb=None
         self.pcname = os.environ['COMPUTERNAME']
         self.filename = self.pcname + '_prize.json'
         self.mysqlconnected = False
+        self.network = False
+        self.createlocalfile()
+        if self.connect():
+            self.Download_to_local_json()
        
-        self.connect()
-                
     def connect(self):
         try:
             self.mydb = mysql.connector.connect(host="mysql4.gigahost.dk",user="frihaugedk",passwd="Thisisnot4u", database="frihaugedk_dc2019")
         except Exception as e:
-            print("Can't connect to db")
+            self.logger.error("Can't connect to db: " +str(e))
+            self.network = False
             return False
         self.mysqlconnected = self.mydb.is_connected()
         if not self.mysqlconnected:
+            self.network = False
             return False
+        self.logger.info("-----------Network Connected------------")
+        self.network = True
         cur = self.mydb.cursor()
 
         
@@ -49,13 +56,17 @@ class db_mysql():
 
         sql = "INSERT IGNORE INTO Clients (clientname, Version) VALUES (%s,%s)"
         cur.execute(sql, (self.pcname,VersionNumber))
-       
+        cur.execute("CREATE TABLE IF NOT EXISTS PrizeTypes (id int(11) NOT NULL AUTO_INCREMENT, PrizeType INT,PrizeTypeName varchar(45), PRIMARY KEY (id))")
+
+        cur.execute("""INSERT IGNORE INTO PrizeTypes (PrizeType, PrizeTypeName) VALUES (1,"Standard_prize")""")
+        cur.execute("""INSERT IGNORE INTO PrizeTypes (PrizeType, PrizeTypeName) VALUES (2,"Special_prize")""")
         self.mydb.commit()
         self.updatetimestamp()
         self.CreatePrizetableExist()
         
   
         print(self.mydb)
+        return True
     
     def DoesTablesExist(self):
         cur = self.mydb.cursor()
@@ -110,7 +121,28 @@ class db_mysql():
                 db_file.write(json.dumps({"StationName": self.pcname}))
   
     def Download_to_local_json(self):
-        cur = self.mydb.cursor()
+        if not self.network:
+            self.logger.error("Error no connection to db tring to reconnect")
+            if not self.connect():
+                return False
+             
+        try:
+            cur = self.mydb.cursor()
+        except Exception as e:
+            self.logger.error("Error no connection to db" +str(e))
+            return False
+        try:
+            self.logger.info("Check if local file need to be uploaded")
+            data = self.ReadFile()
+            if False: # put ind hvis der skal chekkes localt data:
+                if data['Networkstatus'] == "False":
+                    self.logger.info("Upload local data before getting server data")
+                    Update_Values_LocalJsonTodb()
+        except Exception as e:
+            self.logger.error("Error checkking for networkstatus in local file" +str(e))
+            return False
+        
+        self.logger.info("Downloading new prizefile")
         sql = """SELECT id,  PrizeType, Name, Description, Stock_cnt, delivered, PrizeTypeDescription FROM `Prizes` WHERE `ClientName` = %s"""
         val = (self.pcname,)
         cur.execute(sql, val)
@@ -122,9 +154,7 @@ class db_mysql():
         for result in rv:
             json_data.append(dict(zip(row_headers,result)))
             
-        jsonFile = open(self.filename, "w+", encoding='utf-8')
-        jsonFile.write(json.dumps(json_data, indent=4, ensure_ascii=False))
-        jsonFile.close()
+        self.SaveFile(json_data)
         return True
       
     def Update_Values_LocalJsonTodb(self):
@@ -132,13 +162,20 @@ class db_mysql():
         if data is None:
             self.logger.error("Data input is none!")
             return None
-        for prize in data:
-            cur = self.mydb.cursor()
-            sql = """UPDATE Prizes SET PrizeType=%s,Name=%s,Stock_cnt = %s, delivered = %s, Description =%s WHERE id = %s"""
-            val = (prize["PrizeType"],prize['Name'],prize['Stock_cnt'],prize['delivered'],prize['Description'], prize["id"])
-            cur.execute(sql, val)
-
-        self.mydb.commit()
+        try:
+            for prize in data['Prizes']:
+                try:
+                    cur = self.mydb.cursor()
+                except Exception as e:
+                    self.logger.error("Error no connection to db" +str(e))
+                    self.network = False
+                    return False
+                sql = """UPDATE Prizes SET PrizeType=%s,Name=%s,Stock_cnt = %s, delivered = %s, Description =%s WHERE id = %s"""
+                val = (prize["PrizeType"],prize['Name'],prize['Stock_cnt'],prize['delivered'],prize['Description'], prize["id"])
+                cur.execute(sql, val)
+                self.mydb.commit()
+        except Exception as e:
+            self.logger.error("Json dataread error: " , str(e))
         
     def Upload_LocalJsonTodb(self):
         data = self.ReadFile()
@@ -161,7 +198,7 @@ class db_mysql():
             data = json.load(jsonFile) # Read the JSON into the buffer
             
         except Exception as e:
-            print('Json read error: ' , e)
+            print('Json read error: ' , str(e))
         finally:   
             jsonFile.close() # Close the JSON file
         return data        
@@ -169,11 +206,14 @@ class db_mysql():
 
     def SaveFile(self,data):
         ## Save our changes to JSON file
+        filedict = {"Prizes": [], "Networkstatus": []}
+        filedict['Prizes']= data 
+        filedict['Networkstatus']= self.network
         jsonFile = open(self.filename, "w+", encoding='utf-8')
-        jsonFile.write(json.dumps(data, indent=4, ensure_ascii=False))
+        jsonFile.write(json.dumps(filedict, indent=4, ensure_ascii=False))
         jsonFile.close()
         if self.network:
-            self.update_file(self.filename,self.file_id)      
+            self.Update_Values_LocalJsonTodb()      
         
            
 class dbif():
@@ -186,38 +226,51 @@ class dbif():
         #self.logger.info("Connecting Google")
         #self.g = gf.googlefile(self.logger)
         self.logger.info("Connecting DataBase")
-        self.db_mysql = db_mysql()
+        self.db_mysql = db_mysql(self.logger)
 
-
+    def SaveFile(self,data):
+        self.db_mysql.SaveFile(data)
 
     def getRandomPrice(self, prizeType): # 1 or 2
         self.logger.info("Downloading local prize file")
         self.db_mysql.Download_to_local_json()
+            
         availbleprize = []
+        availbleStockcnt = []
+        
         data = self.db_mysql.ReadFile()
         if data is None:
-            self.logger.error("Data from google drive is none!")
+            self.logger.error("Data from Database drive is none!")
             return None
         prizeypecnt = 0
-        prizecat = ('Prize_' + str(prizeType))
-        prizeypecnt = len(data[0]['PrizeType'])
-        for i in data[prizecat]['prizes']:
-            if i['Stock_cnt'] > 0:
-                availbleprize.append(i)
+        for da in data['Prizes']:
+            if da['PrizeType'] == prizeType and da['Stock_cnt'] > 0:
+                availbleprize.append(da)
         totalprizes = len(availbleprize)
         if totalprizes == 0: # No more stuck
             return None
-        
-        n = random.randint(0, totalprizes - 1)
-        prize_id = availbleprize[n]['id']
+        sum = 0
+        for i in availbleprize:
+            sum = sum + int(i['Stock_cnt'])
+
+        percentlist = []
+        for i in availbleprize:
+            percentlist.append(int(i['Stock_cnt'])/sum)
+        p = random.choices(availbleprize, percentlist, k=1)[0]
+        for idx in data['Prizes']:
+            if idx['id']==p['id']:
+                idx['Stock_cnt']-=1
+                idx['delivered']+=1
+                winnerLabel = idx['Name']
+                break
         # Update data 
-        data[prizecat]['prizes'][prize_id]['Stock_cnt']-=1
-        data[prizecat]['prizes'][prize_id]['delivered']+=1
-        winnerLabel = data[prizecat]['prizes'][prize_id]['Name']
-        self.g.SaveFile(data)
+
+        # self.g.SaveFile(data)
+        self.SaveFile(data['Prizes'])
         return winnerLabel
         
-  
+    def download_file(self):
+      self.db_mysql.Download_to_local_json()  
       
         
          

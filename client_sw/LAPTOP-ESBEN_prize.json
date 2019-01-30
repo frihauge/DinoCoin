@@ -1,56 +1,59 @@
 {
-
-	"1": {
-		"prize:type": "Standard_prize",
-		"prizes": [{
-				"id": 0,
-				"Name": "Toffifee",
-				"Description": "",
-				"Stock_cnt": 68,
-				"delivered": 10,
-				"Last_Date_Delivered": "2018-08-03T10:51:42.990239"
-			}, {
-				"id": 1,
-				"Name": "Kong Fu Is",
-				"Description": "",
-				"Stock_cnt": 69,
-				"delivered": 9,
-				"Last_Date_Delivered": "2018-08-03T10:51:42.990239"
-			}, {
-				"id": 2,
-				"Name": "Mars-Bar",
-				"Description": "",
-				"Stock_cnt": 69,
-				"delivered": 9,
-				"Last_Date_Delivered": "2018-08-03T10:51:42.990239"
-			}, {
-				"id": 3,
-				"Name": "stor is",
-				"Description": "",
-				"Stock_cnt": 68,
-				"delivered": 10,
-				"Last_Date_Delivered": "2018-08-03T10:51:42.990239"
-			}
-		]
-	},
-	"2": {
-		"prize:type": "Special_prize",
-		"prizes": [{
-				"id": 0,
-				"Name": "Ugens Præmie",
-				"Description": "",
-				"Stock_cnt": 54,
-				"delivered": 18,
-				"Last_Date_Delivered": "2018-08-03T10:51:42.990239"
-			}, {
-				"id": 1,
-				"Name": "Måneds Præmie",
-				"Description": "",
-				"Stock_cnt": 64,
-				"delivered": 14,
-				"Last_Date_Delivered": "2018-08-03T10:51:42.990239"
-			}
-		]
-	}
-
+    "Prizes": [
+        {
+            "id": 1,
+            "PrizeType": 1,
+            "Name": "Kong Fu Is",
+            "Description": null,
+            "Stock_cnt": 8,
+            "delivered": 7,
+            "PrizeTypeDescription": "Standard_prize"
+        },
+        {
+            "id": 2,
+            "PrizeType": 1,
+            "Name": "Mars-Bar",
+            "Description": null,
+            "Stock_cnt": 70,
+            "delivered": 31,
+            "PrizeTypeDescription": "Standard_prize"
+        },
+        {
+            "id": 3,
+            "PrizeType": 1,
+            "Name": "stor is",
+            "Description": null,
+            "Stock_cnt": 9,
+            "delivered": 2,
+            "PrizeTypeDescription": "Standard_prize"
+        },
+        {
+            "id": 4,
+            "PrizeType": 2,
+            "Name": "Ugens Præmie",
+            "Description": null,
+            "Stock_cnt": 12,
+            "delivered": 230,
+            "PrizeTypeDescription": "Special_prize"
+        },
+        {
+            "id": 5,
+            "PrizeType": 2,
+            "Name": "Måneds Præmie",
+            "Description": null,
+            "Stock_cnt": 226,
+            "delivered": 4,
+            "PrizeTypeDescription": "Special_prize"
+        },
+        {
+            "id": 18,
+            "PrizeType": 1,
+            "Name": "Stor Katte Bamse",
+            "Description": null,
+            "Stock_cnt": 67,
+            "delivered": 49,
+            "PrizeTypeDescription": "Standard_prize"
+        }
+    ],
+    "Networkstatus": true
 }
