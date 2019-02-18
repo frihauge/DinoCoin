@@ -20,7 +20,8 @@ class TaskRun():
         self.cnt = 0
         self.CounterInPort = 0
         try:
-            self.adamhost = appsettings['Adam'][0]['host']
+            set =  appsettings.get('Adam', {'Adam':[{'host':"192.168.1.100"}]})
+            self.adamhost = set[0]['host']
         except Exception as e:
             self.logger.error("Main setup error"+ str(e)) 
             self.adamhost = "192.168.1.100"  
@@ -47,7 +48,8 @@ class TaskRun():
             time.sleep(self.timebetween_pulse) # If between 2 pulses
             self.cnt = self.iomodule.readcounter(self.CounterInPort)
             self.logger.log(logging.INFO,"Generateprize Type: "+ str(self.cnt))
-            prn_queue.put(self.cnt)
+            if self.cnt == 1 or  self.cnt == 2:
+                prn_queue.put(self.cnt)
             #if self.cnt == 1:
                # self.pr#.newprize(1)
             #elif self.cnt == 2:

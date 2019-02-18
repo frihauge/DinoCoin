@@ -13,7 +13,7 @@ import time
 import datetime
 import json
 import io
-VersionNumber = "Ver 0.3 BETA"
+VersionNumber = "Ver 0.5 BETA"
 from . import googlefile as gf
 
 class db_mysql():
@@ -248,7 +248,8 @@ class dbif():
                 availbleprize.append(da)
         totalprizes = len(availbleprize)
         if totalprizes == 0: # No more stuck
-            return None
+            self.logger.error("No more availble prizes with prizetype:"+ str(prizeType))
+            return "Ingen Præmie"
         sum = 0
         for i in availbleprize:
             sum = sum + int(i['Stock_cnt'])

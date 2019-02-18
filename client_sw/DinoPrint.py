@@ -5,11 +5,11 @@ from GUI import  MainGui
 
 
    
-def main():
+def DinoPrint():
    while True:
         try:
             root = tk.Tk()
-            root.iconbitmap(r'Main.ico')
+            root.iconbitmap(r'DinoPrint.ico')
             app =MainGui.App(root)
             app.root.mainloop()
         except Exception as e:
@@ -22,5 +22,5 @@ def main():
      
 
 if __name__ == '__main__':
-    main()
+    DinoPrint()
     
