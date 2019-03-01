@@ -104,12 +104,18 @@ class db_mysql():
         
         
     def updatetimestamp(self):
-        cur = self.mydb.cursor()
-        ts = time.time()
-        self.timestamp = datetime.datetime.fromtimestamp(ts).strftime('%Y-%m-%d %H:%M:%S')
-        sql = "UPDATE Clients SET LastOnline = %s WHERE  clientname = %s"
-        cur.execute(sql, (self.timestamp, self.pcname))
-        self.mydb.commit()
+        if self.mysqlconnected:
+            try:
+                cur = self.mydb.cursor()
+                ts = time.time()
+                self.timestamp = datetime.datetime.fromtimestamp(ts).strftime('%Y-%m-%d %H:%M:%S')
+                sql = "UPDATE Clients SET LastOnline = %s WHERE  clientname = %s"
+                cur.execute(sql, (self.timestamp, self.pcname))
+                self.mydb.commit()
+            except Exception as e:
+                if not self.connect():
+                    return False
+     
   
      
         
@@ -278,7 +284,7 @@ class dbif():
 if __name__ == '__main__':
     db = dbif(logging)
     db.getRandomPrice(1)
-    db.updatetimestamp()
+    db.updatestamp()
     db.Update_Values_LocalJsonTodb()
     db.Download_to_local_json()
       
