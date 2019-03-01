@@ -134,7 +134,7 @@ class db_mysql():
         try:
             self.logger.info("Check if local file need to be uploaded")
             data = self.ReadFile()
-            if False: # put ind hvis der skal chekkes localt data:
+            if True: # put ind hvis der skal chekkes localt data:
                 if data['Networkstatus'] == "False":
                     self.logger.info("Upload local data before getting server data")
                     Update_Values_LocalJsonTodb()

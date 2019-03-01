@@ -44,9 +44,9 @@ class MainTask(threading.Thread):
             now = datetime.datetime.now()
             if previous_sec != now.second:
                 previous_sec = now.second
-                if (previous_sec % 1) == 0: 
+                if (previous_sec % 10) == 0: 
                     level = logging.INFO
-                    self.tr.run1s()
+                    self.tr.run10s()
                 if (previous_sec % 60) == 0: 
                     level = logging.INFO
                     self.tr.run1m()
@@ -176,7 +176,7 @@ class App:
     def __init__(self, root):
         self.root = root
         root.title('DINOCOIN Service Application')
-        root.attributes("-topmost", True)
+        #root.attributes("-topmost", True)
         root.columnconfigure(0, weight=1)
         root.rowconfigure(0, weight=1)
         # Create the panes and frames

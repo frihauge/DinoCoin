@@ -1,0 +1,47 @@
+[
+    {
+        "id": 1,
+        "PrizeType": 1,
+        "Name": "Kong Fu Is",
+        "Description": "",
+        "Stock_cnt": 2,
+        "delivered": 9,
+        "PrizeTypeDescription": "Standard_prize"
+    },
+    {
+        "id": 2,
+        "PrizeType": 1,
+        "Name": "Mars-Bar",
+        "Description": "",
+        "Stock_cnt": 69,
+        "delivered": 9,
+        "PrizeTypeDescription": "Standard_prize"
+    },
+    {
+        "id": 3,
+        "PrizeType": 1,
+        "Name": "stor is",
+        "Description": "",
+        "Stock_cnt": 68,
+        "delivered": 10,
+        "PrizeTypeDescription": "Standard_prize"
+    },
+    {
+        "id": 4,
+        "PrizeType": 2,
+        "Name": "Ugens Præmie",
+        "Description": "",
+        "Stock_cnt": 54,
+        "delivered": 18,
+        "PrizeTypeDescription": "Special_prize"
+    },
+    {
+        "id": 5,
+        "PrizeType": 2,
+        "Name": "Måneds Præmie",
+        "Description": "",
+        "Stock_cnt": 64,
+        "delivered": 14,
+        "PrizeTypeDescription": "Special_prize"
+    }
+]

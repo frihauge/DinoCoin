@@ -32,11 +32,11 @@ Name: "english"; MessagesFile: "compiler:Default.isl"
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
 
 [Files]
-Source: "C:\workspace\project\Dinocoin\SW\DinoCoin\client_sw\dist\Main\Main.exe"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\workspace\project\Dinocoin\SW\DinoCoin\client_sw\dist\Main\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "..\dist\DinoPrint\DinoPrint.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\workspace\project\Dinocoin\SW\DinoCoin\client_sw\DinoPrint\Main\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: "C:\workspace\project\Dinocoin\SW\DinoCoin\client_sw\credentials.json"; DestDir: "{app}"; Flags: ignoreversion
 Source: "C:\workspace\project\Dinocoin\SW\DinoCoin\client_sw\MainSetup.json"; DestDir: "{app}"; Flags: ignoreversion
-Source: "..\Main.ico"; DestDir: "{app}"; Flags: ignoreversion
+Source: "..\DinoPrint.ico"; DestDir: "{app}"; Flags: ignoreversion
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Icons]

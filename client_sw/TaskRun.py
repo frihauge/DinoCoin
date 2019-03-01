@@ -2,6 +2,9 @@ import logging
 import time
 import threading
 import queue
+from pywinauto.findwindows import find_windows
+from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
 from PrizeModule import Prize
 from AdamModule import adam
 from symbol import except_clause
@@ -35,8 +38,15 @@ class TaskRun():
         # start downloading file
         prn_queue.put(0)
 
-    def run1s(self):
+    def run10s(self):
         self.logger.log(logging.INFO,"Counter log: "+ str(self.cnt))
+        try:
+            find_windows(best_match='YOURWINDOWNAMEHERE')
+
+            
+        except:
+            self.logger.log(logging.INFO,"No Browser open")
+    
     def runfast(self):
 
         self.CounterInPort = 0

@@ -12,10 +12,10 @@
         {
             "id": 44,
             "PrizeType": 1,
-            "Name": "Test Gevinst4",
+            "Name": "Vingummi Pizza",
             "Description": null,
-            "Stock_cnt": 1,
-            "delivered": 19,
+            "Stock_cnt": 96,
+            "delivered": 23,
             "PrizeTypeDescription": "Standard_prize"
         }
     ],
