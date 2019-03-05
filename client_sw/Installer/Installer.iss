@@ -5,7 +5,7 @@
 #define MyAppVersion "1.0"
 #define MyAppPublisher "DinoCoin"
 #define MyAppURL "http://www.DinoCoin.dk"
-#define MyAppExeName "Main.exe"
+#define MyAppExeName "DinoPrint.exe"
 
 [Setup]
 ; NOTE: The value of AppId uniquely identifies this application.
@@ -24,6 +24,7 @@ DefaultGroupName={#MyAppName}
 OutputBaseFilename=setup
 Compression=lzma
 SolidCompression=yes
+PrivilegesRequired=none
 
 [Languages]
 Name: "english"; MessagesFile: "compiler:Default.isl"
@@ -33,8 +34,7 @@ Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{
 
 [Files]
 Source: "..\dist\DinoPrint\DinoPrint.exe"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\workspace\project\Dinocoin\SW\DinoCoin\client_sw\DinoPrint\Main\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "C:\workspace\project\Dinocoin\SW\DinoCoin\client_sw\credentials.json"; DestDir: "{app}"; Flags: ignoreversion
+Source: "..\dist\DinoPrint\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: "C:\workspace\project\Dinocoin\SW\DinoCoin\client_sw\MainSetup.json"; DestDir: "{app}"; Flags: ignoreversion
 Source: "..\DinoPrint.ico"; DestDir: "{app}"; Flags: ignoreversion
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files

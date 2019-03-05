@@ -14,8 +14,8 @@
             "PrizeType": 1,
             "Name": "Vingummi Pizza",
             "Description": null,
-            "Stock_cnt": 96,
-            "delivered": 23,
+            "Stock_cnt": 94,
+            "delivered": 25,
             "PrizeTypeDescription": "Standard_prize"
         }
     ],

@@ -23,7 +23,7 @@ class custom():
         self.Description = "Setup Custom printer"
         self.logger = log
         self.printer_name = 'CUSTOM VKP80 II'
-        self.printfilepath = './tmp'
+        self.printfilepath = 'C:\\ProgramData\\DinoCoin\\DinoPrint\\tmp'
         try:
             self.hPrinter = win32print.OpenPrinter (self.printer_name)
         except:
@@ -36,7 +36,7 @@ class custom():
 
 
     def printlabel(self,prizeLabel):
-        filename = self.printfilepath+'/receipt.pdf'
+        filename = self.printfilepath+'\\receipt.pdf'
         try:
             self.logger.info("Render receipt")
             r = receiptrenderer.ReceiptRenderer(widthBuffer=20, offsetLeft=8)

@@ -13,26 +13,28 @@ import time
 import datetime
 import json
 import io
-VersionNumber = "Ver 0.5 BETA"
-from . import googlefile as gf
+VersionNumber = "Ver 0.8"
 
 class db_mysql():
     def __init__(self, log):
         self.logger = log
         self.mydb=None
         self.pcname = os.environ['COMPUTERNAME']
-        self.filename = self.pcname + '_prize.json'
+        self.FilePath = 'C:\\ProgramData\\DinoCoin\\DinoPrint\\'
+       
+        self.filename =self.FilePath+ self.pcname + '_prize.json'
+        
         self.mysqlconnected = False
         self.network = False
         self.createlocalfile()
         if self.connect():
+            self.CreateTables()
             self.Download_to_local_json()
-       
     def connect(self):
         try:
-            self.mydb = mysql.connector.connect(host="mysql4.gigahost.dk",user="frihaugedk",passwd="Thisisnot4u", database="frihaugedk_dc2019")
+            self.mydb = mysql.connector.connect(host="mysql4.gigahost.dk",user="frihaugedk",passwd="Thisisnot4u", database="frihaugedk_dc2019",connect_timeout=2)
         except Exception as e:
-            self.logger.error("Can't connect to db: " +str(e))
+            self.logger.info("No database connection: " +str(e))
             self.network = False
             return False
         self.mysqlconnected = self.mydb.is_connected()
@@ -41,31 +43,29 @@ class db_mysql():
             return False
         self.logger.info("-----------Network Connected------------")
         self.network = True
-        cur = self.mydb.cursor()
+        return True
+    
+    
+    def CreateTables(self):
+        try:
+            cur = self.mydb.cursor()
 
-        
-        #cur.execute("DROP TABLE Prizes")
-       # cur.execute("DROP TABLE PrizeTypes")
-        #cur.execute("DROP TABLE Clients")
+            cur.execute("CREATE TABLE IF NOT EXISTS Clients (id int(11) NOT NULL AUTO_INCREMENT,clientname varchar(45),Version varchar(45),LastOnline TIMESTAMP, PRIMARY KEY (id), UNIQUE (clientname))")
+            cur.execute("CREATE TABLE IF NOT EXISTS won_prizes (id int(11) NOT NULL AUTO_INCREMENT, client_id INT, prize_id INT,time TIMESTAMP, PRIMARY KEY (id))")
 
-        #cur.execute("DROP TABLE Clients")
+            sql = "INSERT IGNORE INTO Clients (clientname, Version) VALUES (%s,%s)"
+            cur.execute(sql, (self.pcname,VersionNumber))
+            cur.execute("CREATE TABLE IF NOT EXISTS PrizeTypes (id int(11) NOT NULL AUTO_INCREMENT, PrizeType INT,PrizeTypeName varchar(45), PRIMARY KEY (id))")
 
-# Select data from table using SQL query.
-
-        cur.execute("CREATE TABLE IF NOT EXISTS Clients (id int(11) NOT NULL AUTO_INCREMENT,clientname varchar(45),Version varchar(45),LastOnline TIMESTAMP, PRIMARY KEY (id), UNIQUE (clientname))")
-
-        sql = "INSERT IGNORE INTO Clients (clientname, Version) VALUES (%s,%s)"
-        cur.execute(sql, (self.pcname,VersionNumber))
-        cur.execute("CREATE TABLE IF NOT EXISTS PrizeTypes (id int(11) NOT NULL AUTO_INCREMENT, PrizeType INT,PrizeTypeName varchar(45), PRIMARY KEY (id))")
-
-        cur.execute("""INSERT IGNORE INTO PrizeTypes (PrizeType, PrizeTypeName) VALUES (1,"Standard_prize")""")
-        cur.execute("""INSERT IGNORE INTO PrizeTypes (PrizeType, PrizeTypeName) VALUES (2,"Special_prize")""")
-        self.mydb.commit()
-        self.updatetimestamp()
-        self.CreatePrizetableExist()
-        
-  
-        print(self.mydb)
+            cur.execute("""INSERT IGNORE INTO PrizeTypes (PrizeType, PrizeTypeName) VALUES (1,"Standard_prize")""")
+            cur.execute("""INSERT IGNORE INTO PrizeTypes (PrizeType, PrizeTypeName) VALUES (2,"Special_prize")""")
+            self.mydb.commit()
+            self.updatetimestamp()
+            self.CreatePrizetableExist()
+            print(self.mydb)
+        except Exception as e:
+              self.logger.info("Error after connect !!")
+              self.network = False
         return True
     
     def DoesTablesExist(self):
@@ -87,7 +87,7 @@ class db_mysql():
                 
     def CreatePrizetableExist(self):
         cur = self.mydb.cursor()
-         
+        self.logger.info("Create PrizeTable") 
         sql =   ("""CREATE TABLE IF NOT EXISTS Prizes(
                                 id int(11) NOT NULL AUTO_INCREMENT,
                                 ClientName varchar(45),
@@ -104,7 +104,7 @@ class db_mysql():
         
         
     def updatetimestamp(self):
-        if self.mysqlconnected:
+        if self.network:
             try:
                 cur = self.mydb.cursor()
                 ts = time.time()
@@ -114,12 +114,20 @@ class db_mysql():
                 self.mydb.commit()
             except Exception as e:
                 if not self.connect():
+                    self.network = False
                     return False
      
   
      
         
     def createlocalfile(self):
+        if not os.path.exists(os.path.dirname(self.filename)):
+            try:
+                os.makedirs(os.path.dirname(self.filename))
+            except OSError as exc: 
+                if exc.errno != errno.EEXIST:
+                    raise
+
         if os.path.isfile(self.filename) and os.access(self.filename, os.R_OK):
             print ("Local file exists and is readable")
         else:
@@ -128,22 +136,26 @@ class db_mysql():
   
     def Download_to_local_json(self):
         if not self.network:
-            self.logger.error("Error no connection to db tring to reconnect")
+            self.logger.info("no DB connection tring to reconnect ")
             if not self.connect():
                 return False
              
         try:
+            self.mydb.cmd_ping()
             cur = self.mydb.cursor()
         except Exception as e:
-            self.logger.error("Error no connection to db" +str(e))
-            return False
+            self.logger.info("No Database connection Using local file" +str(e))
+            self.network = False
+            
+            
         try:
             self.logger.info("Check if local file need to be uploaded")
             data = self.ReadFile()
             if True: # put ind hvis der skal chekkes localt data:
-                if data['Networkstatus'] == "False":
-                    self.logger.info("Upload local data before getting server data")
-                    Update_Values_LocalJsonTodb()
+                if 'Networkstatus' in data:
+                    if data['Networkstatus'] == False:
+                        self.logger.info("Upload local data before getting server data")
+                        self.Update_Values_LocalJsonTodb()
         except Exception as e:
             self.logger.error("Error checkking for networkstatus in local file" +str(e))
             return False
@@ -151,18 +163,39 @@ class db_mysql():
         self.logger.info("Downloading new prizefile")
         sql = """SELECT id,  PrizeType, Name, Description, Stock_cnt, delivered, PrizeTypeDescription FROM `Prizes` WHERE `ClientName` = %s"""
         val = (self.pcname,)
-        cur.execute(sql, val)
-        row_headers=[x[0] for x in cur.description] #this will extract row headers
-        rv = cur.fetchall()
-        json_data=[]
-        if not len(rv):
-            return False
-        for result in rv:
-            json_data.append(dict(zip(row_headers,result)))
-            
-        self.SaveFile(json_data)
+        
+        try:
+            cur.execute(sql, val)
+            row_headers=[x[0] for x in cur.description] #this will extract row headers
+            rv = cur.fetchall()
+            json_data=[]
+            if not len(rv):
+                return False
+            for result in rv:
+                json_data.append(dict(zip(row_headers,result)))
+            self.SaveFile(json_data)
+        except Exception as e:
+           return False     
         return True
-      
+    
+    def insert_prizewon(self,pdata):
+        ts = time.time()
+        self.timestamp = datetime.datetime.fromtimestamp(ts).strftime('%Y-%m-%d %H:%M:%S')
+        try:
+            for prize in pdata:
+                try:
+                    cur = self.mydb.cursor()
+                except Exception as e:
+                    self.logger.error("Error no connection to db" +str(e))
+                    self.network = False
+                    return False
+                sql = ("""INSERT IGNORE INTO won_prizes (client_id, prize_id, time) VALUES (%s,%s,%s)""")
+                val = (pdata["id"],prize['id'],self.timestamp)
+                cur.execute(sql, val)
+                self.mydb.commit()
+        except Exception as e:
+            self.logger.error("Json dataread error: " , str(e))
+            
     def Update_Values_LocalJsonTodb(self):
         data = self.ReadFile()
         if data is None:
@@ -210,6 +243,10 @@ class db_mysql():
         return data        
 
 
+    def SaveWonData(self,prize_data):
+        if self.network:
+            self.insert_prizewon(prize_data)    
+            
     def SaveFile(self,data):
         ## Save our changes to JSON file
         filedict = {"Prizes": [], "Networkstatus": []}
@@ -228,6 +265,7 @@ class dbif():
         self.Version = 1.0
         self.Description = "Interface for database"
         self.data = None
+        self.store_wonlog = False
         self.logger = log
         #self.logger.info("Connecting Google")
         #self.g = gf.googlefile(self.logger)
@@ -274,6 +312,8 @@ class dbif():
 
         # self.g.SaveFile(data)
         self.SaveFile(data['Prizes'])
+        if self.store_wonlog:
+            self.db_mysql.SaveWonData(p)
         return winnerLabel
         
     def download_file(self):

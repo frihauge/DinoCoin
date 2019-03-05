@@ -5,6 +5,8 @@ import signal
 import time
 import threading
 import json
+import os
+import io
 import tkinter as tk
 from TaskRun import TaskRun
 
@@ -23,6 +25,8 @@ class MainTask(threading.Thread):
 
     def __init__(self):
         super().__init__()
+        self.FilePath = 'C:\\ProgramData\\DinoCoin\\DinoPrint\\'
+        self.mainsetupfile =self.FilePath+ 'MainSetup.json'
         self._stop_event = threading.Event()
 
     def run(self):
@@ -53,17 +57,24 @@ class MainTask(threading.Thread):
             time.sleep(0.2)
 
     def stop(self):
+        self.tr.stop()
         self._stop_event.set()
     
     def ReadSetupFile(self):
+        if not os.path.exists(os.path.dirname(self.mainsetupfile)):
+            try:
+                os.makedirs(os.path.dirname(self.mainsetupfile))
+            except Exception as e: 
+                print('MainSetupFile make dirs read error: ' + self.mainsetupfile, e)
+                
+        if os.path.isfile(self.mainsetupfile) and os.access(self.mainsetupfile, os.R_OK):
+            print ("Local mainsetupfile exists and is readable")
+        else:
+            with io.open(self.mainsetupfile, 'w') as db_file:
+                db_file.write(json.dumps({'Adam':[{'host':"192.168.1.200"}]}))
         data = None
-        try:
-            jsonFile = open('MainSetup.json', "r") # Open the JSON file for reading
-            data = json.load(jsonFile) # Read the JSON into the buffer
-        except Exception as e:
-            print('Json read error: ' , e)
-        finally:   
-            jsonFile.close() # Close the JSON file
+        with io.open(self.mainsetupfile, 'r') as jsonFile:
+            data = json.load(jsonFile) 
         return data  
 
 

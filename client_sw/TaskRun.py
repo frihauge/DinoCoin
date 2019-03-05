@@ -23,7 +23,7 @@ class TaskRun():
         self.cnt = 0
         self.CounterInPort = 0
         try:
-            set =  appsettings.get('Adam', {'Adam':[{'host':"192.168.1.100"}]})
+            set =  appsettings.get('Adam', {'Adam':[{'host':"192.168.1.200"}]})
             self.adamhost = set[0]['host']
         except Exception as e:
             self.logger.error("Main setup error"+ str(e)) 
@@ -33,19 +33,25 @@ class TaskRun():
         self.iomodule = adam.adam6000(self.logger, str(self.adamhost))
         succes = self.iomodule.connect()
         self.pr = Prize(self.logger)
-        t= threading.Thread(target=self.pr.worker, args=(prn_queue,))
-        t.start()
+        self.t= threading.Thread(target=self.pr.worker, args=(prn_queue,))
+        self.t.start()
         # start downloading file
         prn_queue.put(0)
+    
+    def stop(self):
+        prn_queue.put(-1)
 
+        
     def run10s(self):
         self.logger.log(logging.INFO,"Counter log: "+ str(self.cnt))
-        try:
-            find_windows(best_match='YOURWINDOWNAMEHERE')
+        if 'DigitalSignage' in self.appsettings:
+            print("Check Digital Signage")
+        # try:
+        #     find_windows(best_match='YOURWINDOWNAMEHERE')
 
             
-        except:
-            self.logger.log(logging.INFO,"No Browser open")
+        # except:
+        #     self.logger.log(logging.INFO,"No Browser open")
     
     def runfast(self):
 
@@ -69,8 +75,7 @@ class TaskRun():
     def run1m(self):
         self.logger.log(logging.INFO,"Update from OnLine Database")
         prn_queue.put(0)
-        #self.pr.load_prizelist_to_local()
-        
+
     def customcmd(self, cmd):
         if cmd == "cmd_1p":
             self.pr.newprize(1)
@@ -80,6 +85,8 @@ class TaskRun():
             prn_queue.put(1)
         if cmd == "q_2p":
             prn_queue.put(2)
+        if cmd == "q_loadloc":
+            prn_queue.put('loadloc')
             
             
                 
