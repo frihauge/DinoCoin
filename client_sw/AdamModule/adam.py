@@ -6,6 +6,8 @@
 """
 
 import time
+import random
+
 from pymodbus.client.sync import ModbusTcpClient as ModbusClient
 
 class adam6000():
@@ -47,6 +49,9 @@ class adam6000():
         try:
             rr = self.client.read_input_registers(0,7)
             cnt = rr.registers[num]
+            if False:
+                cnt = random.randint(0, 20)
+                
         except:
             self.logger.error("No connection to ADAM on ip: " + str(self.host))
             cnt = -1

@@ -14,16 +14,17 @@ prn_queue = queue.Queue()
 class TaskRun():
     
     
-    def __init__(self, log, appsettings):
+    def __init__(self, log, root):
         self.Version = 1.0
+        self.root = root
         self.Description = "Module TaskRun"
         self.logger = log
-        self.appsettings = appsettings
+        self.appsettings = self.root.appsettings
         self.timebetween_pulse = 0.001
         self.cnt = 0
         self.CounterInPort = 0
         try:
-            set =  appsettings.get('Adam', {'Adam':[{'host':"192.168.1.200"}]})
+            set =  self.appsettings.get('Adam', {'Adam':[{'host':"192.168.1.200"}]})
             self.adamhost = set[0]['host']
         except Exception as e:
             self.logger.error("Main setup error"+ str(e)) 
@@ -32,7 +33,7 @@ class TaskRun():
         self.logger.info("Connecting iomodule ip " + str(self.adamhost))
         self.iomodule = adam.adam6000(self.logger, str(self.adamhost))
         succes = self.iomodule.connect()
-        self.pr = Prize(self.logger)
+        self.pr = Prize(self.logger,self.root)
         self.t= threading.Thread(target=self.pr.worker, args=(prn_queue,))
         self.t.start()
         # start downloading file
@@ -59,23 +60,30 @@ class TaskRun():
         stat = False
         self.cnt = self.iomodule.readcounter(self.CounterInPort)
         time.sleep(0.100)
+        #time.sleep(1.100)
         # cnt = 1
-        if (self.cnt > 0 ):
+        if self.cnt > 0 :
             time.sleep(self.timebetween_pulse) # If between 2 pulses
             self.cnt = self.iomodule.readcounter(self.CounterInPort)
-            self.logger.log(logging.INFO,"Generateprize Type: "+ str(self.cnt))
-            if self.cnt == 1 or  self.cnt == 2:
+            if self.cnt == 1 or self.cnt==2:
                 prn_queue.put(self.cnt)
+                self.logger.log(logging.INFO,"Generateprize Type: "+ str(self.cnt))
             #if self.cnt == 1:
                # self.pr#.newprize(1)
             #elif self.cnt == 2:
                 #self.pr.newprize(2)
+            if self.cnt > 2:
+                self.logger.log(logging.WARN,"Counter > 2: "+ str(self.cnt) +" Igonore")    
             stat = self.iomodule.ClearCounter(self.CounterInPort)
                     
     def run1m(self):
         self.logger.log(logging.INFO,"Update from OnLine Database")
         prn_queue.put(0)
 
+    def runtest(self):
+        self.logger.log(logging.INFO,"Test Prize")
+        prn_queue.put(1)
+        
     def customcmd(self, cmd):
         if cmd == "cmd_1p":
             self.pr.newprize(1)

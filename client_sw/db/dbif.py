@@ -13,10 +13,10 @@ import time
 import datetime
 import json
 import io
-VersionNumber = "Ver 0.8"
 
 class db_mysql():
-    def __init__(self, log):
+    def __init__(self, log, root):
+        self.root = root
         self.logger = log
         self.mydb=None
         self.pcname = os.environ['COMPUTERNAME']
@@ -30,6 +30,7 @@ class db_mysql():
         if self.connect():
             self.CreateTables()
             self.Download_to_local_json()
+            
     def connect(self):
         try:
             self.mydb = mysql.connector.connect(host="mysql4.gigahost.dk",user="frihaugedk",passwd="Thisisnot4u", database="frihaugedk_dc2019",connect_timeout=2)
@@ -51,12 +52,14 @@ class db_mysql():
             cur = self.mydb.cursor()
 
             cur.execute("CREATE TABLE IF NOT EXISTS Clients (id int(11) NOT NULL AUTO_INCREMENT,clientname varchar(45),Version varchar(45),LastOnline TIMESTAMP, PRIMARY KEY (id), UNIQUE (clientname))")
+            cur.execute("CREATE TABLE IF NOT EXISTS Settings (id int(11) NOT NULL AUTO_INCREMENT,clientname varchar(45),Parameter varchar(45),Value varchar(128), PRIMARY KEY (id),UNIQUE (clientname, Parameter))")
             cur.execute("CREATE TABLE IF NOT EXISTS won_prizes (id int(11) NOT NULL AUTO_INCREMENT, client_id INT, prize_id INT,time TIMESTAMP, PRIMARY KEY (id))")
 
-            sql = "INSERT IGNORE INTO Clients (clientname, Version) VALUES (%s,%s)"
-            cur.execute(sql, (self.pcname,VersionNumber))
+            sql = "INSERT IGNORE INTO Clients (clientname, Version) VALUES (%s,%s) on duplicate key update Version = %s"
+            cur.execute(sql, (self.pcname, self.root.version, self.root.version))
             cur.execute("CREATE TABLE IF NOT EXISTS PrizeTypes (id int(11) NOT NULL AUTO_INCREMENT, PrizeType INT,PrizeTypeName varchar(45), PRIMARY KEY (id))")
-
+            sql = "INSERT IGNORE INTO Settings (clientname, Parameter, Value) VALUES (%s,%s,%s)"
+            cur.execute(sql, (self.pcname, "Ad_URL", "http:\\helloWorld"))
             cur.execute("""INSERT IGNORE INTO PrizeTypes (PrizeType, PrizeTypeName) VALUES (1,"Standard_prize")""")
             cur.execute("""INSERT IGNORE INTO PrizeTypes (PrizeType, PrizeTypeName) VALUES (2,"Special_prize")""")
             self.mydb.commit()
@@ -64,7 +67,7 @@ class db_mysql():
             self.CreatePrizetableExist()
             print(self.mydb)
         except Exception as e:
-              self.logger.info("Error after connect !!")
+              self.logger.error("Error after connect !! "+e)
               self.network = False
         return True
     
@@ -136,7 +139,7 @@ class db_mysql():
   
     def Download_to_local_json(self):
         if not self.network:
-            self.logger.info("no DB connection tring to reconnect ")
+            self.logger.info("No DB connection tring to reconnect ")
             if not self.connect():
                 return False
              
@@ -175,7 +178,8 @@ class db_mysql():
                 json_data.append(dict(zip(row_headers,result)))
             self.SaveFile(json_data)
         except Exception as e:
-           return False     
+            self.network = False
+            return False     
         return True
     
     def insert_prizewon(self,pdata):
@@ -186,7 +190,7 @@ class db_mysql():
                 try:
                     cur = self.mydb.cursor()
                 except Exception as e:
-                    self.logger.error("Error no connection to db" +str(e))
+                    self.logger.info("No connection to db" +str(e))
                     self.network = False
                     return False
                 sql = ("""INSERT IGNORE INTO won_prizes (client_id, prize_id, time) VALUES (%s,%s,%s)""")
@@ -206,7 +210,7 @@ class db_mysql():
                 try:
                     cur = self.mydb.cursor()
                 except Exception as e:
-                    self.logger.error("Error no connection to db" +str(e))
+                    self.logger.info("No connection to db setting network status = False" +str(e))
                     self.network = False
                     return False
                 sql = """UPDATE Prizes SET PrizeType=%s,Name=%s,Stock_cnt = %s, delivered = %s, Description =%s WHERE id = %s"""
@@ -214,20 +218,26 @@ class db_mysql():
                 cur.execute(sql, val)
                 self.mydb.commit()
         except Exception as e:
-            self.logger.error("Json dataread error: " , str(e))
+            #self.logger.error("Json dataread error: " , str(e))
+            self.network = False
+            return None
         
     def Upload_LocalJsonTodb(self):
         data = self.ReadFile()
         if data is None:
             self.logger.error("Data input is none!")
             return None
-        for prize in data:
-            cur = self.mydb.cursor()
-            sql = """INSERT INTO Prizes (ID,ClientName, PrizeType, Name, Description,Stock_cnt, delivered, PrizeTypeDescription) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)"""
-            val = (0,self.pcname, prize["PrizeType"],prize['Name'],prize['Description'],prize['Stock_cnt'],prize['delivered'],prize['PrizeTypeDescription'])
-            cur.execute(sql, val)
-
-        self.mydb.commit()
+        try:
+            for prize in data:
+                cur = self.mydb.cursor()
+                sql = """INSERT INTO Prizes (ID,ClientName, PrizeType, Name, Description,Stock_cnt, delivered, PrizeTypeDescription) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)"""
+                val = (0,self.pcname, prize["PrizeType"],prize['Name'],prize['Description'],prize['Stock_cnt'],prize['delivered'],prize['PrizeTypeDescription'])
+                cur.execute(sql, val)
+            self.mydb.commit()
+        except:
+            self.network = False
+            return None
+            
 
     
     def ReadFile(self):
@@ -261,7 +271,8 @@ class db_mysql():
            
 class dbif():
 
-    def __init__(self, log):
+    def __init__(self, log, root):
+        self.root = root
         self.Version = 1.0
         self.Description = "Interface for database"
         self.data = None
@@ -270,7 +281,7 @@ class dbif():
         #self.logger.info("Connecting Google")
         #self.g = gf.googlefile(self.logger)
         self.logger.info("Connecting DataBase")
-        self.db_mysql = db_mysql(self.logger)
+        self.db_mysql = db_mysql(self.logger, self.root)
 
     def SaveFile(self,data):
         self.db_mysql.SaveFile(data)

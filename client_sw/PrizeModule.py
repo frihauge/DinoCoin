@@ -8,15 +8,16 @@ prn_queue = queue.Queue()
 
 class Prize(threading.Thread):
     
-    def __init__(self, log):
+    def __init__(self, log, root):
         threading.Thread.__init__(self)
+        self.root = root
         self.Version = 1.0
         self.Description = "Module handlng prize"
         self._Prize = {0 : 'StdPrize', 1 : 'GoldPrize'}
         self.logger = log
         self.stopthread = False
         self.lock = threading.Lock()
-        self.db = dbif.dbif(self.logger)
+        self.db = dbif.dbif(self.logger,self.root)
         self.prn = custom.custom( self.logger)
         
     def worker(self,prn_queue):

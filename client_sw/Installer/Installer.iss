@@ -24,7 +24,13 @@ DefaultGroupName={#MyAppName}
 OutputBaseFilename=setup
 Compression=lzma
 SolidCompression=yes
-PrivilegesRequired=none
+PrivilegesRequired=admin 
+VersionInfoVersion=1.0
+VersionInfoCompany=Dinocoin ApS
+VersionInfoDescription=DinoPrint service app
+VersionInfoCopyright=Dino
+VersionInfoProductName=DinoPrint 
+VersionInfoProductVersion=1.0
 
 [Languages]
 Name: "english"; MessagesFile: "compiler:Default.isl"
@@ -33,8 +39,8 @@ Name: "english"; MessagesFile: "compiler:Default.isl"
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
 
 [Files]
-Source: "..\dist\DinoPrint\DinoPrint.exe"; DestDir: "{app}"; Flags: ignoreversion
-Source: "..\dist\DinoPrint\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "..\dist\DinoPrint.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "..\dist\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: "C:\workspace\project\Dinocoin\SW\DinoCoin\client_sw\MainSetup.json"; DestDir: "{app}"; Flags: ignoreversion
 Source: "..\DinoPrint.ico"; DestDir: "{app}"; Flags: ignoreversion
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files

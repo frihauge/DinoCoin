@@ -18,28 +18,25 @@ logger = logging.getLogger(__name__)
 cmd_queue = queue.Queue()
 
 class MainTask(threading.Thread):
-    """Class to display the time every seconds
-    Every 5 seconds, the time is displayed using the logging.ERROR level
-    to show that different colors are associated to the log levels
-    """
 
-    def __init__(self):
+
+    def __init__(self, root):
         super().__init__()
-        self.FilePath = 'C:\\ProgramData\\DinoCoin\\DinoPrint\\'
-        self.mainsetupfile =self.FilePath+ 'MainSetup.json'
+        self.root =  root
         self._stop_event = threading.Event()
 
     def run(self):
         logger.debug('Main Task Started')
-        logger.info('Loading appsettings')
-        appsettings = self.ReadSetupFile()
-        self.tr = TaskRun(logger, appsettings)
+        logger.info(self.root.version)
+        root = self.root
+        self.tr = TaskRun(logger, root)
         previous_sec = -1
         previous_min = -1 
         while not self._stop_event.is_set():
             self.tr.runfast()
             if not cmd_queue.empty():
                 try:
+
                     item = cmd_queue.get(block=True, timeout=2)
                     logger.info( "CMD Exe:: %s" % (item))
                     self.tr.customcmd(item)
@@ -51,6 +48,10 @@ class MainTask(threading.Thread):
                 if (previous_sec % 10) == 0: 
                     level = logging.INFO
                     self.tr.run10s()
+               # if (previous_sec % 3) == 0: 
+               #     level = logging.INFO
+               #     self.tr.runtest()
+                    
                 if (previous_sec % 60) == 0: 
                     level = logging.INFO
                     self.tr.run1m()
@@ -59,23 +60,6 @@ class MainTask(threading.Thread):
     def stop(self):
         self.tr.stop()
         self._stop_event.set()
-    
-    def ReadSetupFile(self):
-        if not os.path.exists(os.path.dirname(self.mainsetupfile)):
-            try:
-                os.makedirs(os.path.dirname(self.mainsetupfile))
-            except Exception as e: 
-                print('MainSetupFile make dirs read error: ' + self.mainsetupfile, e)
-                
-        if os.path.isfile(self.mainsetupfile) and os.access(self.mainsetupfile, os.R_OK):
-            print ("Local mainsetupfile exists and is readable")
-        else:
-            with io.open(self.mainsetupfile, 'w') as db_file:
-                db_file.write(json.dumps({'Adam':[{'host':"192.168.1.200"}]}))
-        data = None
-        with io.open(self.mainsetupfile, 'r') as jsonFile:
-            data = json.load(jsonFile) 
-        return data  
 
 
 class QueueHandler(logging.Handler):
@@ -122,12 +106,15 @@ class ConsoleUi:
         self.frame.after(100, self.poll_log_queue)
 
     def display(self, record):
-        msg = self.queue_handler.format(record)
-        self.scrolled_text.configure(state='normal')
-        self.scrolled_text.insert(tk.END, msg + '\n', record.levelname)
-        self.scrolled_text.configure(state='disabled')
-        # Autoscroll to the bottom
-        self.scrolled_text.yview(tk.END)
+        try:
+            msg = self.queue_handler.format(record)
+            self.scrolled_text.configure(state='normal')
+            self.scrolled_text.insert(tk.END, msg + '\n', record.levelname)
+            self.scrolled_text.configure(state='disabled')
+            # Autoscroll to the bottom
+            self.scrolled_text.yview(tk.END)
+        except:
+            print("Error in log occured")
 
     def poll_log_queue(self):
         # Check every 100ms if there is a new message in the queue to display
@@ -146,9 +133,10 @@ class FormUi:
     def __init__(self, frame):
         self.frame = frame
         # Create a combobbox to select the logging level
+   
         values = ['DEBUG', 'INFO','Prize']
         self.level = tk.StringVar()
-        ttk.Label(self.frame, text='Command:').grid(column=0, row=0, sticky=W)
+       # ttk.Label(self.frame, text='Debug Command:').grid(column=0, row=0, sticky=W)
         self.combobox = ttk.Combobox(
             self.frame,
             textvariable=self.level,
@@ -157,14 +145,15 @@ class FormUi:
             values=values
         )
         self.combobox.current(0)
-        self.combobox.grid(column=1, row=0, sticky=(W, E))
+        #self.combobox.grid(column=1, row=0, sticky=(W, E))
+
         # Create a text field to enter a message
         self.message = tk.StringVar()
-        ttk.Label(self.frame, text='Message:').grid(column=0, row=1, sticky=W)
-        ttk.Entry(self.frame, textvariable=self.message, width=25).grid(column=1, row=1, sticky=(W, E))
+        ttk.Label(self.frame, text='Debug_Cmd:').grid(column=0, row=1, sticky=W)
+        ttk.Entry(self.frame, textvariable=self.message, width=20).grid(column=1, row=2, sticky=(W,E))
         # Add a button to log the message
-        self.button = ttk.Button(self.frame, text='Submit', command=self.submit_message)
-        self.button.grid(column=1, row=2, sticky=W)
+        self.button = ttk.Button(self.frame,  text='Submit', command=self.submit_message)
+        self.button.grid(column=0, row=2, sticky=W)
 
     def submit_message(self):
         # Get the logging level numeric value
@@ -186,7 +175,7 @@ class App:
 
     def __init__(self, root):
         self.root = root
-        root.title('DINOCOIN Service Application')
+        root.title('DINOCOIN Service Application' + ' Ver. ' + self.root.version)
         #root.attributes("-topmost", True)
         root.columnconfigure(0, weight=1)
         root.rowconfigure(0, weight=1)
@@ -198,7 +187,7 @@ class App:
         form_frame = ttk.Labelframe(horizontal_pane, text="Manuel control")
         form_frame.columnconfigure(1, weight=1)
         horizontal_pane.add(form_frame, weight=1)
-        console_frame = ttk.Labelframe(horizontal_pane, text="Console")
+        console_frame = ttk.Labelframe(horizontal_pane, text="Log")
         console_frame.columnconfigure(0, weight=1)
         console_frame.rowconfigure(0, weight=1)
         horizontal_pane.add(console_frame, weight=1)
@@ -207,9 +196,10 @@ class App:
         # Initialize all frames
 
         self.form = FormUi(form_frame)
+       
         self.console = ConsoleUi(console_frame)
         self.third = ThirdUi(third_frame)
-        self.MainTask = MainTask()
+        self.MainTask = MainTask(self.root)
         self.MainTask.start()
         self.root.protocol('WM_DELETE_WINDOW', self.quit)
         self.root.bind('<Control-q>', self.quit)
