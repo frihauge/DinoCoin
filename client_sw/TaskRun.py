@@ -25,6 +25,7 @@ class TaskRun():
         self.CounterInPort = 0
         try:
             set =  self.appsettings.get('Adam', {'Adam':[{'host':"192.168.1.200"}]})
+            self.timebetween_pulse = self.appsettings.get('timebetween_pulse',1) * 0.001
             self.adamhost = set[0]['host']
         except Exception as e:
             self.logger.error("Main setup error"+ str(e)) 
@@ -32,6 +33,7 @@ class TaskRun():
              
         self.logger.info("Connecting iomodule ip " + str(self.adamhost))
         self.iomodule = adam.adam6000(self.logger, str(self.adamhost))
+        self.logger.info("WaitTime from 1 puls cnt to 2 is: " + str(self.timebetween_pulse))
         succes = self.iomodule.connect()
         self.pr = Prize(self.logger,self.root)
         self.t= threading.Thread(target=self.pr.worker, args=(prn_queue,))
