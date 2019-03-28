@@ -29,4 +29,4 @@ exe = EXE(pyz,
           strip=False,
           upx=True,
           runtime_tmpdir=None,
-          console=True , icon='DinoPrint.ico')
+          console=False , icon='DinoPrint.ico')

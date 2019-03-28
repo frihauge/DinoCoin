@@ -5,51 +5,54 @@ import sys
 from time import time, sleep
 from sched import scheduler
 import os,io
+import chromeviewer
 
-if sys.platform.startswith('linux'):
-    from systems.linux import System
-elif sys.platform.startswith('darwin'):
-    from systems.mac import System
-elif sys.platform.startswith('win32'):
-    from systems.win import System
-else:
-    raise SystemExit('Sorry, multibrowse is not supported for your platform ({}).'.format(sys.platform))
-system = System()
+
+
 s = scheduler(time, sleep)
+
 
 FilePath = 'C:\\ProgramData\\DinoCoin\\DinoView\\'
 httptrackpath = r"C:\Program Files\WinHTTrack\httrack.exe"
-defaultweburl = "http://www.dinocoin.frihauge.dk/foyer/default/"  
+defaultweburl = r"http://www.dinocoin.frihauge.dk/foyer/testdisplay" 
 __status__  = "production"
 # The following module attributes are no longer updated.
 
 __date__    = "26032019"
 __version__ = "1.0_" +__date__
 
-def RunTask(sc): 
+def RunTask(sc, br, rt): 
     print ("Doing stuff...")
     UpdateWeb()
-    url = r"file:///C:/ProgramData/DinoCoin/DinoView/web/www.dinocoin.frihauge.dk/foyer/testdisplay/index.html"
-   
-   # system.close_existing_browsers()
-    system.open_browser(url, 1)
-    system.clean_up()  
-
-    # do your stuff
-    s.enter(10, 1, RunTask, (sc,))
+    br.refreshbrowser()
+   # do your stuff
+    s.enter(rt, 1, RunTask, (sc,br,))
        
 def DinoView():
     version = __version__
     appsettings = ReadSetupFile()
-    #DownLoadWeb(appsettings)
-    s.enter(1, 1, RunTask, (s,))
+    refreshtime = appsettings.get("refreshtime",120)
+    br = ShowBrowser()
+    s.enter(1, 1, RunTask, (s,br,refreshtime,))
     s.run()
+
+
+def ShowBrowser():
+    url = r"file:///C:/ProgramData/DinoCoin/DinoView/web/www.dinocoin.frihauge.dk/foyer/testdisplay/index.html"
+    #DownLoadWeb(appsettings)
+    br = chromeviewer.cv(url)
+    br.startbrowser()
+    return br
+    
+
+    
     
 def DownLoadWeb(appsettings):
     weburl = appsettings.get("WebUrl",defaultweburl) 
     subprocess.call([httptrackpath, weburl, "-O", FilePath+"web"])
+    
 def UpdateWeb():
-    pinfo = subprocess.call([httptrackpath,"--update","-O", FilePath+"web" ])
+    pinfo = subprocess.call([httptrackpath,"--update",defaultweburl,"-O", FilePath+"web" ])
     print(pinfo)
  
     
