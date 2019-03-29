@@ -11,7 +11,7 @@ import chromeviewer
 
 s = scheduler(time, sleep)
 
-
+webhost = "www.dinocoin.frihauge.dk"
 FilePath = 'C:\\ProgramData\\DinoCoin\\DinoView\\'
 httptrackpath = r"C:\Program Files\WinHTTrack\httrack.exe"
 defaultweburl = r"http://www.dinocoin.frihauge.dk/foyer/testdisplay" 
@@ -38,7 +38,9 @@ def DinoView():
 
 
 def ShowBrowser():
+    screen= "testdisplay"
     url = r"file:///C:/ProgramData/DinoCoin/DinoView/web/www.dinocoin.frihauge.dk/foyer/testdisplay/index.html"
+    combined_url = "file://"+FilePath+"//web//"+ webhost +"/foyer/" + screen +"//index.html"
     #DownLoadWeb(appsettings)
     br = chromeviewer.cv(url)
     br.startbrowser()
