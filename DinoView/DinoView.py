@@ -31,6 +31,8 @@ def RunTask(sc, br, rt):
 def DinoView():
     version = __version__
     appsettings = ReadSetupFile()
+    if not os.path.isfile(httptrackpath):
+        raise Exception('Cant find httptrack.exe in: '+httptrackpath)
     refreshtime = appsettings.get("refreshtime",120)
     br = ShowBrowser()
     s.enter(1, 1, RunTask, (s,br,refreshtime,))
@@ -40,9 +42,9 @@ def DinoView():
 def ShowBrowser():
     screen= "testdisplay"
     url = r"file:///C:/ProgramData/DinoCoin/DinoView/web/www.dinocoin.frihauge.dk/foyer/testdisplay/index.html"
-    combined_url = "file://"+FilePath+"//web//"+ webhost +"/foyer/" + screen +"//index.html"
+    url = "file://"+FilePath+"//web//"+ webhost +"/foyer/" + screen +"//index.html"
     #DownLoadWeb(appsettings)
-    br = chromeviewer.cv(url)
+    br = chromeviewer.cv(url,2)
     br.startbrowser()
     return br
     
