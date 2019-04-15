@@ -51,7 +51,7 @@ class db_mysql():
         try:
             cur = self.mydb.cursor()
 
-            cur.execute("CREATE TABLE IF NOT EXISTS Clients (id int(11) NOT NULL AUTO_INCREMENT,clientname varchar(45),Version varchar(45),LastOnline TIMESTAMP, PRIMARY KEY (id), UNIQUE (clientname))")
+            cur.execute("CREATE TABLE IF NOT EXISTS Clients (id int(11) NOT NULL AUTO_INCREMENT,clientname varchar(45),PC_Alias varchar(45),Version varchar(45),LastOnline TIMESTAMP, PRIMARY KEY (id), UNIQUE (clientname))")
             cur.execute("CREATE TABLE IF NOT EXISTS Settings (id int(11) NOT NULL AUTO_INCREMENT,clientname varchar(45),Parameter varchar(45),Value varchar(128), PRIMARY KEY (id),UNIQUE (clientname, Parameter))")
             cur.execute("CREATE TABLE IF NOT EXISTS won_prizes (id int(11) NOT NULL AUTO_INCREMENT, client_id INT, prize_id INT,time TIMESTAMP, PRIMARY KEY (id))")
 
@@ -100,6 +100,7 @@ class db_mysql():
                                 Stock_cnt INT,
                                 delivered INT,
                                 PrizeTypeDescription varchar(45),
+                                delivery_point varchar(45),
                                 FOREIGN KEY(ClientName) REFERENCES Clients(clientname), PRIMARY KEY (id))""")
 
         cur.execute(sql)
@@ -164,7 +165,7 @@ class db_mysql():
             return False
         
         self.logger.info("Downloading new prizefile")
-        sql = """SELECT id,  PrizeType, Name, Description, Stock_cnt, delivered, PrizeTypeDescription FROM `Prizes` WHERE `ClientName` = %s"""
+        sql = """SELECT id,  PrizeType, Name, Description, Stock_cnt, delivered, PrizeTypeDescription, delivery_point FROM `Prizes` WHERE `ClientName` = %s"""
         val = (self.pcname,)
         
         try:
@@ -213,8 +214,8 @@ class db_mysql():
                     self.logger.info("No connection to db setting network status = False" +str(e))
                     self.network = False
                     return False
-                sql = """UPDATE Prizes SET PrizeType=%s,Name=%s,Stock_cnt = %s, delivered = %s, Description =%s WHERE id = %s"""
-                val = (prize["PrizeType"],prize['Name'],prize['Stock_cnt'],prize['delivered'],prize['Description'], prize["id"])
+                sql = """UPDATE Prizes SET PrizeType=%s,Name=%s,Stock_cnt = %s, delivered = %s, Description =%s delivery_point = %s WHERE id = %s"""
+                val = (prize["PrizeType"],prize['Name'],prize['Stock_cnt'],prize['delivered'],prize['Description'], prize["id"], prize["delivery_point")
                 cur.execute(sql, val)
                 self.mydb.commit()
         except Exception as e:
@@ -230,8 +231,8 @@ class db_mysql():
         try:
             for prize in data:
                 cur = self.mydb.cursor()
-                sql = """INSERT INTO Prizes (ID,ClientName, PrizeType, Name, Description,Stock_cnt, delivered, PrizeTypeDescription) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)"""
-                val = (0,self.pcname, prize["PrizeType"],prize['Name'],prize['Description'],prize['Stock_cnt'],prize['delivered'],prize['PrizeTypeDescription'])
+                sql = """INSERT INTO Prizes (ID,ClientName, PrizeType, Name, Description,Stock_cnt, delivered, PrizeTypeDescription, delivery_point") VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)"""
+                val = (0,self.pcname, prize["PrizeType"],prize['Name'],prize['Description'],prize['Stock_cnt'],prize['delivered'],prize['PrizeTypeDescription'], prize['delivery_point'])
                 cur.execute(sql, val)
             self.mydb.commit()
         except:

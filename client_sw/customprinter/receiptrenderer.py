@@ -1,6 +1,6 @@
 from fpdf import Template, FPDF
 
-fpdf = FPDF()
+#fpdf = FPDF()
 
 
 class ReceiptRenderer():
@@ -21,7 +21,7 @@ class ReceiptRenderer():
                 'y1': margin, 
                 'x2': offsetLeft + endLeft, 
                 'y2': height * 0.2, 
-                'font': "Arial", 
+                'font': "FlamencoD", 
                 'size': 32.0, 
                 'bold': 0, 
                 'italic': 0, 
@@ -39,7 +39,7 @@ class ReceiptRenderer():
                 'y1': height * 0.2, 
                 'x2': offsetLeft + endLeft, 
                 'y2': height * 0.3, 
-                'font': "Arial", 
+                'font': "FlamencoD", 
                 'size': 15.0, 
                 'bold': 0, 
                 'italic': 0, 
@@ -57,7 +57,7 @@ class ReceiptRenderer():
                 'y1': height * 0.75 - removeTwoLinesOffset, 
                 'x2': offsetLeft + endLeft, 
                 'y2': height * 0.85 - removeTwoLinesOffset, 
-                'font': "Arial", 
+                'font': "DINEngschrift LT", 
                 'size': 10.0, 
                 'bold': 0, 
                 'italic': 1, 
@@ -65,7 +65,25 @@ class ReceiptRenderer():
                 'foreground': 0, 
                 'background': 0, 
                 'align': 'C', 
-                'text': 'Hent din præmie i informationen', 
+                'text': 'Hent din præmie i informationen inden ', 
+                'priority': 2, 
+            },
+            { 
+                'name': 'date', 
+                'type': 'T', 
+                'x1': offsetLeft + margin, 
+                'y1': height * 0.75 - removeTwoLinesOffset, 
+                'x2': offsetLeft + endLeft, 
+                'y2': height * 0.85 - removeTwoLinesOffset, 
+                'font': "DINEngschrift LT", 
+                'size': 10.0, 
+                'bold': 0, 
+                'italic': 1, 
+                'underline': 0, 
+                'foreground': 0, 
+                'background': 0, 
+                'align': 'C', 
+                'text': 'Dags dato', 
                 'priority': 2, 
             },
             { 
@@ -75,7 +93,7 @@ class ReceiptRenderer():
                 'y1': height * 0.35, 
                 'x2': offsetLeft + width - margin, 
                 'y2': height * 0.42, 
-                'font': 'Arial', 
+                'font': "hobo", 
                 'size': 16.0, 
                 'bold': 1, 
                 'italic': 0, 
@@ -127,10 +145,17 @@ class ReceiptRenderer():
             #{ 'name': 'box', 'type': 'B', 'x1': offsetLeft + margin, 'y1': margin, 'x2': offsetLeft + width - margin, 'y2': height - margin, 'font': 'Arial', 'size': 0.0, 'bold': 0, 'italic': 0, 'underline': 0, 'foreground': 0, 'background': 0, 'align': 'I', 'text': None, 'priority': 0, },
         ]
         self.document = Template(format=(width + widthBuffer, height), elements = self.elements, orientation="P")
+        
+        self.document.pdf.add_font('Hobo', 'B', 'hobo.ttf', uni=True)
+        self.document.pdf.add_font('FlamencoD', '', 'flamenn_0.ttf', uni=True)
+        self.document.pdf.add_font('DINEngschrift LT', 'I', 'lte50845.ttf', uni=True)
+        
         self.document.add_page()
 
-    def render(self, location, prize, barcode, control_code):
+    def render(self, location, prize, barcode, control_code, info_text):
         self.document["prize"] = prize
+        self.document["info"] = info_text 
+        self.document["date"] = "19 / 4 -2019" 
         self.document["barcode"] = barcode
         self.document["control_code"] = "Kontrolkode:\n" + control_code
         self.document.render(location)
@@ -138,6 +163,5 @@ class ReceiptRenderer():
 
 
 if __name__ == '__main__':
-    fpdf.add_font('FlamencoD', '', 'c:\\windows\\fonts\\flamenn.ttf', uni=True)
     r = ReceiptRenderer(widthBuffer=20, offsetLeft=8)
-    r.render("receipt_test.pdf", "Superfantastiske", "1231231231", "V3RY53CR37")
+    r.render("receipt_test.pdf", "Superfantastiske", "1231231231", "V3RY53CR37","afhentet i information inden  \n\r dagas dato ")
