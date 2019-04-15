@@ -12,7 +12,7 @@ import chromeviewer
 s = scheduler(time, sleep)
 
 webhost = "www.dinocoin.frihauge.dk"
-FilePath = 'C:\\ProgramData\\DinoCoin\\DinoView\\'
+FilePath = 'C:/ProgramData/DinoCoin/DinoView/'
 httptrackpath = r"C:\Program Files\WinHTTrack\httrack.exe"
 defaultweburl = r"http://www.dinocoin.frihauge.dk/foyer/testdisplay" 
 __status__  = "production"
@@ -26,23 +26,24 @@ def RunTask(sc, br, rt):
     UpdateWeb()
     br.refreshbrowser()
    # do your stuff
-    s.enter(rt, 1, RunTask, (sc,br,))
+    s.enter(rt, 1, RunTask, (sc,br,rt,))
        
 def DinoView():
     version = __version__
-    appsettings = ReadSetupFile()
+    print("App.Version: "+ version)
     if not os.path.isfile(httptrackpath):
         raise Exception('Cant find httptrack.exe in: '+httptrackpath)
     refreshtime = appsettings.get("refreshtime",120)
-    br = ShowBrowser()
+    br = ShowBrowser(appsettings)
     s.enter(1, 1, RunTask, (s,br,refreshtime,))
     s.run()
 
 
-def ShowBrowser():
-    screen= "testdisplay"
+def ShowBrowser(appsettings):
+    screen = appsettings.get("WebUrl","testdisplay")
     url = r"file:///C:/ProgramData/DinoCoin/DinoView/web/www.dinocoin.frihauge.dk/foyer/testdisplay/index.html"
-    url = "file://"+FilePath+"//web//"+ webhost +"/foyer/" + screen +"//index.html"
+    url = r"file://"+FilePath+"/web/"+ webhost +"/foyer/" + screen +"/index.html"
+    print ("URL: for view " + url)
     #DownLoadWeb(appsettings)
     br = chromeviewer.cv(url,2)
     br.startbrowser()
@@ -52,11 +53,16 @@ def ShowBrowser():
     
     
 def DownLoadWeb(appsettings):
-    weburl = appsettings.get("WebUrl",defaultweburl) 
+    client = appsettings.get("WebUrl","testdisplay") 
+    weburl = r"http://www.dinocoin.frihauge.dk/foyer/"+ client
     subprocess.call([httptrackpath, weburl, "-O", FilePath+"web"])
     
 def UpdateWeb():
-    pinfo = subprocess.call([httptrackpath,"--update",defaultweburl,"-O", FilePath+"web" ])
+    si = subprocess.STARTUPINFO()
+    si.dwFlags |= subprocess.STARTF_USESHOWWINDOW
+    client = appsettings.get("WebUrl","testdisplay") 
+    weburl = r"http://www.dinocoin.frihauge.dk/foyer/"+ client
+    pinfo = subprocess.call([httptrackpath,"--update",weburl,"-O", FilePath+"web" ], startupinfo=si)
     print(pinfo)
  
     
@@ -82,6 +88,7 @@ def ReadSetupFile():
 
 if __name__ == '__main__':
     try:
+        appsettings = ReadSetupFile()
         DinoView()
     except Exception as e:
         logging.error("main exception:" +str(e))

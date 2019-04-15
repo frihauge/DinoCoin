@@ -138,5 +138,6 @@ class ReceiptRenderer():
 
 
 if __name__ == '__main__':
+    fpdf.add_font('FlamencoD', '', 'c:\\windows\\fonts\\flamenn.ttf', uni=True)
     r = ReceiptRenderer(widthBuffer=20, offsetLeft=8)
     r.render("receipt_test.pdf", "Superfantastiske", "1231231231", "V3RY53CR37")
