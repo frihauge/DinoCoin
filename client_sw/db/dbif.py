@@ -299,6 +299,8 @@ class dbif():
             self.logger.error("Data from Database drive is none!")
             return None
         prizeypecnt = 0
+        if 'Prizes' not in data:
+            return "No prize in data"
         for da in data['Prizes']:
             if da['PrizeType'] == prizeType and da['Stock_cnt'] > 0:
                 availbleprize.append(da)
