@@ -215,7 +215,7 @@ class db_mysql():
                     self.network = False
                     return False
                 sql = """UPDATE Prizes SET PrizeType=%s,Name=%s,Stock_cnt = %s, delivered = %s, Description =%s delivery_point = %s WHERE id = %s"""
-                val = (prize["PrizeType"],prize['Name'],prize['Stock_cnt'],prize['delivered'],prize['Description'], prize["id"], prize["delivery_point")
+                val = (prize["PrizeType"],prize['Name'],prize['Stock_cnt'],prize['delivered'],prize['Description'], prize["id"], prize["delivery_point"])
                 cur.execute(sql, val)
                 self.mydb.commit()
         except Exception as e:
