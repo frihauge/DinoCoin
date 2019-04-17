@@ -40,7 +40,7 @@ class custom():
         try:
             self.logger.info("Render receipt")
             r = receiptrenderer.ReceiptRenderer(widthBuffer=20, offsetLeft=8)
-            r.render(filename, prizeLabel, ''.join(random.choice('0123456789') for _ in range(10)), ''.join(random.choice(string.ascii_uppercase + '0123456789') for _ in range(10)))
+            r.render(filename, prizeLabel, ''.join(random.choice('0123456789') for _ in range(10)), ''.join(random.choice(string.ascii_uppercase + '0123456789') for _ in range(10)),"Iformation")
             time.sleep(.5)
             self.logger.info("Send to printer")
             printfileabs = os.path.abspath(filename)
