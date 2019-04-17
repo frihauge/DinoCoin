@@ -58121,3 +58121,95 @@ pymodbus.exceptions.ModbusIOException: Modbus Error: [Input/Output] Unable to de
 2019-04-15 16:03:30,209 - INFO - Quit Printer queue
 2019-04-15 16:03:31,919 - ERROR - Connection to (192.168.1.200, 502) failed: timed out
 2019-04-15 16:03:31,919 - ERROR - No connection to ADAM on ip: 192.168.1.200
+2019-04-17 10:19:05,010 - INFO - 1.4_25032019
+2019-04-17 10:19:05,011 - INFO - Connecting iomodule ip 192.168.1.200
+2019-04-17 10:19:05,012 - INFO - WaitTime from 1 puls cnt to 2 is: 0.001
+2019-04-17 10:19:05,012 - INFO - Connecting DataBase
+2019-04-17 10:19:05,391 - INFO - -----------Network Connected------------
+2019-04-17 10:19:05,923 - INFO - Create PrizeTable
+2019-04-17 10:19:05,968 - INFO - Check if local file need to be uploaded
+2019-04-17 10:19:05,973 - INFO - Downloading new prizefile
+2019-04-17 10:19:06,015 - INFO - Check if local file need to be uploaded
+2019-04-17 10:19:06,016 - INFO - Downloading new prizefile
+2019-04-17 10:19:08,987 - ERROR - Connection to (192.168.1.200, 502) failed: timed out
+2019-04-17 10:19:08,987 - ERROR - No connection to ADAM on ip: 192.168.1.200
+2019-04-17 10:19:12,290 - ERROR - Connection to (192.168.1.200, 502) failed: timed out
+2019-04-17 10:19:12,290 - ERROR - No connection to ADAM on ip: 192.168.1.200
+2019-04-17 10:19:15,592 - ERROR - Connection to (192.168.1.200, 502) failed: timed out
+2019-04-17 10:19:15,592 - ERROR - No connection to ADAM on ip: 192.168.1.200
+2019-04-17 10:19:18,894 - ERROR - Connection to (192.168.1.200, 502) failed: timed out
+2019-04-17 10:19:18,894 - ERROR - No connection to ADAM on ip: 192.168.1.200
+2019-04-17 10:19:18,996 - INFO - CMD Exe:: q_1p
+2019-04-17 10:19:18,996 - INFO - Downloading local prize file
+2019-04-17 10:19:19,026 - INFO - Check if local file need to be uploaded
+2019-04-17 10:19:19,027 - INFO - Downloading new prizefile
+2019-04-17 10:19:19,039 - INFO - Prize Found: No prize in data
+2019-04-17 10:19:19,040 - INFO - Render receipt
+2019-04-17 10:19:22,198 - ERROR - Connection to (192.168.1.200, 502) failed: timed out
+2019-04-17 10:19:22,198 - ERROR - No connection to ADAM on ip: 192.168.1.200
+2019-04-17 10:19:25,502 - ERROR - Connection to (192.168.1.200, 502) failed: timed out
+2019-04-17 10:19:25,502 - ERROR - No connection to ADAM on ip: 192.168.1.200
+2019-04-17 10:19:28,804 - ERROR - Connection to (192.168.1.200, 502) failed: timed out
+2019-04-17 10:19:28,805 - ERROR - No connection to ADAM on ip: 192.168.1.200
+2019-04-17 10:19:32,114 - ERROR - Connection to (192.168.1.200, 502) failed: timed out
+2019-04-17 10:19:32,115 - ERROR - No connection to ADAM on ip: 192.168.1.200
+2019-04-17 10:19:35,431 - ERROR - Connection to (192.168.1.200, 502) failed: timed out
+2019-04-17 10:19:35,435 - ERROR - No connection to ADAM on ip: 192.168.1.200
+2019-04-17 10:19:38,737 - ERROR - Connection to (192.168.1.200, 502) failed: timed out
+2019-04-17 10:19:38,737 - ERROR - No connection to ADAM on ip: 192.168.1.200
+2019-04-17 10:19:42,038 - ERROR - Connection to (192.168.1.200, 502) failed: timed out
+2019-04-17 10:19:42,039 - ERROR - No connection to ADAM on ip: 192.168.1.200
+2019-04-17 10:19:42,141 - INFO - CMD Exe:: q_1p
+2019-04-17 10:19:42,141 - INFO - Downloading local prize file
+2019-04-17 10:19:42,168 - INFO - Check if local file need to be uploaded
+2019-04-17 10:19:42,169 - INFO - Downloading new prizefile
+2019-04-17 10:19:42,181 - INFO - Prize Found: No prize in data
+2019-04-17 10:19:42,181 - INFO - Render receipt
+2019-04-17 10:19:45,343 - ERROR - Connection to (192.168.1.200, 502) failed: timed out
+2019-04-17 10:19:45,343 - ERROR - No connection to ADAM on ip: 192.168.1.200
+2019-04-17 10:19:48,646 - ERROR - Connection to (192.168.1.200, 502) failed: timed out
+2019-04-17 10:19:48,646 - ERROR - No connection to ADAM on ip: 192.168.1.200
+2019-04-17 10:19:51,948 - ERROR - Connection to (192.168.1.200, 502) failed: timed out
+2019-04-17 10:19:51,949 - ERROR - No connection to ADAM on ip: 192.168.1.200
+2019-04-17 10:19:55,251 - ERROR - Connection to (192.168.1.200, 502) failed: timed out
+2019-04-17 10:19:55,251 - ERROR - No connection to ADAM on ip: 192.168.1.200
+2019-04-17 10:19:58,554 - ERROR - Connection to (192.168.1.200, 502) failed: timed out
+2019-04-17 10:19:58,555 - ERROR - No connection to ADAM on ip: 192.168.1.200
+2019-04-17 10:20:01,857 - ERROR - Connection to (192.168.1.200, 502) failed: timed out
+2019-04-17 10:20:01,857 - ERROR - No connection to ADAM on ip: 192.168.1.200
+2019-04-17 10:20:05,160 - ERROR - Connection to (192.168.1.200, 502) failed: timed out
+2019-04-17 10:20:05,160 - ERROR - No connection to ADAM on ip: 192.168.1.200
+2019-04-17 10:20:08,463 - ERROR - Connection to (192.168.1.200, 502) failed: timed out
+2019-04-17 10:20:08,464 - ERROR - No connection to ADAM on ip: 192.168.1.200
+2019-04-17 10:20:11,767 - ERROR - Connection to (192.168.1.200, 502) failed: timed out
+2019-04-17 10:20:11,767 - ERROR - No connection to ADAM on ip: 192.168.1.200
+2019-04-17 10:20:15,070 - ERROR - Connection to (192.168.1.200, 502) failed: timed out
+2019-04-17 10:20:15,070 - ERROR - No connection to ADAM on ip: 192.168.1.200
+2019-04-17 10:20:18,372 - ERROR - Connection to (192.168.1.200, 502) failed: timed out
+2019-04-17 10:20:18,373 - ERROR - No connection to ADAM on ip: 192.168.1.200
+2019-04-17 10:20:21,676 - ERROR - Connection to (192.168.1.200, 502) failed: timed out
+2019-04-17 10:20:21,676 - ERROR - No connection to ADAM on ip: 192.168.1.200
+2019-04-17 10:20:24,978 - ERROR - Connection to (192.168.1.200, 502) failed: timed out
+2019-04-17 10:20:24,978 - ERROR - No connection to ADAM on ip: 192.168.1.200
+2019-04-17 10:20:28,281 - ERROR - Connection to (192.168.1.200, 502) failed: timed out
+2019-04-17 10:20:28,282 - ERROR - No connection to ADAM on ip: 192.168.1.200
+2019-04-17 10:20:31,584 - ERROR - Connection to (192.168.1.200, 502) failed: timed out
+2019-04-17 10:20:31,584 - ERROR - No connection to ADAM on ip: 192.168.1.200
+2019-04-17 10:20:34,887 - ERROR - Connection to (192.168.1.200, 502) failed: timed out
+2019-04-17 10:20:34,887 - ERROR - No connection to ADAM on ip: 192.168.1.200
+2019-04-17 10:20:38,190 - ERROR - Connection to (192.168.1.200, 502) failed: timed out
+2019-04-17 10:20:38,190 - ERROR - No connection to ADAM on ip: 192.168.1.200
+2019-04-17 10:20:41,492 - ERROR - Connection to (192.168.1.200, 502) failed: timed out
+2019-04-17 10:20:41,492 - ERROR - No connection to ADAM on ip: 192.168.1.200
+2019-04-17 10:20:44,796 - ERROR - Connection to (192.168.1.200, 502) failed: timed out
+2019-04-17 10:20:44,796 - ERROR - No connection to ADAM on ip: 192.168.1.200
+2019-04-17 10:20:48,098 - ERROR - Connection to (192.168.1.200, 502) failed: timed out
+2019-04-17 10:20:48,098 - ERROR - No connection to ADAM on ip: 192.168.1.200
+2019-04-17 10:20:51,401 - ERROR - Connection to (192.168.1.200, 502) failed: timed out
+2019-04-17 10:20:51,401 - ERROR - No connection to ADAM on ip: 192.168.1.200
+2019-04-17 10:20:54,703 - ERROR - Connection to (192.168.1.200, 502) failed: timed out
+2019-04-17 10:20:54,703 - ERROR - No connection to ADAM on ip: 192.168.1.200
+2019-04-17 10:20:58,005 - ERROR - Connection to (192.168.1.200, 502) failed: timed out
+2019-04-17 10:20:58,005 - ERROR - No connection to ADAM on ip: 192.168.1.200
+2019-04-17 10:21:01,306 - ERROR - Connection to (192.168.1.200, 502) failed: timed out
+2019-04-17 10:21:01,306 - ERROR - No connection to ADAM on ip: 192.168.1.200
