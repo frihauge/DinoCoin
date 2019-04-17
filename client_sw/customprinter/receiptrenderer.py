@@ -1,11 +1,13 @@
 from fpdf import Template, FPDF
-
+import os
 #fpdf = FPDF()
 
 
 class ReceiptRenderer():
     """docstring for ReceiptRenderer"""
     def __init__(self, size=(60, 70), widthBuffer=0, offsetLeft=0):
+        self.path = os.path.dirname(os.path.abspath(__file__))
+
         width = size[0]
         removeTwoLinesOffset = 25
         height = max(width + widthBuffer + 5, size[1])
@@ -93,7 +95,7 @@ class ReceiptRenderer():
                 'y1': height * 0.35, 
                 'x2': offsetLeft + width - margin, 
                 'y2': height * 0.42, 
-                'font': "hobo", 
+                'font': "Hobo", 
                 'size': 16.0, 
                 'bold': 1, 
                 'italic': 0, 
@@ -146,9 +148,9 @@ class ReceiptRenderer():
         ]
         self.document = Template(format=(width + widthBuffer, height), elements = self.elements, orientation="P")
         
-        self.document.pdf.add_font('Hobo', 'B', 'hobo.ttf', uni=True)
-        self.document.pdf.add_font('FlamencoD', '', 'flamenn_0.ttf', uni=True)
-        self.document.pdf.add_font('DINEngschrift LT', 'I', 'lte50845.ttf', uni=True)
+        self.document.pdf.add_font('Hobo', 'B', self.path  + '\\hobo.ttf', uni=True)
+        self.document.pdf.add_font('FlamencoD', '', self.path+'\\flamenn_0.ttf', uni=True)
+        self.document.pdf.add_font('DINEngschrift LT', 'I', self.path+'\\lte50845.ttf', uni=True)
         
         self.document.add_page()
 
