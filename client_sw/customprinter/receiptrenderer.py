@@ -56,9 +56,9 @@ class ReceiptRenderer():
                 'name': 'info', 
                 'type': 'T', 
                 'x1': offsetLeft + margin, 
-                'y1': height * 0.75 - removeTwoLinesOffset, 
+                'y1': height * 0.48, 
                 'x2': offsetLeft + endLeft, 
-                'y2': height * 0.85 - removeTwoLinesOffset, 
+                'y2': height * 0.48, 
                 'font': "DINEngschrift LT", 
                 'size': 10.0, 
                 'bold': 0, 
@@ -74,9 +74,9 @@ class ReceiptRenderer():
                 'name': 'date', 
                 'type': 'T', 
                 'x1': offsetLeft + margin, 
-                'y1': height * 0.75 - removeTwoLinesOffset, 
+                'y1': height * 0.78 - removeTwoLinesOffset, 
                 'x2': offsetLeft + endLeft, 
-                'y2': height * 0.85 - removeTwoLinesOffset, 
+                'y2': height * 0.88 - removeTwoLinesOffset, 
                 'font': "DINEngschrift LT", 
                 'size': 10.0, 
                 'bold': 0, 
@@ -147,17 +147,16 @@ class ReceiptRenderer():
             #{ 'name': 'box', 'type': 'B', 'x1': offsetLeft + margin, 'y1': margin, 'x2': offsetLeft + width - margin, 'y2': height - margin, 'font': 'Arial', 'size': 0.0, 'bold': 0, 'italic': 0, 'underline': 0, 'foreground': 0, 'background': 0, 'align': 'I', 'text': None, 'priority': 0, },
         ]
         self.document = Template(format=(width + widthBuffer, height), elements = self.elements, orientation="P")
-        
-        self.document.pdf.add_font('Hobo', 'B', self.path  + '\\hobo.ttf', uni=True)
-        self.document.pdf.add_font('FlamencoD', '', self.path+'\\flamenn_0.ttf', uni=True)
-        self.document.pdf.add_font('DINEngschrift LT', 'I', self.path+'\\lte50845.ttf', uni=True)
+        self.document.pdf.add_font('FlamencoD', '', 'flamenn_0.ttf', uni=True)
+        self.document.pdf.add_font( 'DINEngschrift LT', 'I', 'lte50845.ttf', uni=True)
+        self.document.pdf.add_font('Hobo', 'B', 'hobo.ttf', uni=True)
         
         self.document.add_page()
 
-    def render(self, location, prize, barcode, control_code, info_text):
+    def render(self, location, prize, barcode, control_code, info_text, datecatchup):
         self.document["prize"] = prize
-        self.document["info"] = info_text 
-        self.document["date"] = "19 / 4 -2019" 
+        self.document["info"] = "Hent din præmie i " + info_text + " inden"
+        self.document["date"] = datecatchup
         self.document["barcode"] = barcode
         self.document["control_code"] = "Kontrolkode:\n" + control_code
         self.document.render(location)

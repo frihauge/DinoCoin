@@ -39,9 +39,9 @@ class Prize(threading.Thread):
 
     def newprize(self, prizetype):
 
-        Winner_label =  self.db.getRandomPrice(prizetype)   
-        self.logger.log(logging.INFO,"Prize Found: "+ str(Winner_label)) 
-        self.prn.printlabel(Winner_label)
+        Winner_label,deliverypoint =  self.db.getRandomPrice(prizetype)   
+        self.logger.log(logging.INFO,"Prize Found: "+ str(Winner_label) + " DeliveryPoint: "+ deliverypoint) 
+        self.prn.printlabel(Winner_label, deliverypoint)
         return Winner_label
     
     def load_prizelist_to_local(self):

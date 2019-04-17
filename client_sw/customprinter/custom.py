@@ -8,6 +8,7 @@ Frihauge IT
 ##from . import receiptrenderer
 from subprocess import call
 import time
+import datetime
 import random, string
 import os, sys
 import win32print
@@ -35,12 +36,14 @@ class custom():
 
 
 
-    def printlabel(self,prizeLabel):
+    def printlabel(self,prizeLabel, deliverypoint):
+        ts = time.time()
+        self.days_catchup = (datetime.datetime.fromtimestamp(ts) + datetime.timedelta(days= 7)).strftime('d.%d/%m-%Y')
         filename = self.printfilepath+'\\receipt.pdf'
         try:
             self.logger.info("Render receipt")
             r = receiptrenderer.ReceiptRenderer(widthBuffer=20, offsetLeft=8)
-            r.render(filename, prizeLabel, ''.join(random.choice('0123456789') for _ in range(10)), ''.join(random.choice(string.ascii_uppercase + '0123456789') for _ in range(10)),"Iformation")
+            r.render(filename, prizeLabel, ''.join(random.choice('0123456789') for _ in range(10)), ''.join(random.choice(string.ascii_uppercase + '0123456789') for _ in range(10)),deliverypoint,self.days_catchup)
             time.sleep(.5)
             self.logger.info("Send to printer")
             printfileabs = os.path.abspath(filename)

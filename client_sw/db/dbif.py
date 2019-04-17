@@ -214,8 +214,8 @@ class db_mysql():
                     self.logger.info("No connection to db setting network status = False" +str(e))
                     self.network = False
                     return False
-                sql = """UPDATE Prizes SET PrizeType=%s,Name=%s,Stock_cnt = %s, delivered = %s, Description =%s delivery_point = %s WHERE id = %s"""
-                val = (prize["PrizeType"],prize['Name'],prize['Stock_cnt'],prize['delivered'],prize['Description'], prize["id"], prize["delivery_point"])
+                sql = """UPDATE Prizes SET PrizeType=%s,Name=%s,Stock_cnt = %s, delivered = %s, Description =%s, delivery_point = %s WHERE id = %s"""
+                val = (prize["PrizeType"],prize['Name'],prize['Stock_cnt'],prize['delivered'],prize['Description'], prize["delivery_point"], prize["id"])
                 cur.execute(sql, val)
                 self.mydb.commit()
         except Exception as e:
@@ -307,7 +307,7 @@ class dbif():
         totalprizes = len(availbleprize)
         if totalprizes == 0: # No more stuck
             self.logger.error("No more availble prizes with prizetype:"+ str(prizeType))
-            return "Ingen Præmie"
+            return "Ingen Præmie","Ingen steder"
         sum = 0
         for i in availbleprize:
             sum = sum + int(i['Stock_cnt'])
@@ -321,6 +321,7 @@ class dbif():
                 idx['Stock_cnt']-=1
                 idx['delivered']+=1
                 winnerLabel = idx['Name']
+                deliverypoint = idx['delivery_point']
                 break
         # Update data 
 
@@ -328,7 +329,7 @@ class dbif():
         self.SaveFile(data['Prizes'])
         if self.store_wonlog:
             self.db_mysql.SaveWonData(p)
-        return winnerLabel
+        return winnerLabel, deliverypoint
         
     def download_file(self):
       self.db_mysql.Download_to_local_json()  
