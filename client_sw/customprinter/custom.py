@@ -72,6 +72,8 @@ class custom():
             return hinstance
 
         except Exception as e:
+            txt= "Filename: {} Label: {} barcode: {} control_code: {} info_text: {} datecatchup: {}".format(filename, prizeLabel,''.join(random.choice('0123456789') for _ in range(10)), ''.join(random.choice(string.ascii_uppercase + '0123456789') for _ in range(10)),deliverypoint,self.days_catchup)
+            self.logger.error(txt)
             print(e)
             
             

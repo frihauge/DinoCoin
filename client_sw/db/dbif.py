@@ -321,6 +321,8 @@ class dbif():
                 idx['Stock_cnt']-=1
                 idx['delivered']+=1
                 winnerLabel = idx['Name']
+                if idx['delivery_point'] == None:
+                    idx['delivery_point'] = ""
                 deliverypoint = idx['delivery_point']
                 break
         # Update data 

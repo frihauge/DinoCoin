@@ -1,7 +1,8 @@
 from fpdf import Template, FPDF
 import os
+import logging
 #fpdf = FPDF()
-
+logger = logging.getLogger(__name__)
 
 class ReceiptRenderer():
     """docstring for ReceiptRenderer"""
@@ -154,13 +155,17 @@ class ReceiptRenderer():
         self.document.add_page()
 
     def render(self, location, prize, barcode, control_code, info_text, datecatchup):
-        self.document["prize"] = prize
-        self.document["info"] = "Hent din præmie i " + info_text + " inden"
-        self.document["date"] = datecatchup
-        self.document["barcode"] = barcode
-        self.document["control_code"] = "Kontrolkode:\n" + control_code
-        self.document.render(location)
-    
+        try:
+            self.document["prize"] = prize
+            self.document["info"] = "Hent din præmie i " + info_text + " inden"
+            self.document["date"] = datecatchup
+            self.document["barcode"] = barcode
+            self.document["control_code"] = "Kontrolkode:\n" + control_code
+            self.document.render(location)
+        except Exception as e:
+            logger.error("Error Rendering ticket" +str(e))
+            print(e)  
+            return e
 
 
 if __name__ == '__main__':

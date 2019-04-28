@@ -9,8 +9,8 @@ from GUI import  MainGui
 __status__  = "production"
 # The following module attributes are no longer updated.
 
-__date__    = "25032019"
-__version__ = "1.4_" +__date__
+__date__    = "28042019"
+__version__ = "1.5_" +__date__
    
 def DinoPrint():
 

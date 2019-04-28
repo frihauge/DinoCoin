@@ -18,8 +18,8 @@ defaultweburl = r"http://www.dinocoin.frihauge.dk/foyer/testdisplay"
 __status__  = "production"
 # The following module attributes are no longer updated.
 
-__date__    = "26032019"
-__version__ = "1.0_" +__date__
+__date__    = "28042019"
+__version__ = "1.1_" +__date__
 
 def RunTask(sc, br, rt): 
     print ("Doing stuff...")

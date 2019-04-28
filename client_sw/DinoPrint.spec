@@ -4,7 +4,7 @@ block_cipher = None
 
 
 a = Analysis(['DinoPrint.py'],
-             pathex=['c:\\workspace\\project\\Dinocoin\\SW\\DinoCoin\\client_sw'],
+             pathex=['C:\\workspace\\project\\Dinocoin\\SW\\DinoCoin\\client_sw'],
              binaries=[],
              datas=[],
              hiddenimports=[],
