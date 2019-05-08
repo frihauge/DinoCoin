@@ -7,6 +7,16 @@ from sched import scheduler
 import os,io
 import chromeviewer
 
+logFormatter = logging.Formatter("%(asctime)s [%(threadName)-12.12s] [%(levelname)-5.5s]  %(message)s")
+rootLogger = logging.getLogger()
+
+fileHandler = logging.FileHandler("{0}/{1}.log".format('.\\', 'DinoView'))
+fileHandler.setFormatter(logFormatter)
+rootLogger.addHandler(fileHandler)
+
+consoleHandler = logging.StreamHandler()
+consoleHandler.setFormatter(logFormatter)
+rootLogger.addHandler(consoleHandler)
 
 
 s = scheduler(time, sleep)
@@ -67,7 +77,6 @@ def UpdateWeb():
  
     
 def ReadSetupFile():
-    
     mainsetupfile =FilePath+ 'DinoViewSetup.json'
     
     if not os.path.exists(os.path.dirname(mainsetupfile)):
