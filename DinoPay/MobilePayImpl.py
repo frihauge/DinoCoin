@@ -3,7 +3,9 @@ import json
 import hmac
 import hashlib
 import base64
-import datetime 
+import datetime
+import requests
+
 
         
 class mpif():
@@ -11,15 +13,16 @@ class mpif():
         self.logger = logging
         self.url = 'https://sandprod-pos2.mobilepay.dk/API/V08/RegisterPoS'
         self.headers={'content-type':'application/json','Authorization': 'zSQQxEXEqS1ETbxyAFmq8vDRTkWfg3LQ29bsCx2Bqm4= 1557255784'}
-        self.MerchantId = "POSDK64549"
-        self.LocationId = "66001"
+        self.MerchantId = "POSDKDC307"
+        self.LocationId = "00001"
+        self.locationname = "Gartnervej 4"
         self.PosId = ""
-        self.Name = "Skattekisten"
+        self.Name = "Gartnervej 4"
         self.key = "344A350B-0D2D-4D7D-B556-BC4E2673C882"
         self.url = "https://sandprod-pos2.mobilepay.dk/API/V08/"
         utctime = "1557241609"
         contentbody = """{"POSId":"a123456-b123-c123-d123-e12345678901","LocationId":"88888","MerchantId":"POSDK99999"}"""
-        self.reqResp()
+        self.RegisterPoS()
         
     def calchmac(self, method, contentbody, utctime):
           com_url = self.url + method  
@@ -30,19 +33,23 @@ class mpif():
 
             
         
-    def reqResp(self):
+    def reqResp(self, method):
     ##parsing response
         utcnow = datetime.datetime.utcnow()
         ts = int(utcnow.timestamp())
-        data={"MerchantId": self.MerchantId, "LocationId":self.LocationId, "PosId": self.PosId, "name": self.Name}
+        data={"MerchantId": self.MerchantId, "LocationId":self.LocationId, "PosId": self.PosId, "Name": self.Name}
+        utcnow = "1557770264"
         msg = json.dumps(data,separators=(",", ":"))
-        hmcode = self.calchmac("RegisterPoS", msg, "1557241609")
-        r = requests.get(url = self.url, data=data)
+        hmcode = self.calchmac(method, msg, utcnow)
+        auth = str.format("{} {}", hmcode,utcnow)
+        header = {'Content-Type': 'application/json','Authorization': auth}
+        r = requests.post(url = self.url, data=data, headers=header)
         print(r.status_code, r.reason)
         print(r)
 
     def RegisterPoS(self):
-        print("")
+        response = self.reqResp('RegisterPoS')
+        print(response)
        
 
 
