@@ -43,7 +43,7 @@ class mpif():
         hmcode = self.calchmac(method, msg, utcnow)
         auth = str.format("{} {}", hmcode,utcnow)
         header = {'Content-Type': 'application/json','Authorization': auth}
-        r = requests.post(url = self.url, data=data, headers=header)
+        r = requests.post(url = self.url+method, data=msg, headers=header)
         print(r.status_code, r.reason)
         print(r)
 
