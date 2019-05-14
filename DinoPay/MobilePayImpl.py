@@ -82,7 +82,20 @@ class mpif():
         data={"MerchantId": self.MerchantId, "LocationId":self.LocationId}
         success, response = self.reqResp('GetPosList',data)
         return success
-
+    
+    def PaymentStart(self, orderid, AmountPay, ):
+        Amount = AmountPay
+        BulkRef = ""
+        HMAC = Base64(hmacSha256(
+ISO88591Bytes(“{MerchantId+Lo
+cationId}#{PoSId}#{OrderId}#{Amo
+unt}#{BulkRef}#”),
+ISO88591Bytes(MerchantKey) 2))
+            
+        apple.decode('iso-8859-1').
+        data={"MerchantId": self.MerchantId, "LocationId":self.LocationId, "PosId": self.PosId,"OrderId":orderid, "Amount":Amount, "BulkRef":"",Action:"Start","CustomerTokenCalc":1,"HMAC": HmacCalc}
+        success, response = self.reqResp('PaymentStart',data)
+        return success
 
  
   
