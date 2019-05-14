@@ -12,15 +12,15 @@ class mpif():
     def __init__(self):
         self.logger = logging
         self.url = 'https://sandprod-pos2.mobilepay.dk/API/V08/RegisterPoS'
-        self.headers={'content-type':'application/json','Authorization': 'zSQQxEXEqS1ETbxyAFmq8vDRTkWfg3LQ29bsCx2Bqm4= 1557255784'}
         self.MerchantId = "POSDKDC307"
         self.LocationId = "00001"
         self.locationname = "Gartnervej 4"
         self.PosId = ""
+        self.PoSUnitId = None
         self.Name = "Gartnervej 4"
         self.key = "344A350B-0D2D-4D7D-B556-BC4E2673C882"
         self.url = "https://sandprod-pos2.mobilepay.dk/API/V08/"
-        utctime = "1557241609"
+        
 
         
     def calchmac(self, method, contentbody, utctime):
@@ -32,34 +32,68 @@ class mpif():
 
             
         
-    def reqResp(self, method):
+    def reqResp(self, method, contentdata):
     ##parsing response
-        utcnow = datetime.datetime.utcnow()
-        ts = int(utcnow.timestamp())
-        data={"MerchantId": self.MerchantId, "LocationId":self.LocationId, "PosId": self.PosId, "Name": self.Name}
-        utcnow = "1557770264"
-        data_json = json.dumps(data,separators=(",", ":"))
+        tNow = datetime.datetime.utcnow()
+        utcnow = int(tNow.timestamp())
+        data_json = json.dumps(contentdata,separators=(",", ":"))
         hmcode = self.calchmac(method, data_json, utcnow)
         auth = str.format("{} {}", hmcode,utcnow)
         header = {'Content-Type': 'application/json','Authorization': auth}
         r = requests.post(url = self.url+method, data=data_json, headers=header)
-        return self.responsehandler(r)
+        return self.responsehandler(r, method)
        
 
 
     def RegisterPoS(self):
-        success, response = self.reqResp('RegisterPoS')
+        data={"MerchantId": self.MerchantId, "LocationId":self.LocationId, "PosId": self.PosId, "Name": self.Name}
+        success, response = self.reqResp('RegisterPoS',data)
         self.PosId = self.findparaminresponse(response, 'PoSId')
+        return success
   
        
+    def UnRegisterPoS(self):
+        data={"MerchantId": self.MerchantId, "LocationId":self.LocationId, "PosId": self.PosId, "Name": self.Name}
+        success, response = self.reqResp('UnRegisterPoS',data)
+        return success
     
+    def AssignPoSUnitIdToPos(self):
+        if self.PoSUnitId is None or self.PoSUnitId=="":
+            return False
+        data={"MerchantId": self.MerchantId, "LocationId":self.LocationId, "PosId": self.PosId, "PoSUnitId": self.PoSUnitId}
+        success, response = self.reqResp('AssignPoSUnitIdToPos',data)
+        return success
+    
+    def UnAssignPoSUnitIdToPos(self):
+        if self.PoSUnitId is None or self.PoSUnitId=="":
+            return False
+        data={"MerchantId": self.MerchantId, "LocationId":self.LocationId, "PosId": self.PosId, "PoSUnitId": self.PoSUnitId}
+        success, response = self.reqResp('UnAssignPoSUnitIdToPoS',data)
+        return success
+    
+    def GetCurrentPayment(self):
+        if self.PoSUnitId is None or self.PoSUnitId=="":
+            return False
+        data={"MerchantId": self.MerchantId, "LocationId":self.LocationId, "PosId": self.PosId}
+        success, response = self.reqResp('GetCurrentPayment',data)
+        return success
+    
+    def GetPosList(self):
+        data={"MerchantId": self.MerchantId, "LocationId":self.LocationId}
+        success, response = self.reqResp('GetPosList',data)
+        return success
+
+
+ 
+  
+       
     def findparaminresponse(self, resp, param):
         if param in resp:
             return resp[param]
         else:
             return None
 
-    def responsehandler(self, response):
+    def responsehandler(self, response, method):
         success = False
         print(response.status_code, response.reason)
         print(response)
@@ -74,5 +108,8 @@ if __name__ == '__main__':
     try:
        m = mpif()
        m.RegisterPoS()
+       m.GetPosList()
+       m.UnRegisterPoS()
+       
     except Exception as e:
         logging.error("main exception:" +str(e))
