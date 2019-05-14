@@ -46,6 +46,7 @@ class mpif():
         return self.responsehandler(r)
        
 
+
     def RegisterPoS(self):
         success, response = self.reqResp('RegisterPoS')
         self.PosId = self.findparaminresponse(response, 'PoSId')
