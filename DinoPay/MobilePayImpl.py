@@ -21,8 +21,7 @@ class mpif():
         self.key = "344A350B-0D2D-4D7D-B556-BC4E2673C882"
         self.url = "https://sandprod-pos2.mobilepay.dk/API/V08/"
         utctime = "1557241609"
-        contentbody = """{"POSId":"a123456-b123-c123-d123-e12345678901","LocationId":"88888","MerchantId":"POSDK99999"}"""
-        self.RegisterPoS()
+
         
     def calchmac(self, method, contentbody, utctime):
           com_url = self.url + method  
@@ -39,22 +38,40 @@ class mpif():
         ts = int(utcnow.timestamp())
         data={"MerchantId": self.MerchantId, "LocationId":self.LocationId, "PosId": self.PosId, "Name": self.Name}
         utcnow = "1557770264"
-        msg = json.dumps(data,separators=(",", ":"))
-        hmcode = self.calchmac(method, msg, utcnow)
+        data_json = json.dumps(data,separators=(",", ":"))
+        hmcode = self.calchmac(method, data_json, utcnow)
         auth = str.format("{} {}", hmcode,utcnow)
         header = {'Content-Type': 'application/json','Authorization': auth}
-        r = requests.post(url = self.url, data=data, headers=header)
-        print(r.status_code, r.reason)
-        print(r)
+        r = requests.post(url = self.url+method, data=data_json, headers=header)
+        return self.responsehandler(r)
+       
 
     def RegisterPoS(self):
-        response = self.reqResp('RegisterPoS')
-        print(response)
+        success, response = self.reqResp('RegisterPoS')
+        self.PosId = self.findparaminresponse(response, 'PoSId')
+  
        
+    
+    def findparaminresponse(self, resp, param):
+        if param in resp:
+            return resp[param]
+        else:
+            return None
+
+    def responsehandler(self, response):
+        success = False
+        print(response.status_code, response.reason)
+        print(response)
+        data = response.json()
+        if response.status_code == 200:
+            success = True
+        return success, data
+          
 
 
 if __name__ == '__main__':
     try:
-       m = mpif() 
+       m = mpif()
+       m.RegisterPoS()
     except Exception as e:
         logging.error("main exception:" +str(e))
