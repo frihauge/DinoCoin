@@ -41,9 +41,14 @@ class mpif():
         return hmacstr 
     
     def GetHamacPayload(self,orderid, Amount, BulkRef):
+        # self.PosId= "a123456-b123-c123-d123-e12345678901"
+        # self.MerchantId= "POSDK99999"
+        # self.LocationId= "88888"
+        BulkRef= "MP Bulk Reference"
         alias = self.MerchantId + self.LocationId
+        
         payload = str.format("{0}#{1}#{2}#{3}#{4}#",alias, self.PosId,orderid, Amount, BulkRef)
-        payload = "POSDK9999988888#a123456-b123-c123-d123-e12345678901#123A124321#43.33#MP Bulk Reference#"
+        #payload = "POSDK9999988888#a123456-b123-c123-d123-e12345678901#123A124321#43.33#MP Bulk Reference#"
         payloadhmac = self.calcPayLoadHmac(payload)
         return payloadhmac
             
@@ -66,6 +71,7 @@ class mpif():
         data={"MerchantId": self.MerchantId, "LocationId":self.LocationId, "PosId": self.PosId, "Name": self.Name}
         success, response = self.reqResp('RegisterPoS',data)
         self.PosId = self.findparaminresponse(response, 'PoSId')
+        print (self.PosId)
         return success
   
        
@@ -102,9 +108,9 @@ class mpif():
     
     def PaymentStart(self, orderid, AmountPay):
         Amount = str.format("{:.2f}", AmountPay)
-        BulkRef = "Bulk"
-        HmacCalc = self.GetHamacPayload(orderid, Amount, BulkRef)
-        data={"MerchantId": self.MerchantId, "LocationId":self.LocationId, "PosId": self.PosId,"OrderId":orderid, "Amount":Amount, "BulkRef":"",Action:"Start","CustomerTokenCalc":1,"HMAC": HmacCalc}
+        BulkRef = "MP Bulk Reference"
+        HmacVal = self.GetHamacPayload(orderid, Amount, BulkRef)
+        data={"MerchantId": self.MerchantId, "LocationId":self.LocationId, "PoSId": self.PosId,"OrderId":orderid, "Amount":Amount, "BulkRef":BulkRef,"Action":"Start","CustomerTokenCalc":0,"HMAC":HmacVal}
         
         success, response = self.reqResp('PaymentStart',data)
         
@@ -134,7 +140,7 @@ if __name__ == '__main__':
     try:
        m = mpif()
        m.RegisterPoS()
-       m.PaymentStart(1, 2.00)
+       m.PaymentStart("123A124310", 1023.43)
        m.GetPosList()
        m.UnRegisterPoS()
        
