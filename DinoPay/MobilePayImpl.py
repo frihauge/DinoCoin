@@ -5,6 +5,7 @@ import hashlib
 import base64
 import datetime
 import requests
+from pymodbus import payload
 
 
         
@@ -29,9 +30,25 @@ class mpif():
           hcryp = hmac.new( bytes(self.key,'UTF-8'), bytes(clearstr,'UTF-8'), hashlib.sha256 )
           hmacstr = base64.b64encode(hcryp.digest()).decode()      
           return hmacstr 
-
+      
+    def calcPayLoadHmac(self, payload):
+        MerchantSub = self.MerchantId[3:9]
+        utfBytes  = bytes(MerchantSub, 'ISO-8859-1')
+        key = (hashlib.sha256(utfBytes).digest())
+        inbytes =bytes(payload,'ISO-8859-1')
+        hcryp = hmac.new(key, bytes(payload,'ISO-8859-1'), hashlib.sha256 )
+        hmacstr = base64.b64encode(hcryp.digest()).decode()      
+        return hmacstr 
+    
+    def GetHamacPayload(self,orderid, Amount, BulkRef):
+        alias = self.MerchantId + self.LocationId
+        payload = str.format("{0}#{1}#{2}#{3}#{4}#",alias, self.PosId,orderid, Amount, BulkRef)
+        payload = "POSDK9999988888#a123456-b123-c123-d123-e12345678901#123A124321#43.33#MP Bulk Reference#"
+        payloadhmac = self.calcPayLoadHmac(payload)
+        return payloadhmac
             
-        
+
+              
     def reqResp(self, method, contentdata):
     ##parsing response
         tNow = datetime.datetime.utcnow()
@@ -83,18 +100,14 @@ class mpif():
         success, response = self.reqResp('GetPosList',data)
         return success
     
-    def PaymentStart(self, orderid, AmountPay, ):
-        Amount = AmountPay
-        BulkRef = ""
-        HMAC = Base64(hmacSha256(
-ISO88591Bytes(“{MerchantId+Lo
-cationId}#{PoSId}#{OrderId}#{Amo
-unt}#{BulkRef}#”),
-ISO88591Bytes(MerchantKey) 2))
-            
-        apple.decode('iso-8859-1').
+    def PaymentStart(self, orderid, AmountPay):
+        Amount = str.format("{:.2f}", AmountPay)
+        BulkRef = "Bulk"
+        HmacCalc = self.GetHamacPayload(orderid, Amount, BulkRef)
         data={"MerchantId": self.MerchantId, "LocationId":self.LocationId, "PosId": self.PosId,"OrderId":orderid, "Amount":Amount, "BulkRef":"",Action:"Start","CustomerTokenCalc":1,"HMAC": HmacCalc}
+        
         success, response = self.reqResp('PaymentStart',data)
+        
         return success
 
  
@@ -121,6 +134,7 @@ if __name__ == '__main__':
     try:
        m = mpif()
        m.RegisterPoS()
+       m.PaymentStart(1, 2.00)
        m.GetPosList()
        m.UnRegisterPoS()
        
