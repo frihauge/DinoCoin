@@ -12,7 +12,6 @@ from pymodbus import payload
 class mpif():
     def __init__(self):
         self.logger = logging
-        self.url = 'https://sandprod-pos2.mobilepay.dk/API/V08/RegisterPoS'
         self.MerchantId = "POSDKDC307"
         self.LocationId = "00001"
         self.locationname = "Gartnervej 4"
