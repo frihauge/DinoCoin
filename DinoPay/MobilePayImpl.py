@@ -114,6 +114,10 @@ class mpif():
         
         success, response = self.reqResp('PaymentStart',data)
         
+    def GetPaymentStatus(self,orderid):
+        data={"MerchantId": self.MerchantId, "LocationId":self.LocationId,"OrderId":orderid}
+        success, response = self.reqResp('GetPosList',data)
+        return success   
         return success
 
  
@@ -141,6 +145,10 @@ if __name__ == '__main__':
        m = mpif()
        m.RegisterPoS()
        m.PaymentStart("123A124310", 1023.43)
+       PayDoneStatus = False
+       while (not PayDoneStatus):
+         suscces, data =   m.GetPaymentStatus("123A124310")
+         PayDoneStatus = True 
        m.GetPosList()
        m.UnRegisterPoS()
        
