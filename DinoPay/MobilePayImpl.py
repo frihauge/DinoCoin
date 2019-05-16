@@ -11,7 +11,8 @@ from pymodbus import payload
         
 class mpif():
     def __init__(self):
-        self.logger = logging
+        self.logger = logging.getLogger('DinoGui')
+
         self.url = 'https://sandprod-pos2.mobilepay.dk/API/V08/RegisterPoS'
         self.MerchantId = "POSDKDC307"
         self.LocationId = "00001"
@@ -75,12 +76,17 @@ class mpif():
         return success
   
        
-    def UnRegisterPoS(self):
-        data={"MerchantId": self.MerchantId, "LocationId":self.LocationId, "PosId": self.PosId, "Name": self.Name}
+    def UnRegisterPoS(self,PosId=None):
+        if PosId is not None:
+            uregPosId = PosId
+        else:    
+            uregPosId = self.PosId
+        data={"MerchantId": self.MerchantId, "LocationId":self.LocationId, "PosId": uregPosId, "Name": self.Name}
         success, response = self.reqResp('UnRegisterPoS',data)
         return success
     
-    def AssignPoSUnitIdToPos(self):
+    def AssignPoSUnitIdToPos(self,PoSUnitId):
+        self.PoSUnitId = PoSUnitId;
         if self.PoSUnitId is None or self.PoSUnitId=="":
             return False
         data={"MerchantId": self.MerchantId, "LocationId":self.LocationId, "PosId": self.PosId, "PoSUnitId": self.PoSUnitId}
@@ -104,7 +110,8 @@ class mpif():
     def GetPosList(self):
         data={"MerchantId": self.MerchantId, "LocationId":self.LocationId}
         success, response = self.reqResp('GetPosList',data)
-        return success
+        return response
+    
     
     def PaymentStart(self, orderid, AmountPay):
         Amount = str.format("{:.2f}", AmountPay)
@@ -115,10 +122,10 @@ class mpif():
         success, response = self.reqResp('PaymentStart',data)
         
     def GetPaymentStatus(self,orderid):
-        data={"MerchantId": self.MerchantId, "LocationId":self.LocationId,"OrderId":orderid}
-        success, response = self.reqResp('GetPosList',data)
-        return success   
-        return success
+        data={"MerchantId": self.MerchantId, "LocationId":self.LocationId,"PoSId": self.PosId,"Orderid":orderid}
+        success, response = self.reqResp('GetPaymentStatus',data)
+        return response   
+
 
  
   
@@ -144,13 +151,16 @@ if __name__ == '__main__':
     try:
        m = mpif()
        m.RegisterPoS()
+       m.GetPosList()
+       m.AssignPoSUnitIdToPos("iwejfhuiewrhbfierwf")
        m.PaymentStart("123A124310", 1023.43)
        PayDoneStatus = False
        while (not PayDoneStatus):
-         suscces, data =   m.GetPaymentStatus("123A124310")
+         suscces =   m.GetPaymentStatus("123A124310")
          PayDoneStatus = True 
-       m.GetPosList()
-       m.UnRegisterPoS()
+       polist = m.GetPosList()
+       for i in polist['Poses']:
+           m.UnRegisterPoS(i['PosId'])
        
     except Exception as e:
         logging.error("main exception:" +str(e))

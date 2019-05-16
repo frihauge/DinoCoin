@@ -2,6 +2,15 @@ import logging
 import requests
 import json
 import MobilePayImpl
+logname = "DinoPay.log"
+logging.basicConfig(filename=logname,
+                            filemode='a',
+                            format='%(asctime)s,%(msecs)d %(name)s %(levelname)s %(message)s',
+                            datefmt='%H:%M:%S',
+                            level=logging.DEBUG)
+
+logging.info("Running DinoPay")
+
 
 
 
