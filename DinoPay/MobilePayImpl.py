@@ -5,6 +5,7 @@ import hashlib
 import base64
 import datetime
 import requests
+import time
 from pymodbus import payload
 
 
@@ -15,10 +16,10 @@ class mpif():
         self.url = 'https://sandprod-pos2.mobilepay.dk/API/V08/RegisterPoS'
         self.MerchantId = "POSDKDC307"
         self.LocationId = "00001"
-        self.locationname = "Gartnervej 4"
+       # self.locationname = "Gartnervej 4"
         self.PosId = ""
         self.PoSUnitId = None
-        self.Name = "Gartnervej 4"
+        self.Name = "Sillebroen"
         self.key = "344A350B-0D2D-4D7D-B556-BC4E2673C882"
         self.url = "https://sandprod-pos2.mobilepay.dk/API/V08/"
         
@@ -123,7 +124,7 @@ class mpif():
     def GetPaymentStatus(self,orderid):
         data={"MerchantId": self.MerchantId, "LocationId":self.LocationId,"PoSId": self.PosId,"Orderid":orderid}
         success, response = self.reqResp('GetPaymentStatus',data)
-        return response   
+        return success,response   
 
 
  
@@ -144,7 +145,10 @@ class mpif():
             success = True
         return success, data
           
-
+    def getNewOrderId(self):
+         tn = int(datetime.datetime.now().strftime('%Y%m%d%H%M%S'))
+         hSTr = "%03X" % tn
+         return hSTr
 
 if __name__ == '__main__':
     try:
@@ -152,11 +156,21 @@ if __name__ == '__main__':
        m.RegisterPoS()
        m.GetPosList()
        m.AssignPoSUnitIdToPos("100000625947428")
-       m.PaymentStart("123A124310", 1023.43)
+       ordid = m.getNewOrderId()
+       m.PaymentStart(ordid, 1.43)
        PayDoneStatus = False
        while (not PayDoneStatus):
-         suscces =   m.GetPaymentStatus("10000062594728")
-         PayDoneStatus = True 
+         suscces, response =   m.GetPaymentStatus(ordid)
+         if response['PaymentStatus'] == 30:
+             time.sleep(1)
+         elif response['PaymentStatus'] == 100:
+             print("Payment Success")
+             PayDoneStatus = True 
+         elif response['PaymentStatus'] == 20:
+             print("Issued")
+         else:    
+             print("Payment Not Success")
+             PayDoneStatus = True 
        polist = m.GetPosList()
        for i in polist['Poses']:
            m.UnRegisterPoS(i['PosId'])
