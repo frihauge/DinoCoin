@@ -1,6 +1,8 @@
 import logging
 import requests
 import json
+from .client_sw.AdamModule import Adam
+from AdamModule import adam
 import MobilePayImpl
 logname = "DinoPay.log"
 logging.basicConfig(filename=logname,
