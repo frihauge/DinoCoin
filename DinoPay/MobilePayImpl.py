@@ -151,11 +151,11 @@ if __name__ == '__main__':
        m = mpif()
        m.RegisterPoS()
        m.GetPosList()
-       m.AssignPoSUnitIdToPos("iwejfhuiewrhbfierwf")
+       m.AssignPoSUnitIdToPos("100000625947428")
        m.PaymentStart("123A124310", 1023.43)
        PayDoneStatus = False
        while (not PayDoneStatus):
-         suscces =   m.GetPaymentStatus("123A124310")
+         suscces =   m.GetPaymentStatus("10000062594728")
          PayDoneStatus = True 
        polist = m.GetPosList()
        for i in polist['Poses']:
