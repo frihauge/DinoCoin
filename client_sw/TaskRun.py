@@ -2,9 +2,6 @@ import logging
 import time
 import threading
 import queue
-from pywinauto.findwindows import find_windows
-from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
 from PrizeModule import Prize
 from AdamModule import adam
 from symbol import except_clause
