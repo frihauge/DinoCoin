@@ -50,11 +50,16 @@ class AppMain(tk.Tk):
 
         self.show_frame("StartPage")
 
-    def show_frame(self, page_name):
+    def show_frame(self, page_name, amount=None):
         '''Show a frame for the given page name'''
         frame = self.frames[page_name]
         frame.tkraise()
 
+    def InitPayment(self, page_name,amount=None):
+        ## STart new payment
+        mp.PaymentStart(mp.getNewOrderId(),amount)
+        frame = self.frames[page_name]
+        frame.tkraise()
 
 class StartPage(tk.Frame):
 
@@ -88,11 +93,11 @@ class PayWithMobilePay(tk.Frame):
         fr=Frame(self)
         fr.pack(fill=Y, side=TOP, pady= 200)
         button_100 = tk.Button(fr, text="100 Kr",
-                           command=lambda: controller.show_frame("StartPayment"))
+                           command=lambda: controller.InitPayment("StartPayment",100))
         button_200 = tk.Button(fr, text="200 Kr",
-                           command=lambda: controller.show_frame("StartPayment"))
+                           command=lambda: controller.InitPayment("StartPayment",200))
         button_300 = tk.Button(fr, text="300 Kr",
-                           command=lambda: controller.show_frame("StartPayment"))
+                           command=lambda: controller.InitPayment("StartPayment",300))
         button_100.pack(side=tk.LEFT, padx=10)
         button_200.pack(side=tk.LEFT, padx=10)
         button_300.pack(side=tk.LEFT, padx=10)
@@ -136,10 +141,10 @@ def ReadSetupFile():
 if __name__ == '__main__':
    # try:
         appsettings = ReadSetupFile()
-
+        mp = MobilePayImpl.mpif()
         app = AppMain()
         app.mainloop()
-        mp = mpif()
+
         mp.reqResp()
         #except Exception as e:
         # logging.error("main exception:" +str(e))
