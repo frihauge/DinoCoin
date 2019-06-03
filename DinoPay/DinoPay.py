@@ -141,6 +141,10 @@ def ReadSetupFile():
 if __name__ == '__main__':
    # try:
         appsettings = ReadSetupFile()
+        set =  appsettings.get('Adam', {'Adam':[{'host':"192.168.1.200"}]})
+        adamhost = set[0]['host']
+        logging.info("Connecting iomodule ip " + str(adamhost))
+        iomodule = adam.adam6000(logging, str(adamhost))
         mp = MobilePayImpl.mpif()
         app = AppMain()
         app.mainloop()
