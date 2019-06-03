@@ -3,12 +3,13 @@ import requests
 import json
 import os,io
 import sys
-import tkinter as tk                
+import tkinter as tk
+from tkinter import *                
 from tkinter import font  as tkfont 
 from PIL import Image, ImageTk
-sys.path.insert(0,r'c:\workspace\project\Dinocoin\SW\DinoCoin\client_sw\AdamModule')
+#sys.path.insert(0,r'c:\workspace\project\Dinocoin\SW\DinoCoin\client_sw\AdamModule')
 import adam
-import MobilePayImpl
+from MobilePay import MobilePayImpl
 logname = "DinoPay.log"
 logging.basicConfig(filename=logname,
                             filemode='a',
@@ -37,7 +38,7 @@ class AppMain(tk.Tk):
         container.grid_columnconfigure(0, weight=1)
 
         self.frames = {}
-        for F in (StartPage, PayWithMobilePay, PageTwo):
+        for F in (StartPage, PayWithMobilePay, StartPayment):
             page_name = F.__name__
             frame = F(parent=container, controller=self)
             self.frames[page_name] = frame
@@ -60,6 +61,7 @@ class StartPage(tk.Frame):
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
         self.controller = controller
+        mp = MobilePayImpl.mpif()
         label = tk.Label(self, text="Pay With MobilePay", font=controller.title_font)
         label.pack(side="top", fill="x", pady=10)
         
@@ -81,19 +83,26 @@ class PayWithMobilePay(tk.Frame):
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
         self.controller = controller
-        label = tk.Label(self, text="This is page 1", font=controller.title_font)
-        label.pack(side="top", fill="x", pady=10)
-        button = tk.Button(self, text="Go to the start page",
-                           command=lambda: controller.show_frame("StartPage"))
-        button.pack()
+        label = tk.Label(self, text="Valg belob", font=controller.title_font)
+        label.pack(side="top", fill="y", pady=10)
+        button_100 = tk.Button(self, text="100 Kr",
+                           command=lambda: controller.show_frame("StartPayment"))
+        button_200 = tk.Button(self, text="200 Kr",
+                           command=lambda: controller.show_frame("StartPayment"))
+        button_300 = tk.Button(self, text="300 Kr",
+                           command=lambda: controller.show_frame("StartPayment"))
+        button_100.pack(side=tk.LEFT)
+        button_200.pack(side=tk.LEFT)
+        button_300.pack(side=tk.LEFT)
+        
 
 
-class PageTwo(tk.Frame):
+class StartPayment(tk.Frame):
 
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
         self.controller = controller
-        label = tk.Label(self, text="This is page 2", font=controller.title_font)
+        label = tk.Label(self, text="StartPayment", font=controller.title_font)
         label.pack(side="top", fill="x", pady=10)
         button = tk.Button(self, text="Go to the start page",
                            command=lambda: controller.show_frame("StartPage"))
@@ -125,6 +134,7 @@ def ReadSetupFile():
 if __name__ == '__main__':
    # try:
         appsettings = ReadSetupFile()
+
         app = AppMain()
         app.mainloop()
         mp = mpif()
