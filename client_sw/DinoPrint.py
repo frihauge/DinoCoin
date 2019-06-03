@@ -2,7 +2,7 @@ from pywinauto.application import Application
 import logging
 import json
 import tkinter as tk
-import os,io
+import os,io,sys
 
 from GUI import  MainGui
 
@@ -17,7 +17,6 @@ def DinoPrint():
     root = tk.Tk()
     root.version = __version__
     root.appsettings = ReadSetupFile()
-
     root.iconbitmap(r'DinoPrint.ico')
     app =MainGui.App(root)
     app.root.mainloop()
@@ -47,6 +46,8 @@ if __name__ == '__main__':
     try:
         DinoPrint()
     except Exception as e:
+        os.startfile(__file__)
+        sys.exit()
         logging.error("main exception:" +str(e))
         
     

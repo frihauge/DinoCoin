@@ -85,15 +85,17 @@ class PayWithMobilePay(tk.Frame):
         self.controller = controller
         label = tk.Label(self, text="Valg belob", font=controller.title_font)
         label.pack(side="top", fill="y", pady=10)
-        button_100 = tk.Button(self, text="100 Kr",
+        fr=Frame(self)
+        fr.pack(fill=Y, side=TOP, pady= 200)
+        button_100 = tk.Button(fr, text="100 Kr",
                            command=lambda: controller.show_frame("StartPayment"))
-        button_200 = tk.Button(self, text="200 Kr",
+        button_200 = tk.Button(fr, text="200 Kr",
                            command=lambda: controller.show_frame("StartPayment"))
-        button_300 = tk.Button(self, text="300 Kr",
+        button_300 = tk.Button(fr, text="300 Kr",
                            command=lambda: controller.show_frame("StartPayment"))
-        button_100.pack(side=tk.LEFT)
-        button_200.pack(side=tk.LEFT)
-        button_300.pack(side=tk.LEFT)
+        button_100.pack(side=tk.LEFT, padx=10)
+        button_200.pack(side=tk.LEFT, padx=10)
+        button_300.pack(side=tk.LEFT, padx=10)
         
 
 
@@ -102,7 +104,7 @@ class StartPayment(tk.Frame):
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
         self.controller = controller
-        label = tk.Label(self, text="StartPayment", font=controller.title_font)
+        label = tk.Label(self, text="Confirm Payment", font=controller.title_font)
         label.pack(side="top", fill="x", pady=10)
         button = tk.Button(self, text="Go to the start page",
                            command=lambda: controller.show_frame("StartPage"))

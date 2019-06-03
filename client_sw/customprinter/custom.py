@@ -41,6 +41,7 @@ class custom():
         self.days_catchup = (datetime.datetime.fromtimestamp(ts) + datetime.timedelta(days= 7)).strftime('d.%d/%m-%Y')
         filename = self.printfilepath+'\\receipt.pdf'
         try:
+            os.remove(filename)
             self.logger.info("Render receipt")
             r = receiptrenderer.ReceiptRenderer(widthBuffer=20, offsetLeft=8)
             r.render(filename, prizeLabel, ''.join(random.choice('0123456789') for _ in range(10)), ''.join(random.choice(string.ascii_uppercase + '0123456789') for _ in range(10)),deliverypoint,self.days_catchup)
