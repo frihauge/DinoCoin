@@ -4,7 +4,7 @@ block_cipher = None
 
 
 a = Analysis(['DinoPrint.py'],
-             pathex=['C:\\workspace\\project\\Dinocoin\\SW\\DinoCoin\\client_sw'],
+             pathex=['../Modules', 'c:\\workspace\\priv\\DinoCoin\\client_sw'],
              binaries=[],
              datas=[],
              hiddenimports=[],
@@ -29,4 +29,4 @@ exe = EXE(pyz,
           strip=False,
           upx=True,
           runtime_tmpdir=None,
-          console=False , icon='DinoPrint.ico')
+          console=True , icon='DinoPrint.ico')

@@ -1,9 +1,10 @@
 from pywinauto.application import Application
+from datetime import datetime
+from threading import Timer
 import logging
 import json
 import tkinter as tk
 import os,io,sys
-
 from GUI import  MainGui
 
 __status__  = "production"
@@ -11,7 +12,13 @@ __status__  = "production"
 
 __date__    = "28042019"
 __version__ = "1.5_" +__date__
-   
+
+def restart():
+    print("#Restart")
+    python = sys.executable
+    os.execl(python, python, * sys.argv)
+
+
 def DinoPrint():
 
     root = tk.Tk()
@@ -44,6 +51,12 @@ def ReadSetupFile():
 
 if __name__ == '__main__':
     try:
+        x=datetime.today()
+        y=x.replace(day=x.day+0, hour=10, minute=23, second=0, microsecond=0)
+        delta_t=y-x
+        secs=delta_t.seconds+1
+        t = Timer(secs, restart)
+        t.start()
         DinoPrint()
     except Exception as e:
         os.startfile(__file__)

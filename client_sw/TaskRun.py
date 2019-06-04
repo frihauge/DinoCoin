@@ -2,7 +2,9 @@ import logging
 import time
 import threading
 import queue
+import sys
 from PrizeModule import Prize
+sys.path.append('../Modules')
 from AdamModule import adam
 from symbol import except_clause
 prn_queue = queue.Queue()

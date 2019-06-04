@@ -7,7 +7,7 @@ import tkinter as tk
 from tkinter import *                
 from tkinter import font  as tkfont 
 from PIL import Image, ImageTk
-#sys.path.insert(0,r'c:\workspace\project\Dinocoin\SW\DinoCoin\client_sw\AdamModule')
+sys.path.append('../Modules')
 import adam
 from MobilePay import MobilePayImpl
 logname = "DinoPay.log"
