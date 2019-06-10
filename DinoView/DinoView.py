@@ -2,6 +2,8 @@ import logging
 import json
 import subprocess
 import sys
+from datetime import datetime
+from threading import Timer
 from time import time, sleep
 from sched import scheduler
 import os,io
@@ -30,6 +32,12 @@ __status__  = "production"
 
 __date__    = "28042019"
 __version__ = "1.1_" +__date__
+
+def restart():
+    print("#Restart")
+    python = sys.executable
+    os.execl(python, python, * sys.argv)
+
 
 def RunTask(sc, br, rt): 
     print ("Doing stuff...")
@@ -98,6 +106,12 @@ def ReadSetupFile():
 if __name__ == '__main__':
     try:
         appsettings = ReadSetupFile()
+        x=datetime.today()
+        y=x.replace(day=x.day+1, hour=0, minute=0, second=0, microsecond=0)
+        delta_t=y-x
+        secs=delta_t.seconds+1
+        t = Timer(secs, restart)
+        t.start()
         DinoView()
     except Exception as e:
         logging.error("main exception:" +str(e))
