@@ -4,11 +4,16 @@ import json
 import os,io
 import sys
 import tkinter as tk
+from sched import scheduler
+from time import time, sleep
 from tkinter import *                
 from tkinter import font  as tkfont 
 from PIL import Image, ImageTk
+from datetime import datetime
+from threading import Timer
+from _codecs import decode
 sys.path.append('../Modules')
-import adam
+from AdamModule import adam
 from MobilePay import MobilePayImpl
 logname = "DinoPay.log"
 logging.basicConfig(filename=logname,
@@ -16,27 +21,44 @@ logging.basicConfig(filename=logname,
                             format='%(asctime)s,%(msecs)d %(name)s %(levelname)s %(message)s',
                             datefmt='%H:%M:%S',
                             level=logging.DEBUG)
+appsettings = 0
+s = scheduler(time, sleep)
 
-logging.info("Running DinoPay")
+
+
+
+def restart():
+    print("#Restart")
+    python = sys.executable
+    os.execl(python, python, * sys.argv)
+
+def RunTask(sc,rt,iomodule): 
+    print ("Check adam for coins ok ")
+    # do your stuff
+    iomodule.readinputbit(num)
+    s.enter(rt, 1, RunTask, (sc,rt,))
 
 class AppMain(tk.Tk):
 
     def __init__(self, *args, **kwargs):
         tk.Tk.__init__(self, *args, **kwargs)
 
-        self.title_font = tkfont.Font(family='Helvetica', size=18, weight="bold", slant="italic")
+        self.title_font = tkfont.Font(family='Helvetica', size=36, weight="bold", slant="italic")
 
         # the container is where we'll stack a bunch of frames
         # on top of each other, then the one we want visible
         # will be raised above the others
         root = tk.Tk._root(self)
         root.overrideredirect(True)
+        root.call('encoding', 'system', 'utf-8')
         root.geometry("{0}x{1}+0+0".format(root.winfo_screenwidth(), root.winfo_screenheight()))
         container = tk.Frame(self)
         container.pack(side="top", fill="both", expand=True)
         container.grid_rowconfigure(0, weight=1)
         container.grid_columnconfigure(0, weight=1)
-
+        self.setupadammodule()   
+        self.setup_mp() 
+        # self.setupcoinoktimer()
         self.frames = {}
         for F in (StartPage, PayWithMobilePay, StartPayment):
             page_name = F.__name__
@@ -55,19 +77,44 @@ class AppMain(tk.Tk):
         frame = self.frames[page_name]
         frame.tkraise()
 
-    def InitPayment(self, page_name,amount=None):
+    def InitPayment(self, page_name, amount=None):
         ## STart new payment
-        mp.PaymentStart(mp.getNewOrderId(),amount)
+        mp.PaymentStart(mp.getNewOrderId(), amount)
         frame = self.frames[page_name]
         frame.tkraise()
-
+        
+    def setupadammodule(self):
+        set =  appsettings.get('Adam', {'Adam':[{'host':"192.168.1.200"}]})
+        adamhost = set[0]['host']
+        logging.info("Connecting iomodule ip " + str(adamhost))
+        self.iomodule = adam.adam6000(logging, str(adamhost))
+        
+    def readveningemptystatus(self):
+        set =  appsettings.get('Adam', {'Adam':[{'emptyflag':"2"}]})
+        emptyflagport = set[0]['emptyflag']
+        self.iomodule.readinputbit(int(emptyflagport))
+        logging.info("Connecting iomodule ip " + str(adamhost))
+        
+    def setupcoinoktimer(self):
+        iscoinsleftok = appsettings.get("setupcoinoktimer",120)
+        s.enter(1, 1, RunTask, (s,iscoinsleftok, self.iomodule,))
+        s.run()
+    def setup_mp(self):
+        logging.info("Connecting Mobile pay ")
+        self.mp = MobilePayImpl.mpif()
+        logging.info("RegisterPOS")
+        stat = self.mp.RegisterPoS()
+        logging.info(stat)
+        logging.info("AssignPos")
+        stat = self.mp.AssignPoSUnitIdToPos("iwejfhuiewrhbfierwf")
+        logging.info(stat)
 class StartPage(tk.Frame):
 
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
         self.controller = controller
         mp = MobilePayImpl.mpif()
-        label = tk.Label(self, text="Pay With MobilePay", font=controller.title_font)
+        label = tk.Label(self, text="Betal med mobile pay", font=controller.title_font)
         label.pack(side="top", fill="x", pady=10)
         
         load = Image.open("img/BT_PayMP.png")
@@ -88,21 +135,42 @@ class PayWithMobilePay(tk.Frame):
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
         self.controller = controller
-        label = tk.Label(self, text="Valg belob", font=controller.title_font)
-        label.pack(side="top", fill="y", pady=10)
+        txt ="Valg belob"
+        label = tk.Label(self, text=txt, font=controller.title_font)
+        label.pack(side="top", fill="y", pady=20)
         fr=Frame(self)
         fr.pack(fill=Y, side=TOP, pady= 200)
-        button_100 = tk.Button(fr, text="100 Kr",
+        
+        fifty = Image.open("img/50kr.png")
+        fifty_render = ImageTk.PhotoImage(fifty)
+        hundred = Image.open("img/100kr.png")
+        hundred_render = ImageTk.PhotoImage(hundred)
+        twohundred = Image.open("img/200kr.png")
+        twohundred_render = ImageTk.PhotoImage(twohundred)
+
+        button_50 = tk.Button(fr, image=fifty_render, text="50 Kr",
+                           command=lambda: controller.InitPayment("StartPayment",50))
+        button_50.image = fifty_render
+        button_100 = tk.Button(fr, image=hundred_render, text="100 Kr",
                            command=lambda: controller.InitPayment("StartPayment",100))
-        button_200 = tk.Button(fr, text="200 Kr",
+        button_100.image = hundred_render
+        button_200 = tk.Button(fr, image=twohundred_render,text="200 Kr",
                            command=lambda: controller.InitPayment("StartPayment",200))
-        button_300 = tk.Button(fr, text="300 Kr",
-                           command=lambda: controller.InitPayment("StartPayment",300))
+        button_200.image = twohundred_render
+        button_50.pack(side=tk.LEFT, padx=10)
         button_100.pack(side=tk.LEFT, padx=10)
         button_200.pack(side=tk.LEFT, padx=10)
-        button_300.pack(side=tk.LEFT, padx=10)
         
+class VendingEmpty(tk.Frame):
 
+    def __init__(self, parent, controller):
+        tk.Frame.__init__(self, parent)
+        self.controller = controller
+        label = tk.Label(self, text="VendingEmpty", font=controller.title_font)
+        label.pack(side="top", fill="x", pady=10)
+        button = tk.Button(self, text="Go to the start page",
+                           command=lambda: controller.show_frame("StartPage"))
+        button.pack()
 
 class StartPayment(tk.Frame):
 
@@ -114,7 +182,6 @@ class StartPayment(tk.Frame):
         button = tk.Button(self, text="Go to the start page",
                            command=lambda: controller.show_frame("StartPage"))
         button.pack()
-
 
 def ReadSetupFile():
     FilePath = 'C:\\ProgramData\\DinoCoin\\DinoPay\\'
@@ -135,20 +202,21 @@ def ReadSetupFile():
     data = None
     with io.open(mainsetupfile, 'r') as jsonFile:
         data = json.load(jsonFile) 
-    return data  
+    return data
+
+  
 
 
 if __name__ == '__main__':
    # try:
+        logging.info("Running DinoPay")
+        logging.info("Reading Setupfile")
         appsettings = ReadSetupFile()
-        set =  appsettings.get('Adam', {'Adam':[{'host':"192.168.1.200"}]})
-        adamhost = set[0]['host']
-        logging.info("Connecting iomodule ip " + str(adamhost))
-        iomodule = adam.adam6000(logging, str(adamhost))
-        mp = MobilePayImpl.mpif()
         app = AppMain()
+        x=datetime.today()
+        y=x.replace(day=x.day+1, hour=0, minute=0, second=0, microsecond=0)
+        delta_t=y-x
+        secs=delta_t.seconds+1
+        t = Timer(secs, restart)
+        t.start()
         app.mainloop()
-
-        mp.reqResp()
-        #except Exception as e:
-        # logging.error("main exception:" +str(e))

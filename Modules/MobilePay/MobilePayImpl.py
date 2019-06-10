@@ -6,22 +6,31 @@ import base64
 import datetime
 import requests
 from pymodbus import payload
+from numpy.distutils.fcompiler import none
 
 
         
 class mpif():
-    def __init__(self):
+    def __init__(self, key= None, LocationId = None, url= None):
         self.logger = logging.getLogger('DinoGui')
 
         self.url = 'https://sandprod-pos2.mobilepay.dk/API/V08/RegisterPoS'
         self.MerchantId = "POSDKDC307"
-        self.LocationId = "00001"
         self.locationname = "Gartnervej 4"
         self.PosId = ""
         self.PoSUnitId = None
         self.Name = "Gartnervej 4"
-        self.key = "344A350B-0D2D-4D7D-B556-BC4E2673C882"
-        self.url = "https://sandprod-pos2.mobilepay.dk/API/V08/"
+        self.key = key 
+        self.url = url
+        self.LocationId = LocationId
+        if LocationId is None:
+            self.LocationId = "00001"
+   
+        if key is None:
+            self.key = "344A350B-0D2D-4D7D-B556-BC4E2673C882"
+        if url is None:
+            self.url = "https://sandprod-pos2.mobilepay.dk/API/V08/"
+            
         
 
         

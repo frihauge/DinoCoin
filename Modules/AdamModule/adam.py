@@ -10,24 +10,27 @@ import random
 
 from pymodbus.client.sync import ModbusTcpClient as ModbusClient
 
-class adam6000():
-    
-    
 
-     
+class adam6000():
     def __init__(self, log, host):
         self.Version = 1.0
         self.Description = "Setup SocketConnection to adam module"
         self.logger = log
         self.host = host
-        self.port=1025
-
-        
+        self.port = 1025
 
     def connect(self):
         self.client = ModbusClient(self.host)
 
-     
+    def PulsPort(self, portnum, pulsnum):
+        stat = False
+        for _ in range(pulsnum):
+            self.SetOutputbit(portnum, 1)
+            time.sleep(0.1)
+            stat = self.SetOutputbit(portnum, 0)
+            time.sleep(0.1)
+        return stat
+
     def SetOutputbit(self, num, stat):
         stat = self.client.write_coil(17+int(num),stat)
         return stat 
