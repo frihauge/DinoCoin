@@ -5,9 +5,6 @@ import hashlib
 import base64
 import datetime
 import requests
-from pymodbus import payload
-from numpy.distutils.fcompiler import none
-
 
         
 class mpif():
