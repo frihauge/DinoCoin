@@ -42,7 +42,7 @@ class AppMain(tk.Tk):
 
     def __init__(self, *args, **kwargs):
         tk.Tk.__init__(self, *args, **kwargs)
-
+        small = 500
         self.title_font = tkfont.Font(family='Helvetica', size=36, weight="bold", slant="italic")
 
         # the container is where we'll stack a bunch of frames
@@ -51,7 +51,7 @@ class AppMain(tk.Tk):
         root = tk.Tk._root(self)
         root.overrideredirect(True)
         root.call('encoding', 'system', 'utf-8')
-        root.geometry("{0}x{1}+0+0".format(root.winfo_screenwidth(), root.winfo_screenheight()))
+        root.geometry("{0}x{1}+0+0".format(root.winfo_screenwidth()-small, root.winfo_screenheight()-small))
         container = tk.Frame(self)
         container.pack(side="top", fill="both", expand=True)
         container.grid_rowconfigure(0, weight=1)
