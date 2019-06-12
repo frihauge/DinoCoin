@@ -158,7 +158,7 @@ if __name__ == '__main__':
        m = mpif()
        m.RegisterPoS()
        m.GetPosList()
-       m.AssignPoSUnitIdToPos("iwejfhuiewrhbfierwf")
+       m.AssignPoSUnitIdToPos("100000625947428 ")
        m.PaymentStart("123A124310", 1023.43)
        PayDoneStatus = False
        while (not PayDoneStatus):

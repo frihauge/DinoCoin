@@ -43,7 +43,7 @@ class AppMain(tk.Tk):
 
     def __init__(self, *args, **kwargs):
         tk.Tk.__init__(self, *args, **kwargs)
-        small = 500
+        small = 200
         self.title_font = tkfont.Font(family='Helvetica', size=36, weight="bold", slant="italic")
         self.background = 'light gray'
         # the container is where we'll stack a bunch of frames
@@ -52,13 +52,9 @@ class AppMain(tk.Tk):
         root = tk.Tk._root(self)
         root.overrideredirect(True)
         root.call('encoding', 'system', 'utf-8')
-<<<<<<< HEAD
-        root.geometry("{0}x{1}+0+0".format(root.winfo_screenwidth(), root.winfo_screenheight()))
-        root.bind("<Escape>", lambda e: e.widget.quit())
-        root.configure(background=self.background)
-=======
+
         root.geometry("{0}x{1}+0+0".format(root.winfo_screenwidth()-small, root.winfo_screenheight()-small))
->>>>>>> branch 'master' of https://github.com/frihauge/DinoCoin.git
+
         container = tk.Frame(self)
         container.pack(side="top", fill="both", expand=True)
         container.grid_rowconfigure(0, weight=1)
@@ -114,8 +110,9 @@ class AppMain(tk.Tk):
         stat = self.mp.RegisterPoS()
         logging.info(stat)
         logging.info("AssignPos")
-        stat = self.mp.AssignPoSUnitIdToPos("iwejfhuiewrhbfierwf")
+        stat = self.mp.AssignPoSUnitIdToPos("100000625947428")
         logging.info(stat)
+        
 class StartPage(tk.Frame):
 
     def __init__(self, parent, controller):
