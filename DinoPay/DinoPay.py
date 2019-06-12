@@ -12,6 +12,7 @@ from PIL import Image, ImageTk
 from datetime import datetime
 from threading import Timer
 from _codecs import decode
+from pywinauto.win32defines import BACKGROUND_BLUE
 sys.path.append('../Modules')
 from AdamModule import adam
 from MobilePay import MobilePayImpl
@@ -44,7 +45,7 @@ class AppMain(tk.Tk):
         tk.Tk.__init__(self, *args, **kwargs)
 
         self.title_font = tkfont.Font(family='Helvetica', size=36, weight="bold", slant="italic")
-
+        self.background = 'light gray'
         # the container is where we'll stack a bunch of frames
         # on top of each other, then the one we want visible
         # will be raised above the others
@@ -52,10 +53,13 @@ class AppMain(tk.Tk):
         root.overrideredirect(True)
         root.call('encoding', 'system', 'utf-8')
         root.geometry("{0}x{1}+0+0".format(root.winfo_screenwidth(), root.winfo_screenheight()))
+        root.bind("<Escape>", lambda e: e.widget.quit())
+        root.configure(background=self.background)
         container = tk.Frame(self)
         container.pack(side="top", fill="both", expand=True)
         container.grid_rowconfigure(0, weight=1)
         container.grid_columnconfigure(0, weight=1)
+        container.config(background = self.background)
         self.setupadammodule()   
         self.setup_mp() 
         # self.setupcoinoktimer()
@@ -69,7 +73,7 @@ class AppMain(tk.Tk):
             # the one on the top of the stacking order
             # will be the one that is visible.
             frame.grid(row=0, column=0, sticky="nsew")
-
+            frame.configure(background='light gray')
         self.show_frame("StartPage")
 
     def show_frame(self, page_name, amount=None):
@@ -114,19 +118,15 @@ class StartPage(tk.Frame):
         tk.Frame.__init__(self, parent)
         self.controller = controller
         mp = MobilePayImpl.mpif()
-        label = tk.Label(self, text="Betal med mobile pay", font=controller.title_font)
+        label = tk.Label(self, text="Betal med mobile pay", font=controller.title_font,background=controller.background)
         label.pack(side="top", fill="x", pady=10)
         
         load = Image.open("img/BT_PayMP.png")
         render = ImageTk.PhotoImage(load)
-           # labels can be text or images
-        img = tk.Label(self, image=render)
-        img.image = render
-        #img.place(x=0, y=0)
-        
+      
         btPayWithMobilePay = tk.Button(self,image=render ,text="32121321",relief='raised',
                             command=lambda: controller.show_frame("PayWithMobilePay"))
-        
+        btPayWithMobilePay.image = render
         btPayWithMobilePay.pack(pady=300)
 
 
@@ -136,7 +136,7 @@ class PayWithMobilePay(tk.Frame):
         tk.Frame.__init__(self, parent)
         self.controller = controller
         txt ="Valg belob"
-        label = tk.Label(self, text=txt, font=controller.title_font)
+        label = tk.Label(self, text=txt, font=controller.title_font, background=controller.background)
         label.pack(side="top", fill="y", pady=20)
         fr=Frame(self)
         fr.pack(fill=Y, side=TOP, pady= 200)
@@ -157,8 +157,8 @@ class PayWithMobilePay(tk.Frame):
         button_200 = tk.Button(fr, image=twohundred_render,text="200 Kr",
                            command=lambda: controller.InitPayment("StartPayment",200))
         button_200.image = twohundred_render
-        button_50.pack(side=tk.LEFT, padx=10)
-        button_100.pack(side=tk.LEFT, padx=10)
+        button_50.pack(side=tk.LEFT, padx=50)
+        button_100.pack(side=tk.LEFT, padx=50)
         button_200.pack(side=tk.LEFT, padx=10)
         
 class VendingEmpty(tk.Frame):
