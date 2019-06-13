@@ -43,7 +43,7 @@ class AppMain(tk.Tk):
 
     def __init__(self, *args, **kwargs):
         tk.Tk.__init__(self, *args, **kwargs)
-        small = 200
+        small = 0
         self.title_font = tkfont.Font(family='Helvetica', size=36, weight="bold", slant="italic")
         self.background = 'light gray'
         # the container is where we'll stack a bunch of frames
@@ -76,16 +76,17 @@ class AppMain(tk.Tk):
             frame.configure(background='light gray')
         self.show_frame("StartPage")
 
-    def show_frame(self, page_name, amount=None):
+    def show_frame(self, page_name):
         '''Show a frame for the given page name'''
         frame = self.frames[page_name]
         frame.tkraise()
 
     def InitPayment(self, page_name, amount=None):
         ## STart new payment
-        mp.PaymentStart(mp.getNewOrderId(), amount)
+        self.mp.PaymentStart(self.mp.getNewOrderId(), amount)
         frame = self.frames[page_name]
         frame.tkraise()
+        
         
     def setupadammodule(self):
         set =  appsettings.get('Adam', {'Adam':[{'host':"192.168.1.200"}]})
@@ -143,6 +144,7 @@ class PayWithMobilePay(tk.Frame):
         fr.pack(fill=Y, side=TOP, pady= 200)
         
         fifty = Image.open("img/50kr.png")
+        #fifty.resize((200,200), Image.ANTIALIAS)
         fifty_render = ImageTk.PhotoImage(fifty)
         hundred = Image.open("img/100kr.png")
         hundred_render = ImageTk.PhotoImage(hundred)
@@ -158,9 +160,9 @@ class PayWithMobilePay(tk.Frame):
         button_200 = tk.Button(fr, image=twohundred_render,text="200 Kr",
                            command=lambda: controller.InitPayment("StartPayment",200))
         button_200.image = twohundred_render
-        button_50.pack(side=tk.LEFT, padx=50)
-        button_100.pack(side=tk.LEFT, padx=50)
-        button_200.pack(side=tk.LEFT, padx=10)
+        button_50.pack(side=tk.LEFT, padx=0)
+        button_100.pack(side=tk.LEFT, padx=0)
+        button_200.pack(side=tk.LEFT, padx=0)
         
 class VendingEmpty(tk.Frame):
 
