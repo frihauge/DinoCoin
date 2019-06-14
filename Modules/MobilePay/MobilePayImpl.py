@@ -3,47 +3,46 @@ import json
 import hmac
 import hashlib
 import base64
-import datetime
+from datetime import datetime, timezone
 import requests
+import time
+import pytz
 
-        
+
 class mpif():
-    def __init__(self, key= None, LocationId = None, url= None):
+    def __init__(self, key=None, LocationId=None, url=None, Name=None):
         self.logger = logging.getLogger('DinoGui')
 
         self.url = 'https://sandprod-pos2.mobilepay.dk/API/V08/RegisterPoS'
         self.MerchantId = "POSDKDC307"
-        self.locationname = "Gartnervej 4"
+        #self.locationname = "Gartnervej 4"
         self.PosId = ""
         self.PoSUnitId = None
-        self.Name = "Gartnervej 4"
-        self.key = key 
+        self.key = key
         self.url = url
         self.LocationId = LocationId
+        if Name is None:
+            self.Name="Gartnervej 4"
         if LocationId is None:
             self.LocationId = "00001"
-   
         if key is None:
             self.key = "344A350B-0D2D-4D7D-B556-BC4E2673C882"
         if url is None:
             self.url = "https://sandprod-pos2.mobilepay.dk/API/V08/"
-            
-        
 
-        
     def calchmac(self, method, contentbody, utctime):
-          com_url = self.url + method  
-          clearstr = str.format("{} {} {}",com_url,contentbody,utctime)
-          hcryp = hmac.new( bytes(self.key,'UTF-8'), bytes(clearstr,'UTF-8'), hashlib.sha256 )
-          hmacstr = base64.b64encode(hcryp.digest()).decode()      
-          return hmacstr 
-      
+        com_url = self.url + method
+        clearstr = str.format("{} {} {}", com_url, contentbody, utctime)
+        hcryp = hmac.new(bytes(self.key, 'UTF-8'), bytes(clearstr, 'UTF-8'), hashlib.sha256)
+        hmacstr = base64.b64encode(hcryp.digest()).decode()
+        return hmacstr
+
     def calcPayLoadHmac(self, payload):
         MerchantSub = self.MerchantId[3:9]
-        utfBytes  = bytes(MerchantSub, 'ISO-8859-1')
+        utfBytes = bytes(MerchantSub, 'ISO-8859-1')
         key = (hashlib.sha256(utfBytes).digest())
-        inbytes =bytes(payload,'ISO-8859-1')
-        hcryp = hmac.new(key, bytes(payload,'ISO-8859-1'), hashlib.sha256 )
+        inbytes = bytes(payload, 'ISO-8859-1')
+        hcryp = hmac.new(key, bytes(payload, 'ISO-8859-1'), hashlib.sha256)
         hmacstr = base64.b64encode(hcryp.digest()).decode()      
         return hmacstr 
     
@@ -63,7 +62,7 @@ class mpif():
               
     def reqResp(self, method, contentdata):
     ##parsing response
-        tNow = datetime.datetime.utcnow()
+        tNow = datetime.utcnow()
         utcnow = int(tNow.timestamp())
         data_json = json.dumps(contentdata,separators=(",", ":"))
         hmcode = self.calchmac(method, data_json, utcnow)
@@ -82,7 +81,7 @@ class mpif():
         return success
   
        
-    def UnRegisterPoS(self,PosId=None):
+    def UnRegisterPoS(self, PosId=None):
         if PosId is not None:
             uregPosId = PosId
         else:    
@@ -91,8 +90,8 @@ class mpif():
         success, response = self.reqResp('UnRegisterPoS',data)
         return success
     
-    def AssignPoSUnitIdToPos(self,PoSUnitId):
-        self.PoSUnitId = PoSUnitId;
+    def AssignPoSUnitIdToPos(self, PoSUnitId):
+        self.PoSUnitId = PoSUnitId
         if self.PoSUnitId is None or self.PoSUnitId=="":
             return False
         data={"MerchantId": self.MerchantId, "LocationId":self.LocationId, "PosId": self.PosId, "PoSUnitId": self.PoSUnitId}
@@ -132,7 +131,12 @@ class mpif():
         success, response = self.reqResp('GetPaymentStatus',data)
         return response   
 
-
+    def getNewOrderId(self):
+        tz = pytz.timezone('Europe/Berlin')
+        now = datetime.now(tz)
+        orderid = (hex(int(now.timestamp())))
+        orderid = orderid[2:]
+        return orderid
  
   
        
@@ -155,18 +159,18 @@ class mpif():
 
 if __name__ == '__main__':
     try:
-       m = mpif()
-       m.RegisterPoS()
-       m.GetPosList()
-       m.AssignPoSUnitIdToPos("100000625947428 ")
-       m.PaymentStart("123A124310", 1023.43)
-       PayDoneStatus = False
-       while (not PayDoneStatus):
-         suscces =   m.GetPaymentStatus("123A124310")
-         PayDoneStatus = True 
-       polist = m.GetPosList()
-       for i in polist['Poses']:
-           m.UnRegisterPoS(i['PosId'])
-       
+        m = mpif()
+        m.getNewOrderId()
+        m.RegisterPoS()
+        m.GetPosList()
+        m.AssignPoSUnitIdToPos("100000625947428 ")
+        m.PaymentStart("123A124310", 1023.43)
+        PayDoneStatus = False
+        while (not PayDoneStatus):
+            suscces =   m.GetPaymentStatus("123A124310")
+            PayDoneStatus = True 
+        polist = m.GetPosList()
+        for i in polist['Poses']:
+            m.UnRegisterPoS(i['PosId'])
     except Exception as e:
         logging.error("main exception:" +str(e))
