@@ -43,7 +43,7 @@ class AppMain(tk.Tk):
 
     def __init__(self, *args, **kwargs):
         tk.Tk.__init__(self, *args, **kwargs)
-        small = 200
+        small = 0
         self.title_font = tkfont.Font(family='Helvetica', size=36, weight="bold", slant="italic")
         self.background = 'light gray'
         # the container is where we'll stack a bunch of frames
@@ -141,16 +141,18 @@ class PayWithMobilePay(tk.Frame):
         label.pack(side="top", fill="y", pady=20)
         fr=Frame(self)
         fr.pack(fill=Y, side=TOP, pady= 200)
-        
         fifty = Image.open("img/50kr.png")
+        fifty.resize((10, 10), Image.ANTIALIAS)
         fifty_render = ImageTk.PhotoImage(fifty)
         hundred = Image.open("img/100kr.png")
         hundred_render = ImageTk.PhotoImage(hundred)
         twohundred = Image.open("img/200kr.png")
         twohundred_render = ImageTk.PhotoImage(twohundred)
+                
 
         button_50 = tk.Button(fr, image=fifty_render, text="50 Kr",
                            command=lambda: controller.InitPayment("StartPayment",50))
+
         button_50.image = fifty_render
         button_100 = tk.Button(fr, image=hundred_render, text="100 Kr",
                            command=lambda: controller.InitPayment("StartPayment",100))
