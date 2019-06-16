@@ -5,7 +5,7 @@ import os,io
 import sys
 import tkinter as tk
 from sched import scheduler
-from time import time, sleep
+import time
 from tkinter import *                
 from tkinter import font  as tkfont 
 from PIL import Image, ImageTk
@@ -23,7 +23,7 @@ logging.basicConfig(filename=logname,
                             datefmt='%H:%M:%S',
                             level=logging.DEBUG)
 appsettings = 0
-s = scheduler(time, sleep)
+s = scheduler(time, time.sleep)
 
 
 
@@ -46,6 +46,7 @@ class AppMain(tk.Tk):
         small = 0
         self.title_font = tkfont.Font(family='Helvetica', size=36, weight="bold", slant="italic")
         self.background = 'light gray'
+        self.background = "SystemButtonFace"
         # the container is where we'll stack a bunch of frames
         # on top of each other, then the one we want visible
         # will be raised above the others
@@ -63,11 +64,14 @@ class AppMain(tk.Tk):
         container.grid_rowconfigure(0, weight=1)
         container.grid_columnconfigure(0, weight=1)
         container.config(background = self.background)
+
+      
+         
         self.setupadammodule()   
         self.setup_mp() 
         # self.setupcoinoktimer()
         self.frames = {}
-        for F in (StartPage, PayWithMobilePay, StartPayment):
+        for F in (StartPage, PayWithMobilePay, StartPayment,PaymentAccepted, PaymentFailed):
             page_name = F.__name__
             frame = F(parent=container, controller=self)
             self.frames[page_name] = frame
@@ -76,9 +80,23 @@ class AppMain(tk.Tk):
             # the one on the top of the stacking order
             # will be the one that is visible.
             frame.grid(row=0, column=0, sticky="nsew")
-            frame.configure(background='light gray')
+            frame.configure(background=self.background)
         self.show_frame("StartPage")
-
+        
+    def FrameTimeOut(self):
+        print("Frame Time out!")
+        self.show_frame("StartPage")
+                   
+    def paymenttimeout(self):
+        print("Payment Time out!")
+         
+        if self.mp is not None:
+            print("Payment Time out!" + str(self.orderid))
+            logging.info("Payment TimeOut" + str(self.orderid))
+            self.mp.PaymentCancel()
+            self.ft = Timer(5.0, self.FrameTimeOut) 
+            self.ft.start()
+        
     def show_frame(self, page_name):
         '''Show a frame for the given page name'''
         frame = self.frames[page_name]
@@ -89,14 +107,25 @@ class AppMain(tk.Tk):
         self.orderid = self.mp.getNewOrderId()
         self.mp.PaymentStart(self.orderid, amount)
         frame = self.frames[page_name]
-        frame.startpaymenttimer(60)
+        self.pt = Timer(60.0, self.paymenttimeout) 
+        self.pt.start()
         frame.tkraise()
+     #   if self.waitingforpaymentaccept():
+     #       self.show_frame('PaymentAccepted')
+     #   else:
+     #        self.show_frame('PaymentFailed')
+
+
+            
         
     def waitingforpaymentaccept(self):
-        success = False
+        paied = False
         if self.mp is not None:
-            success = self.mp.GetPaymentStatus(self.orderid)
-        return success
+            while (not paied):
+                success = self.mp.GetPaymentStatus(self.orderid)
+                paied = success['PaymentStatus'] ==80
+                time.sleep(1)
+        return paied
                   
     def setupadammodule(self):
         set =  appsettings.get('Adam', {'Adam':[{'host':"192.168.1.200"}]})
@@ -199,15 +228,57 @@ class StartPayment(tk.Frame):
         self.controller = controller
         label = tk.Label(self, text="Confirm Payment", font=controller.title_font)
         label.pack(side="top", fill="x", pady=10)
-        button = tk.Button(self, text="Go to the start page",
+        
+        load = Image.open("img/Confirm_Payment.png")
+        render = ImageTk.PhotoImage(load)
+        button = tk.Button(self, image=render, text="Go to the start page",
                            command=lambda: controller.show_frame("StartPage"))
-        button.pack()
-    
-    def startpaymenttimer(self,sec):
-        print("Wait for payment" +str(sec))
+        button.image = render
+        button.pack(pady=300)
+
+class PaymentFailed(tk.Frame):
+
+    def __init__(self, parent, controller):
+        tk.Frame.__init__(self, parent)
+        self.controller = controller
+        label = tk.Label(self, text="Payment Failed Try again", font=controller.title_font)
+        label.pack(side="top", fill="x", pady=10)
+        
+        
+        load = Image.open("img/Payment failed.png")
+        render = ImageTk.PhotoImage(load)
+      
+        failedbt = tk.Button(self,image=render ,text="32121321",relief='raised',
+                            command=lambda: controller.show_frame("StartPage"))
+
+        failedbt.image = render
+        failedbt.pack(pady=300)
+        
+class PaymentAccepted(tk.Frame):
+
+    def __init__(self, parent, controller):
+        tk.Frame.__init__(self, parent)
+        self.controller = controller
+        label = tk.Label(self, text="Payment Accepted", font=controller.title_font)
+        label.pack(side="top", fill="x", pady=10)
+        
+        
+        load = Image.open("img/Payment accepted.png")
+        render = ImageTk.PhotoImage(load)
+      
+        failedbt = tk.Button(self,image=render ,text="32121321",relief='raised',
+                            command=lambda: controller.show_frame("StartPage"))
+
+        failedbt.image = render
+        failedbt.pack(pady=300)
+        
+    def showFrame(self,cont):
+        rame = self.frames[cont]
+        frame.tkraise()
+        frame.update()
+        frame.event_generate("<<ShowFrame>>")
           
-        
-        
+
 def ReadSetupFile():
     FilePath = 'C:\\ProgramData\\DinoCoin\\DinoPay\\'
     mainsetupfile =FilePath+ 'DinoPaySetup.json'

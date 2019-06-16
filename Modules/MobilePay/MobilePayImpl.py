@@ -10,19 +10,20 @@ import pytz
 
 
 class mpif():
+    
     def __init__(self, key=None, LocationId=None, url=None, Name=None):
         self.logger = logging.getLogger('DinoGui')
 
         self.url = 'https://sandprod-pos2.mobilepay.dk/API/V08/RegisterPoS'
         self.MerchantId = "POSDKDC307"
-        #self.locationname = "Gartnervej 4"
+        # self.locationname = "Gartnervej 4"
         self.PosId = ""
         self.PoSUnitId = None
         self.key = key
         self.url = url
         self.LocationId = LocationId
         if Name is None:
-            self.Name="Gartnervej 4"
+            self.Name = "Gartnervej 4"
         if LocationId is None:
             self.LocationId = "00001"
         if key is None:
@@ -46,89 +47,88 @@ class mpif():
         hmacstr = base64.b64encode(hcryp.digest()).decode()      
         return hmacstr 
     
-    def GetHamacPayload(self,orderid, Amount, BulkRef):
+    def GetHamacPayload(self, orderid, Amount, BulkRef):
         # self.PosId= "a123456-b123-c123-d123-e12345678901"
         # self.MerchantId= "POSDK99999"
         # self.LocationId= "88888"
-        BulkRef= "MP Bulk Reference"
+        BulkRef = "MP Bulk Reference"
         alias = self.MerchantId + self.LocationId
         
-        payload = str.format("{0}#{1}#{2}#{3}#{4}#",alias, self.PosId,orderid, Amount, BulkRef)
-        #payload = "POSDK9999988888#a123456-b123-c123-d123-e12345678901#123A124321#43.33#MP Bulk Reference#"
+        payload = str.format("{0}#{1}#{2}#{3}#{4}#", alias, self.PosId, orderid, Amount, BulkRef)
+        # payload = "POSDK9999988888#a123456-b123-c123-d123-e12345678901#123A124321#43.33#MP Bulk Reference#"
         payloadhmac = self.calcPayLoadHmac(payload)
         return payloadhmac
-            
-
               
     def reqResp(self, method, contentdata):
-    ##parsing response
+    # #parsing response
         tNow = datetime.utcnow()
         utcnow = int(tNow.timestamp())
-        data_json = json.dumps(contentdata,separators=(",", ":"))
+        data_json = json.dumps(contentdata, separators=(",", ":"))
         hmcode = self.calchmac(method, data_json, utcnow)
-        auth = str.format("{} {}", hmcode,utcnow)
-        header = {'Content-Type': 'application/json','Authorization': auth}
-        r = requests.post(url = self.url+method, data=data_json, headers=header)
+        auth = str.format("{} {}", hmcode, utcnow)
+        header = {'Content-Type': 'application/json', 'Authorization': auth}
+        r = requests.post(url=self.url + method, data=data_json, headers=header)
         return self.responsehandler(r, method)
-       
-
 
     def RegisterPoS(self):
-        data={"MerchantId": self.MerchantId, "LocationId":self.LocationId, "PosId": self.PosId, "Name": self.Name}
-        success, response = self.reqResp('RegisterPoS',data)
+        data = {"MerchantId": self.MerchantId, "LocationId":self.LocationId, "PosId": self.PosId, "Name": self.Name}
+        success, response = self.reqResp('RegisterPoS', data)
         self.PosId = self.findparaminresponse(response, 'PoSId')
         print (self.PosId)
         return success
-  
        
     def UnRegisterPoS(self, PosId=None):
         if PosId is not None:
             uregPosId = PosId
         else:    
             uregPosId = self.PosId
-        data={"MerchantId": self.MerchantId, "LocationId":self.LocationId, "PosId": uregPosId, "Name": self.Name}
-        success, response = self.reqResp('UnRegisterPoS',data)
+        data = {"MerchantId": self.MerchantId, "LocationId":self.LocationId, "PosId": uregPosId, "Name": self.Name}
+        success, response = self.reqResp('UnRegisterPoS', data)
         return success
     
     def AssignPoSUnitIdToPos(self, PoSUnitId):
         self.PoSUnitId = PoSUnitId
-        if self.PoSUnitId is None or self.PoSUnitId=="":
+        if self.PoSUnitId is None or self.PoSUnitId == "":
             return False
-        data={"MerchantId": self.MerchantId, "LocationId":self.LocationId, "PosId": self.PosId, "PoSUnitId": self.PoSUnitId}
-        success, response = self.reqResp('AssignPoSUnitIdToPos',data)
+        data = {"MerchantId": self.MerchantId, "LocationId":self.LocationId, "PosId": self.PosId, "PoSUnitId": self.PoSUnitId}
+        success, response = self.reqResp('AssignPoSUnitIdToPos', data)
         return success
     
     def UnAssignPoSUnitIdToPos(self):
-        if self.PoSUnitId is None or self.PoSUnitId=="":
+        if self.PoSUnitId is None or self.PoSUnitId == "":
             return False
-        data={"MerchantId": self.MerchantId, "LocationId":self.LocationId, "PosId": self.PosId, "PoSUnitId": self.PoSUnitId}
-        success, response = self.reqResp('UnAssignPoSUnitIdToPoS',data)
+        data = {"MerchantId": self.MerchantId, "LocationId":self.LocationId, "PosId": self.PosId, "PoSUnitId": self.PoSUnitId}
+        success, response = self.reqResp('UnAssignPoSUnitIdToPoS', data)
         return success
     
     def GetCurrentPayment(self):
-        if self.PoSUnitId is None or self.PoSUnitId=="":
+        if self.PoSUnitId is None or self.PoSUnitId == "":
             return False
-        data={"MerchantId": self.MerchantId, "LocationId":self.LocationId, "PosId": self.PosId}
-        success, response = self.reqResp('GetCurrentPayment',data)
+        data = {"MerchantId": self.MerchantId, "LocationId":self.LocationId, "PosId": self.PosId}
+        success, response = self.reqResp('GetCurrentPayment', data)
         return success
-    
+
     def GetPosList(self):
-        data={"MerchantId": self.MerchantId, "LocationId":self.LocationId}
-        success, response = self.reqResp('GetPosList',data)
+        data = {"MerchantId": self.MerchantId, "LocationId":self.LocationId}
+        success, response = self.reqResp('GetPosList', data)
         return response
-    
-    
+
+    def PaymentCancel(self):
+        data = {"MerchantId": self.MerchantId, "LocationId": self.LocationId, "PosId": self.PosId}
+        success, response = self.reqResp('PaymentCancel', data)
+        return success
+
     def PaymentStart(self, orderid, AmountPay):
         Amount = str.format("{:.2f}", AmountPay)
         BulkRef = "MP Bulk Reference"
         HmacVal = self.GetHamacPayload(orderid, Amount, BulkRef)
-        data={"MerchantId": self.MerchantId, "LocationId":self.LocationId, "PoSId": self.PosId,"OrderId":orderid, "Amount":Amount, "BulkRef":BulkRef,"Action":"Start","CustomerTokenCalc":0,"HMAC":HmacVal}
+        data = {"MerchantId": self.MerchantId, "LocationId":self.LocationId, "PoSId": self.PosId, "OrderId":orderid, "Amount":Amount, "BulkRef":BulkRef, "Action":"Start", "CustomerTokenCalc":0, "HMAC":HmacVal}
         
-        success, response = self.reqResp('PaymentStart',data)
+        success, response = self.reqResp('PaymentStart', data)
         
-    def GetPaymentStatus(self,orderid):
-        data={"MerchantId": self.MerchantId, "LocationId":self.LocationId,"PoSId": self.PosId,"Orderid":orderid}
-        success, response = self.reqResp('GetPaymentStatus',data)
+    def GetPaymentStatus(self, orderid):
+        data = {"MerchantId": self.MerchantId, "LocationId":self.LocationId, "PoSId": self.PosId, "Orderid":orderid}
+        success, response = self.reqResp('GetPaymentStatus', data)
         return response   
 
     def getNewOrderId(self):
@@ -137,8 +137,6 @@ class mpif():
         orderid = (hex(int(now.timestamp())))
         orderid = orderid[2:]
         return orderid
- 
-  
        
     def findparaminresponse(self, resp, param):
         if param in resp:
@@ -154,7 +152,6 @@ class mpif():
         if response.status_code == 200:
             success = True
         return success, data
-          
 
 
 if __name__ == '__main__':
@@ -167,10 +164,10 @@ if __name__ == '__main__':
         m.PaymentStart("123A124310", 1023.43)
         PayDoneStatus = False
         while (not PayDoneStatus):
-            suscces =   m.GetPaymentStatus("123A124310")
+            suscces = m.GetPaymentStatus("123A124310")
             PayDoneStatus = True 
         polist = m.GetPosList()
         for i in polist['Poses']:
             m.UnRegisterPoS(i['PosId'])
     except Exception as e:
-        logging.error("main exception:" +str(e))
+        logging.error("main exception:" + str(e))
