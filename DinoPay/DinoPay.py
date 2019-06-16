@@ -50,11 +50,14 @@ class AppMain(tk.Tk):
         # on top of each other, then the one we want visible
         # will be raised above the others
         root = tk.Tk._root(self)
-        root.overrideredirect(True)
+        #root.overrideredirect(True)
+        root.state('zoomed')
         root.call('encoding', 'system', 'utf-8')
+        print ("Geo Info Screen high: " + str(root.winfo_screenheight()) + "Screen width: "+str(root.winfo_screenwidth()))
+        root.geometry("{0}x{1}+0+0".format(root.winfo_screenwidth()-small+3000, root.winfo_screenheight()-small))
+        #root.state('zoomed')
 
-        root.geometry("{0}x{1}+0+0".format(root.winfo_screenwidth()-small, root.winfo_screenheight()-small))
-
+        #root.attributes('-fullscreen', True)
         container = tk.Frame(self)
         container.pack(side="top", fill="both", expand=True)
         container.grid_rowconfigure(0, weight=1)
