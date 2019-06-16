@@ -3,9 +3,10 @@ import json
 import hmac
 import hashlib
 import base64
-import datetime
+from datetime import datetime, timezone
 import requests
 import time
+import pytz
 
 
 class mpif():
@@ -19,7 +20,7 @@ class mpif():
         self.PoSUnitId = None
         self.key = key
         self.url = url
-        self.LocationId = LocationId=Name
+        self.LocationId = LocationId
         if Name is None:
             self.Name="Gartnervej 4"
         if LocationId is None:
@@ -61,7 +62,7 @@ class mpif():
               
     def reqResp(self, method, contentdata):
     ##parsing response
-        tNow = datetime.datetime.utcnow()
+        tNow = datetime.utcnow()
         utcnow = int(tNow.timestamp())
         data_json = json.dumps(contentdata,separators=(",", ":"))
         hmcode = self.calchmac(method, data_json, utcnow)
@@ -131,7 +132,9 @@ class mpif():
         return response   
 
     def getNewOrderId(self):
-        orderid = (hex(int(time.mktime(time.strptime('1999-12-31 15:00:00', '%Y-%m-%d %H:%M:%S'))) - time.timezone))
+        tz = pytz.timezone('Europe/Berlin')
+        now = datetime.now(tz)
+        orderid = (hex(int(now.timestamp())))
         orderid = orderid[2:]
         return orderid
  
@@ -157,6 +160,7 @@ class mpif():
 if __name__ == '__main__':
     try:
         m = mpif()
+        m.getNewOrderId()
         m.RegisterPoS()
         m.GetPosList()
         m.AssignPoSUnitIdToPos("100000625947428 ")

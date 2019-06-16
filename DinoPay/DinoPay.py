@@ -86,17 +86,25 @@ class AppMain(tk.Tk):
 
     def InitPayment(self, page_name, amount=None):
         ## STart new payment
-        self.mp.PaymentStart(self.mp.getNewOrderId(), amount)
+        self.orderid = self.mp.getNewOrderId()
+        self.mp.PaymentStart(self.orderid, amount)
         frame = self.frames[page_name]
+        frame.startpaymenttimer(60)
         frame.tkraise()
         
-        
+    def waitingforpaymentaccept(self):
+        success = False
+        if self.mp is not None:
+            success = self.mp.GetPaymentStatus(self.orderid)
+        return success
+                  
     def setupadammodule(self):
         set =  appsettings.get('Adam', {'Adam':[{'host':"192.168.1.200"}]})
         adamhost = set[0]['host']
         logging.info("Connecting iomodule ip " + str(adamhost))
         self.iomodule = adam.adam6000(logging, str(adamhost))
-        
+
+           
     def readveningemptystatus(self):
         set =  appsettings.get('Adam', {'Adam':[{'emptyflag':"2"}]})
         emptyflagport = set[0]['emptyflag']
@@ -108,6 +116,11 @@ class AppMain(tk.Tk):
         s.enter(1, 1, RunTask, (s,iscoinsleftok, self.iomodule,))
         s.run()
     def setup_mp(self):
+        
+        set =  appsettings.get('Mobilepay', {'url':'https://sandprod-pos2.mobilepay.dk/API/V08/'})
+        url = set['url']
+        set =  appsettings.get('Mobilepay', {'PoSUnitIdToPos':'100000625947428'})
+        PoSUnitIdToPos = set['PoSUnitIdToPos']
         logging.info("Connecting Mobile pay ")
         self.mp = MobilePayImpl.mpif()
         logging.info("RegisterPOS")
@@ -145,17 +158,18 @@ class PayWithMobilePay(tk.Frame):
         label.pack(side="top", fill="y", pady=20)
         fr=Frame(self)
         fr.pack(fill=Y, side=TOP, pady= 200)
-        
         fifty = Image.open("img/50kr.png")
-        #fifty.resize((200,200), Image.ANTIALIAS)
+        fifty.resize((10, 10), Image.ANTIALIAS)
         fifty_render = ImageTk.PhotoImage(fifty)
         hundred = Image.open("img/100kr.png")
         hundred_render = ImageTk.PhotoImage(hundred)
         twohundred = Image.open("img/200kr.png")
         twohundred_render = ImageTk.PhotoImage(twohundred)
+                
 
         button_50 = tk.Button(fr, image=fifty_render, text="50 Kr",
                            command=lambda: controller.InitPayment("StartPayment",50))
+
         button_50.image = fifty_render
         button_100 = tk.Button(fr, image=hundred_render, text="100 Kr",
                            command=lambda: controller.InitPayment("StartPayment",100))
@@ -188,7 +202,12 @@ class StartPayment(tk.Frame):
         button = tk.Button(self, text="Go to the start page",
                            command=lambda: controller.show_frame("StartPage"))
         button.pack()
-
+    
+    def startpaymenttimer(self,sec):
+        print("Wait for payment" +str(sec))
+          
+        
+        
 def ReadSetupFile():
     FilePath = 'C:\\ProgramData\\DinoCoin\\DinoPay\\'
     mainsetupfile =FilePath+ 'DinoPaySetup.json'
