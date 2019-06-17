@@ -136,7 +136,7 @@ class AppMain(tk.Tk):
 
                   
     def setupadammodule(self):
-        set = appsettings.get('Adam',"""{'host':"192.168.1.200",'pulseport':"2",'pulseporttime_ms':"10",'VendingstatusPort':"10"}}""")
+        set = appsettings.get('Adam',{'host':"192.168.1.200",'pulseport':"2",'pulseporttime_ms':"10",'VendingstatusPort':"10"})
         self.adamhost = set.get('host')
         self.pulstime = set.get('pulseport', 2)
         self.pulsport = set.get('pulseporttime_ms',10)
@@ -157,10 +157,10 @@ class AppMain(tk.Tk):
         s.run()
  
     def setup_mp(self):
-        set =  appsettings.get('Mobilepay', {'url':'https://sandprod-pos2.mobilepay.dk/API/V08/'})
-        url = set['url']
-        set =  appsettings.get('Mobilepay', {'PoSUnitIdToPos':'100000625947428'})
-        PoSUnitIdToPos = set['PoSUnitIdToPos']
+        setting =  appsettings.get('Mobilepay', {'url':'https://sandprod-pos2.mobilepay.dk/API/V08/','PoSUnitIdToPos':'100000625947428'})
+        url = setting.get ('url','https://sandprod-pos2.mobilepay.dk/API/V08/')
+        PoSUnitIdToPos =  setting.get('PoSUnitIdToPos','100000625947428')
+
         logging.info("Connecting Mobile pay ")
         self.mp = MobilePayImpl.mpif()
         logging.info("RegisterPOS")
