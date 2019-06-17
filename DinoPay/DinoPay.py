@@ -51,12 +51,12 @@ class AppMain(tk.Tk):
         # on top of each other, then the one we want visible
         # will be raised above the others
         root = tk.Tk._root(self)
-        #root.overrideredirect(True)
+        root.overrideredirect(True)
         root.state('zoomed')
         root.call('encoding', 'system', 'utf-8')
         
         print ("Geo Info Screen high: " + str(root.winfo_screenheight()) + "Screen width: "+str(root.winfo_screenwidth()))
-        root.geometry("{0}x{1}+0+0".format(root.winfo_screenwidth()-small+3000, root.winfo_screenheight()-small))
+        root.geometry("{0}x{1}+0+0".format(root.winfo_screenwidth()-small, root.winfo_screenheight()-small))
         #root.state('zoomed')
 
         #root.attributes('-fullscreen', True)
@@ -89,18 +89,37 @@ class AppMain(tk.Tk):
         paied = False
         if self.mp is not None:
             success = self.mp.GetPaymentStatus(self.orderid)
+            print(success)
             paied = success['PaymentStatus'] ==100
-        if not paied:    
+            idle = success['PaymentStatus'] ==10
+            
+        if not paied and not idle:    
             self.after(1000, self.PaymentStatus)
-        else:
+        elif paied:
             self.ft = Timer(5.0, self.FrameTimeOut) 
             self.ft.start()
             self.show_frame("PaymentAccepted") 
             self.paymentHandle(success)  
+        else:
+            self.ft = Timer(5.0, self.FrameTimeOut) 
+            self.ft.start()
+            self.show_frame("PaymentFailed")     
+        
+    def PulseCntGetter(self, amount):
+        switcher = {
+                    50: 1,
+                    100: 2,
+                    200: 3,
+                    }
+        res = switcher.get(amount, "Invalid month")
+        print (res)
+        return res    
     def paymentHandle(self,paymentstatus):
         if(paymentstatus['PaymentStatus']==100):
            Amount = paymentstatus['Amount']
-           self.iomodule.PulsPort(self.pulsport, self.pulstime)
+           pulsecnt = self.PulseCntGetter(int(Amount))
+           self.iomodule.PulsePort(pulsecnt, self.pulseport, self.pulsetime)
+           
     def FrameTimeOut(self):
         print("Frame Time out!")
         self.show_frame("StartPage")
@@ -136,13 +155,16 @@ class AppMain(tk.Tk):
 
                   
     def setupadammodule(self):
-        set = appsettings.get('Adam',{'host':"192.168.1.200",'pulseport':"2",'pulseporttime_ms':"10",'VendingstatusPort':"10"})
-        self.adamhost = set.get('host')
-        self.pulstime = set.get('pulseport', 2)
-        self.pulsport = set.get('pulseporttime_ms',10)
+        set = appsettings.get('Adam',{'host':"192.168.1.200",'pulseport':2,'pulseporttime_ms':10,'VendingstatusPort':10})
+        self.adamhost = set.get('host',"192.168.1.200")
+        self.pulseport = set.get('pulseport', 2)
+        self.pulsetime = set.get('pulseporttime_ms',10)
         self.VendingstatusPort = set.get('VendingstatusPort',3)
         logging.info("Connecting iomodule ip " + str(self.adamhost))
         self.iomodule = adam.adam6000(logging, str(self.adamhost))
+        stat = self.iomodule.connect()
+        logging.info("Connecting status: " + str(stat))
+        
 
            
     def readveningemptystatus(self):
