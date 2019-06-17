@@ -54,6 +54,7 @@ class AppMain(tk.Tk):
         #root.overrideredirect(True)
         root.state('zoomed')
         root.call('encoding', 'system', 'utf-8')
+        
         print ("Geo Info Screen high: " + str(root.winfo_screenheight()) + "Screen width: "+str(root.winfo_screenwidth()))
         root.geometry("{0}x{1}+0+0".format(root.winfo_screenwidth()-small+3000, root.winfo_screenheight()-small))
         #root.state('zoomed')
@@ -71,7 +72,7 @@ class AppMain(tk.Tk):
         self.setup_mp() 
         # self.setupcoinoktimer()
         self.frames = {}
-        for F in (StartPage, PayWithMobilePay, StartPayment,PaymentAccepted, PaymentFailed):
+        for F in (StartPage, PayWithMobilePay, StartPayment,PaymentAccepted, PaymentFailed,VendingEmpty):
             page_name = F.__name__
             frame = F(parent=container, controller=self)
             self.frames[page_name] = frame
@@ -83,6 +84,23 @@ class AppMain(tk.Tk):
             frame.configure(background=self.background)
         self.show_frame("StartPage")
         
+    def PaymentStatus(self):
+        print("Payment status")
+        paied = False
+        if self.mp is not None:
+            success = self.mp.GetPaymentStatus(self.orderid)
+            paied = success['PaymentStatus'] ==100
+        if not paied:    
+            self.after(1000, self.PaymentStatus)
+        else:
+            self.ft = Timer(5.0, self.FrameTimeOut) 
+            self.ft.start()
+            self.show_frame("PaymentAccepted") 
+            self.paymentHandle(success)  
+    def paymentHandle(self,paymentstatus):
+        if(paymentstatus['PaymentStatus']==100):
+           Amount = paymentstatus['Amount']
+           self.iomodule.PulsPort(self.pulsport, self.pulstime)
     def FrameTimeOut(self):
         print("Frame Time out!")
         self.show_frame("StartPage")
@@ -104,48 +122,41 @@ class AppMain(tk.Tk):
 
     def InitPayment(self, page_name, amount=None):
         ## STart new payment
+        if not self.readveningemptystatus():
+            self.ft = Timer(5.0, self.FrameTimeOut) 
+            self.ft.start()
+            return False
         self.orderid = self.mp.getNewOrderId()
         self.mp.PaymentStart(self.orderid, amount)
         frame = self.frames[page_name]
         self.pt = Timer(60.0, self.paymenttimeout) 
         self.pt.start()
         frame.tkraise()
-     #   if self.waitingforpaymentaccept():
-     #       self.show_frame('PaymentAccepted')
-     #   else:
-     #        self.show_frame('PaymentFailed')
+        self.after(10, self.PaymentStatus)
 
-
-            
-        
-    def waitingforpaymentaccept(self):
-        paied = False
-        if self.mp is not None:
-            while (not paied):
-                success = self.mp.GetPaymentStatus(self.orderid)
-                paied = success['PaymentStatus'] ==80
-                time.sleep(1)
-        return paied
                   
     def setupadammodule(self):
-        set =  appsettings.get('Adam', {'Adam':[{'host':"192.168.1.200"}]})
-        adamhost = set[0]['host']
-        logging.info("Connecting iomodule ip " + str(adamhost))
-        self.iomodule = adam.adam6000(logging, str(adamhost))
+        set = appsettings.get('Adam',"""{'host':"192.168.1.200",'pulseport':"2",'pulseporttime_ms':"10",'VendingstatusPort':"10"}}""")
+        self.adamhost = set.get('host')
+        self.pulstime = set.get('pulseport', 2)
+        self.pulsport = set.get('pulseporttime_ms',10)
+        self.VendingstatusPort = set.get('VendingstatusPort',3)
+        logging.info("Connecting iomodule ip " + str(self.adamhost))
+        self.iomodule = adam.adam6000(logging, str(self.adamhost))
 
            
     def readveningemptystatus(self):
-        set =  appsettings.get('Adam', {'Adam':[{'emptyflag':"2"}]})
-        emptyflagport = set[0]['emptyflag']
-        self.iomodule.readinputbit(int(emptyflagport))
-        logging.info("Connecting iomodule ip " + str(adamhost))
+        statbit  = self.iomodule.readinputbit(int(self.VendingstatusPort))
+        logging.info("Vending stat bit " + str(statbit))
+        return statbit
+            
         
     def setupcoinoktimer(self):
         iscoinsleftok = appsettings.get("setupcoinoktimer",120)
         s.enter(1, 1, RunTask, (s,iscoinsleftok, self.iomodule,))
         s.run()
+ 
     def setup_mp(self):
-        
         set =  appsettings.get('Mobilepay', {'url':'https://sandprod-pos2.mobilepay.dk/API/V08/'})
         url = set['url']
         set =  appsettings.get('Mobilepay', {'PoSUnitIdToPos':'100000625947428'})
@@ -215,11 +226,14 @@ class VendingEmpty(tk.Frame):
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
         self.controller = controller
+        load = Image.open("img/vendingempty.png")
+        render = ImageTk.PhotoImage(load)
         label = tk.Label(self, text="VendingEmpty", font=controller.title_font)
         label.pack(side="top", fill="x", pady=10)
-        button = tk.Button(self, text="Go to the start page",
+        button = tk.Button(self, image=render, text="Go to the start page",
                            command=lambda: controller.show_frame("StartPage"))
-        button.pack()
+        button.image = render
+        button.pack(pady=300)
 
 class StartPayment(tk.Frame):
 
@@ -294,7 +308,7 @@ def ReadSetupFile():
         print ("Local DinoPaySetup exists and is readable")
     else:
         with io.open(mainsetupfile, 'w') as db_file:
-            db_file.write(json.dumps({'Adam':[{'host':"192.168.1.200"}]}))
+            db_file.write(json.dumps({'Adam':{'host':"192.168.1.200",'pulseport':"2",'pulseporttime_ms':"10"}}))
     data = None
     with io.open(mainsetupfile, 'r') as jsonFile:
         data = json.load(jsonFile) 
