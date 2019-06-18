@@ -36,8 +36,10 @@ def restart():
 def RunTask(sc,rt,iomodule): 
     print ("Check adam for coins ok ")
     # do your stuff
-    iomodule.readinputbit(num)
-    s.enter(rt, 1, RunTask, (sc,rt,))
+    vendingstat = iomodule.readinputbit(num)
+    if not vendingstat:
+        s.enter(rt, 1, RunTask, (sc,rt,))
+        self.show_frame("VendingEmpty")
 
 class AppMain(tk.Tk):
 
@@ -72,7 +74,7 @@ class AppMain(tk.Tk):
         self.setup_mp() 
         # self.setupcoinoktimer()
         self.frames = {}
-        for F in (StartPage, PayWithMobilePay, StartPayment,PaymentAccepted, PaymentFailed,VendingEmpty):
+        for F in (StartPage, PayWithMobilePay, StartPayment,PaymentAccepted, PaymentFailed, VendingEmpty):
             page_name = F.__name__
             frame = F(parent=container, controller=self)
             self.frames[page_name] = frame
