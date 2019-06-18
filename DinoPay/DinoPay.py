@@ -51,7 +51,7 @@ class AppMain(tk.Tk):
         # on top of each other, then the one we want visible
         # will be raised above the others
         root = tk.Tk._root(self)
-        root.overrideredirect(True)
+        #root.overrideredirect(True)
         root.state('zoomed')
         root.call('encoding', 'system', 'utf-8')
         
@@ -96,13 +96,15 @@ class AppMain(tk.Tk):
         if not paied and not idle:    
             self.after(1000, self.PaymentStatus)
         elif paied:
+            self.pt.cancel()
             self.ft = Timer(5.0, self.FrameTimeOut) 
-            self.ft.start()
+            self.ft.start()    
             self.show_frame("PaymentAccepted") 
             self.paymentHandle(success)  
         else:
+            self.pt.cancel()
             self.ft = Timer(5.0, self.FrameTimeOut) 
-            self.ft.start()
+            self.ft.start()    
             self.show_frame("PaymentFailed")     
         
     def PulseCntGetter(self, amount):
@@ -142,6 +144,7 @@ class AppMain(tk.Tk):
     def InitPayment(self, page_name, amount=None):
         ## STart new payment
         if not self.readveningemptystatus():
+            self.show_frame("VendingEmpty")
             self.ft = Timer(5.0, self.FrameTimeOut) 
             self.ft.start()
             return False
@@ -155,7 +158,7 @@ class AppMain(tk.Tk):
 
                   
     def setupadammodule(self):
-        set = appsettings.get('Adam',{'host':"192.168.1.200",'pulseport':2,'pulseporttime_ms':10,'VendingstatusPort':10})
+        set = appsettings.get('Adam',{'host':"192.168.1.200",'pulseport':2,'pulseporttime_ms':10,'VendingstatusPort':7})
         self.adamhost = set.get('host',"192.168.1.200")
         self.pulseport = set.get('pulseport', 2)
         self.pulsetime = set.get('pulseporttime_ms',10)
@@ -330,7 +333,7 @@ def ReadSetupFile():
         print ("Local DinoPaySetup exists and is readable")
     else:
         with io.open(mainsetupfile, 'w') as db_file:
-            db_file.write(json.dumps({'Adam':{'host':"192.168.1.200",'pulseport':"2",'pulseporttime_ms':"10"}}))
+            db_file.write(json.dumps({'Adam':{'host':"192.168.1.200",'pulseport':2,'pulseporttime_ms':10,'VendingstatusPort':7}}))
     data = None
     with io.open(mainsetupfile, 'r') as jsonFile:
         data = json.load(jsonFile) 

@@ -23,13 +23,14 @@ class adam6000():
     def connect(self):
         self.client = ModbusClient(self.host)
 
-    def PulsPort(self, pulescnt, portnum, ms_pulstime):
+    def PulsePort(self, pulsescnt, portnum, ms_pulsetime):
         stat = False
-        for _ in range(pulescnt):
+        for _ in range(pulsescnt):
             self.SetOutputbit(portnum, 1)
-            time.sleep(ms_pulstime / 1000)
+            time.sleep(ms_pulsetime / 1000)
             stat = self.SetOutputbit(portnum, 0)
-            time.sleep(ms_pulstime / 1000)
+            time.sleep(ms_pulsetime / 1000)
+            stat = True
         return stat
 
     def SetOutputbit(self, num, stat):
