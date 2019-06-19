@@ -45,7 +45,9 @@ class AppMain(tk.Tk):
 
     def __init__(self, *args, **kwargs):
         tk.Tk.__init__(self, *args, **kwargs)
-        small = 0
+        setting =  appsettings.get('App', {'xpos':2560})
+        xpos = setting.get ('xpos',0)
+        
         self.title_font = tkfont.Font(family='Helvetica', size=36, weight="bold", slant="italic")
         self.background = 'light gray'
         self.background = "SystemButtonFace"
@@ -53,12 +55,13 @@ class AppMain(tk.Tk):
         # on top of each other, then the one we want visible
         # will be raised above the others
         root = tk.Tk._root(self)
-        #root.overrideredirect(True)
-        root.state('zoomed')
+        root.overrideredirect(True)
+       # root.state('zoomed')
         root.call('encoding', 'system', 'utf-8')
-        
-        print ("Geo Info Screen high: " + str(root.winfo_screenheight()) + "Screen width: "+str(root.winfo_screenwidth()))
-        root.geometry("{0}x{1}+0+0".format(root.winfo_screenwidth()-small, root.winfo_screenheight()-small))
+        wininfo =  ("Geo Info Screen high: " + str(root.winfo_screenheight()) + "Screen width: "+str(root.winfo_screenwidth()))
+        logging.info("WinInfo" + str(wininfo))
+        print (wininfo)
+        root.geometry("{0}x{1}+{2}+0".format(root.winfo_screenwidth(), root.winfo_screenheight(), xpos))
         #root.state('zoomed')
 
         #root.attributes('-fullscreen', True)
@@ -117,12 +120,13 @@ class AppMain(tk.Tk):
                     }
         res = switcher.get(amount, "Invalid month")
         print (res)
-        return res    
+        return res 
+       
     def paymentHandle(self,paymentstatus):
         if(paymentstatus['PaymentStatus']==100):
            Amount = paymentstatus['Amount']
            pulsecnt = self.PulseCntGetter(int(Amount))
-           self.iomodule.PulsePort(pulsecnt, self.pulseport, self.pulsetime)
+           self.iomodule.PulsePort(pulsecnt, self.pulseport, self.pulsetime_low, self.pulsetime_high)
            
     def FrameTimeOut(self):
         print("Frame Time out!")
@@ -157,25 +161,27 @@ class AppMain(tk.Tk):
         self.pt.start()
         frame.tkraise()
         self.after(10, self.PaymentStatus)
-
                   
     def setupadammodule(self):
-        set = appsettings.get('Adam',{'host':"192.168.1.200",'pulseport':2,'pulseporttime_ms':10,'VendingstatusPort':7})
+        set = appsettings.get('Adam','')
         self.adamhost = set.get('host',"192.168.1.200")
         self.pulseport = set.get('pulseport', 2)
-        self.pulsetime = set.get('pulseporttime_ms',10)
+        self.pulsetime_low = set.get('pulseporttime_low_ms',300)
+        self.pulsetime_high = set.get('pulseporttime_high_ms',100)
+        
         self.VendingstatusPort = set.get('VendingstatusPort',3)
         logging.info("Connecting iomodule ip " + str(self.adamhost))
         self.iomodule = adam.adam6000(logging, str(self.adamhost))
         stat = self.iomodule.connect()
         logging.info("Connecting status: " + str(stat))
-        
-
            
     def readveningemptystatus(self):
-        statbit  = self.iomodule.readinputbit(int(self.VendingstatusPort))
-        logging.info("Vending stat bit " + str(statbit))
-        return statbit
+        try:
+            statbit  = self.iomodule.readinputbit(int(self.VendingstatusPort))
+            logging.info("Vending stat bit " + str(statbit))
+            return statbit
+        except:
+            return -1000
             
         
     def setupcoinoktimer(self):
@@ -335,7 +341,7 @@ def ReadSetupFile():
         print ("Local DinoPaySetup exists and is readable")
     else:
         with io.open(mainsetupfile, 'w') as db_file:
-            db_file.write(json.dumps({'Adam':{'host':"192.168.1.200",'pulseport':2,'pulseporttime_ms':10,'VendingstatusPort':7}}))
+            db_file.write(json.dumps({'Adam':{'host':"192.168.1.200",'pulseport':2,'pulseporttime_low_ms':100,'pulseporttime_high_ow_ms':300,'VendingstatusPort':1}}))
     data = None
     with io.open(mainsetupfile, 'r') as jsonFile:
         data = json.load(jsonFile) 

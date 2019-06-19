@@ -22,14 +22,17 @@ class adam6000():
 
     def connect(self):
         self.client = ModbusClient(self.host)
+        stat = self.readmodulename()
+        return stat
+        
 
-    def PulsePort(self, pulsescnt, portnum, ms_pulsetime):
+    def PulsePort(self, pulsescnt, portnum, pulsetime_low, pulsetime_high):
         stat = False
         for _ in range(pulsescnt):
             self.SetOutputbit(portnum, 1)
-            time.sleep(ms_pulsetime / 1000)
+            time.sleep(pulsetime_high / 1000)
             stat = self.SetOutputbit(portnum, 0)
-            time.sleep(ms_pulsetime / 1000)
+            time.sleep(pulsetime_low / 1000)
             stat = True
         return stat
 
@@ -65,10 +68,15 @@ class adam6000():
         return stat
 
     def readmodulename(self):
-        self.send('$01M\r')
-        rawresult = self.receive()
-        res = rawresult[4:4]
-        return res
+        stat = False
+        try:
+            self.client.send('$01M\r')
+            rawresult = self.client.receive()
+            res = rawresult[4:4]
+            return (stat, res)
+        except:
+            self.logger.error("No connection to ADAM on ip: " + str(self.host))
+        return (False, '')
 
     def close(self):
         self.client.close()
