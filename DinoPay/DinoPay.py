@@ -341,7 +341,7 @@ def ReadSetupFile():
         print ("Local DinoPaySetup exists and is readable")
     else:
         with io.open(mainsetupfile, 'w') as db_file:
-            db_file.write(json.dumps({'Adam':{'host':"192.168.1.200",'pulseport':2,'pulseporttime_low_ms':100,'pulseporttime_high_ow_ms':300,'VendingstatusPort':1}}))
+            db_file.write(json.dumps({'Mobilepay':{'url':'https://sandprod-pos2.mobilepay.dk/API/V08/'},'App':{'xpos':2560},'Adam':{'host':"192.168.1.200",'pulseport':2,'pulseporttime_low_ms':100,'pulseporttime_high_ow_ms':300,'VendingstatusPort':1}}))
     data = None
     with io.open(mainsetupfile, 'r') as jsonFile:
         data = json.load(jsonFile) 
