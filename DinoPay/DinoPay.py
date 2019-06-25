@@ -42,12 +42,16 @@ def RunTask(sc,rt,iomodule):
         self.show_frame("VendingEmpty")
 
 class AppMain(tk.Tk):
+    
+    
+    
 
     def __init__(self, *args, **kwargs):
         tk.Tk.__init__(self, *args, **kwargs)
-        setting =  appsettings.get('App', {'xpos':2560})
-        xpos = setting.get ('xpos',0)
-        
+        self.mp_stat = None
+        self.iomodulestat = None
+        Appsetting =  appsettings.get('App', {'xpos':0})
+        xpos = Appsetting.get ('xpos',0)
         self.title_font = tkfont.Font(family='Helvetica', size=36, weight="bold", slant="italic")
         self.background = 'light gray'
         self.background = "SystemButtonFace"
@@ -55,15 +59,15 @@ class AppMain(tk.Tk):
         # on top of each other, then the one we want visible
         # will be raised above the others
         root = tk.Tk._root(self)
-        root.overrideredirect(True)
+        #root.overrideredirect(True)
        # root.state('zoomed')
         root.call('encoding', 'system', 'utf-8')
         wininfo =  ("Geo Info Screen high: " + str(root.winfo_screenheight()) + "Screen width: "+str(root.winfo_screenwidth()))
         logging.info("WinInfo" + str(wininfo))
         print (wininfo)
-        root.geometry("{0}x{1}+{2}+0".format(root.winfo_screenwidth(), root.winfo_screenheight(), xpos))
-        #root.state('zoomed')
-
+        localwin = ("{0}x{1}+{2}+0".format(root.winfo_screenwidth(), root.winfo_screenheight(), xpos))
+        geo_pos = Appsetting.get ('geo_pos',localwin)
+        root.geometry(geo_pos)
         #root.attributes('-fullscreen', True)
         container = tk.Frame(self)
         container.pack(side="top", fill="both", expand=True)
@@ -88,6 +92,8 @@ class AppMain(tk.Tk):
             frame.grid(row=0, column=0, sticky="nsew")
             frame.configure(background=self.background)
         self.show_frame("StartPage")
+    def quit(self):
+        self.root.destroy      
         
     def PaymentStatus(self):
         print("Payment status")
@@ -126,7 +132,8 @@ class AppMain(tk.Tk):
         if(paymentstatus['PaymentStatus']==100):
            Amount = paymentstatus['Amount']
            pulsecnt = self.PulseCntGetter(int(Amount))
-           self.iomodule.PulsePort(pulsecnt, self.pulseport, self.pulsetime_low, self.pulsetime_high)
+           if self.iomodulestat:
+               self.iomodule.PulsePort(pulsecnt, self.pulseport, self.pulsetime_low, self.pulsetime_high)
            
     def FrameTimeOut(self):
         print("Frame Time out!")
@@ -172,8 +179,8 @@ class AppMain(tk.Tk):
         self.VendingstatusPort = set.get('VendingstatusPort',3)
         logging.info("Connecting iomodule ip " + str(self.adamhost))
         self.iomodule = adam.adam6000(logging, str(self.adamhost))
-        stat = self.iomodule.connect()
-        logging.info("Connecting status: " + str(stat))
+        self.iomodulestat,_ = self.iomodule.connect()
+        logging.info("Connecting status: " + str(self.iomodulestat))
            
     def readveningemptystatus(self):
         try:
@@ -197,11 +204,11 @@ class AppMain(tk.Tk):
         logging.info("Connecting Mobile pay ")
         self.mp = MobilePayImpl.mpif()
         logging.info("RegisterPOS")
-        stat = self.mp.RegisterPoS()
-        logging.info(stat)
+        self.mp_stat = self.mp.RegisterPoS()
+        logging.info(self.mp_stat)
         logging.info("AssignPos")
-        stat = self.mp.AssignPoSUnitIdToPos("100000625947428")
-        logging.info(stat)
+        self.mp_stat = self.mp.AssignPoSUnitIdToPos(PoSUnitIdToPos)
+        logging.info(self.mp_stat)
         
 class StartPage(tk.Frame):
 
@@ -210,7 +217,7 @@ class StartPage(tk.Frame):
         self.controller = controller
         mp = MobilePayImpl.mpif()
         label = tk.Label(self, text="Betal med mobile pay", font=controller.title_font,background=controller.background)
-        label.pack(side="top", fill="x", pady=10)
+        label.pack(side="top", fill="x", pady=5)
         
         load = Image.open("img/BT_PayMP.png")
         render = ImageTk.PhotoImage(load)
@@ -218,7 +225,7 @@ class StartPage(tk.Frame):
         btPayWithMobilePay = tk.Button(self,image=render ,text="32121321",relief='raised',
                             command=lambda: controller.show_frame("PayWithMobilePay"))
         btPayWithMobilePay.image = render
-        btPayWithMobilePay.pack(pady=300)
+        btPayWithMobilePay.pack(pady=150)
 
 
 class PayWithMobilePay(tk.Frame):
@@ -228,9 +235,9 @@ class PayWithMobilePay(tk.Frame):
         self.controller = controller
         txt ="Valg belob"
         label = tk.Label(self, text=txt, font=controller.title_font, background=controller.background)
-        label.pack(side="top", fill="y", pady=20)
+        label.pack(side="top", fill="y", pady=5)
         fr=Frame(self)
-        fr.pack(fill=Y, side=TOP, pady= 200)
+        fr.pack(fill=Y, side=TOP, pady= 150)
         fifty = Image.open("img/50kr.png")
         fifty.resize((10, 10), Image.ANTIALIAS)
         fifty_render = ImageTk.PhotoImage(fifty)
@@ -262,11 +269,11 @@ class VendingEmpty(tk.Frame):
         load = Image.open("img/vendingempty.png")
         render = ImageTk.PhotoImage(load)
         label = tk.Label(self, text="VendingEmpty", font=controller.title_font)
-        label.pack(side="top", fill="x", pady=10)
+        label.pack(side="top", fill="x", pady=5)
         button = tk.Button(self, image=render, text="Go to the start page",
                            command=lambda: controller.show_frame("StartPage"))
         button.image = render
-        button.pack(pady=300)
+        button.pack(pady=150)
 
 class StartPayment(tk.Frame):
 
@@ -274,14 +281,14 @@ class StartPayment(tk.Frame):
         tk.Frame.__init__(self, parent)
         self.controller = controller
         label = tk.Label(self, text="Confirm Payment", font=controller.title_font)
-        label.pack(side="top", fill="x", pady=10)
+        label.pack(side="top", fill="x", pady=5)
         
         load = Image.open("img/Confirm_Payment.png")
         render = ImageTk.PhotoImage(load)
         button = tk.Button(self, image=render, text="Go to the start page",
                            command=lambda: controller.show_frame("StartPage"))
         button.image = render
-        button.pack(pady=300)
+        button.pack(pady=150)
 
 class PaymentFailed(tk.Frame):
 
@@ -289,7 +296,7 @@ class PaymentFailed(tk.Frame):
         tk.Frame.__init__(self, parent)
         self.controller = controller
         label = tk.Label(self, text="Payment Failed Try again", font=controller.title_font)
-        label.pack(side="top", fill="x", pady=10)
+        label.pack(side="top", fill="x", pady=5)
         
         
         load = Image.open("img/Payment failed.png")
@@ -299,7 +306,7 @@ class PaymentFailed(tk.Frame):
                             command=lambda: controller.show_frame("StartPage"))
 
         failedbt.image = render
-        failedbt.pack(pady=300)
+        failedbt.pack(pady=150)
         
 class PaymentAccepted(tk.Frame):
 
@@ -307,7 +314,7 @@ class PaymentAccepted(tk.Frame):
         tk.Frame.__init__(self, parent)
         self.controller = controller
         label = tk.Label(self, text="Payment Accepted", font=controller.title_font)
-        label.pack(side="top", fill="x", pady=10)
+        label.pack(side="top", fill="x", pady=5)
         
         
         load = Image.open("img/Payment accepted.png")
@@ -317,7 +324,7 @@ class PaymentAccepted(tk.Frame):
                             command=lambda: controller.show_frame("StartPage"))
 
         failedbt.image = render
-        failedbt.pack(pady=300)
+        failedbt.pack(pady=150)
         
     def showFrame(self,cont):
         rame = self.frames[cont]
