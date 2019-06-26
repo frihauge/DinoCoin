@@ -1,0 +1,41 @@
+{
+    "Prizes": [
+        {
+            "id": 39,
+            "PrizeType": 1,
+            "Name": "Test Gevinst",
+            "Description": null,
+            "Stock_cnt": 0,
+            "delivered": 20,
+            "PrizeTypeDescription": "Standard_prize"
+        },
+        {
+            "id": 40,
+            "PrizeType": 1,
+            "Name": "Test Gevinst2",
+            "Description": null,
+            "Stock_cnt": 0,
+            "delivered": 20,
+            "PrizeTypeDescription": "Standard_prize"
+        },
+        {
+            "id": 41,
+            "PrizeType": 1,
+            "Name": "Test Gevinst3",
+            "Description": null,
+            "Stock_cnt": 0,
+            "delivered": 20,
+            "PrizeTypeDescription": "Standard_prize"
+        },
+        {
+            "id": 42,
+            "PrizeType": 1,
+            "Name": "Test Gevinst4",
+            "Description": null,
+            "Stock_cnt": 0,
+            "delivered": 20,
+            "PrizeTypeDescription": "Standard_prize"
+        }
+    ],
+    "Networkstatus": false
+}

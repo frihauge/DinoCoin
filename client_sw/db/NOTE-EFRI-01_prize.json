@@ -1,0 +1,20 @@
+[
+    {
+        "id": 6,
+        "PrizeType": 1,
+        "Name": "\t\nKong Fu Is",
+        "Description": "",
+        "Stock_cnt": 65,
+        "delivered": 14,
+        "PrizeTypeDescription": "Special_prize"
+    },
+    {
+        "id": 7,
+        "PrizeType": 1,
+        "Name": "Mars-Bar",
+        "Description": "",
+        "Stock_cnt": 65,
+        "delivered": 14,
+        "PrizeTypeDescription": "Special_prize"
+    }
+]
