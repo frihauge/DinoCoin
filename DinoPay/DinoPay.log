@@ -12362,3 +12362,121 @@
 22:34:21,766 PIL.PngImagePlugin DEBUG STREAM b'pHYs' 57 9
 22:34:21,767 PIL.PngImagePlugin DEBUG STREAM b'tEXt' 78 24
 22:34:21,767 PIL.PngImagePlugin DEBUG STREAM b'IDAT' 114 50056
+12:18:41,497 root INFO Running DinoPay
+12:18:41,512 root INFO Reading Setupfile
+12:18:42,196 root INFO WinInfoGeo Info Screen high: 1200Screen width: 1600
+12:18:42,196 root INFO Connecting iomodule ip 192.168.1.200
+12:18:42,197 pymodbus.client.sync DEBUG New Transaction state 'SENDING'
+12:18:42,197 root ERROR No connection to ADAM on ip: 192.168.1.200
+12:18:42,198 root INFO Connecting status: False
+12:18:42,198 root INFO Connecting Mobile pay 
+12:18:42,198 root INFO RegisterPOS
+12:18:42,208 urllib3.connectionpool DEBUG Starting new HTTPS connection (1): sandprod-pos2.mobilepay.dk:443
+12:18:42,502 urllib3.connectionpool DEBUG https://sandprod-pos2.mobilepay.dk:443 "POST /API/V08/RegisterPoS HTTP/1.1" 200 68
+12:18:42,505 root INFO True
+12:18:42,505 root INFO AssignPos
+12:18:42,511 urllib3.connectionpool DEBUG Starting new HTTPS connection (1): sandprod-pos2.mobilepay.dk:443
+12:18:42,782 urllib3.connectionpool DEBUG https://sandprod-pos2.mobilepay.dk:443 "POST /API/V08/AssignPoSUnitIdToPos HTTP/1.1" 200 22
+12:18:42,784 root INFO True
+12:18:42,830 PIL.PngImagePlugin DEBUG STREAM b'IHDR' 16 13
+12:18:42,830 PIL.PngImagePlugin DEBUG STREAM b'gAMA' 41 4
+12:18:42,831 PIL.PngImagePlugin DEBUG STREAM b'pHYs' 57 9
+12:18:42,831 PIL.PngImagePlugin DEBUG STREAM b'tEXt' 78 24
+12:18:42,831 PIL.PngImagePlugin DEBUG STREAM b'IDAT' 114 12501
+12:18:42,898 PIL.PngImagePlugin DEBUG STREAM b'IHDR' 16 13
+12:18:42,898 PIL.PngImagePlugin DEBUG STREAM b'sRGB' 41 1
+12:18:42,899 PIL.PngImagePlugin DEBUG STREAM b'gAMA' 54 4
+12:18:42,899 PIL.PngImagePlugin DEBUG STREAM b'pHYs' 70 9
+12:18:42,899 PIL.PngImagePlugin DEBUG STREAM b'tEXt' 91 24
+12:18:42,899 PIL.PngImagePlugin DEBUG STREAM b'IDAT' 127 11121
+12:18:42,905 PIL.PngImagePlugin DEBUG STREAM b'IHDR' 16 13
+12:18:42,905 PIL.PngImagePlugin DEBUG STREAM b'sRGB' 41 1
+12:18:42,905 PIL.PngImagePlugin DEBUG STREAM b'gAMA' 54 4
+12:18:42,905 PIL.PngImagePlugin DEBUG STREAM b'pHYs' 70 9
+12:18:42,906 PIL.PngImagePlugin DEBUG STREAM b'tEXt' 91 24
+12:18:42,906 PIL.PngImagePlugin DEBUG STREAM b'IDAT' 127 11287
+12:18:42,910 PIL.PngImagePlugin DEBUG STREAM b'IHDR' 16 13
+12:18:42,910 PIL.PngImagePlugin DEBUG STREAM b'sRGB' 41 1
+12:18:42,911 PIL.PngImagePlugin DEBUG STREAM b'gAMA' 54 4
+12:18:42,911 PIL.PngImagePlugin DEBUG STREAM b'pHYs' 70 9
+12:18:42,911 PIL.PngImagePlugin DEBUG STREAM b'tEXt' 91 24
+12:18:42,912 PIL.PngImagePlugin DEBUG STREAM b'IDAT' 127 11458
+12:18:42,922 PIL.PngImagePlugin DEBUG STREAM b'IHDR' 16 13
+12:18:42,922 PIL.PngImagePlugin DEBUG STREAM b'gAMA' 41 4
+12:18:42,922 PIL.PngImagePlugin DEBUG STREAM b'pHYs' 57 9
+12:18:42,922 PIL.PngImagePlugin DEBUG STREAM b'tEXt' 78 24
+12:18:42,922 PIL.PngImagePlugin DEBUG STREAM b'IDAT' 114 65422
+12:18:42,930 PIL.PngImagePlugin DEBUG STREAM b'IHDR' 16 13
+12:18:42,930 PIL.PngImagePlugin DEBUG STREAM b'gAMA' 41 4
+12:18:42,931 PIL.PngImagePlugin DEBUG STREAM b'pHYs' 57 9
+12:18:42,931 PIL.PngImagePlugin DEBUG STREAM b'tEXt' 78 24
+12:18:42,931 PIL.PngImagePlugin DEBUG STREAM b'IDAT' 114 31954
+12:18:42,939 PIL.PngImagePlugin DEBUG STREAM b'IHDR' 16 13
+12:18:42,939 PIL.PngImagePlugin DEBUG STREAM b'gAMA' 41 4
+12:18:42,939 PIL.PngImagePlugin DEBUG STREAM b'pHYs' 57 9
+12:18:42,939 PIL.PngImagePlugin DEBUG STREAM b'tEXt' 78 24
+12:18:42,940 PIL.PngImagePlugin DEBUG STREAM b'IDAT' 114 21433
+12:18:42,944 PIL.PngImagePlugin DEBUG STREAM b'IHDR' 16 13
+12:18:42,944 PIL.PngImagePlugin DEBUG STREAM b'gAMA' 41 4
+12:18:42,944 PIL.PngImagePlugin DEBUG STREAM b'pHYs' 57 9
+12:18:42,945 PIL.PngImagePlugin DEBUG STREAM b'tEXt' 78 24
+12:18:42,945 PIL.PngImagePlugin DEBUG STREAM b'IDAT' 114 50056
+12:20:11,214 root INFO Running DinoPay
+12:20:11,214 root INFO Reading Setupfile
+12:20:11,327 root INFO WinInfoGeo Info Screen high: 1200Screen width: 1600
+12:20:11,328 root INFO Connecting iomodule ip 192.168.1.200
+12:20:11,329 pymodbus.client.sync DEBUG New Transaction state 'SENDING'
+12:20:11,329 root ERROR No connection to ADAM on ip: 192.168.1.200
+12:20:11,329 root INFO Connecting status: False
+12:20:11,329 root INFO Connecting Mobile pay 
+12:20:11,329 root INFO RegisterPOS
+12:20:11,337 urllib3.connectionpool DEBUG Starting new HTTPS connection (1): sandprod-pos2.mobilepay.dk:443
+12:20:11,609 urllib3.connectionpool DEBUG https://sandprod-pos2.mobilepay.dk:443 "POST /API/V08/RegisterPoS HTTP/1.1" 200 68
+12:20:11,612 root INFO True
+12:20:11,612 root INFO AssignPos
+12:20:11,617 urllib3.connectionpool DEBUG Starting new HTTPS connection (1): sandprod-pos2.mobilepay.dk:443
+12:20:11,870 urllib3.connectionpool DEBUG https://sandprod-pos2.mobilepay.dk:443 "POST /API/V08/AssignPoSUnitIdToPos HTTP/1.1" 200 22
+12:20:11,874 root INFO True
+12:20:11,917 PIL.PngImagePlugin DEBUG STREAM b'IHDR' 16 13
+12:20:11,917 PIL.PngImagePlugin DEBUG STREAM b'gAMA' 41 4
+12:20:11,917 PIL.PngImagePlugin DEBUG STREAM b'pHYs' 57 9
+12:20:11,918 PIL.PngImagePlugin DEBUG STREAM b'tEXt' 78 24
+12:20:11,918 PIL.PngImagePlugin DEBUG STREAM b'IDAT' 114 12501
+12:20:11,939 PIL.PngImagePlugin DEBUG STREAM b'IHDR' 16 13
+12:20:11,939 PIL.PngImagePlugin DEBUG STREAM b'sRGB' 41 1
+12:20:11,940 PIL.PngImagePlugin DEBUG STREAM b'gAMA' 54 4
+12:20:11,940 PIL.PngImagePlugin DEBUG STREAM b'pHYs' 70 9
+12:20:11,940 PIL.PngImagePlugin DEBUG STREAM b'tEXt' 91 24
+12:20:11,941 PIL.PngImagePlugin DEBUG STREAM b'IDAT' 127 11121
+12:20:11,946 PIL.PngImagePlugin DEBUG STREAM b'IHDR' 16 13
+12:20:11,946 PIL.PngImagePlugin DEBUG STREAM b'sRGB' 41 1
+12:20:11,946 PIL.PngImagePlugin DEBUG STREAM b'gAMA' 54 4
+12:20:11,946 PIL.PngImagePlugin DEBUG STREAM b'pHYs' 70 9
+12:20:11,947 PIL.PngImagePlugin DEBUG STREAM b'tEXt' 91 24
+12:20:11,947 PIL.PngImagePlugin DEBUG STREAM b'IDAT' 127 11287
+12:20:11,949 PIL.PngImagePlugin DEBUG STREAM b'IHDR' 16 13
+12:20:11,950 PIL.PngImagePlugin DEBUG STREAM b'sRGB' 41 1
+12:20:11,950 PIL.PngImagePlugin DEBUG STREAM b'gAMA' 54 4
+12:20:11,950 PIL.PngImagePlugin DEBUG STREAM b'pHYs' 70 9
+12:20:11,951 PIL.PngImagePlugin DEBUG STREAM b'tEXt' 91 24
+12:20:11,951 PIL.PngImagePlugin DEBUG STREAM b'IDAT' 127 11458
+12:20:11,957 PIL.PngImagePlugin DEBUG STREAM b'IHDR' 16 13
+12:20:11,957 PIL.PngImagePlugin DEBUG STREAM b'gAMA' 41 4
+12:20:11,958 PIL.PngImagePlugin DEBUG STREAM b'pHYs' 57 9
+12:20:11,958 PIL.PngImagePlugin DEBUG STREAM b'tEXt' 78 24
+12:20:11,959 PIL.PngImagePlugin DEBUG STREAM b'IDAT' 114 65422
+12:20:11,966 PIL.PngImagePlugin DEBUG STREAM b'IHDR' 16 13
+12:20:11,966 PIL.PngImagePlugin DEBUG STREAM b'gAMA' 41 4
+12:20:11,966 PIL.PngImagePlugin DEBUG STREAM b'pHYs' 57 9
+12:20:11,966 PIL.PngImagePlugin DEBUG STREAM b'tEXt' 78 24
+12:20:11,966 PIL.PngImagePlugin DEBUG STREAM b'IDAT' 114 31954
+12:20:11,972 PIL.PngImagePlugin DEBUG STREAM b'IHDR' 16 13
+12:20:11,972 PIL.PngImagePlugin DEBUG STREAM b'gAMA' 41 4
+12:20:11,972 PIL.PngImagePlugin DEBUG STREAM b'pHYs' 57 9
+12:20:11,972 PIL.PngImagePlugin DEBUG STREAM b'tEXt' 78 24
+12:20:11,972 PIL.PngImagePlugin DEBUG STREAM b'IDAT' 114 21433
+12:20:11,976 PIL.PngImagePlugin DEBUG STREAM b'IHDR' 16 13
+12:20:11,976 PIL.PngImagePlugin DEBUG STREAM b'gAMA' 41 4
+12:20:11,976 PIL.PngImagePlugin DEBUG STREAM b'pHYs' 57 9
+12:20:11,977 PIL.PngImagePlugin DEBUG STREAM b'tEXt' 78 24
+12:20:11,977 PIL.PngImagePlugin DEBUG STREAM b'IDAT' 114 50056

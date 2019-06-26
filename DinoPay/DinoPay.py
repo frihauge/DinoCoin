@@ -65,18 +65,13 @@ class AppMain(tk.Tk):
             root.state('zoomed')
         root.call('encoding', 'system', 'utf-8')
         wininfo =  ("Geo Info Screen high: " + str(root.winfo_screenheight()) + "Screen width: "+str(root.winfo_screenwidth()))
-        root.geometry("{0}x{1}+{2}+0".format(root.winfo_screenwidth(), root.winfo_screenheight(), xpos))
         logging.info("WinInfo" + str(wininfo))
         print (wininfo)
-<<<<<<< HEAD
-        
-        #root.state('zoomed')
 
-=======
         localwin = ("{0}x{1}+{2}+0".format(root.winfo_screenwidth(), root.winfo_screenheight(), xpos))
         geo_pos = Appsetting.get ('geo_pos',localwin)
         root.geometry(geo_pos)
->>>>>>> branch 'master' of https://github.com/frihauge/DinoCoin.git
+
         #root.attributes('-fullscreen', True)
         container = tk.Frame(self)
         container.pack(side="top", fill="both", expand=True)
