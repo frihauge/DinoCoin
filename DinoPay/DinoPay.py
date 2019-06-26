@@ -52,6 +52,7 @@ class AppMain(tk.Tk):
         self.iomodulestat = None
         Appsetting =  appsettings.get('App', {'xpos':0})
         xpos = Appsetting.get ('xpos',0)
+        fullscreen = Appsetting.get ('fullscreen',1)
         self.title_font = tkfont.Font(family='Helvetica', size=36, weight="bold", slant="italic")
         self.background = 'light gray'
         self.background = "SystemButtonFace"
@@ -59,8 +60,9 @@ class AppMain(tk.Tk):
         # on top of each other, then the one we want visible
         # will be raised above the others
         root = tk.Tk._root(self)
-        #root.overrideredirect(True)
-       # root.state('zoomed')
+        if fullscreen:
+            root.overrideredirect(True)
+            root.state('zoomed')
         root.call('encoding', 'system', 'utf-8')
         wininfo =  ("Geo Info Screen high: " + str(root.winfo_screenheight()) + "Screen width: "+str(root.winfo_screenwidth()))
         logging.info("WinInfo" + str(wininfo))
