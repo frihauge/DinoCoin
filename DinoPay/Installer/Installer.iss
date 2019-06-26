@@ -43,6 +43,9 @@ Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{
 Source: "..\dist\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 Source: "..\dist\DinoPay.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "..\wget.exe"; DestDir: "{app}"
+Source: "..\GetInstaller.bat"; DestDir: "{app}"; Flags: ignoreversion
+Source: "..\wget.exe"; DestDir: "{app}"; Flags: ignoreversion
 
 [Icons]
 Name: "{group}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"

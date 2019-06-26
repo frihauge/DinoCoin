@@ -23,7 +23,7 @@ class cv():
         self.chrome_options.add_argument("--no-sandbox")
         self.chrome_options.add_argument("--start-maximized")
         if self.monitornum == 2:
-            self.chrome_options.add_argument("--window-position=2000,0")
+            self.chrome_options.add_argument("--window-position=3000,0")
         self.chrome_options.add_argument("--disable-web-security")
         self.chrome_options.add_argument("--disable-infobars")
         self.chrome_options.add_argument("--ignore-certificate-errors")

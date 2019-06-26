@@ -93,7 +93,7 @@ class mpif():
         data = {"MerchantId": self.MerchantId, "LocationId":self.LocationId, "PosId": self.PosId, "PoSUnitId": self.PoSUnitId}
         success, response = self.reqResp('AssignPoSUnitIdToPos', data)
         return success
-    
+
     def UnAssignPoSUnitIdToPos(self):
         if self.PoSUnitId is None or self.PoSUnitId == "":
             return False

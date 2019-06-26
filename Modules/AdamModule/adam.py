@@ -24,7 +24,6 @@ class adam6000():
         self.client = ModbusClient(self.host)
         stat = self.readmodulename()
         return stat
-        
 
     def PulsePort(self, pulsescnt, portnum, pulsetime_low, pulsetime_high):
         stat = False
@@ -73,6 +72,7 @@ class adam6000():
             self.client.send('$01M\r')
             rawresult = self.client.receive()
             res = rawresult[4:4]
+            stat = True
             return (stat, res)
         except:
             self.logger.error("No connection to ADAM on ip: " + str(self.host))
