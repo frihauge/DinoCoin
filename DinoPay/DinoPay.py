@@ -59,9 +59,10 @@ class AppMain(tk.Tk):
        # root.state('zoomed')
         root.call('encoding', 'system', 'utf-8')
         wininfo =  ("Geo Info Screen high: " + str(root.winfo_screenheight()) + "Screen width: "+str(root.winfo_screenwidth()))
+        root.geometry("{0}x{1}+{2}+0".format(root.winfo_screenwidth(), root.winfo_screenheight(), xpos))
         logging.info("WinInfo" + str(wininfo))
         print (wininfo)
-        root.geometry("{0}x{1}+{2}+0".format(root.winfo_screenwidth(), root.winfo_screenheight(), xpos))
+        
         #root.state('zoomed')
 
         #root.attributes('-fullscreen', True)
