@@ -46,6 +46,7 @@ Source: "..\dist\DinoPay.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "..\wget.exe"; DestDir: "{app}"
 Source: "..\GetInstaller.bat"; DestDir: "{app}"; Flags: ignoreversion
 Source: "..\wget.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "..\ApexSansMediumT_0.ttf"; DestDir: "{app}"; Flags: ignoreversion
 
 [Icons]
 Name: "{group}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"

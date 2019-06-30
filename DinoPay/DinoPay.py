@@ -1,5 +1,7 @@
+#!/usr/bin/env python
+# -*- coding: latin-1 -*-
 import logging
-import requests
+import unicodedata
 import json
 import os,io
 import sys
@@ -9,7 +11,7 @@ import time
 from tkinter import *                
 from tkinter import font  as tkfont 
 from PIL import Image, ImageTk
-from datetime import datetime
+from datetime import datetime,timedelta
 from threading import Timer
 from _codecs import decode
 from pywinauto.win32defines import BACKGROUND_BLUE
@@ -53,12 +55,8 @@ class AppMain(tk.Tk):
         Appsetting =  appsettings.get('App', {'xpos':0})
         xpos = Appsetting.get ('xpos',0)
         fullscreen = Appsetting.get ('fullscreen',1)
-        self.title_font = tkfont.Font(family='Helvetica', size=36, weight="bold", slant="italic")
-        self.background = 'light gray'
-        self.background = "SystemButtonFace"
-        # the container is where we'll stack a bunch of frames
-        # on top of each other, then the one we want visible
-        # will be raised above the others
+        self.title_font = tkfont.Font(family='ApexSansMediumT', size=36, weight="bold")
+        self.background = 'white'
         root = tk.Tk._root(self)
         if fullscreen:
             root.overrideredirect(True)
@@ -73,12 +71,13 @@ class AppMain(tk.Tk):
         root.geometry(geo_pos)
 
         #root.attributes('-fullscreen', True)
+        
         container = tk.Frame(self)
         container.pack(side="top", fill="both", expand=True)
         container.grid_rowconfigure(0, weight=1)
         container.grid_columnconfigure(0, weight=1)
         container.config(background = self.background)
-
+        
       
          
         self.setupadammodule()   
@@ -95,7 +94,7 @@ class AppMain(tk.Tk):
             # will be the one that is visible.
             frame.grid(row=0, column=0, sticky="nsew")
             frame.configure(background=self.background)
-        self.show_frame("StartPage")
+        self.show_frame("PayWithMobilePay")
     def quit(self):
         self.root.destroy      
         
@@ -141,7 +140,7 @@ class AppMain(tk.Tk):
            
     def FrameTimeOut(self):
         print("Frame Time out!")
-        self.show_frame("StartPage")
+        self.show_frame("PayWithMobilePay")
                    
     def paymenttimeout(self):
         print("Payment Time out!")
@@ -226,10 +225,10 @@ class StartPage(tk.Frame):
         load = Image.open("img/BT_PayMP.png")
         render = ImageTk.PhotoImage(load)
       
-        btPayWithMobilePay = tk.Button(self,image=render ,text="32121321",relief='raised',
-                            command=lambda: controller.show_frame("PayWithMobilePay"))
-        btPayWithMobilePay.image = render
-        btPayWithMobilePay.pack(pady=150)
+        #btPayWithMobilePay = tk.Button(self,image=render ,text="32121321",relief='raised',
+        #                    command=lambda: controller.show_frame("PayWithMobilePay"))
+        #btPayWithMobilePay.image = render
+        #btPayWithMobilePay.pack(pady=150)
 
 
 class PayWithMobilePay(tk.Frame):
@@ -237,13 +236,22 @@ class PayWithMobilePay(tk.Frame):
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
         self.controller = controller
-        txt ="Valg belob"
-        label = tk.Label(self, text=txt, font=controller.title_font, background=controller.background)
-        label.pack(side="top", fill="y", pady=5)
-        fr=Frame(self)
-        fr.pack(fill=Y, side=TOP, pady= 150)
+        #txt ="Valg belob"
+        #label = tk.Label(self, text=txt, font=controller.title_font, background=controller.background)
+        #label.pack(side="top", fill="y", pady=5)
+        MPLogo = Image.open("img/MP_Logo1.png")
+        MPLogo_render = ImageTk.PhotoImage(MPLogo)
+        label = tk.Label(self, image=MPLogo_render,text="",background=controller.background)
+        label.pack(side="top", fill="x", pady=0)
+        label.image= MPLogo_render
+        bgcolor='grey94'
+        fr=Frame(self,bg=bgcolor)
+        fr.pack(fill=X,side=TOP, pady= 0)
+        fr=Frame(fr,bg=bgcolor)
+        fr.pack(fill=Y,side=TOP, pady= 55)
+        
         fifty = Image.open("img/50kr.png")
-        fifty.resize((10, 10), Image.ANTIALIAS)
+        #fifty.resize((10, 10), Image.ANTIALIAS)
         fifty_render = ImageTk.PhotoImage(fifty)
         hundred = Image.open("img/100kr.png")
         hundred_render = ImageTk.PhotoImage(hundred)
@@ -251,20 +259,25 @@ class PayWithMobilePay(tk.Frame):
         twohundred_render = ImageTk.PhotoImage(twohundred)
                 
 
-        button_50 = tk.Button(fr, image=fifty_render, text="50 Kr",
+        button_50 = tk.Button(fr, image=fifty_render, bg=bgcolor,text="50 Kr",  borderwidth=0,
                            command=lambda: controller.InitPayment("StartPayment",50))
 
         button_50.image = fifty_render
-        button_100 = tk.Button(fr, image=hundred_render, text="100 Kr",
+        button_100 = tk.Button(fr, image=hundred_render,bg=bgcolor, borderwidth=0, text="100 Kr",
                            command=lambda: controller.InitPayment("StartPayment",100))
         button_100.image = hundred_render
-        button_200 = tk.Button(fr, image=twohundred_render,text="200 Kr",
+        button_200 = tk.Button(fr, image=twohundred_render, bg=bgcolor, borderwidth=0, text="200 Kr",
                            command=lambda: controller.InitPayment("StartPayment",200))
         button_200.image = twohundred_render
-        button_50.pack(side=tk.LEFT, padx=0)
-        button_100.pack(side=tk.LEFT, padx=0)
-        button_200.pack(side=tk.LEFT, padx=0)
-        
+        button_50.pack(side=tk.LEFT, padx=15)
+        button_100.pack(side=tk.LEFT, padx=15)
+        button_200.pack(side=tk.LEFT, padx=15)
+        fr2=Frame(self,bg=controller.background)
+        fr2.pack(fill=Y, side=TOP, pady= 20)
+        ft = tkfont.Font(family='ApexSansMediumT', size=14, weight="bold")
+        str = 'Én polet = 1 kr. Poletter kan ikke veksles til kontanter.'
+        label = tk.Label(fr2, text=str, font=ft, background=controller.background)
+        label.pack(side="top", fill="y", pady=0)
 class VendingEmpty(tk.Frame):
 
     def __init__(self, parent, controller):
@@ -272,10 +285,10 @@ class VendingEmpty(tk.Frame):
         self.controller = controller
         load = Image.open("img/vendingempty.png")
         render = ImageTk.PhotoImage(load)
-        label = tk.Label(self, text="VendingEmpty", font=controller.title_font)
+        label = tk.Label(self, text="VendingEmpty",background=controller.background, font=controller.title_font)
         label.pack(side="top", fill="x", pady=5)
-        button = tk.Button(self, image=render, text="Go to the start page",
-                           command=lambda: controller.show_frame("StartPage"))
+        button = tk.Button(self, image=render, text="Go to the start page",borderwidth=0,
+                           command=lambda: controller.show_frame("PayWithMobilePay"))
         button.image = render
         button.pack(pady=150)
 
@@ -284,51 +297,70 @@ class StartPayment(tk.Frame):
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
         self.controller = controller
-        label = tk.Label(self, text="Confirm Payment", font=controller.title_font)
-        label.pack(side="top", fill="x", pady=5)
+        label = tk.Label(self, text="Hold telefon mod mobilepay terminal", background=controller.background, font=controller.title_font)
+        label.pack(side="top", fill="x", pady=15)
         
         load = Image.open("img/Confirm_Payment.png")
         render = ImageTk.PhotoImage(load)
-        button = tk.Button(self, image=render, text="Go to the start page",
-                           command=lambda: controller.show_frame("StartPage"))
-        button.image = render
-        button.pack(pady=150)
+        label = tk.Label(self, image=render,text="",background=controller.background)
+        #button = tk.Button(self, image=render, text="Go to the start page",background=controller.background,borderwidth=0,
+        #                   command=lambda: controller.show_frame("PayWithMobilePay"))
+        label.image = render
+        label.pack(pady=80)
+        fr2=Frame(self,bg=controller.background)
+        fr2.pack(fill='x', side=tk.TOP, padx= 300)
+        ft = tkfont.Font(family='ApexSansMediumT', size=14, weight="bold")
+        str = 'Én polet = 1 kr. Poletter kan ikke veksles til kontanter.'
+        label = tk.Label(fr2, text=str, font=ft, background=controller.background)
+        label.pack(side=tk.TOP, padx=0, pady=0)
 
+        MPLogo = Image.open("img/MP_Logo2.png")
+        MPLogo_render = ImageTk.PhotoImage(MPLogo)
+        label = tk.Label(self, image=MPLogo_render,text="",background=controller.background)
+        label.pack(side=tk.RIGHT, padx=40,pady=0)
+        label.image= MPLogo_render
+
+        
 class PaymentFailed(tk.Frame):
 
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
         self.controller = controller
-        label = tk.Label(self, text="Payment Failed Try again", font=controller.title_font)
+        label = tk.Label(self, text="Betaling ikke gennemført", background=controller.background, font=controller.title_font)
         label.pack(side="top", fill="x", pady=5)
-        
-        
+  
         load = Image.open("img/Payment failed.png")
         render = ImageTk.PhotoImage(load)
-      
-        failedbt = tk.Button(self,image=render ,text="32121321",relief='raised',
-                            command=lambda: controller.show_frame("StartPage"))
+        label = tk.Label(self, image=render,text="",background=controller.background)
+        label.image = render
+        label.pack(pady=150)
+        MPLogo = Image.open("img/MP_Logo2.png")
+        MPLogo_render = ImageTk.PhotoImage(MPLogo)
+        label = tk.Label(self, image=MPLogo_render,text="",background=controller.background)
+        label.pack(side=tk.RIGHT, padx=40,pady=0)
+        label.image= MPLogo_render
 
-        failedbt.image = render
-        failedbt.pack(pady=150)
-        
 class PaymentAccepted(tk.Frame):
 
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
         self.controller = controller
-        label = tk.Label(self, text="Payment Accepted", font=controller.title_font)
+        label = tk.Label(self, text="Betaling gennemført", background=controller.background,font=controller.title_font)
         label.pack(side="top", fill="x", pady=5)
         
         
         load = Image.open("img/Payment accepted.png")
         render = ImageTk.PhotoImage(load)
       
-        failedbt = tk.Button(self,image=render ,text="32121321",relief='raised',
-                            command=lambda: controller.show_frame("StartPage"))
-
-        failedbt.image = render
-        failedbt.pack(pady=150)
+        render = ImageTk.PhotoImage(load)
+        label = tk.Label(self, image=render,text="",background=controller.background)
+        label.image = render
+        label.pack(pady=150)
+        MPLogo = Image.open("img/MP_Logo2.png")
+        MPLogo_render = ImageTk.PhotoImage(MPLogo)
+        label = tk.Label(self, image=MPLogo_render,text="",background=controller.background)
+        label.pack(side=tk.RIGHT, padx=40,pady=0)
+        label.image= MPLogo_render
         
     def showFrame(self,cont):
         rame = self.frames[cont]
@@ -368,9 +400,9 @@ if __name__ == '__main__':
         appsettings = ReadSetupFile()
         app = AppMain()
         x=datetime.today()
-        y=x.replace(day=x.day+1, hour=0, minute=0, second=0, microsecond=0)
-        delta_t=y-x
-        secs=delta_t.seconds+1
+        y = x.replace(day=x.day, hour=1, minute=0, second=0, microsecond=0) + timedelta(days=1)
+        delta_t=y-x       
+        secs=delta_t.total_seconds()
         t = Timer(secs, restart)
         t.start()
         app.mainloop()

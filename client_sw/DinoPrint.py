@@ -1,5 +1,5 @@
 from pywinauto.application import Application
-from datetime import datetime
+from datetime import datetime,timedelta
 from threading import Timer
 import logging
 import json
@@ -52,9 +52,9 @@ def ReadSetupFile():
 if __name__ == '__main__':
     try:
         x=datetime.today()
-        y=x.replace(day=x.day+1, hour=0, minute=0, second=0, microsecond=0)
-        delta_t=y-x
-        secs=delta_t.seconds+1
+        y = x.replace(day=x.day, hour=1, minute=0, second=0, microsecond=0) + timedelta(days=1)
+        delta_t=y-x       
+        secs=delta_t.total_seconds()
         t = Timer(secs, restart)
         t.start()
         DinoPrint()

@@ -59,11 +59,12 @@ def DinoView():
 
 def ShowBrowser(appsettings):
     screen = appsettings.get("WebUrl","testdisplay")
+    winpos = appsettings.get("winpos","3000,0")
     url = r"file:///C:/ProgramData/DinoCoin/DinoView/web/www.dinocoin.frihauge.dk/foyer/testdisplay/index.html"
     url = r"file://"+FilePath+"/web/"+ webhost +"/foyer/" + screen +"/index.html"
     print ("URL: for view " + url)
     #DownLoadWeb(appsettings)
-    br = chromeviewer.cv(url,2)
+    br = chromeviewer.cv(url,winpos)
     br.startbrowser()
     return br
     
@@ -107,9 +108,9 @@ if __name__ == '__main__':
     try:
         appsettings = ReadSetupFile()
         x=datetime.today()
-        y=x.replace(day=x.day+1, hour=0, minute=0, second=0, microsecond=0)
-        delta_t=y-x
-        secs=delta_t.seconds+1
+        y = x.replace(day=x.day, hour=1, minute=0, second=0, microsecond=0) + timedelta(days=1)
+        delta_t=y-x       
+        secs=delta_t.total_seconds()
         t = Timer(secs, restart)
         t.start()
         DinoView()
