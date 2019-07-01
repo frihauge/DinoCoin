@@ -35957,3 +35957,199 @@
 11:25:19,976 urllib3.connectionpool DEBUG https://sandprod-pos2.mobilepay.dk:443 "POST /API/V08/GetPaymentStatus HTTP/1.1" 200 158
 11:25:20,991 urllib3.connectionpool DEBUG Starting new HTTPS connection (1): sandprod-pos2.mobilepay.dk:443
 11:25:21,197 urllib3.connectionpool DEBUG https://sandprod-pos2.mobilepay.dk:443 "POST /API/V08/GetPaymentStatus HTTP/1.1" 200 158
+11:42:04,591 root INFO Running DinoPay
+11:42:04,591 root INFO Reading Setupfile
+11:42:04,693 root INFO WinInfoGeo Info Screen high: 1440Screen width: 2560
+11:42:04,694 root INFO Connecting iomodule ip 192.168.1.200
+11:42:04,694 pymodbus.client.sync DEBUG New Transaction state 'SENDING'
+11:42:04,694 root ERROR No connection to ADAM on ip: 192.168.1.200
+11:42:04,695 root INFO Connecting status: False
+11:42:04,695 root INFO Connecting Mobile pay 
+11:42:04,695 root INFO RegisterPOS
+11:42:04,703 urllib3.connectionpool DEBUG Starting new HTTPS connection (1): sandprod-pos2.mobilepay.dk:443
+11:42:04,903 urllib3.connectionpool DEBUG https://sandprod-pos2.mobilepay.dk:443 "POST /API/V08/RegisterPoS HTTP/1.1" 200 68
+11:42:04,907 root INFO True
+11:42:04,907 root INFO AssignPos
+11:42:04,914 urllib3.connectionpool DEBUG Starting new HTTPS connection (1): sandprod-pos2.mobilepay.dk:443
+11:42:05,120 urllib3.connectionpool DEBUG https://sandprod-pos2.mobilepay.dk:443 "POST /API/V08/AssignPoSUnitIdToPos HTTP/1.1" 200 22
+11:42:05,126 root INFO True
+11:42:05,162 PIL.PngImagePlugin DEBUG STREAM b'IHDR' 16 13
+11:42:05,162 PIL.PngImagePlugin DEBUG STREAM b'gAMA' 41 4
+11:42:05,162 PIL.PngImagePlugin DEBUG STREAM b'pHYs' 57 9
+11:42:05,163 PIL.PngImagePlugin DEBUG STREAM b'tEXt' 78 24
+11:42:05,163 PIL.PngImagePlugin DEBUG STREAM b'IDAT' 114 12501
+11:42:05,175 PIL.PngImagePlugin DEBUG STREAM b'IHDR' 16 13
+11:42:05,175 PIL.PngImagePlugin DEBUG STREAM b'sRGB' 41 1
+11:42:05,176 PIL.PngImagePlugin DEBUG STREAM b'gAMA' 54 4
+11:42:05,176 PIL.PngImagePlugin DEBUG STREAM b'pHYs' 70 9
+11:42:05,176 PIL.PngImagePlugin DEBUG STREAM b'tEXt' 91 24
+11:42:05,176 PIL.PngImagePlugin DEBUG STREAM b'IDAT' 127 21259
+11:42:05,198 PIL.PngImagePlugin DEBUG STREAM b'IHDR' 16 13
+11:42:05,198 PIL.PngImagePlugin DEBUG STREAM b'gAMA' 41 4
+11:42:05,198 PIL.PngImagePlugin DEBUG STREAM b'pHYs' 57 9
+11:42:05,199 PIL.PngImagePlugin DEBUG STREAM b'tEXt' 78 24
+11:42:05,199 PIL.PngImagePlugin DEBUG STREAM b'IDAT' 114 9340
+11:42:05,201 PIL.PngImagePlugin DEBUG STREAM b'IHDR' 16 13
+11:42:05,202 PIL.PngImagePlugin DEBUG STREAM b'gAMA' 41 4
+11:42:05,202 PIL.PngImagePlugin DEBUG STREAM b'pHYs' 57 9
+11:42:05,202 PIL.PngImagePlugin DEBUG STREAM b'tEXt' 78 24
+11:42:05,202 PIL.PngImagePlugin DEBUG STREAM b'IDAT' 114 10006
+11:42:05,205 PIL.PngImagePlugin DEBUG STREAM b'IHDR' 16 13
+11:42:05,205 PIL.PngImagePlugin DEBUG STREAM b'gAMA' 41 4
+11:42:05,205 PIL.PngImagePlugin DEBUG STREAM b'pHYs' 57 9
+11:42:05,205 PIL.PngImagePlugin DEBUG STREAM b'tEXt' 78 24
+11:42:05,205 PIL.PngImagePlugin DEBUG STREAM b'IDAT' 114 10207
+11:42:05,213 PIL.PngImagePlugin DEBUG STREAM b'IHDR' 16 13
+11:42:05,213 PIL.PngImagePlugin DEBUG STREAM b'gAMA' 41 4
+11:42:05,214 PIL.PngImagePlugin DEBUG STREAM b'pHYs' 57 9
+11:42:05,214 PIL.PngImagePlugin DEBUG STREAM b'tEXt' 78 24
+11:42:05,214 PIL.PngImagePlugin DEBUG STREAM b'IDAT' 114 65422
+11:42:05,228 PIL.PngImagePlugin DEBUG STREAM b'IHDR' 16 13
+11:42:05,228 PIL.PngImagePlugin DEBUG STREAM b'gAMA' 41 4
+11:42:05,228 PIL.PngImagePlugin DEBUG STREAM b'pHYs' 57 9
+11:42:05,229 PIL.PngImagePlugin DEBUG STREAM b'tEXt' 78 24
+11:42:05,229 PIL.PngImagePlugin DEBUG STREAM b'IDAT' 114 9647
+11:42:05,233 PIL.PngImagePlugin DEBUG STREAM b'IHDR' 16 13
+11:42:05,234 PIL.PngImagePlugin DEBUG STREAM b'gAMA' 41 4
+11:42:05,234 PIL.PngImagePlugin DEBUG STREAM b'pHYs' 57 9
+11:42:05,234 PIL.PngImagePlugin DEBUG STREAM b'tEXt' 78 24
+11:42:05,234 PIL.PngImagePlugin DEBUG STREAM b'IDAT' 114 65422
+11:42:05,244 PIL.PngImagePlugin DEBUG STREAM b'IHDR' 16 13
+11:42:05,244 PIL.PngImagePlugin DEBUG STREAM b'gAMA' 41 4
+11:42:05,244 PIL.PngImagePlugin DEBUG STREAM b'pHYs' 57 9
+11:42:05,244 PIL.PngImagePlugin DEBUG STREAM b'tEXt' 78 24
+11:42:05,244 PIL.PngImagePlugin DEBUG STREAM b'IDAT' 114 9647
+11:42:05,249 PIL.PngImagePlugin DEBUG STREAM b'IHDR' 16 13
+11:42:05,249 PIL.PngImagePlugin DEBUG STREAM b'gAMA' 41 4
+11:42:05,249 PIL.PngImagePlugin DEBUG STREAM b'pHYs' 57 9
+11:42:05,249 PIL.PngImagePlugin DEBUG STREAM b'tEXt' 78 24
+11:42:05,249 PIL.PngImagePlugin DEBUG STREAM b'IDAT' 114 65422
+11:42:05,256 PIL.PngImagePlugin DEBUG STREAM b'IHDR' 16 13
+11:42:05,256 PIL.PngImagePlugin DEBUG STREAM b'gAMA' 41 4
+11:42:05,256 PIL.PngImagePlugin DEBUG STREAM b'pHYs' 57 9
+11:42:05,257 PIL.PngImagePlugin DEBUG STREAM b'tEXt' 78 24
+11:42:05,257 PIL.PngImagePlugin DEBUG STREAM b'IDAT' 114 9647
+11:42:05,261 PIL.PngImagePlugin DEBUG STREAM b'IHDR' 16 13
+11:42:05,261 PIL.PngImagePlugin DEBUG STREAM b'gAMA' 41 4
+11:42:05,261 PIL.PngImagePlugin DEBUG STREAM b'pHYs' 57 9
+11:42:05,261 PIL.PngImagePlugin DEBUG STREAM b'tEXt' 78 24
+11:42:05,261 PIL.PngImagePlugin DEBUG STREAM b'IDAT' 114 50056
+11:42:39,599 root INFO Running DinoPay
+11:42:39,600 root INFO Reading Setupfile
+11:42:39,701 root INFO WinInfoGeo Info Screen high: 1440Screen width: 2560
+11:42:39,702 root INFO Connecting iomodule ip 192.168.1.200
+11:42:39,703 pymodbus.client.sync DEBUG New Transaction state 'SENDING'
+11:42:39,703 root ERROR No connection to ADAM on ip: 192.168.1.200
+11:42:39,703 root INFO Connecting status: False
+11:42:39,703 root INFO Connecting Mobile pay 
+11:42:39,704 root INFO RegisterPOS
+11:42:39,712 urllib3.connectionpool DEBUG Starting new HTTPS connection (1): sandprod-pos2.mobilepay.dk:443
+11:42:39,900 urllib3.connectionpool DEBUG https://sandprod-pos2.mobilepay.dk:443 "POST /API/V08/RegisterPoS HTTP/1.1" 200 68
+11:42:39,906 root INFO True
+11:42:39,906 root INFO AssignPos
+11:42:39,914 urllib3.connectionpool DEBUG Starting new HTTPS connection (1): sandprod-pos2.mobilepay.dk:443
+11:42:40,111 urllib3.connectionpool DEBUG https://sandprod-pos2.mobilepay.dk:443 "POST /API/V08/AssignPoSUnitIdToPos HTTP/1.1" 200 22
+11:42:40,119 root INFO True
+11:42:40,158 PIL.PngImagePlugin DEBUG STREAM b'IHDR' 16 13
+11:42:40,158 PIL.PngImagePlugin DEBUG STREAM b'gAMA' 41 4
+11:42:40,158 PIL.PngImagePlugin DEBUG STREAM b'pHYs' 57 9
+11:42:40,158 PIL.PngImagePlugin DEBUG STREAM b'tEXt' 78 24
+11:42:40,158 PIL.PngImagePlugin DEBUG STREAM b'IDAT' 114 12501
+11:42:40,170 PIL.PngImagePlugin DEBUG STREAM b'IHDR' 16 13
+11:42:40,171 PIL.PngImagePlugin DEBUG STREAM b'sRGB' 41 1
+11:42:40,171 PIL.PngImagePlugin DEBUG STREAM b'gAMA' 54 4
+11:42:40,171 PIL.PngImagePlugin DEBUG STREAM b'pHYs' 70 9
+11:42:40,172 PIL.PngImagePlugin DEBUG STREAM b'tEXt' 91 24
+11:42:40,172 PIL.PngImagePlugin DEBUG STREAM b'IDAT' 127 21259
+11:42:40,193 PIL.PngImagePlugin DEBUG STREAM b'IHDR' 16 13
+11:42:40,193 PIL.PngImagePlugin DEBUG STREAM b'gAMA' 41 4
+11:42:40,193 PIL.PngImagePlugin DEBUG STREAM b'pHYs' 57 9
+11:42:40,193 PIL.PngImagePlugin DEBUG STREAM b'tEXt' 78 24
+11:42:40,194 PIL.PngImagePlugin DEBUG STREAM b'IDAT' 114 9340
+11:42:40,196 PIL.PngImagePlugin DEBUG STREAM b'IHDR' 16 13
+11:42:40,196 PIL.PngImagePlugin DEBUG STREAM b'gAMA' 41 4
+11:42:40,196 PIL.PngImagePlugin DEBUG STREAM b'pHYs' 57 9
+11:42:40,197 PIL.PngImagePlugin DEBUG STREAM b'tEXt' 78 24
+11:42:40,197 PIL.PngImagePlugin DEBUG STREAM b'IDAT' 114 10006
+11:42:40,199 PIL.PngImagePlugin DEBUG STREAM b'IHDR' 16 13
+11:42:40,199 PIL.PngImagePlugin DEBUG STREAM b'gAMA' 41 4
+11:42:40,200 PIL.PngImagePlugin DEBUG STREAM b'pHYs' 57 9
+11:42:40,200 PIL.PngImagePlugin DEBUG STREAM b'tEXt' 78 24
+11:42:40,200 PIL.PngImagePlugin DEBUG STREAM b'IDAT' 114 10207
+11:42:40,208 PIL.PngImagePlugin DEBUG STREAM b'IHDR' 16 13
+11:42:40,209 PIL.PngImagePlugin DEBUG STREAM b'gAMA' 41 4
+11:42:40,209 PIL.PngImagePlugin DEBUG STREAM b'pHYs' 57 9
+11:42:40,209 PIL.PngImagePlugin DEBUG STREAM b'tEXt' 78 24
+11:42:40,209 PIL.PngImagePlugin DEBUG STREAM b'IDAT' 114 65422
+11:42:40,223 PIL.PngImagePlugin DEBUG STREAM b'IHDR' 16 13
+11:42:40,223 PIL.PngImagePlugin DEBUG STREAM b'gAMA' 41 4
+11:42:40,223 PIL.PngImagePlugin DEBUG STREAM b'pHYs' 57 9
+11:42:40,224 PIL.PngImagePlugin DEBUG STREAM b'tEXt' 78 24
+11:42:40,224 PIL.PngImagePlugin DEBUG STREAM b'IDAT' 114 9647
+11:42:40,228 PIL.PngImagePlugin DEBUG STREAM b'IHDR' 16 13
+11:42:40,229 PIL.PngImagePlugin DEBUG STREAM b'gAMA' 41 4
+11:42:40,229 PIL.PngImagePlugin DEBUG STREAM b'pHYs' 57 9
+11:42:40,229 PIL.PngImagePlugin DEBUG STREAM b'tEXt' 78 24
+11:42:40,229 PIL.PngImagePlugin DEBUG STREAM b'IDAT' 114 65422
+11:42:40,238 PIL.PngImagePlugin DEBUG STREAM b'IHDR' 16 13
+11:42:40,238 PIL.PngImagePlugin DEBUG STREAM b'gAMA' 41 4
+11:42:40,239 PIL.PngImagePlugin DEBUG STREAM b'pHYs' 57 9
+11:42:40,239 PIL.PngImagePlugin DEBUG STREAM b'tEXt' 78 24
+11:42:40,239 PIL.PngImagePlugin DEBUG STREAM b'IDAT' 114 9647
+11:42:40,243 PIL.PngImagePlugin DEBUG STREAM b'IHDR' 16 13
+11:42:40,243 PIL.PngImagePlugin DEBUG STREAM b'gAMA' 41 4
+11:42:40,244 PIL.PngImagePlugin DEBUG STREAM b'pHYs' 57 9
+11:42:40,244 PIL.PngImagePlugin DEBUG STREAM b'tEXt' 78 24
+11:42:40,244 PIL.PngImagePlugin DEBUG STREAM b'IDAT' 114 65422
+11:42:40,251 PIL.PngImagePlugin DEBUG STREAM b'IHDR' 16 13
+11:42:40,251 PIL.PngImagePlugin DEBUG STREAM b'gAMA' 41 4
+11:42:40,251 PIL.PngImagePlugin DEBUG STREAM b'pHYs' 57 9
+11:42:40,251 PIL.PngImagePlugin DEBUG STREAM b'tEXt' 78 24
+11:42:40,251 PIL.PngImagePlugin DEBUG STREAM b'IDAT' 114 9647
+11:42:40,256 PIL.PngImagePlugin DEBUG STREAM b'IHDR' 16 13
+11:42:40,256 PIL.PngImagePlugin DEBUG STREAM b'gAMA' 41 4
+11:42:40,256 PIL.PngImagePlugin DEBUG STREAM b'pHYs' 57 9
+11:42:40,257 PIL.PngImagePlugin DEBUG STREAM b'tEXt' 78 24
+11:42:40,257 PIL.PngImagePlugin DEBUG STREAM b'IDAT' 114 50056
+11:42:44,826 pymodbus.client.sync ERROR Connection to (192.168.1.200, 502) failed: timed out
+11:42:44,845 urllib3.connectionpool DEBUG Starting new HTTPS connection (1): sandprod-pos2.mobilepay.dk:443
+11:42:45,45 urllib3.connectionpool DEBUG https://sandprod-pos2.mobilepay.dk:443 "POST /API/V08/PaymentStart HTTP/1.1" 200 64
+11:42:45,53 root INFO Payment TimeOut5d19d594
+11:42:45,60 urllib3.connectionpool DEBUG Starting new HTTPS connection (1): sandprod-pos2.mobilepay.dk:443
+11:42:45,72 urllib3.connectionpool DEBUG Starting new HTTPS connection (1): sandprod-pos2.mobilepay.dk:443
+11:42:45,250 urllib3.connectionpool DEBUG https://sandprod-pos2.mobilepay.dk:443 "POST /API/V08/PaymentCancel HTTP/1.1" 200 22
+11:42:45,255 urllib3.connectionpool DEBUG https://sandprod-pos2.mobilepay.dk:443 "POST /API/V08/GetPaymentStatus HTTP/1.1" 200 148
+11:43:24,527 pymodbus.client.sync ERROR Connection to (192.168.1.200, 502) failed: timed out
+11:43:24,535 urllib3.connectionpool DEBUG Starting new HTTPS connection (1): sandprod-pos2.mobilepay.dk:443
+11:43:24,745 urllib3.connectionpool DEBUG https://sandprod-pos2.mobilepay.dk:443 "POST /API/V08/PaymentStart HTTP/1.1" 200 64
+11:43:24,750 root INFO Payment TimeOut5d19d5bc
+11:43:24,761 urllib3.connectionpool DEBUG Starting new HTTPS connection (1): sandprod-pos2.mobilepay.dk:443
+11:43:24,776 urllib3.connectionpool DEBUG Starting new HTTPS connection (1): sandprod-pos2.mobilepay.dk:443
+11:43:24,966 urllib3.connectionpool DEBUG https://sandprod-pos2.mobilepay.dk:443 "POST /API/V08/PaymentCancel HTTP/1.1" 200 22
+11:43:24,976 urllib3.connectionpool DEBUG https://sandprod-pos2.mobilepay.dk:443 "POST /API/V08/GetPaymentStatus HTTP/1.1" 200 148
+11:43:37,683 pymodbus.client.sync ERROR Connection to (192.168.1.200, 502) failed: timed out
+11:43:37,696 urllib3.connectionpool DEBUG Starting new HTTPS connection (1): sandprod-pos2.mobilepay.dk:443
+11:43:37,889 urllib3.connectionpool DEBUG https://sandprod-pos2.mobilepay.dk:443 "POST /API/V08/PaymentStart HTTP/1.1" 200 64
+11:43:37,895 root INFO Payment TimeOut5d19d5c9
+11:43:37,911 urllib3.connectionpool DEBUG Starting new HTTPS connection (1): sandprod-pos2.mobilepay.dk:443
+11:43:37,924 urllib3.connectionpool DEBUG Starting new HTTPS connection (1): sandprod-pos2.mobilepay.dk:443
+11:43:38,101 urllib3.connectionpool DEBUG https://sandprod-pos2.mobilepay.dk:443 "POST /API/V08/GetPaymentStatus HTTP/1.1" 200 148
+11:43:38,107 urllib3.connectionpool DEBUG https://sandprod-pos2.mobilepay.dk:443 "POST /API/V08/PaymentCancel HTTP/1.1" 200 22
+11:43:52,447 pymodbus.client.sync ERROR Connection to (192.168.1.200, 502) failed: timed out
+11:43:52,455 urllib3.connectionpool DEBUG Starting new HTTPS connection (1): sandprod-pos2.mobilepay.dk:443
+11:43:52,641 urllib3.connectionpool DEBUG https://sandprod-pos2.mobilepay.dk:443 "POST /API/V08/PaymentStart HTTP/1.1" 200 64
+11:43:52,646 root INFO Payment TimeOut5d19d5d8
+11:43:52,658 urllib3.connectionpool DEBUG Starting new HTTPS connection (1): sandprod-pos2.mobilepay.dk:443
+11:43:52,672 urllib3.connectionpool DEBUG Starting new HTTPS connection (1): sandprod-pos2.mobilepay.dk:443
+11:43:52,837 urllib3.connectionpool DEBUG https://sandprod-pos2.mobilepay.dk:443 "POST /API/V08/PaymentCancel HTTP/1.1" 200 22
+11:43:52,846 urllib3.connectionpool DEBUG https://sandprod-pos2.mobilepay.dk:443 "POST /API/V08/GetPaymentStatus HTTP/1.1" 200 148
+11:44:01,636 pymodbus.client.sync ERROR Connection to (192.168.1.200, 502) failed: timed out
+11:44:01,643 urllib3.connectionpool DEBUG Starting new HTTPS connection (1): sandprod-pos2.mobilepay.dk:443
+11:44:01,846 urllib3.connectionpool DEBUG https://sandprod-pos2.mobilepay.dk:443 "POST /API/V08/PaymentStart HTTP/1.1" 200 64
+11:44:01,858 root INFO Payment TimeOut5d19d5e1
+11:44:01,887 urllib3.connectionpool DEBUG Starting new HTTPS connection (1): sandprod-pos2.mobilepay.dk:443
+11:44:01,892 urllib3.connectionpool DEBUG Starting new HTTPS connection (1): sandprod-pos2.mobilepay.dk:443
+11:44:02,87 urllib3.connectionpool DEBUG https://sandprod-pos2.mobilepay.dk:443 "POST /API/V08/GetPaymentStatus HTTP/1.1" 200 158
+11:44:02,99 urllib3.connectionpool DEBUG https://sandprod-pos2.mobilepay.dk:443 "POST /API/V08/PaymentCancel HTTP/1.1" 200 22
+11:44:03,108 urllib3.connectionpool DEBUG Starting new HTTPS connection (1): sandprod-pos2.mobilepay.dk:443
+11:44:03,291 urllib3.connectionpool DEBUG https://sandprod-pos2.mobilepay.dk:443 "POST /API/V08/GetPaymentStatus HTTP/1.1" 200 148
