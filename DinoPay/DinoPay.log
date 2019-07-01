@@ -36153,3 +36153,875 @@
 11:44:02,99 urllib3.connectionpool DEBUG https://sandprod-pos2.mobilepay.dk:443 "POST /API/V08/PaymentCancel HTTP/1.1" 200 22
 11:44:03,108 urllib3.connectionpool DEBUG Starting new HTTPS connection (1): sandprod-pos2.mobilepay.dk:443
 11:44:03,291 urllib3.connectionpool DEBUG https://sandprod-pos2.mobilepay.dk:443 "POST /API/V08/GetPaymentStatus HTTP/1.1" 200 148
+14:47:50,440 root INFO Running DinoPay
+14:47:50,440 root INFO Reading Setupfile
+14:47:50,550 root INFO WinInfoGeo Info Screen high: 800Screen width: 1280
+14:47:50,550 root INFO Connecting iomodule ip 192.168.1.200
+14:47:50,551 pymodbus.client.sync DEBUG New Transaction state 'SENDING'
+14:47:50,551 root ERROR No connection to ADAM on ip: 192.168.1.200
+14:47:50,551 root INFO Connecting status: False
+14:47:50,551 root INFO Connecting Mobile pay 
+14:47:50,551 root INFO RegisterPOS
+14:47:50,565 urllib3.connectionpool DEBUG Starting new HTTPS connection (1): sandprod-pos2.mobilepay.dk:443
+14:47:54,924 urllib3.connectionpool DEBUG https://sandprod-pos2.mobilepay.dk:443 "POST /API/V08/RegisterPoS HTTP/1.1" 200 68
+14:47:54,930 root INFO True
+14:47:54,931 root INFO AssignPos
+14:47:54,940 urllib3.connectionpool DEBUG Starting new HTTPS connection (1): sandprod-pos2.mobilepay.dk:443
+14:47:56,977 urllib3.connectionpool DEBUG https://sandprod-pos2.mobilepay.dk:443 "POST /API/V08/AssignPoSUnitIdToPos HTTP/1.1" 200 22
+14:47:56,984 root INFO True
+14:47:57,35 PIL.PngImagePlugin DEBUG STREAM b'IHDR' 16 13
+14:47:57,35 PIL.PngImagePlugin DEBUG STREAM b'gAMA' 41 4
+14:47:57,36 PIL.PngImagePlugin DEBUG STREAM b'pHYs' 57 9
+14:47:57,36 PIL.PngImagePlugin DEBUG STREAM b'tEXt' 78 24
+14:47:57,36 PIL.PngImagePlugin DEBUG STREAM b'IDAT' 114 12501
+14:47:57,51 PIL.PngImagePlugin DEBUG STREAM b'IHDR' 16 13
+14:47:57,51 PIL.PngImagePlugin DEBUG STREAM b'sRGB' 41 1
+14:47:57,51 PIL.PngImagePlugin DEBUG STREAM b'gAMA' 54 4
+14:47:57,52 PIL.PngImagePlugin DEBUG STREAM b'pHYs' 70 9
+14:47:57,52 PIL.PngImagePlugin DEBUG STREAM b'tEXt' 91 24
+14:47:57,52 PIL.PngImagePlugin DEBUG STREAM b'IDAT' 127 21259
+14:47:57,77 PIL.PngImagePlugin DEBUG STREAM b'IHDR' 16 13
+14:47:57,78 PIL.PngImagePlugin DEBUG STREAM b'gAMA' 41 4
+14:47:57,78 PIL.PngImagePlugin DEBUG STREAM b'pHYs' 57 9
+14:47:57,78 PIL.PngImagePlugin DEBUG STREAM b'tEXt' 78 24
+14:47:57,78 PIL.PngImagePlugin DEBUG STREAM b'IDAT' 114 9340
+14:47:57,80 PIL.PngImagePlugin DEBUG STREAM b'IHDR' 16 13
+14:47:57,81 PIL.PngImagePlugin DEBUG STREAM b'gAMA' 41 4
+14:47:57,81 PIL.PngImagePlugin DEBUG STREAM b'pHYs' 57 9
+14:47:57,81 PIL.PngImagePlugin DEBUG STREAM b'tEXt' 78 24
+14:47:57,81 PIL.PngImagePlugin DEBUG STREAM b'IDAT' 114 10006
+14:47:57,83 PIL.PngImagePlugin DEBUG STREAM b'IHDR' 16 13
+14:47:57,84 PIL.PngImagePlugin DEBUG STREAM b'gAMA' 41 4
+14:47:57,84 PIL.PngImagePlugin DEBUG STREAM b'pHYs' 57 9
+14:47:57,84 PIL.PngImagePlugin DEBUG STREAM b'tEXt' 78 24
+14:47:57,84 PIL.PngImagePlugin DEBUG STREAM b'IDAT' 114 10207
+14:47:57,93 PIL.PngImagePlugin DEBUG STREAM b'IHDR' 16 13
+14:47:57,94 PIL.PngImagePlugin DEBUG STREAM b'gAMA' 41 4
+14:47:57,94 PIL.PngImagePlugin DEBUG STREAM b'pHYs' 57 9
+14:47:57,94 PIL.PngImagePlugin DEBUG STREAM b'tEXt' 78 24
+14:47:57,94 PIL.PngImagePlugin DEBUG STREAM b'IDAT' 114 65422
+14:47:57,110 PIL.PngImagePlugin DEBUG STREAM b'IHDR' 16 13
+14:47:57,111 PIL.PngImagePlugin DEBUG STREAM b'gAMA' 41 4
+14:47:57,111 PIL.PngImagePlugin DEBUG STREAM b'pHYs' 57 9
+14:47:57,111 PIL.PngImagePlugin DEBUG STREAM b'tEXt' 78 24
+14:47:57,111 PIL.PngImagePlugin DEBUG STREAM b'IDAT' 114 9647
+14:47:57,116 PIL.PngImagePlugin DEBUG STREAM b'IHDR' 16 13
+14:47:57,116 PIL.PngImagePlugin DEBUG STREAM b'gAMA' 41 4
+14:47:57,116 PIL.PngImagePlugin DEBUG STREAM b'pHYs' 57 9
+14:47:57,116 PIL.PngImagePlugin DEBUG STREAM b'tEXt' 78 24
+14:47:57,116 PIL.PngImagePlugin DEBUG STREAM b'IDAT' 114 65422
+14:47:57,125 PIL.PngImagePlugin DEBUG STREAM b'IHDR' 16 13
+14:47:57,126 PIL.PngImagePlugin DEBUG STREAM b'gAMA' 41 4
+14:47:57,126 PIL.PngImagePlugin DEBUG STREAM b'pHYs' 57 9
+14:47:57,126 PIL.PngImagePlugin DEBUG STREAM b'tEXt' 78 24
+14:47:57,126 PIL.PngImagePlugin DEBUG STREAM b'IDAT' 114 9647
+14:47:57,130 PIL.PngImagePlugin DEBUG STREAM b'IHDR' 16 13
+14:47:57,130 PIL.PngImagePlugin DEBUG STREAM b'gAMA' 41 4
+14:47:57,130 PIL.PngImagePlugin DEBUG STREAM b'pHYs' 57 9
+14:47:57,130 PIL.PngImagePlugin DEBUG STREAM b'tEXt' 78 24
+14:47:57,130 PIL.PngImagePlugin DEBUG STREAM b'IDAT' 114 65422
+14:47:57,137 PIL.PngImagePlugin DEBUG STREAM b'IHDR' 16 13
+14:47:57,137 PIL.PngImagePlugin DEBUG STREAM b'gAMA' 41 4
+14:47:57,137 PIL.PngImagePlugin DEBUG STREAM b'pHYs' 57 9
+14:47:57,137 PIL.PngImagePlugin DEBUG STREAM b'tEXt' 78 24
+14:47:57,138 PIL.PngImagePlugin DEBUG STREAM b'IDAT' 114 9647
+14:47:57,141 PIL.PngImagePlugin DEBUG STREAM b'IHDR' 16 13
+14:47:57,142 PIL.PngImagePlugin DEBUG STREAM b'gAMA' 41 4
+14:47:57,142 PIL.PngImagePlugin DEBUG STREAM b'pHYs' 57 9
+14:47:57,142 PIL.PngImagePlugin DEBUG STREAM b'tEXt' 78 24
+14:47:57,142 PIL.PngImagePlugin DEBUG STREAM b'IDAT' 114 50056
+14:49:50,830 pymodbus.transaction DEBUG Current transaction state - SENDING
+14:49:50,830 pymodbus.transaction DEBUG Running transaction 1
+14:49:50,831 pymodbus.transaction DEBUG SEND: 0x0 0x1 0x0 0x0 0x0 0x6 0x0 0x1 0x0 0x0 0x0 0x8
+14:49:50,831 pymodbus.client.sync DEBUG New Transaction state 'SENDING'
+14:49:50,831 pymodbus.transaction DEBUG Changing transaction state from 'SENDING' to 'WAITING FOR REPLY'
+14:49:50,881 pymodbus.transaction DEBUG Changing transaction state from 'WAITING FOR REPLY' to 'PROCESSING REPLY'
+14:49:50,881 pymodbus.transaction DEBUG RECV: 0x0 0x1 0x0 0x0 0x0 0x4 0x0 0x1 0x1 0xff
+14:49:50,881 pymodbus.framer.socket_framer DEBUG Processing: 0x0 0x1 0x0 0x0 0x0 0x4 0x0 0x1 0x1 0xff
+14:49:50,882 pymodbus.factory DEBUG Factory Response[ReadCoilsResponse: 1]
+14:49:50,882 pymodbus.transaction DEBUG Adding transaction 1
+14:49:50,882 pymodbus.transaction DEBUG Getting transaction 1
+14:49:50,882 pymodbus.transaction DEBUG Changing transaction state from 'PROCESSING REPLY' to 'TRANSACTION_COMPLETE'
+14:49:50,882 root INFO Vending stat bit True
+14:49:50,890 urllib3.connectionpool DEBUG Starting new HTTPS connection (1): sandprod-pos2.mobilepay.dk:443
+14:49:51,322 urllib3.connectionpool DEBUG https://sandprod-pos2.mobilepay.dk:443 "POST /API/V08/PaymentStart HTTP/1.1" 200 64
+14:49:51,354 urllib3.connectionpool DEBUG Starting new HTTPS connection (1): sandprod-pos2.mobilepay.dk:443
+14:49:52,942 urllib3.connectionpool DEBUG https://sandprod-pos2.mobilepay.dk:443 "POST /API/V08/GetPaymentStatus HTTP/1.1" 200 158
+14:49:53,961 urllib3.connectionpool DEBUG Starting new HTTPS connection (1): sandprod-pos2.mobilepay.dk:443
+14:49:54,261 urllib3.connectionpool DEBUG https://sandprod-pos2.mobilepay.dk:443 "POST /API/V08/GetPaymentStatus HTTP/1.1" 200 158
+14:49:55,274 urllib3.connectionpool DEBUG Starting new HTTPS connection (1): sandprod-pos2.mobilepay.dk:443
+14:49:55,542 urllib3.connectionpool DEBUG https://sandprod-pos2.mobilepay.dk:443 "POST /API/V08/GetPaymentStatus HTTP/1.1" 200 158
+14:49:56,551 urllib3.connectionpool DEBUG Starting new HTTPS connection (1): sandprod-pos2.mobilepay.dk:443
+14:49:56,809 urllib3.connectionpool DEBUG https://sandprod-pos2.mobilepay.dk:443 "POST /API/V08/GetPaymentStatus HTTP/1.1" 200 158
+14:49:57,826 urllib3.connectionpool DEBUG Starting new HTTPS connection (1): sandprod-pos2.mobilepay.dk:443
+14:49:58,147 urllib3.connectionpool DEBUG https://sandprod-pos2.mobilepay.dk:443 "POST /API/V08/GetPaymentStatus HTTP/1.1" 200 158
+14:49:59,165 urllib3.connectionpool DEBUG Starting new HTTPS connection (1): sandprod-pos2.mobilepay.dk:443
+14:49:59,450 urllib3.connectionpool DEBUG https://sandprod-pos2.mobilepay.dk:443 "POST /API/V08/GetPaymentStatus HTTP/1.1" 200 158
+14:50:00,465 urllib3.connectionpool DEBUG Starting new HTTPS connection (1): sandprod-pos2.mobilepay.dk:443
+14:50:00,782 urllib3.connectionpool DEBUG https://sandprod-pos2.mobilepay.dk:443 "POST /API/V08/GetPaymentStatus HTTP/1.1" 200 158
+14:50:01,791 urllib3.connectionpool DEBUG Starting new HTTPS connection (1): sandprod-pos2.mobilepay.dk:443
+14:50:02,59 urllib3.connectionpool DEBUG https://sandprod-pos2.mobilepay.dk:443 "POST /API/V08/GetPaymentStatus HTTP/1.1" 200 158
+14:50:03,78 urllib3.connectionpool DEBUG Starting new HTTPS connection (1): sandprod-pos2.mobilepay.dk:443
+14:50:03,331 urllib3.connectionpool DEBUG https://sandprod-pos2.mobilepay.dk:443 "POST /API/V08/GetPaymentStatus HTTP/1.1" 200 158
+14:50:04,350 urllib3.connectionpool DEBUG Starting new HTTPS connection (1): sandprod-pos2.mobilepay.dk:443
+14:50:04,616 urllib3.connectionpool DEBUG https://sandprod-pos2.mobilepay.dk:443 "POST /API/V08/GetPaymentStatus HTTP/1.1" 200 158
+14:50:05,628 urllib3.connectionpool DEBUG Starting new HTTPS connection (1): sandprod-pos2.mobilepay.dk:443
+14:50:05,912 urllib3.connectionpool DEBUG https://sandprod-pos2.mobilepay.dk:443 "POST /API/V08/GetPaymentStatus HTTP/1.1" 200 158
+14:50:06,920 urllib3.connectionpool DEBUG Starting new HTTPS connection (1): sandprod-pos2.mobilepay.dk:443
+14:50:07,202 urllib3.connectionpool DEBUG https://sandprod-pos2.mobilepay.dk:443 "POST /API/V08/GetPaymentStatus HTTP/1.1" 200 158
+14:50:08,221 urllib3.connectionpool DEBUG Starting new HTTPS connection (1): sandprod-pos2.mobilepay.dk:443
+14:50:08,508 urllib3.connectionpool DEBUG https://sandprod-pos2.mobilepay.dk:443 "POST /API/V08/GetPaymentStatus HTTP/1.1" 200 158
+14:50:09,530 urllib3.connectionpool DEBUG Starting new HTTPS connection (1): sandprod-pos2.mobilepay.dk:443
+14:50:09,931 urllib3.connectionpool DEBUG https://sandprod-pos2.mobilepay.dk:443 "POST /API/V08/GetPaymentStatus HTTP/1.1" 200 158
+14:50:10,953 urllib3.connectionpool DEBUG Starting new HTTPS connection (1): sandprod-pos2.mobilepay.dk:443
+14:50:11,299 urllib3.connectionpool DEBUG https://sandprod-pos2.mobilepay.dk:443 "POST /API/V08/GetPaymentStatus HTTP/1.1" 200 158
+14:50:12,318 urllib3.connectionpool DEBUG Starting new HTTPS connection (1): sandprod-pos2.mobilepay.dk:443
+14:50:12,633 urllib3.connectionpool DEBUG https://sandprod-pos2.mobilepay.dk:443 "POST /API/V08/GetPaymentStatus HTTP/1.1" 200 158
+14:50:13,651 urllib3.connectionpool DEBUG Starting new HTTPS connection (1): sandprod-pos2.mobilepay.dk:443
+14:50:13,942 urllib3.connectionpool DEBUG https://sandprod-pos2.mobilepay.dk:443 "POST /API/V08/GetPaymentStatus HTTP/1.1" 200 158
+14:50:14,961 urllib3.connectionpool DEBUG Starting new HTTPS connection (1): sandprod-pos2.mobilepay.dk:443
+14:50:15,301 urllib3.connectionpool DEBUG https://sandprod-pos2.mobilepay.dk:443 "POST /API/V08/GetPaymentStatus HTTP/1.1" 200 158
+14:50:16,319 urllib3.connectionpool DEBUG Starting new HTTPS connection (1): sandprod-pos2.mobilepay.dk:443
+14:50:16,668 urllib3.connectionpool DEBUG https://sandprod-pos2.mobilepay.dk:443 "POST /API/V08/GetPaymentStatus HTTP/1.1" 200 158
+14:50:17,687 urllib3.connectionpool DEBUG Starting new HTTPS connection (1): sandprod-pos2.mobilepay.dk:443
+14:50:18,76 urllib3.connectionpool DEBUG https://sandprod-pos2.mobilepay.dk:443 "POST /API/V08/GetPaymentStatus HTTP/1.1" 200 158
+14:50:19,94 urllib3.connectionpool DEBUG Starting new HTTPS connection (1): sandprod-pos2.mobilepay.dk:443
+14:50:19,375 urllib3.connectionpool DEBUG https://sandprod-pos2.mobilepay.dk:443 "POST /API/V08/GetPaymentStatus HTTP/1.1" 200 158
+14:50:20,394 urllib3.connectionpool DEBUG Starting new HTTPS connection (1): sandprod-pos2.mobilepay.dk:443
+14:50:20,693 urllib3.connectionpool DEBUG https://sandprod-pos2.mobilepay.dk:443 "POST /API/V08/GetPaymentStatus HTTP/1.1" 200 158
+14:50:21,710 urllib3.connectionpool DEBUG Starting new HTTPS connection (1): sandprod-pos2.mobilepay.dk:443
+14:50:21,968 urllib3.connectionpool DEBUG https://sandprod-pos2.mobilepay.dk:443 "POST /API/V08/GetPaymentStatus HTTP/1.1" 200 158
+14:50:22,988 urllib3.connectionpool DEBUG Starting new HTTPS connection (1): sandprod-pos2.mobilepay.dk:443
+14:50:23,298 urllib3.connectionpool DEBUG https://sandprod-pos2.mobilepay.dk:443 "POST /API/V08/GetPaymentStatus HTTP/1.1" 200 158
+14:50:24,307 urllib3.connectionpool DEBUG Starting new HTTPS connection (1): sandprod-pos2.mobilepay.dk:443
+14:50:24,571 urllib3.connectionpool DEBUG https://sandprod-pos2.mobilepay.dk:443 "POST /API/V08/GetPaymentStatus HTTP/1.1" 200 158
+14:50:25,578 urllib3.connectionpool DEBUG Starting new HTTPS connection (1): sandprod-pos2.mobilepay.dk:443
+14:50:25,847 urllib3.connectionpool DEBUG https://sandprod-pos2.mobilepay.dk:443 "POST /API/V08/GetPaymentStatus HTTP/1.1" 200 158
+14:50:26,862 urllib3.connectionpool DEBUG Starting new HTTPS connection (1): sandprod-pos2.mobilepay.dk:443
+14:50:27,221 urllib3.connectionpool DEBUG https://sandprod-pos2.mobilepay.dk:443 "POST /API/V08/GetPaymentStatus HTTP/1.1" 200 158
+14:50:28,239 urllib3.connectionpool DEBUG Starting new HTTPS connection (1): sandprod-pos2.mobilepay.dk:443
+14:50:28,592 urllib3.connectionpool DEBUG https://sandprod-pos2.mobilepay.dk:443 "POST /API/V08/GetPaymentStatus HTTP/1.1" 200 158
+14:50:29,599 urllib3.connectionpool DEBUG Starting new HTTPS connection (1): sandprod-pos2.mobilepay.dk:443
+14:50:29,909 urllib3.connectionpool DEBUG https://sandprod-pos2.mobilepay.dk:443 "POST /API/V08/GetPaymentStatus HTTP/1.1" 200 158
+14:50:30,927 urllib3.connectionpool DEBUG Starting new HTTPS connection (1): sandprod-pos2.mobilepay.dk:443
+14:50:31,426 urllib3.connectionpool DEBUG https://sandprod-pos2.mobilepay.dk:443 "POST /API/V08/GetPaymentStatus HTTP/1.1" 200 158
+14:50:32,445 urllib3.connectionpool DEBUG Starting new HTTPS connection (1): sandprod-pos2.mobilepay.dk:443
+14:50:32,817 urllib3.connectionpool DEBUG https://sandprod-pos2.mobilepay.dk:443 "POST /API/V08/GetPaymentStatus HTTP/1.1" 200 158
+14:50:33,831 urllib3.connectionpool DEBUG Starting new HTTPS connection (1): sandprod-pos2.mobilepay.dk:443
+14:50:34,92 urllib3.connectionpool DEBUG https://sandprod-pos2.mobilepay.dk:443 "POST /API/V08/GetPaymentStatus HTTP/1.1" 200 158
+14:50:35,111 urllib3.connectionpool DEBUG Starting new HTTPS connection (1): sandprod-pos2.mobilepay.dk:443
+14:50:35,385 urllib3.connectionpool DEBUG https://sandprod-pos2.mobilepay.dk:443 "POST /API/V08/GetPaymentStatus HTTP/1.1" 200 158
+14:50:36,404 urllib3.connectionpool DEBUG Starting new HTTPS connection (1): sandprod-pos2.mobilepay.dk:443
+14:50:43,892 urllib3.connectionpool DEBUG https://sandprod-pos2.mobilepay.dk:443 "POST /API/V08/GetPaymentStatus HTTP/1.1" 200 158
+14:50:44,912 urllib3.connectionpool DEBUG Starting new HTTPS connection (1): sandprod-pos2.mobilepay.dk:443
+14:50:51,331 root INFO Payment TimeOut5d1a016e
+14:50:51,338 urllib3.connectionpool DEBUG Starting new HTTPS connection (1): sandprod-pos2.mobilepay.dk:443
+14:51:41,918 urllib3.connectionpool DEBUG https://sandprod-pos2.mobilepay.dk:443 "POST /API/V08/PaymentCancel HTTP/1.1" 400 62
+14:51:42,72 urllib3.connectionpool DEBUG https://sandprod-pos2.mobilepay.dk:443 "POST /API/V08/GetPaymentStatus HTTP/1.1" 200 214
+14:52:03,807 root INFO Running DinoPay
+14:52:03,807 root INFO Reading Setupfile
+14:52:03,931 root INFO WinInfoGeo Info Screen high: 800Screen width: 1280
+14:52:03,932 root INFO Connecting iomodule ip 192.168.1.200
+14:52:03,932 pymodbus.client.sync DEBUG New Transaction state 'SENDING'
+14:52:03,932 root ERROR No connection to ADAM on ip: 192.168.1.200
+14:52:03,932 root INFO Connecting status: False
+14:52:03,933 root INFO Connecting Mobile pay 
+14:52:03,933 root INFO RegisterPOS
+14:52:03,945 urllib3.connectionpool DEBUG Starting new HTTPS connection (1): sandprod-pos2.mobilepay.dk:443
+14:52:04,239 urllib3.connectionpool DEBUG https://sandprod-pos2.mobilepay.dk:443 "POST /API/V08/RegisterPoS HTTP/1.1" 200 66
+14:52:04,247 root INFO True
+14:52:04,247 root INFO AssignPos
+14:52:04,257 urllib3.connectionpool DEBUG Starting new HTTPS connection (1): sandprod-pos2.mobilepay.dk:443
+14:52:04,555 urllib3.connectionpool DEBUG https://sandprod-pos2.mobilepay.dk:443 "POST /API/V08/AssignPoSUnitIdToPos HTTP/1.1" 200 22
+14:52:04,558 root INFO True
+14:52:04,604 PIL.PngImagePlugin DEBUG STREAM b'IHDR' 16 13
+14:52:04,604 PIL.PngImagePlugin DEBUG STREAM b'gAMA' 41 4
+14:52:04,604 PIL.PngImagePlugin DEBUG STREAM b'pHYs' 57 9
+14:52:04,604 PIL.PngImagePlugin DEBUG STREAM b'tEXt' 78 24
+14:52:04,605 PIL.PngImagePlugin DEBUG STREAM b'IDAT' 114 12501
+14:52:04,620 PIL.PngImagePlugin DEBUG STREAM b'IHDR' 16 13
+14:52:04,620 PIL.PngImagePlugin DEBUG STREAM b'sRGB' 41 1
+14:52:04,621 PIL.PngImagePlugin DEBUG STREAM b'gAMA' 54 4
+14:52:04,621 PIL.PngImagePlugin DEBUG STREAM b'pHYs' 70 9
+14:52:04,621 PIL.PngImagePlugin DEBUG STREAM b'tEXt' 91 24
+14:52:04,622 PIL.PngImagePlugin DEBUG STREAM b'IDAT' 127 21259
+14:52:04,650 PIL.PngImagePlugin DEBUG STREAM b'IHDR' 16 13
+14:52:04,650 PIL.PngImagePlugin DEBUG STREAM b'gAMA' 41 4
+14:52:04,651 PIL.PngImagePlugin DEBUG STREAM b'pHYs' 57 9
+14:52:04,651 PIL.PngImagePlugin DEBUG STREAM b'tEXt' 78 24
+14:52:04,651 PIL.PngImagePlugin DEBUG STREAM b'IDAT' 114 9340
+14:52:04,654 PIL.PngImagePlugin DEBUG STREAM b'IHDR' 16 13
+14:52:04,655 PIL.PngImagePlugin DEBUG STREAM b'gAMA' 41 4
+14:52:04,655 PIL.PngImagePlugin DEBUG STREAM b'pHYs' 57 9
+14:52:04,656 PIL.PngImagePlugin DEBUG STREAM b'tEXt' 78 24
+14:52:04,656 PIL.PngImagePlugin DEBUG STREAM b'IDAT' 114 10006
+14:52:04,660 PIL.PngImagePlugin DEBUG STREAM b'IHDR' 16 13
+14:52:04,660 PIL.PngImagePlugin DEBUG STREAM b'gAMA' 41 4
+14:52:04,660 PIL.PngImagePlugin DEBUG STREAM b'pHYs' 57 9
+14:52:04,660 PIL.PngImagePlugin DEBUG STREAM b'tEXt' 78 24
+14:52:04,661 PIL.PngImagePlugin DEBUG STREAM b'IDAT' 114 10207
+14:52:04,671 PIL.PngImagePlugin DEBUG STREAM b'IHDR' 16 13
+14:52:04,671 PIL.PngImagePlugin DEBUG STREAM b'gAMA' 41 4
+14:52:04,671 PIL.PngImagePlugin DEBUG STREAM b'pHYs' 57 9
+14:52:04,671 PIL.PngImagePlugin DEBUG STREAM b'tEXt' 78 24
+14:52:04,672 PIL.PngImagePlugin DEBUG STREAM b'IDAT' 114 65422
+14:52:04,688 PIL.PngImagePlugin DEBUG STREAM b'IHDR' 16 13
+14:52:04,688 PIL.PngImagePlugin DEBUG STREAM b'gAMA' 41 4
+14:52:04,688 PIL.PngImagePlugin DEBUG STREAM b'pHYs' 57 9
+14:52:04,688 PIL.PngImagePlugin DEBUG STREAM b'tEXt' 78 24
+14:52:04,688 PIL.PngImagePlugin DEBUG STREAM b'IDAT' 114 9647
+14:52:04,693 PIL.PngImagePlugin DEBUG STREAM b'IHDR' 16 13
+14:52:04,693 PIL.PngImagePlugin DEBUG STREAM b'gAMA' 41 4
+14:52:04,693 PIL.PngImagePlugin DEBUG STREAM b'pHYs' 57 9
+14:52:04,694 PIL.PngImagePlugin DEBUG STREAM b'tEXt' 78 24
+14:52:04,694 PIL.PngImagePlugin DEBUG STREAM b'IDAT' 114 65422
+14:52:04,703 PIL.PngImagePlugin DEBUG STREAM b'IHDR' 16 13
+14:52:04,703 PIL.PngImagePlugin DEBUG STREAM b'gAMA' 41 4
+14:52:04,704 PIL.PngImagePlugin DEBUG STREAM b'pHYs' 57 9
+14:52:04,704 PIL.PngImagePlugin DEBUG STREAM b'tEXt' 78 24
+14:52:04,704 PIL.PngImagePlugin DEBUG STREAM b'IDAT' 114 9647
+14:52:04,708 PIL.PngImagePlugin DEBUG STREAM b'IHDR' 16 13
+14:52:04,708 PIL.PngImagePlugin DEBUG STREAM b'gAMA' 41 4
+14:52:04,708 PIL.PngImagePlugin DEBUG STREAM b'pHYs' 57 9
+14:52:04,708 PIL.PngImagePlugin DEBUG STREAM b'tEXt' 78 24
+14:52:04,709 PIL.PngImagePlugin DEBUG STREAM b'IDAT' 114 65422
+14:52:04,715 PIL.PngImagePlugin DEBUG STREAM b'IHDR' 16 13
+14:52:04,715 PIL.PngImagePlugin DEBUG STREAM b'gAMA' 41 4
+14:52:04,715 PIL.PngImagePlugin DEBUG STREAM b'pHYs' 57 9
+14:52:04,716 PIL.PngImagePlugin DEBUG STREAM b'tEXt' 78 24
+14:52:04,716 PIL.PngImagePlugin DEBUG STREAM b'IDAT' 114 9647
+14:52:04,719 PIL.PngImagePlugin DEBUG STREAM b'IHDR' 16 13
+14:52:04,719 PIL.PngImagePlugin DEBUG STREAM b'gAMA' 41 4
+14:52:04,719 PIL.PngImagePlugin DEBUG STREAM b'pHYs' 57 9
+14:52:04,720 PIL.PngImagePlugin DEBUG STREAM b'tEXt' 78 24
+14:52:04,720 PIL.PngImagePlugin DEBUG STREAM b'IDAT' 114 50056
+14:52:05,635 pymodbus.transaction DEBUG Current transaction state - SENDING
+14:52:05,635 pymodbus.transaction DEBUG Running transaction 1
+14:52:05,636 pymodbus.transaction DEBUG SEND: 0x0 0x1 0x0 0x0 0x0 0x6 0x0 0x1 0x0 0x0 0x0 0x8
+14:52:05,636 pymodbus.client.sync DEBUG New Transaction state 'SENDING'
+14:52:05,636 pymodbus.transaction DEBUG Changing transaction state from 'SENDING' to 'WAITING FOR REPLY'
+14:52:06,179 pymodbus.transaction DEBUG Changing transaction state from 'WAITING FOR REPLY' to 'PROCESSING REPLY'
+14:52:06,181 pymodbus.transaction DEBUG RECV: 0x0 0x1 0x0 0x0 0x0 0x4 0x0 0x1 0x1 0xff
+14:52:06,182 pymodbus.framer.socket_framer DEBUG Processing: 0x0 0x1 0x0 0x0 0x0 0x4 0x0 0x1 0x1 0xff
+14:52:06,182 pymodbus.factory DEBUG Factory Response[ReadCoilsResponse: 1]
+14:52:06,183 pymodbus.transaction DEBUG Adding transaction 1
+14:52:06,183 pymodbus.transaction DEBUG Getting transaction 1
+14:52:06,184 pymodbus.transaction DEBUG Changing transaction state from 'PROCESSING REPLY' to 'TRANSACTION_COMPLETE'
+14:52:06,184 root INFO Vending stat bit True
+14:52:06,203 urllib3.connectionpool DEBUG Starting new HTTPS connection (1): sandprod-pos2.mobilepay.dk:443
+14:53:21,192 root INFO Running DinoPay
+14:53:21,192 root INFO Reading Setupfile
+14:53:21,304 root INFO WinInfoGeo Info Screen high: 800Screen width: 1280
+14:53:21,305 root INFO Connecting iomodule ip 192.168.1.200
+14:53:21,305 pymodbus.client.sync DEBUG New Transaction state 'SENDING'
+14:53:21,305 root ERROR No connection to ADAM on ip: 192.168.1.200
+14:53:21,305 root INFO Connecting status: False
+14:53:21,306 root INFO Connecting Mobile pay 
+14:53:21,306 root INFO RegisterPOS
+14:53:21,317 urllib3.connectionpool DEBUG Starting new HTTPS connection (1): sandprod-pos2.mobilepay.dk:443
+14:53:49,669 root INFO Running DinoPay
+14:53:49,669 root INFO Reading Setupfile
+14:53:49,783 root INFO WinInfoGeo Info Screen high: 800Screen width: 1280
+14:53:49,784 root INFO Connecting iomodule ip 192.168.1.200
+14:53:49,785 pymodbus.client.sync DEBUG New Transaction state 'SENDING'
+14:53:49,785 root ERROR No connection to ADAM on ip: 192.168.1.200
+14:53:49,785 root INFO Connecting status: False
+14:53:49,786 root INFO Connecting Mobile pay 
+14:53:49,786 root INFO RegisterPOS
+14:53:49,795 urllib3.connectionpool DEBUG Starting new HTTPS connection (1): sandprod-pos2.mobilepay.dk:443
+14:53:55,287 urllib3.connectionpool DEBUG https://sandprod-pos2.mobilepay.dk:443 "POST /API/V08/RegisterPoS HTTP/1.1" 200 68
+14:53:55,293 root INFO True
+14:53:55,293 root INFO AssignPos
+14:53:55,302 urllib3.connectionpool DEBUG Starting new HTTPS connection (1): sandprod-pos2.mobilepay.dk:443
+14:53:55,607 urllib3.connectionpool DEBUG https://sandprod-pos2.mobilepay.dk:443 "POST /API/V08/AssignPoSUnitIdToPos HTTP/1.1" 200 22
+14:53:55,611 root INFO True
+14:53:55,650 PIL.PngImagePlugin DEBUG STREAM b'IHDR' 16 13
+14:53:55,651 PIL.PngImagePlugin DEBUG STREAM b'gAMA' 41 4
+14:53:55,651 PIL.PngImagePlugin DEBUG STREAM b'pHYs' 57 9
+14:53:55,651 PIL.PngImagePlugin DEBUG STREAM b'tEXt' 78 24
+14:53:55,651 PIL.PngImagePlugin DEBUG STREAM b'IDAT' 114 12501
+14:53:55,664 PIL.PngImagePlugin DEBUG STREAM b'IHDR' 16 13
+14:53:55,664 PIL.PngImagePlugin DEBUG STREAM b'sRGB' 41 1
+14:53:55,665 PIL.PngImagePlugin DEBUG STREAM b'gAMA' 54 4
+14:53:55,665 PIL.PngImagePlugin DEBUG STREAM b'pHYs' 70 9
+14:53:55,665 PIL.PngImagePlugin DEBUG STREAM b'tEXt' 91 24
+14:53:55,665 PIL.PngImagePlugin DEBUG STREAM b'IDAT' 127 21259
+14:53:55,691 PIL.PngImagePlugin DEBUG STREAM b'IHDR' 16 13
+14:53:55,691 PIL.PngImagePlugin DEBUG STREAM b'gAMA' 41 4
+14:53:55,691 PIL.PngImagePlugin DEBUG STREAM b'pHYs' 57 9
+14:53:55,692 PIL.PngImagePlugin DEBUG STREAM b'tEXt' 78 24
+14:53:55,692 PIL.PngImagePlugin DEBUG STREAM b'IDAT' 114 9340
+14:53:55,695 PIL.PngImagePlugin DEBUG STREAM b'IHDR' 16 13
+14:53:55,695 PIL.PngImagePlugin DEBUG STREAM b'gAMA' 41 4
+14:53:55,695 PIL.PngImagePlugin DEBUG STREAM b'pHYs' 57 9
+14:53:55,695 PIL.PngImagePlugin DEBUG STREAM b'tEXt' 78 24
+14:53:55,695 PIL.PngImagePlugin DEBUG STREAM b'IDAT' 114 10006
+14:53:55,698 PIL.PngImagePlugin DEBUG STREAM b'IHDR' 16 13
+14:53:55,698 PIL.PngImagePlugin DEBUG STREAM b'gAMA' 41 4
+14:53:55,698 PIL.PngImagePlugin DEBUG STREAM b'pHYs' 57 9
+14:53:55,698 PIL.PngImagePlugin DEBUG STREAM b'tEXt' 78 24
+14:53:55,699 PIL.PngImagePlugin DEBUG STREAM b'IDAT' 114 10207
+14:53:55,706 PIL.PngImagePlugin DEBUG STREAM b'IHDR' 16 13
+14:53:55,706 PIL.PngImagePlugin DEBUG STREAM b'gAMA' 41 4
+14:53:55,706 PIL.PngImagePlugin DEBUG STREAM b'pHYs' 57 9
+14:53:55,706 PIL.PngImagePlugin DEBUG STREAM b'tEXt' 78 24
+14:53:55,706 PIL.PngImagePlugin DEBUG STREAM b'IDAT' 114 65422
+14:53:55,722 PIL.PngImagePlugin DEBUG STREAM b'IHDR' 16 13
+14:53:55,722 PIL.PngImagePlugin DEBUG STREAM b'gAMA' 41 4
+14:53:55,722 PIL.PngImagePlugin DEBUG STREAM b'pHYs' 57 9
+14:53:55,723 PIL.PngImagePlugin DEBUG STREAM b'tEXt' 78 24
+14:53:55,723 PIL.PngImagePlugin DEBUG STREAM b'IDAT' 114 9647
+14:53:55,728 PIL.PngImagePlugin DEBUG STREAM b'IHDR' 16 13
+14:53:55,728 PIL.PngImagePlugin DEBUG STREAM b'gAMA' 41 4
+14:53:55,728 PIL.PngImagePlugin DEBUG STREAM b'pHYs' 57 9
+14:53:55,729 PIL.PngImagePlugin DEBUG STREAM b'tEXt' 78 24
+14:53:55,729 PIL.PngImagePlugin DEBUG STREAM b'IDAT' 114 65422
+14:53:55,738 PIL.PngImagePlugin DEBUG STREAM b'IHDR' 16 13
+14:53:55,739 PIL.PngImagePlugin DEBUG STREAM b'gAMA' 41 4
+14:53:55,739 PIL.PngImagePlugin DEBUG STREAM b'pHYs' 57 9
+14:53:55,739 PIL.PngImagePlugin DEBUG STREAM b'tEXt' 78 24
+14:53:55,739 PIL.PngImagePlugin DEBUG STREAM b'IDAT' 114 9647
+14:53:55,743 PIL.PngImagePlugin DEBUG STREAM b'IHDR' 16 13
+14:53:55,744 PIL.PngImagePlugin DEBUG STREAM b'gAMA' 41 4
+14:53:55,744 PIL.PngImagePlugin DEBUG STREAM b'pHYs' 57 9
+14:53:55,744 PIL.PngImagePlugin DEBUG STREAM b'tEXt' 78 24
+14:53:55,744 PIL.PngImagePlugin DEBUG STREAM b'IDAT' 114 65422
+14:53:55,750 PIL.PngImagePlugin DEBUG STREAM b'IHDR' 16 13
+14:53:55,751 PIL.PngImagePlugin DEBUG STREAM b'gAMA' 41 4
+14:53:55,751 PIL.PngImagePlugin DEBUG STREAM b'pHYs' 57 9
+14:53:55,751 PIL.PngImagePlugin DEBUG STREAM b'tEXt' 78 24
+14:53:55,751 PIL.PngImagePlugin DEBUG STREAM b'IDAT' 114 9647
+14:53:55,755 PIL.PngImagePlugin DEBUG STREAM b'IHDR' 16 13
+14:53:55,756 PIL.PngImagePlugin DEBUG STREAM b'gAMA' 41 4
+14:53:55,756 PIL.PngImagePlugin DEBUG STREAM b'pHYs' 57 9
+14:53:55,756 PIL.PngImagePlugin DEBUG STREAM b'tEXt' 78 24
+14:53:55,756 PIL.PngImagePlugin DEBUG STREAM b'IDAT' 114 50056
+14:54:27,988 root INFO Running DinoPay
+14:54:27,988 root INFO Reading Setupfile
+14:54:28,93 root INFO WinInfoGeo Info Screen high: 800Screen width: 1280
+14:54:28,94 root INFO Connecting iomodule ip 192.168.1.200
+14:54:28,94 pymodbus.client.sync DEBUG New Transaction state 'SENDING'
+14:54:28,94 root ERROR No connection to ADAM on ip: 192.168.1.200
+14:54:28,95 root INFO Connecting status: False
+14:54:28,95 root INFO Connecting Mobile pay 
+14:54:28,95 root INFO RegisterPOS
+14:54:28,103 urllib3.connectionpool DEBUG Starting new HTTPS connection (1): sandprod-pos2.mobilepay.dk:443
+14:54:28,350 urllib3.connectionpool DEBUG https://sandprod-pos2.mobilepay.dk:443 "POST /API/V08/RegisterPoS HTTP/1.1" 200 68
+14:54:28,355 root INFO True
+14:54:28,355 root INFO AssignPos
+14:54:28,363 urllib3.connectionpool DEBUG Starting new HTTPS connection (1): sandprod-pos2.mobilepay.dk:443
+14:54:28,593 urllib3.connectionpool DEBUG https://sandprod-pos2.mobilepay.dk:443 "POST /API/V08/AssignPoSUnitIdToPos HTTP/1.1" 200 22
+14:54:28,597 root INFO True
+14:54:28,686 PIL.PngImagePlugin DEBUG STREAM b'IHDR' 16 13
+14:54:28,687 PIL.PngImagePlugin DEBUG STREAM b'gAMA' 41 4
+14:54:28,687 PIL.PngImagePlugin DEBUG STREAM b'pHYs' 57 9
+14:54:28,687 PIL.PngImagePlugin DEBUG STREAM b'tEXt' 78 24
+14:54:28,688 PIL.PngImagePlugin DEBUG STREAM b'IDAT' 114 12501
+14:54:28,710 PIL.PngImagePlugin DEBUG STREAM b'IHDR' 16 13
+14:54:28,710 PIL.PngImagePlugin DEBUG STREAM b'sRGB' 41 1
+14:54:28,710 PIL.PngImagePlugin DEBUG STREAM b'gAMA' 54 4
+14:54:28,711 PIL.PngImagePlugin DEBUG STREAM b'pHYs' 70 9
+14:54:28,711 PIL.PngImagePlugin DEBUG STREAM b'tEXt' 91 24
+14:54:28,712 PIL.PngImagePlugin DEBUG STREAM b'IDAT' 127 21259
+14:54:28,816 PIL.PngImagePlugin DEBUG STREAM b'IHDR' 16 13
+14:54:28,817 PIL.PngImagePlugin DEBUG STREAM b'gAMA' 41 4
+14:54:28,817 PIL.PngImagePlugin DEBUG STREAM b'pHYs' 57 9
+14:54:28,817 PIL.PngImagePlugin DEBUG STREAM b'tEXt' 78 24
+14:54:28,818 PIL.PngImagePlugin DEBUG STREAM b'IDAT' 114 9340
+14:54:28,821 PIL.PngImagePlugin DEBUG STREAM b'IHDR' 16 13
+14:54:28,822 PIL.PngImagePlugin DEBUG STREAM b'gAMA' 41 4
+14:54:28,822 PIL.PngImagePlugin DEBUG STREAM b'pHYs' 57 9
+14:54:28,822 PIL.PngImagePlugin DEBUG STREAM b'tEXt' 78 24
+14:54:28,823 PIL.PngImagePlugin DEBUG STREAM b'IDAT' 114 10006
+14:54:28,826 PIL.PngImagePlugin DEBUG STREAM b'IHDR' 16 13
+14:54:28,826 PIL.PngImagePlugin DEBUG STREAM b'gAMA' 41 4
+14:54:28,827 PIL.PngImagePlugin DEBUG STREAM b'pHYs' 57 9
+14:54:28,827 PIL.PngImagePlugin DEBUG STREAM b'tEXt' 78 24
+14:54:28,827 PIL.PngImagePlugin DEBUG STREAM b'IDAT' 114 10207
+14:54:28,834 PIL.PngImagePlugin DEBUG STREAM b'IHDR' 16 13
+14:54:28,835 PIL.PngImagePlugin DEBUG STREAM b'gAMA' 41 4
+14:54:28,835 PIL.PngImagePlugin DEBUG STREAM b'pHYs' 57 9
+14:54:28,835 PIL.PngImagePlugin DEBUG STREAM b'tEXt' 78 24
+14:54:28,835 PIL.PngImagePlugin DEBUG STREAM b'IDAT' 114 65422
+14:54:28,852 PIL.PngImagePlugin DEBUG STREAM b'IHDR' 16 13
+14:54:28,852 PIL.PngImagePlugin DEBUG STREAM b'gAMA' 41 4
+14:54:28,853 PIL.PngImagePlugin DEBUG STREAM b'pHYs' 57 9
+14:54:28,853 PIL.PngImagePlugin DEBUG STREAM b'tEXt' 78 24
+14:54:28,853 PIL.PngImagePlugin DEBUG STREAM b'IDAT' 114 9647
+14:54:28,859 PIL.PngImagePlugin DEBUG STREAM b'IHDR' 16 13
+14:54:28,859 PIL.PngImagePlugin DEBUG STREAM b'gAMA' 41 4
+14:54:28,860 PIL.PngImagePlugin DEBUG STREAM b'pHYs' 57 9
+14:54:28,860 PIL.PngImagePlugin DEBUG STREAM b'tEXt' 78 24
+14:54:28,860 PIL.PngImagePlugin DEBUG STREAM b'IDAT' 114 65422
+14:54:28,869 PIL.PngImagePlugin DEBUG STREAM b'IHDR' 16 13
+14:54:28,870 PIL.PngImagePlugin DEBUG STREAM b'gAMA' 41 4
+14:54:28,870 PIL.PngImagePlugin DEBUG STREAM b'pHYs' 57 9
+14:54:28,870 PIL.PngImagePlugin DEBUG STREAM b'tEXt' 78 24
+14:54:28,870 PIL.PngImagePlugin DEBUG STREAM b'IDAT' 114 9647
+14:54:28,875 PIL.PngImagePlugin DEBUG STREAM b'IHDR' 16 13
+14:54:28,876 PIL.PngImagePlugin DEBUG STREAM b'gAMA' 41 4
+14:54:28,876 PIL.PngImagePlugin DEBUG STREAM b'pHYs' 57 9
+14:54:28,877 PIL.PngImagePlugin DEBUG STREAM b'tEXt' 78 24
+14:54:28,877 PIL.PngImagePlugin DEBUG STREAM b'IDAT' 114 65422
+14:54:28,885 PIL.PngImagePlugin DEBUG STREAM b'IHDR' 16 13
+14:54:28,885 PIL.PngImagePlugin DEBUG STREAM b'gAMA' 41 4
+14:54:28,886 PIL.PngImagePlugin DEBUG STREAM b'pHYs' 57 9
+14:54:28,886 PIL.PngImagePlugin DEBUG STREAM b'tEXt' 78 24
+14:54:28,886 PIL.PngImagePlugin DEBUG STREAM b'IDAT' 114 9647
+14:54:28,889 PIL.PngImagePlugin DEBUG STREAM b'IHDR' 16 13
+14:54:28,890 PIL.PngImagePlugin DEBUG STREAM b'gAMA' 41 4
+14:54:28,890 PIL.PngImagePlugin DEBUG STREAM b'pHYs' 57 9
+14:54:28,891 PIL.PngImagePlugin DEBUG STREAM b'tEXt' 78 24
+14:54:28,891 PIL.PngImagePlugin DEBUG STREAM b'IDAT' 114 50056
+14:54:30,71 pymodbus.transaction DEBUG Current transaction state - SENDING
+14:54:30,71 pymodbus.transaction DEBUG Running transaction 1
+14:54:30,71 pymodbus.transaction DEBUG SEND: 0x0 0x1 0x0 0x0 0x0 0x6 0x0 0x1 0x0 0x0 0x0 0x8
+14:54:30,71 pymodbus.client.sync DEBUG New Transaction state 'SENDING'
+14:54:30,72 pymodbus.transaction DEBUG Changing transaction state from 'SENDING' to 'WAITING FOR REPLY'
+14:54:30,73 pymodbus.transaction DEBUG Changing transaction state from 'WAITING FOR REPLY' to 'PROCESSING REPLY'
+14:54:30,73 pymodbus.transaction DEBUG RECV: 0x0 0x1 0x0 0x0 0x0 0x4 0x0 0x1 0x1 0xff
+14:54:30,74 pymodbus.framer.socket_framer DEBUG Processing: 0x0 0x1 0x0 0x0 0x0 0x4 0x0 0x1 0x1 0xff
+14:54:30,74 pymodbus.factory DEBUG Factory Response[ReadCoilsResponse: 1]
+14:54:30,74 pymodbus.transaction DEBUG Adding transaction 1
+14:54:30,75 pymodbus.transaction DEBUG Getting transaction 1
+14:54:30,75 pymodbus.transaction DEBUG Changing transaction state from 'PROCESSING REPLY' to 'TRANSACTION_COMPLETE'
+14:54:30,75 root INFO Vending stat bit True
+14:54:30,80 urllib3.connectionpool DEBUG Starting new HTTPS connection (1): sandprod-pos2.mobilepay.dk:443
+14:54:30,332 urllib3.connectionpool DEBUG https://sandprod-pos2.mobilepay.dk:443 "POST /API/V08/PaymentStart HTTP/1.1" 200 64
+14:54:30,352 urllib3.connectionpool DEBUG Starting new HTTPS connection (1): sandprod-pos2.mobilepay.dk:443
+14:54:30,545 urllib3.connectionpool DEBUG https://sandprod-pos2.mobilepay.dk:443 "POST /API/V08/GetPaymentStatus HTTP/1.1" 200 158
+14:54:31,554 urllib3.connectionpool DEBUG Starting new HTTPS connection (1): sandprod-pos2.mobilepay.dk:443
+14:54:31,746 urllib3.connectionpool DEBUG https://sandprod-pos2.mobilepay.dk:443 "POST /API/V08/GetPaymentStatus HTTP/1.1" 200 158
+14:54:32,752 urllib3.connectionpool DEBUG Starting new HTTPS connection (1): sandprod-pos2.mobilepay.dk:443
+14:54:32,964 urllib3.connectionpool DEBUG https://sandprod-pos2.mobilepay.dk:443 "POST /API/V08/GetPaymentStatus HTTP/1.1" 200 158
+14:54:33,977 urllib3.connectionpool DEBUG Starting new HTTPS connection (1): sandprod-pos2.mobilepay.dk:443
+14:54:34,187 urllib3.connectionpool DEBUG https://sandprod-pos2.mobilepay.dk:443 "POST /API/V08/GetPaymentStatus HTTP/1.1" 200 158
+14:54:35,205 urllib3.connectionpool DEBUG Starting new HTTPS connection (1): sandprod-pos2.mobilepay.dk:443
+14:54:35,410 urllib3.connectionpool DEBUG https://sandprod-pos2.mobilepay.dk:443 "POST /API/V08/GetPaymentStatus HTTP/1.1" 200 158
+14:54:36,423 urllib3.connectionpool DEBUG Starting new HTTPS connection (1): sandprod-pos2.mobilepay.dk:443
+14:54:36,625 urllib3.connectionpool DEBUG https://sandprod-pos2.mobilepay.dk:443 "POST /API/V08/GetPaymentStatus HTTP/1.1" 200 158
+14:54:37,637 urllib3.connectionpool DEBUG Starting new HTTPS connection (1): sandprod-pos2.mobilepay.dk:443
+14:54:37,855 urllib3.connectionpool DEBUG https://sandprod-pos2.mobilepay.dk:443 "POST /API/V08/GetPaymentStatus HTTP/1.1" 200 158
+14:54:38,868 urllib3.connectionpool DEBUG Starting new HTTPS connection (1): sandprod-pos2.mobilepay.dk:443
+14:54:39,73 urllib3.connectionpool DEBUG https://sandprod-pos2.mobilepay.dk:443 "POST /API/V08/GetPaymentStatus HTTP/1.1" 200 158
+14:54:40,98 urllib3.connectionpool DEBUG Starting new HTTPS connection (1): sandprod-pos2.mobilepay.dk:443
+14:54:40,306 urllib3.connectionpool DEBUG https://sandprod-pos2.mobilepay.dk:443 "POST /API/V08/GetPaymentStatus HTTP/1.1" 200 158
+14:54:41,325 urllib3.connectionpool DEBUG Starting new HTTPS connection (1): sandprod-pos2.mobilepay.dk:443
+14:54:41,513 urllib3.connectionpool DEBUG https://sandprod-pos2.mobilepay.dk:443 "POST /API/V08/GetPaymentStatus HTTP/1.1" 200 158
+14:54:42,520 urllib3.connectionpool DEBUG Starting new HTTPS connection (1): sandprod-pos2.mobilepay.dk:443
+14:54:42,714 urllib3.connectionpool DEBUG https://sandprod-pos2.mobilepay.dk:443 "POST /API/V08/GetPaymentStatus HTTP/1.1" 200 158
+14:54:43,733 urllib3.connectionpool DEBUG Starting new HTTPS connection (1): sandprod-pos2.mobilepay.dk:443
+14:54:43,946 urllib3.connectionpool DEBUG https://sandprod-pos2.mobilepay.dk:443 "POST /API/V08/GetPaymentStatus HTTP/1.1" 200 158
+14:54:44,968 urllib3.connectionpool DEBUG Starting new HTTPS connection (1): sandprod-pos2.mobilepay.dk:443
+14:54:45,172 urllib3.connectionpool DEBUG https://sandprod-pos2.mobilepay.dk:443 "POST /API/V08/GetPaymentStatus HTTP/1.1" 200 158
+14:54:46,189 urllib3.connectionpool DEBUG Starting new HTTPS connection (1): sandprod-pos2.mobilepay.dk:443
+14:54:46,392 urllib3.connectionpool DEBUG https://sandprod-pos2.mobilepay.dk:443 "POST /API/V08/GetPaymentStatus HTTP/1.1" 200 158
+14:54:47,407 urllib3.connectionpool DEBUG Starting new HTTPS connection (1): sandprod-pos2.mobilepay.dk:443
+14:54:47,605 urllib3.connectionpool DEBUG https://sandprod-pos2.mobilepay.dk:443 "POST /API/V08/GetPaymentStatus HTTP/1.1" 200 158
+14:54:48,612 urllib3.connectionpool DEBUG Starting new HTTPS connection (1): sandprod-pos2.mobilepay.dk:443
+14:54:48,802 urllib3.connectionpool DEBUG https://sandprod-pos2.mobilepay.dk:443 "POST /API/V08/GetPaymentStatus HTTP/1.1" 200 158
+14:54:49,810 urllib3.connectionpool DEBUG Starting new HTTPS connection (1): sandprod-pos2.mobilepay.dk:443
+14:54:50,4 urllib3.connectionpool DEBUG https://sandprod-pos2.mobilepay.dk:443 "POST /API/V08/GetPaymentStatus HTTP/1.1" 200 158
+14:54:51,31 urllib3.connectionpool DEBUG Starting new HTTPS connection (1): sandprod-pos2.mobilepay.dk:443
+14:54:51,238 urllib3.connectionpool DEBUG https://sandprod-pos2.mobilepay.dk:443 "POST /API/V08/GetPaymentStatus HTTP/1.1" 200 158
+14:54:52,252 urllib3.connectionpool DEBUG Starting new HTTPS connection (1): sandprod-pos2.mobilepay.dk:443
+14:54:52,444 urllib3.connectionpool DEBUG https://sandprod-pos2.mobilepay.dk:443 "POST /API/V08/GetPaymentStatus HTTP/1.1" 200 158
+14:54:53,461 urllib3.connectionpool DEBUG Starting new HTTPS connection (1): sandprod-pos2.mobilepay.dk:443
+14:54:53,677 urllib3.connectionpool DEBUG https://sandprod-pos2.mobilepay.dk:443 "POST /API/V08/GetPaymentStatus HTTP/1.1" 200 158
+14:54:54,687 urllib3.connectionpool DEBUG Starting new HTTPS connection (1): sandprod-pos2.mobilepay.dk:443
+14:54:54,925 urllib3.connectionpool DEBUG https://sandprod-pos2.mobilepay.dk:443 "POST /API/V08/GetPaymentStatus HTTP/1.1" 200 158
+14:54:55,932 urllib3.connectionpool DEBUG Starting new HTTPS connection (1): sandprod-pos2.mobilepay.dk:443
+14:54:56,127 urllib3.connectionpool DEBUG https://sandprod-pos2.mobilepay.dk:443 "POST /API/V08/GetPaymentStatus HTTP/1.1" 200 158
+14:54:57,136 urllib3.connectionpool DEBUG Starting new HTTPS connection (1): sandprod-pos2.mobilepay.dk:443
+14:54:57,336 urllib3.connectionpool DEBUG https://sandprod-pos2.mobilepay.dk:443 "POST /API/V08/GetPaymentStatus HTTP/1.1" 200 158
+14:54:58,344 urllib3.connectionpool DEBUG Starting new HTTPS connection (1): sandprod-pos2.mobilepay.dk:443
+14:54:58,553 urllib3.connectionpool DEBUG https://sandprod-pos2.mobilepay.dk:443 "POST /API/V08/GetPaymentStatus HTTP/1.1" 200 158
+14:54:59,565 urllib3.connectionpool DEBUG Starting new HTTPS connection (1): sandprod-pos2.mobilepay.dk:443
+14:54:59,762 urllib3.connectionpool DEBUG https://sandprod-pos2.mobilepay.dk:443 "POST /API/V08/GetPaymentStatus HTTP/1.1" 200 158
+14:55:00,773 urllib3.connectionpool DEBUG Starting new HTTPS connection (1): sandprod-pos2.mobilepay.dk:443
+14:55:00,984 urllib3.connectionpool DEBUG https://sandprod-pos2.mobilepay.dk:443 "POST /API/V08/GetPaymentStatus HTTP/1.1" 200 158
+14:55:02,8 urllib3.connectionpool DEBUG Starting new HTTPS connection (1): sandprod-pos2.mobilepay.dk:443
+14:55:02,218 urllib3.connectionpool DEBUG https://sandprod-pos2.mobilepay.dk:443 "POST /API/V08/GetPaymentStatus HTTP/1.1" 200 158
+14:55:03,243 urllib3.connectionpool DEBUG Starting new HTTPS connection (1): sandprod-pos2.mobilepay.dk:443
+14:55:03,468 urllib3.connectionpool DEBUG https://sandprod-pos2.mobilepay.dk:443 "POST /API/V08/GetPaymentStatus HTTP/1.1" 200 158
+14:55:04,492 urllib3.connectionpool DEBUG Starting new HTTPS connection (1): sandprod-pos2.mobilepay.dk:443
+14:55:04,687 urllib3.connectionpool DEBUG https://sandprod-pos2.mobilepay.dk:443 "POST /API/V08/GetPaymentStatus HTTP/1.1" 200 158
+14:55:05,705 urllib3.connectionpool DEBUG Starting new HTTPS connection (1): sandprod-pos2.mobilepay.dk:443
+14:55:05,927 urllib3.connectionpool DEBUG https://sandprod-pos2.mobilepay.dk:443 "POST /API/V08/GetPaymentStatus HTTP/1.1" 200 185
+14:55:06,936 urllib3.connectionpool DEBUG Starting new HTTPS connection (1): sandprod-pos2.mobilepay.dk:443
+14:55:07,136 urllib3.connectionpool DEBUG https://sandprod-pos2.mobilepay.dk:443 "POST /API/V08/GetPaymentStatus HTTP/1.1" 200 214
+14:55:19,288 pymodbus.transaction DEBUG Current transaction state - TRANSACTION_COMPLETE
+14:55:19,288 pymodbus.transaction DEBUG Running transaction 2
+14:55:19,288 pymodbus.transaction DEBUG SEND: 0x0 0x2 0x0 0x0 0x0 0x6 0x0 0x1 0x0 0x0 0x0 0x8
+14:55:19,288 pymodbus.client.sync DEBUG New Transaction state 'SENDING'
+14:55:19,289 pymodbus.transaction DEBUG Changing transaction state from 'SENDING' to 'WAITING FOR REPLY'
+14:55:19,290 pymodbus.transaction DEBUG Changing transaction state from 'WAITING FOR REPLY' to 'PROCESSING REPLY'
+14:55:19,290 pymodbus.transaction DEBUG RECV: 0x0 0x2 0x0 0x0 0x0 0x4 0x0 0x1 0x1 0xff
+14:55:19,290 pymodbus.framer.socket_framer DEBUG Processing: 0x0 0x2 0x0 0x0 0x0 0x4 0x0 0x1 0x1 0xff
+14:55:19,291 pymodbus.factory DEBUG Factory Response[ReadCoilsResponse: 1]
+14:55:19,291 pymodbus.transaction DEBUG Adding transaction 2
+14:55:19,291 pymodbus.transaction DEBUG Getting transaction 2
+14:55:19,291 pymodbus.transaction DEBUG Changing transaction state from 'PROCESSING REPLY' to 'TRANSACTION_COMPLETE'
+14:55:19,291 root INFO Vending stat bit True
+14:55:19,296 urllib3.connectionpool DEBUG Starting new HTTPS connection (1): sandprod-pos2.mobilepay.dk:443
+14:55:19,495 urllib3.connectionpool DEBUG https://sandprod-pos2.mobilepay.dk:443 "POST /API/V08/PaymentStart HTTP/1.1" 200 64
+14:55:19,516 urllib3.connectionpool DEBUG Starting new HTTPS connection (1): sandprod-pos2.mobilepay.dk:443
+14:55:19,706 urllib3.connectionpool DEBUG https://sandprod-pos2.mobilepay.dk:443 "POST /API/V08/GetPaymentStatus HTTP/1.1" 200 159
+14:55:20,726 urllib3.connectionpool DEBUG Starting new HTTPS connection (1): sandprod-pos2.mobilepay.dk:443
+14:55:20,934 urllib3.connectionpool DEBUG https://sandprod-pos2.mobilepay.dk:443 "POST /API/V08/GetPaymentStatus HTTP/1.1" 200 159
+14:55:21,961 urllib3.connectionpool DEBUG Starting new HTTPS connection (1): sandprod-pos2.mobilepay.dk:443
+14:55:22,166 urllib3.connectionpool DEBUG https://sandprod-pos2.mobilepay.dk:443 "POST /API/V08/GetPaymentStatus HTTP/1.1" 200 159
+14:55:23,189 urllib3.connectionpool DEBUG Starting new HTTPS connection (1): sandprod-pos2.mobilepay.dk:443
+14:55:23,389 urllib3.connectionpool DEBUG https://sandprod-pos2.mobilepay.dk:443 "POST /API/V08/GetPaymentStatus HTTP/1.1" 200 159
+14:55:24,405 urllib3.connectionpool DEBUG Starting new HTTPS connection (1): sandprod-pos2.mobilepay.dk:443
+14:55:24,620 urllib3.connectionpool DEBUG https://sandprod-pos2.mobilepay.dk:443 "POST /API/V08/GetPaymentStatus HTTP/1.1" 200 159
+14:55:25,631 urllib3.connectionpool DEBUG Starting new HTTPS connection (1): sandprod-pos2.mobilepay.dk:443
+14:55:25,832 urllib3.connectionpool DEBUG https://sandprod-pos2.mobilepay.dk:443 "POST /API/V08/GetPaymentStatus HTTP/1.1" 200 159
+14:55:26,857 urllib3.connectionpool DEBUG Starting new HTTPS connection (1): sandprod-pos2.mobilepay.dk:443
+14:55:27,55 urllib3.connectionpool DEBUG https://sandprod-pos2.mobilepay.dk:443 "POST /API/V08/GetPaymentStatus HTTP/1.1" 200 185
+14:55:28,63 urllib3.connectionpool DEBUG Starting new HTTPS connection (1): sandprod-pos2.mobilepay.dk:443
+14:55:28,300 urllib3.connectionpool DEBUG https://sandprod-pos2.mobilepay.dk:443 "POST /API/V08/GetPaymentStatus HTTP/1.1" 200 217
+14:55:36,591 pymodbus.transaction DEBUG Current transaction state - TRANSACTION_COMPLETE
+14:55:36,592 pymodbus.transaction DEBUG Running transaction 3
+14:55:36,592 pymodbus.transaction DEBUG SEND: 0x0 0x3 0x0 0x0 0x0 0x6 0x0 0x1 0x0 0x0 0x0 0x8
+14:55:36,592 pymodbus.client.sync DEBUG New Transaction state 'SENDING'
+14:55:36,592 pymodbus.transaction DEBUG Changing transaction state from 'SENDING' to 'WAITING FOR REPLY'
+14:55:36,593 pymodbus.transaction DEBUG Changing transaction state from 'WAITING FOR REPLY' to 'PROCESSING REPLY'
+14:55:36,593 pymodbus.transaction DEBUG RECV: 0x0 0x3 0x0 0x0 0x0 0x4 0x0 0x1 0x1 0xff
+14:55:36,594 pymodbus.framer.socket_framer DEBUG Processing: 0x0 0x3 0x0 0x0 0x0 0x4 0x0 0x1 0x1 0xff
+14:55:36,594 pymodbus.factory DEBUG Factory Response[ReadCoilsResponse: 1]
+14:55:36,594 pymodbus.transaction DEBUG Adding transaction 3
+14:55:36,594 pymodbus.transaction DEBUG Getting transaction 3
+14:55:36,595 pymodbus.transaction DEBUG Changing transaction state from 'PROCESSING REPLY' to 'TRANSACTION_COMPLETE'
+14:55:36,595 root INFO Vending stat bit True
+14:55:36,601 urllib3.connectionpool DEBUG Starting new HTTPS connection (1): sandprod-pos2.mobilepay.dk:443
+14:55:36,835 urllib3.connectionpool DEBUG https://sandprod-pos2.mobilepay.dk:443 "POST /API/V08/PaymentStart HTTP/1.1" 200 64
+14:55:36,856 urllib3.connectionpool DEBUG Starting new HTTPS connection (1): sandprod-pos2.mobilepay.dk:443
+14:55:37,52 urllib3.connectionpool DEBUG https://sandprod-pos2.mobilepay.dk:443 "POST /API/V08/GetPaymentStatus HTTP/1.1" 200 158
+14:55:38,76 urllib3.connectionpool DEBUG Starting new HTTPS connection (1): sandprod-pos2.mobilepay.dk:443
+14:55:38,283 urllib3.connectionpool DEBUG https://sandprod-pos2.mobilepay.dk:443 "POST /API/V08/GetPaymentStatus HTTP/1.1" 200 158
+14:55:39,292 urllib3.connectionpool DEBUG Starting new HTTPS connection (1): sandprod-pos2.mobilepay.dk:443
+14:55:39,488 urllib3.connectionpool DEBUG https://sandprod-pos2.mobilepay.dk:443 "POST /API/V08/GetPaymentStatus HTTP/1.1" 200 158
+14:55:40,512 urllib3.connectionpool DEBUG Starting new HTTPS connection (1): sandprod-pos2.mobilepay.dk:443
+14:55:40,707 urllib3.connectionpool DEBUG https://sandprod-pos2.mobilepay.dk:443 "POST /API/V08/GetPaymentStatus HTTP/1.1" 200 158
+14:55:41,727 urllib3.connectionpool DEBUG Starting new HTTPS connection (1): sandprod-pos2.mobilepay.dk:443
+14:55:41,929 urllib3.connectionpool DEBUG https://sandprod-pos2.mobilepay.dk:443 "POST /API/V08/GetPaymentStatus HTTP/1.1" 200 158
+14:55:42,952 urllib3.connectionpool DEBUG Starting new HTTPS connection (1): sandprod-pos2.mobilepay.dk:443
+14:55:43,150 urllib3.connectionpool DEBUG https://sandprod-pos2.mobilepay.dk:443 "POST /API/V08/GetPaymentStatus HTTP/1.1" 200 158
+14:55:44,173 urllib3.connectionpool DEBUG Starting new HTTPS connection (1): sandprod-pos2.mobilepay.dk:443
+14:55:44,379 urllib3.connectionpool DEBUG https://sandprod-pos2.mobilepay.dk:443 "POST /API/V08/GetPaymentStatus HTTP/1.1" 200 158
+14:55:45,403 urllib3.connectionpool DEBUG Starting new HTTPS connection (1): sandprod-pos2.mobilepay.dk:443
+14:55:45,601 urllib3.connectionpool DEBUG https://sandprod-pos2.mobilepay.dk:443 "POST /API/V08/GetPaymentStatus HTTP/1.1" 200 158
+14:55:46,611 urllib3.connectionpool DEBUG Starting new HTTPS connection (1): sandprod-pos2.mobilepay.dk:443
+14:55:46,804 urllib3.connectionpool DEBUG https://sandprod-pos2.mobilepay.dk:443 "POST /API/V08/GetPaymentStatus HTTP/1.1" 200 185
+14:55:47,822 urllib3.connectionpool DEBUG Starting new HTTPS connection (1): sandprod-pos2.mobilepay.dk:443
+14:55:48,28 urllib3.connectionpool DEBUG https://sandprod-pos2.mobilepay.dk:443 "POST /API/V08/GetPaymentStatus HTTP/1.1" 200 214
+14:58:55,744 pymodbus.transaction DEBUG Current transaction state - TRANSACTION_COMPLETE
+14:58:55,744 pymodbus.transaction DEBUG Running transaction 4
+14:58:55,744 pymodbus.transaction DEBUG SEND: 0x0 0x4 0x0 0x0 0x0 0x6 0x0 0x1 0x0 0x0 0x0 0x8
+14:58:55,744 pymodbus.client.sync DEBUG New Transaction state 'SENDING'
+14:58:55,744 pymodbus.transaction DEBUG Changing transaction state from 'SENDING' to 'WAITING FOR REPLY'
+14:58:55,746 pymodbus.transaction DEBUG Changing transaction state from 'WAITING FOR REPLY' to 'PROCESSING REPLY'
+14:58:55,747 pymodbus.transaction DEBUG RECV: 0x0 0x4 0x0 0x0 0x0 0x4 0x0 0x1 0x1 0xff
+14:58:55,747 pymodbus.framer.socket_framer DEBUG Processing: 0x0 0x4 0x0 0x0 0x0 0x4 0x0 0x1 0x1 0xff
+14:58:55,747 pymodbus.factory DEBUG Factory Response[ReadCoilsResponse: 1]
+14:58:55,747 pymodbus.transaction DEBUG Adding transaction 4
+14:58:55,747 pymodbus.transaction DEBUG Getting transaction 4
+14:58:55,747 pymodbus.transaction DEBUG Changing transaction state from 'PROCESSING REPLY' to 'TRANSACTION_COMPLETE'
+14:58:57,147 pymodbus.transaction DEBUG Current transaction state - TRANSACTION_COMPLETE
+14:58:57,147 pymodbus.transaction DEBUG Running transaction 5
+14:58:57,147 pymodbus.transaction DEBUG SEND: 0x0 0x5 0x0 0x0 0x0 0x6 0x0 0x1 0x0 0x0 0x0 0x8
+14:58:57,147 pymodbus.client.sync DEBUG New Transaction state 'SENDING'
+14:58:57,147 pymodbus.transaction DEBUG Changing transaction state from 'SENDING' to 'WAITING FOR REPLY'
+14:58:57,149 pymodbus.transaction DEBUG Changing transaction state from 'WAITING FOR REPLY' to 'PROCESSING REPLY'
+14:58:57,149 pymodbus.transaction DEBUG RECV: 0x0 0x5 0x0 0x0 0x0 0x4 0x0 0x1 0x1 0xff
+14:58:57,149 pymodbus.framer.socket_framer DEBUG Processing: 0x0 0x5 0x0 0x0 0x0 0x4 0x0 0x1 0x1 0xff
+14:58:57,149 pymodbus.factory DEBUG Factory Response[ReadCoilsResponse: 1]
+14:58:57,149 pymodbus.transaction DEBUG Adding transaction 5
+14:58:57,149 pymodbus.transaction DEBUG Getting transaction 5
+14:58:57,149 pymodbus.transaction DEBUG Changing transaction state from 'PROCESSING REPLY' to 'TRANSACTION_COMPLETE'
+14:59:34,435 pymodbus.transaction DEBUG Current transaction state - TRANSACTION_COMPLETE
+14:59:34,435 pymodbus.transaction DEBUG Running transaction 6
+14:59:34,435 pymodbus.transaction DEBUG SEND: 0x0 0x6 0x0 0x0 0x0 0x6 0x0 0x1 0x0 0x0 0x0 0x8
+14:59:34,435 pymodbus.client.sync DEBUG New Transaction state 'SENDING'
+14:59:34,435 pymodbus.transaction DEBUG Changing transaction state from 'SENDING' to 'WAITING FOR REPLY'
+14:59:34,437 pymodbus.transaction DEBUG Changing transaction state from 'WAITING FOR REPLY' to 'PROCESSING REPLY'
+14:59:34,437 pymodbus.transaction DEBUG RECV: 0x0 0x6 0x0 0x0 0x0 0x4 0x0 0x1 0x1 0xff
+14:59:34,437 pymodbus.framer.socket_framer DEBUG Processing: 0x0 0x6 0x0 0x0 0x0 0x4 0x0 0x1 0x1 0xff
+14:59:34,438 pymodbus.factory DEBUG Factory Response[ReadCoilsResponse: 1]
+14:59:34,438 pymodbus.transaction DEBUG Adding transaction 6
+14:59:34,438 pymodbus.transaction DEBUG Getting transaction 6
+14:59:34,438 pymodbus.transaction DEBUG Changing transaction state from 'PROCESSING REPLY' to 'TRANSACTION_COMPLETE'
+14:59:37,242 pymodbus.transaction DEBUG Current transaction state - TRANSACTION_COMPLETE
+14:59:37,242 pymodbus.transaction DEBUG Running transaction 7
+14:59:37,242 pymodbus.transaction DEBUG SEND: 0x0 0x7 0x0 0x0 0x0 0x6 0x0 0x1 0x0 0x0 0x0 0x8
+14:59:37,243 pymodbus.client.sync DEBUG New Transaction state 'SENDING'
+14:59:37,243 pymodbus.transaction DEBUG Changing transaction state from 'SENDING' to 'WAITING FOR REPLY'
+14:59:37,244 pymodbus.transaction DEBUG Changing transaction state from 'WAITING FOR REPLY' to 'PROCESSING REPLY'
+14:59:37,244 pymodbus.transaction DEBUG RECV: 0x0 0x7 0x0 0x0 0x0 0x4 0x0 0x1 0x1 0xff
+14:59:37,244 pymodbus.framer.socket_framer DEBUG Processing: 0x0 0x7 0x0 0x0 0x0 0x4 0x0 0x1 0x1 0xff
+14:59:37,244 pymodbus.factory DEBUG Factory Response[ReadCoilsResponse: 1]
+14:59:37,244 pymodbus.transaction DEBUG Adding transaction 7
+14:59:37,245 pymodbus.transaction DEBUG Getting transaction 7
+14:59:37,245 pymodbus.transaction DEBUG Changing transaction state from 'PROCESSING REPLY' to 'TRANSACTION_COMPLETE'
+15:00:30,105 pymodbus.transaction DEBUG Current transaction state - TRANSACTION_COMPLETE
+15:00:30,105 pymodbus.transaction DEBUG Running transaction 8
+15:00:30,106 pymodbus.transaction DEBUG SEND: 0x0 0x8 0x0 0x0 0x0 0x6 0x0 0x1 0x0 0x0 0x0 0x8
+15:00:30,106 pymodbus.client.sync DEBUG New Transaction state 'SENDING'
+15:00:30,106 pymodbus.transaction DEBUG Changing transaction state from 'SENDING' to 'WAITING FOR REPLY'
+15:00:30,108 pymodbus.transaction DEBUG Changing transaction state from 'WAITING FOR REPLY' to 'PROCESSING REPLY'
+15:00:30,108 pymodbus.transaction DEBUG RECV: 0x0 0x8 0x0 0x0 0x0 0x4 0x0 0x1 0x1 0xff
+15:00:30,108 pymodbus.framer.socket_framer DEBUG Processing: 0x0 0x8 0x0 0x0 0x0 0x4 0x0 0x1 0x1 0xff
+15:00:30,108 pymodbus.factory DEBUG Factory Response[ReadCoilsResponse: 1]
+15:00:30,109 pymodbus.transaction DEBUG Adding transaction 8
+15:00:30,109 pymodbus.transaction DEBUG Getting transaction 8
+15:00:30,109 pymodbus.transaction DEBUG Changing transaction state from 'PROCESSING REPLY' to 'TRANSACTION_COMPLETE'
+15:00:59,502 pymodbus.transaction DEBUG Current transaction state - TRANSACTION_COMPLETE
+15:00:59,502 pymodbus.transaction DEBUG Running transaction 9
+15:00:59,502 pymodbus.transaction DEBUG SEND: 0x0 0x9 0x0 0x0 0x0 0x6 0x0 0x5 0x0 0x11 0xff 0x0
+15:00:59,503 pymodbus.client.sync DEBUG New Transaction state 'SENDING'
+15:00:59,503 pymodbus.transaction DEBUG Changing transaction state from 'SENDING' to 'WAITING FOR REPLY'
+15:00:59,504 pymodbus.transaction DEBUG Changing transaction state from 'WAITING FOR REPLY' to 'PROCESSING REPLY'
+15:00:59,504 pymodbus.transaction DEBUG RECV: 0x0 0x9 0x0 0x0 0x0 0x6 0x0 0x5 0x0 0x11 0xff 0x0
+15:00:59,504 pymodbus.framer.socket_framer DEBUG Processing: 0x0 0x9 0x0 0x0 0x0 0x6 0x0 0x5 0x0 0x11 0xff 0x0
+15:00:59,504 pymodbus.factory DEBUG Factory Response[WriteSingleCoilResponse: 5]
+15:00:59,504 pymodbus.transaction DEBUG Adding transaction 9
+15:00:59,504 pymodbus.transaction DEBUG Getting transaction 9
+15:00:59,505 pymodbus.transaction DEBUG Changing transaction state from 'PROCESSING REPLY' to 'TRANSACTION_COMPLETE'
+15:01:09,914 pymodbus.transaction DEBUG Current transaction state - TRANSACTION_COMPLETE
+15:01:09,914 pymodbus.transaction DEBUG Running transaction 10
+15:01:09,914 pymodbus.transaction DEBUG SEND: 0x0 0xa 0x0 0x0 0x0 0x6 0x0 0x1 0x0 0x0 0x0 0x8
+15:01:09,914 pymodbus.client.sync DEBUG New Transaction state 'SENDING'
+15:01:09,914 pymodbus.transaction DEBUG Changing transaction state from 'SENDING' to 'WAITING FOR REPLY'
+15:01:09,916 pymodbus.transaction DEBUG Changing transaction state from 'WAITING FOR REPLY' to 'PROCESSING REPLY'
+15:01:09,916 pymodbus.transaction DEBUG RECV: 0x0 0xa 0x0 0x0 0x0 0x4 0x0 0x1 0x1 0xff
+15:01:09,916 pymodbus.framer.socket_framer DEBUG Processing: 0x0 0xa 0x0 0x0 0x0 0x4 0x0 0x1 0x1 0xff
+15:01:09,916 pymodbus.factory DEBUG Factory Response[ReadCoilsResponse: 1]
+15:01:09,916 pymodbus.transaction DEBUG Adding transaction 10
+15:01:09,916 pymodbus.transaction DEBUG Getting transaction 10
+15:01:09,916 pymodbus.transaction DEBUG Changing transaction state from 'PROCESSING REPLY' to 'TRANSACTION_COMPLETE'
+15:01:12,632 pymodbus.transaction DEBUG Current transaction state - TRANSACTION_COMPLETE
+15:01:12,632 pymodbus.transaction DEBUG Running transaction 11
+15:01:12,632 pymodbus.transaction DEBUG SEND: 0x0 0xb 0x0 0x0 0x0 0x6 0x0 0x1 0x0 0x0 0x0 0x8
+15:01:12,632 pymodbus.client.sync DEBUG New Transaction state 'SENDING'
+15:01:12,632 pymodbus.transaction DEBUG Changing transaction state from 'SENDING' to 'WAITING FOR REPLY'
+15:01:12,633 pymodbus.transaction DEBUG Changing transaction state from 'WAITING FOR REPLY' to 'PROCESSING REPLY'
+15:01:12,633 pymodbus.transaction DEBUG RECV: 0x0 0xb 0x0 0x0 0x0 0x4 0x0 0x1 0x1 0xff
+15:01:12,634 pymodbus.framer.socket_framer DEBUG Processing: 0x0 0xb 0x0 0x0 0x0 0x4 0x0 0x1 0x1 0xff
+15:01:12,634 pymodbus.factory DEBUG Factory Response[ReadCoilsResponse: 1]
+15:01:12,634 pymodbus.transaction DEBUG Adding transaction 11
+15:01:12,634 pymodbus.transaction DEBUG Getting transaction 11
+15:01:12,634 pymodbus.transaction DEBUG Changing transaction state from 'PROCESSING REPLY' to 'TRANSACTION_COMPLETE'
+15:04:29,816 pymodbus.transaction DEBUG Current transaction state - TRANSACTION_COMPLETE
+15:04:29,816 pymodbus.transaction DEBUG Running transaction 12
+15:04:29,817 pymodbus.transaction DEBUG SEND: 0x0 0xc 0x0 0x0 0x0 0x6 0x0 0x1 0x0 0x0 0x0 0x8
+15:04:29,817 pymodbus.client.sync DEBUG New Transaction state 'SENDING'
+15:04:29,817 pymodbus.transaction DEBUG Changing transaction state from 'SENDING' to 'WAITING FOR REPLY'
+15:04:29,818 pymodbus.transaction DEBUG Changing transaction state from 'WAITING FOR REPLY' to 'PROCESSING REPLY'
+15:04:29,818 pymodbus.transaction DEBUG RECV: 0x0 0xc 0x0 0x0 0x0 0x4 0x0 0x1 0x1 0xff
+15:04:29,818 pymodbus.framer.socket_framer DEBUG Processing: 0x0 0xc 0x0 0x0 0x0 0x4 0x0 0x1 0x1 0xff
+15:04:29,818 pymodbus.factory DEBUG Factory Response[ReadCoilsResponse: 1]
+15:04:29,819 pymodbus.transaction DEBUG Adding transaction 12
+15:04:29,819 pymodbus.transaction DEBUG Getting transaction 12
+15:04:29,819 pymodbus.transaction DEBUG Changing transaction state from 'PROCESSING REPLY' to 'TRANSACTION_COMPLETE'
+15:04:31,844 pymodbus.transaction DEBUG Current transaction state - TRANSACTION_COMPLETE
+15:04:31,844 pymodbus.transaction DEBUG Running transaction 13
+15:04:31,844 pymodbus.transaction DEBUG SEND: 0x0 0xd 0x0 0x0 0x0 0x6 0x0 0x1 0x0 0x0 0x0 0x8
+15:04:31,844 pymodbus.client.sync DEBUG New Transaction state 'SENDING'
+15:04:31,844 pymodbus.transaction DEBUG Changing transaction state from 'SENDING' to 'WAITING FOR REPLY'
+15:04:31,845 pymodbus.transaction DEBUG Changing transaction state from 'WAITING FOR REPLY' to 'PROCESSING REPLY'
+15:04:31,846 pymodbus.transaction DEBUG RECV: 0x0 0xd 0x0 0x0 0x0 0x4 0x0 0x1 0x1 0xff
+15:04:31,846 pymodbus.framer.socket_framer DEBUG Processing: 0x0 0xd 0x0 0x0 0x0 0x4 0x0 0x1 0x1 0xff
+15:04:31,846 pymodbus.factory DEBUG Factory Response[ReadCoilsResponse: 1]
+15:04:31,846 pymodbus.transaction DEBUG Adding transaction 13
+15:04:31,846 pymodbus.transaction DEBUG Getting transaction 13
+15:04:31,846 pymodbus.transaction DEBUG Changing transaction state from 'PROCESSING REPLY' to 'TRANSACTION_COMPLETE'
+15:05:12,444 pymodbus.transaction DEBUG Current transaction state - TRANSACTION_COMPLETE
+15:05:12,444 pymodbus.transaction DEBUG Running transaction 14
+15:05:12,444 pymodbus.transaction DEBUG SEND: 0x0 0xe 0x0 0x0 0x0 0x6 0x0 0x1 0x0 0x0 0x0 0x8
+15:05:12,445 pymodbus.client.sync DEBUG New Transaction state 'SENDING'
+15:05:12,445 pymodbus.transaction DEBUG Changing transaction state from 'SENDING' to 'WAITING FOR REPLY'
+15:05:12,446 pymodbus.transaction DEBUG Changing transaction state from 'WAITING FOR REPLY' to 'PROCESSING REPLY'
+15:05:12,446 pymodbus.transaction DEBUG RECV: 0x0 0xe 0x0 0x0 0x0 0x4 0x0 0x1 0x1 0xfd
+15:05:12,446 pymodbus.framer.socket_framer DEBUG Processing: 0x0 0xe 0x0 0x0 0x0 0x4 0x0 0x1 0x1 0xfd
+15:05:12,446 pymodbus.factory DEBUG Factory Response[ReadCoilsResponse: 1]
+15:05:12,447 pymodbus.transaction DEBUG Adding transaction 14
+15:05:12,447 pymodbus.transaction DEBUG Getting transaction 14
+15:05:12,447 pymodbus.transaction DEBUG Changing transaction state from 'PROCESSING REPLY' to 'TRANSACTION_COMPLETE'
+15:05:15,151 pymodbus.transaction DEBUG Current transaction state - TRANSACTION_COMPLETE
+15:05:15,151 pymodbus.transaction DEBUG Running transaction 15
+15:05:15,151 pymodbus.transaction DEBUG SEND: 0x0 0xf 0x0 0x0 0x0 0x6 0x0 0x1 0x0 0x0 0x0 0x8
+15:05:15,152 pymodbus.client.sync DEBUG New Transaction state 'SENDING'
+15:05:15,152 pymodbus.transaction DEBUG Changing transaction state from 'SENDING' to 'WAITING FOR REPLY'
+15:05:15,153 pymodbus.transaction DEBUG Changing transaction state from 'WAITING FOR REPLY' to 'PROCESSING REPLY'
+15:05:15,153 pymodbus.transaction DEBUG RECV: 0x0 0xf 0x0 0x0 0x0 0x4 0x0 0x1 0x1 0xfd
+15:05:15,153 pymodbus.framer.socket_framer DEBUG Processing: 0x0 0xf 0x0 0x0 0x0 0x4 0x0 0x1 0x1 0xfd
+15:05:15,153 pymodbus.factory DEBUG Factory Response[ReadCoilsResponse: 1]
+15:05:15,154 pymodbus.transaction DEBUG Adding transaction 15
+15:05:15,154 pymodbus.transaction DEBUG Getting transaction 15
+15:05:15,154 pymodbus.transaction DEBUG Changing transaction state from 'PROCESSING REPLY' to 'TRANSACTION_COMPLETE'
+15:05:16,271 pymodbus.transaction DEBUG Current transaction state - TRANSACTION_COMPLETE
+15:05:16,271 pymodbus.transaction DEBUG Running transaction 16
+15:05:16,271 pymodbus.transaction DEBUG SEND: 0x0 0x10 0x0 0x0 0x0 0x6 0x0 0x1 0x0 0x0 0x0 0x8
+15:05:16,272 pymodbus.client.sync DEBUG New Transaction state 'SENDING'
+15:05:16,272 pymodbus.transaction DEBUG Changing transaction state from 'SENDING' to 'WAITING FOR REPLY'
+15:05:16,273 pymodbus.transaction DEBUG Changing transaction state from 'WAITING FOR REPLY' to 'PROCESSING REPLY'
+15:05:16,273 pymodbus.transaction DEBUG RECV: 0x0 0x10 0x0 0x0 0x0 0x4 0x0 0x1 0x1 0xfd
+15:05:16,273 pymodbus.framer.socket_framer DEBUG Processing: 0x0 0x10 0x0 0x0 0x0 0x4 0x0 0x1 0x1 0xfd
+15:05:16,274 pymodbus.factory DEBUG Factory Response[ReadCoilsResponse: 1]
+15:05:16,274 pymodbus.transaction DEBUG Adding transaction 16
+15:05:16,274 pymodbus.transaction DEBUG Getting transaction 16
+15:05:16,274 pymodbus.transaction DEBUG Changing transaction state from 'PROCESSING REPLY' to 'TRANSACTION_COMPLETE'
+15:05:16,844 pymodbus.transaction DEBUG Current transaction state - TRANSACTION_COMPLETE
+15:05:16,844 pymodbus.transaction DEBUG Running transaction 17
+15:05:16,844 pymodbus.transaction DEBUG SEND: 0x0 0x11 0x0 0x0 0x0 0x6 0x0 0x1 0x0 0x0 0x0 0x8
+15:05:16,844 pymodbus.client.sync DEBUG New Transaction state 'SENDING'
+15:05:16,844 pymodbus.transaction DEBUG Changing transaction state from 'SENDING' to 'WAITING FOR REPLY'
+15:05:16,845 pymodbus.transaction DEBUG Changing transaction state from 'WAITING FOR REPLY' to 'PROCESSING REPLY'
+15:05:16,845 pymodbus.transaction DEBUG RECV: 0x0 0x11 0x0 0x0 0x0 0x4 0x0 0x1 0x1 0xfd
+15:05:16,845 pymodbus.framer.socket_framer DEBUG Processing: 0x0 0x11 0x0 0x0 0x0 0x4 0x0 0x1 0x1 0xfd
+15:05:16,845 pymodbus.factory DEBUG Factory Response[ReadCoilsResponse: 1]
+15:05:16,846 pymodbus.transaction DEBUG Adding transaction 17
+15:05:16,846 pymodbus.transaction DEBUG Getting transaction 17
+15:05:16,846 pymodbus.transaction DEBUG Changing transaction state from 'PROCESSING REPLY' to 'TRANSACTION_COMPLETE'
+15:05:17,310 pymodbus.transaction DEBUG Current transaction state - TRANSACTION_COMPLETE
+15:05:17,310 pymodbus.transaction DEBUG Running transaction 18
+15:05:17,310 pymodbus.transaction DEBUG SEND: 0x0 0x12 0x0 0x0 0x0 0x6 0x0 0x1 0x0 0x0 0x0 0x8
+15:05:17,311 pymodbus.client.sync DEBUG New Transaction state 'SENDING'
+15:05:17,311 pymodbus.transaction DEBUG Changing transaction state from 'SENDING' to 'WAITING FOR REPLY'
+15:05:17,313 pymodbus.transaction DEBUG Changing transaction state from 'WAITING FOR REPLY' to 'PROCESSING REPLY'
+15:05:17,313 pymodbus.transaction DEBUG RECV: 0x0 0x12 0x0 0x0 0x0 0x4 0x0 0x1 0x1 0xfd
+15:05:17,313 pymodbus.framer.socket_framer DEBUG Processing: 0x0 0x12 0x0 0x0 0x0 0x4 0x0 0x1 0x1 0xfd
+15:05:17,313 pymodbus.factory DEBUG Factory Response[ReadCoilsResponse: 1]
+15:05:17,313 pymodbus.transaction DEBUG Adding transaction 18
+15:05:17,313 pymodbus.transaction DEBUG Getting transaction 18
+15:05:17,314 pymodbus.transaction DEBUG Changing transaction state from 'PROCESSING REPLY' to 'TRANSACTION_COMPLETE'
+15:05:20,907 pymodbus.transaction DEBUG Current transaction state - TRANSACTION_COMPLETE
+15:05:20,908 pymodbus.transaction DEBUG Running transaction 19
+15:05:20,909 pymodbus.transaction DEBUG SEND: 0x0 0x13 0x0 0x0 0x0 0x6 0x0 0x1 0x0 0x0 0x0 0x8
+15:05:20,911 pymodbus.client.sync DEBUG New Transaction state 'SENDING'
+15:05:20,912 pymodbus.transaction DEBUG Changing transaction state from 'SENDING' to 'WAITING FOR REPLY'
+15:05:20,914 pymodbus.transaction DEBUG Changing transaction state from 'WAITING FOR REPLY' to 'PROCESSING REPLY'
+15:05:20,916 pymodbus.transaction DEBUG RECV: 0x0 0x13 0x0 0x0 0x0 0x4 0x0 0x1 0x1 0xfd
+15:05:20,917 pymodbus.framer.socket_framer DEBUG Processing: 0x0 0x13 0x0 0x0 0x0 0x4 0x0 0x1 0x1 0xfd
+15:05:20,917 pymodbus.factory DEBUG Factory Response[ReadCoilsResponse: 1]
+15:05:20,919 pymodbus.transaction DEBUG Adding transaction 19
+15:05:20,919 pymodbus.transaction DEBUG Getting transaction 19
+15:05:20,919 pymodbus.transaction DEBUG Changing transaction state from 'PROCESSING REPLY' to 'TRANSACTION_COMPLETE'
+15:05:20,920 root INFO Vending stat bit False
+15:05:40,302 pymodbus.transaction DEBUG Current transaction state - TRANSACTION_COMPLETE
+15:05:40,303 pymodbus.transaction DEBUG Running transaction 20
+15:05:40,304 pymodbus.transaction DEBUG SEND: 0x0 0x14 0x0 0x0 0x0 0x6 0x0 0x1 0x0 0x0 0x0 0x8
+15:05:40,305 pymodbus.client.sync DEBUG New Transaction state 'SENDING'
+15:05:40,306 pymodbus.transaction DEBUG Changing transaction state from 'SENDING' to 'WAITING FOR REPLY'
+15:05:40,307 pymodbus.transaction DEBUG Changing transaction state from 'WAITING FOR REPLY' to 'PROCESSING REPLY'
+15:05:40,309 pymodbus.transaction DEBUG RECV: 0x0 0x14 0x0 0x0 0x0 0x4 0x0 0x1 0x1 0xfd
+15:05:40,309 pymodbus.framer.socket_framer DEBUG Processing: 0x0 0x14 0x0 0x0 0x0 0x4 0x0 0x1 0x1 0xfd
+15:05:40,310 pymodbus.factory DEBUG Factory Response[ReadCoilsResponse: 1]
+15:05:40,310 pymodbus.transaction DEBUG Adding transaction 20
+15:05:40,311 pymodbus.transaction DEBUG Getting transaction 20
+15:05:40,311 pymodbus.transaction DEBUG Changing transaction state from 'PROCESSING REPLY' to 'TRANSACTION_COMPLETE'
+15:05:40,312 root INFO Vending stat bit False
+15:05:46,341 pymodbus.transaction DEBUG Current transaction state - TRANSACTION_COMPLETE
+15:05:46,341 pymodbus.transaction DEBUG Running transaction 21
+15:05:46,341 pymodbus.transaction DEBUG SEND: 0x0 0x15 0x0 0x0 0x0 0x6 0x0 0x1 0x0 0x0 0x0 0x8
+15:05:46,341 pymodbus.client.sync DEBUG New Transaction state 'SENDING'
+15:05:46,342 pymodbus.transaction DEBUG Changing transaction state from 'SENDING' to 'WAITING FOR REPLY'
+15:05:46,343 pymodbus.transaction DEBUG Changing transaction state from 'WAITING FOR REPLY' to 'PROCESSING REPLY'
+15:05:46,343 pymodbus.transaction DEBUG RECV: 0x0 0x15 0x0 0x0 0x0 0x4 0x0 0x1 0x1 0xfd
+15:05:46,343 pymodbus.framer.socket_framer DEBUG Processing: 0x0 0x15 0x0 0x0 0x0 0x4 0x0 0x1 0x1 0xfd
+15:05:46,344 pymodbus.factory DEBUG Factory Response[ReadCoilsResponse: 1]
+15:05:46,344 pymodbus.transaction DEBUG Adding transaction 21
+15:05:46,344 pymodbus.transaction DEBUG Getting transaction 21
+15:05:46,344 pymodbus.transaction DEBUG Changing transaction state from 'PROCESSING REPLY' to 'TRANSACTION_COMPLETE'
+15:05:46,344 root INFO Vending stat bit False
+15:08:22,73 root INFO Running DinoPay
+15:08:22,73 root INFO Reading Setupfile
+15:08:22,197 root INFO WinInfoGeo Info Screen high: 800Screen width: 1280
+15:08:22,198 root INFO Connecting iomodule ip 192.168.1.200
+15:08:22,198 pymodbus.client.sync DEBUG New Transaction state 'SENDING'
+15:08:22,199 root ERROR No connection to ADAM on ip: 192.168.1.200
+15:08:22,199 root INFO Connecting status: False
+15:08:22,199 root INFO Connecting Mobile pay 
+15:08:22,199 root INFO RegisterPOS
+15:08:22,208 urllib3.connectionpool DEBUG Starting new HTTPS connection (1): sandprod-pos2.mobilepay.dk:443
+15:08:22,440 urllib3.connectionpool DEBUG https://sandprod-pos2.mobilepay.dk:443 "POST /API/V08/RegisterPoS HTTP/1.1" 200 68
+15:08:22,444 root INFO True
+15:08:22,444 root INFO AssignPos
+15:08:22,450 urllib3.connectionpool DEBUG Starting new HTTPS connection (1): sandprod-pos2.mobilepay.dk:443
+15:08:22,663 urllib3.connectionpool DEBUG https://sandprod-pos2.mobilepay.dk:443 "POST /API/V08/AssignPoSUnitIdToPos HTTP/1.1" 200 22
+15:08:22,670 root INFO True
+15:08:22,723 PIL.PngImagePlugin DEBUG STREAM b'IHDR' 16 13
+15:08:22,723 PIL.PngImagePlugin DEBUG STREAM b'gAMA' 41 4
+15:08:22,723 PIL.PngImagePlugin DEBUG STREAM b'pHYs' 57 9
+15:08:22,724 PIL.PngImagePlugin DEBUG STREAM b'tEXt' 78 24
+15:08:22,724 PIL.PngImagePlugin DEBUG STREAM b'IDAT' 114 12501
+15:08:22,736 PIL.PngImagePlugin DEBUG STREAM b'IHDR' 16 13
+15:08:22,736 PIL.PngImagePlugin DEBUG STREAM b'sRGB' 41 1
+15:08:22,736 PIL.PngImagePlugin DEBUG STREAM b'gAMA' 54 4
+15:08:22,737 PIL.PngImagePlugin DEBUG STREAM b'pHYs' 70 9
+15:08:22,737 PIL.PngImagePlugin DEBUG STREAM b'tEXt' 91 24
+15:08:22,737 PIL.PngImagePlugin DEBUG STREAM b'IDAT' 127 21259
+15:08:22,760 PIL.PngImagePlugin DEBUG STREAM b'IHDR' 16 13
+15:08:22,761 PIL.PngImagePlugin DEBUG STREAM b'gAMA' 41 4
+15:08:22,761 PIL.PngImagePlugin DEBUG STREAM b'pHYs' 57 9
+15:08:22,761 PIL.PngImagePlugin DEBUG STREAM b'tEXt' 78 24
+15:08:22,761 PIL.PngImagePlugin DEBUG STREAM b'IDAT' 114 9340
+15:08:22,763 PIL.PngImagePlugin DEBUG STREAM b'IHDR' 16 13
+15:08:22,764 PIL.PngImagePlugin DEBUG STREAM b'gAMA' 41 4
+15:08:22,764 PIL.PngImagePlugin DEBUG STREAM b'pHYs' 57 9
+15:08:22,764 PIL.PngImagePlugin DEBUG STREAM b'tEXt' 78 24
+15:08:22,764 PIL.PngImagePlugin DEBUG STREAM b'IDAT' 114 10006
+15:08:22,766 PIL.PngImagePlugin DEBUG STREAM b'IHDR' 16 13
+15:08:22,767 PIL.PngImagePlugin DEBUG STREAM b'gAMA' 41 4
+15:08:22,767 PIL.PngImagePlugin DEBUG STREAM b'pHYs' 57 9
+15:08:22,767 PIL.PngImagePlugin DEBUG STREAM b'tEXt' 78 24
+15:08:22,767 PIL.PngImagePlugin DEBUG STREAM b'IDAT' 114 10207
+15:08:22,776 PIL.PngImagePlugin DEBUG STREAM b'IHDR' 16 13
+15:08:22,776 PIL.PngImagePlugin DEBUG STREAM b'gAMA' 41 4
+15:08:22,776 PIL.PngImagePlugin DEBUG STREAM b'pHYs' 57 9
+15:08:22,776 PIL.PngImagePlugin DEBUG STREAM b'tEXt' 78 24
+15:08:22,776 PIL.PngImagePlugin DEBUG STREAM b'IDAT' 114 65422
+15:08:22,792 PIL.PngImagePlugin DEBUG STREAM b'IHDR' 16 13
+15:08:22,792 PIL.PngImagePlugin DEBUG STREAM b'gAMA' 41 4
+15:08:22,792 PIL.PngImagePlugin DEBUG STREAM b'pHYs' 57 9
+15:08:22,792 PIL.PngImagePlugin DEBUG STREAM b'tEXt' 78 24
+15:08:22,792 PIL.PngImagePlugin DEBUG STREAM b'IDAT' 114 9647
+15:08:22,798 PIL.PngImagePlugin DEBUG STREAM b'IHDR' 16 13
+15:08:22,798 PIL.PngImagePlugin DEBUG STREAM b'gAMA' 41 4
+15:08:22,798 PIL.PngImagePlugin DEBUG STREAM b'pHYs' 57 9
+15:08:22,799 PIL.PngImagePlugin DEBUG STREAM b'tEXt' 78 24
+15:08:22,799 PIL.PngImagePlugin DEBUG STREAM b'IDAT' 114 65422
+15:08:22,808 PIL.PngImagePlugin DEBUG STREAM b'IHDR' 16 13
+15:08:22,808 PIL.PngImagePlugin DEBUG STREAM b'gAMA' 41 4
+15:08:22,809 PIL.PngImagePlugin DEBUG STREAM b'pHYs' 57 9
+15:08:22,809 PIL.PngImagePlugin DEBUG STREAM b'tEXt' 78 24
+15:08:22,809 PIL.PngImagePlugin DEBUG STREAM b'IDAT' 114 9647
+15:08:22,813 PIL.PngImagePlugin DEBUG STREAM b'IHDR' 16 13
+15:08:22,813 PIL.PngImagePlugin DEBUG STREAM b'gAMA' 41 4
+15:08:22,813 PIL.PngImagePlugin DEBUG STREAM b'pHYs' 57 9
+15:08:22,813 PIL.PngImagePlugin DEBUG STREAM b'tEXt' 78 24
+15:08:22,814 PIL.PngImagePlugin DEBUG STREAM b'IDAT' 114 65422
+15:08:22,820 PIL.PngImagePlugin DEBUG STREAM b'IHDR' 16 13
+15:08:22,820 PIL.PngImagePlugin DEBUG STREAM b'gAMA' 41 4
+15:08:22,820 PIL.PngImagePlugin DEBUG STREAM b'pHYs' 57 9
+15:08:22,820 PIL.PngImagePlugin DEBUG STREAM b'tEXt' 78 24
+15:08:22,821 PIL.PngImagePlugin DEBUG STREAM b'IDAT' 114 9647
+15:08:22,824 PIL.PngImagePlugin DEBUG STREAM b'IHDR' 16 13
+15:08:22,824 PIL.PngImagePlugin DEBUG STREAM b'gAMA' 41 4
+15:08:22,825 PIL.PngImagePlugin DEBUG STREAM b'pHYs' 57 9
+15:08:22,825 PIL.PngImagePlugin DEBUG STREAM b'tEXt' 78 24
+15:08:22,825 PIL.PngImagePlugin DEBUG STREAM b'IDAT' 114 50056
+15:08:23,612 pymodbus.transaction DEBUG Current transaction state - SENDING
+15:08:23,612 pymodbus.transaction DEBUG Running transaction 1
+15:08:23,613 pymodbus.transaction DEBUG SEND: 0x0 0x1 0x0 0x0 0x0 0x6 0x0 0x1 0x0 0x0 0x0 0x8
+15:08:23,613 pymodbus.client.sync DEBUG New Transaction state 'SENDING'
+15:08:23,613 pymodbus.transaction DEBUG Changing transaction state from 'SENDING' to 'WAITING FOR REPLY'
+15:08:23,615 pymodbus.transaction DEBUG Changing transaction state from 'WAITING FOR REPLY' to 'PROCESSING REPLY'
+15:08:23,615 pymodbus.transaction DEBUG RECV: 0x0 0x1 0x0 0x0 0x0 0x4 0x0 0x1 0x1 0xfd
+15:08:23,615 pymodbus.framer.socket_framer DEBUG Processing: 0x0 0x1 0x0 0x0 0x0 0x4 0x0 0x1 0x1 0xfd
+15:08:23,615 pymodbus.factory DEBUG Factory Response[ReadCoilsResponse: 1]
+15:08:23,615 pymodbus.transaction DEBUG Adding transaction 1
+15:08:23,616 pymodbus.transaction DEBUG Getting transaction 1
+15:08:23,616 pymodbus.transaction DEBUG Changing transaction state from 'PROCESSING REPLY' to 'TRANSACTION_COMPLETE'
+15:08:23,616 root INFO Vending stat bit False

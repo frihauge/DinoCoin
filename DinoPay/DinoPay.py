@@ -138,8 +138,7 @@ class AppMain(tk.Tk):
            if self.iomodulestat:
                self.iomodule.PulsePort(pulsecnt, self.pulseport, self.pulsetime_low, self.pulsetime_high)
            
-    def FrameTimeOut(self):
-        print("Frame Time out!")
+    def FrameTimeOut(self,state):
         self.show_frame("PayWithMobilePay")
                    
     def paymenttimeout(self):
@@ -161,7 +160,8 @@ class AppMain(tk.Tk):
         ## STart new payment
         if not self.readveningemptystatus():
             self.show_frame("VendingEmpty")
-            self.ft = Timer(5.0, self.FrameTimeOut) 
+            self.VendingEmpty = True
+            self.ft = Timer(5.0, self.FrameTimeOut,self.VendingEmpty) 
             self.ft.start()
             return False
         self.orderid = self.mp.getNewOrderId()
