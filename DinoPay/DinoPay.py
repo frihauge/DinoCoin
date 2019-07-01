@@ -278,6 +278,7 @@ class PayWithMobilePay(tk.Frame):
         str = 'Én polet = 1 kr. Poletter kan ikke veksles til kontanter.'
         label = tk.Label(fr2, text=str, font=ft, background=controller.background)
         label.pack(side="top", fill="y", pady=0)
+        
 class VendingEmpty(tk.Frame):
 
     def __init__(self, parent, controller):
@@ -308,17 +309,18 @@ class StartPayment(tk.Frame):
         label.image = render
         label.pack(pady=80)
         fr2=Frame(self,bg=controller.background)
-        fr2.pack(fill='x', side=tk.TOP, padx= 300)
+        fr2.pack(fill=X, side=tk.BOTTOM, padx= 0,expand=YES)
         ft = tkfont.Font(family='ApexSansMediumT', size=14, weight="bold")
         str = 'Én polet = 1 kr. Poletter kan ikke veksles til kontanter.'
-        label = tk.Label(fr2, text=str, font=ft, background=controller.background)
-        label.pack(side=tk.TOP, padx=0, pady=0)
-
         MPLogo = Image.open("img/MP_Logo2.png")
         MPLogo_render = ImageTk.PhotoImage(MPLogo)
-        label = tk.Label(self, image=MPLogo_render,text="",background=controller.background)
-        label.pack(side=tk.RIGHT, padx=40,pady=0)
+        label = tk.Label(fr2, image=MPLogo_render,text="",background=controller.background)
         label.image= MPLogo_render
+        label.pack(side=tk.RIGHT, padx=100,pady=0)
+        
+        label = tk.Label(fr2, text=str, font=ft, background=controller.background)
+        label.pack(side=tk.RIGHT, padx=0, pady=0)
+
 
         
 class PaymentFailed(tk.Frame):
