@@ -167,9 +167,10 @@ class AppMain(tk.Tk):
         self.orderid = self.mp.getNewOrderId()
         self.mp.PaymentStart(self.orderid, amount)
         frame = self.frames[page_name]
+        frame.tkraise()
+        time.sleep(1)
         self.pt = Timer(60.0, self.paymenttimeout) 
         self.pt.start()
-        frame.tkraise()
         self.after(10, self.PaymentStatus)
                   
     def setupadammodule(self):

@@ -3,3 +3,8 @@
   (Driver info: chromedriver=74.0.3729.6 (255758eccf3d244491b8a1317aa76e1ce10d57e9-refs/branch-heads/3729@{#29}),platform=Windows NT 10.0.17763 x86_64)
 
 2019-06-26 18:37:50,586 [MainThread  ] [ERROR]  main exception:name 'monitornum' is not defined
+2019-07-02 11:10:15,501 [MainThread  ] [ERROR]  main exception:name 'timedelta' is not defined
+2019-07-02 11:16:02,896 [MainThread  ] [ERROR]  main exception:Message: chrome not reachable
+  (Session info: chrome=75.0.3770.100)
+  (Driver info: chromedriver=74.0.3729.6 (255758eccf3d244491b8a1317aa76e1ce10d57e9-refs/branch-heads/3729@{#29}),platform=Windows NT 10.0.17763 x86_64)
+

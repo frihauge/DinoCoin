@@ -5,6 +5,7 @@ import sys
 from datetime import datetime
 from threading import Timer
 from time import time, sleep
+from datetime import datetime,timedelta
 from sched import scheduler
 import os,io
 import chromeviewer
@@ -59,7 +60,7 @@ def DinoView():
 
 def ShowBrowser(appsettings):
     screen = appsettings.get("WebUrl","testdisplay")
-    winpos = appsettings.get("winpos","3000,0")
+    winpos = appsettings.get("winpos","4000,0")
     url = r"file:///C:/ProgramData/DinoCoin/DinoView/web/www.dinocoin.frihauge.dk/foyer/testdisplay/index.html"
     url = r"file://"+FilePath+"/web/"+ webhost +"/foyer/" + screen +"/index.html"
     print ("URL: for view " + url)

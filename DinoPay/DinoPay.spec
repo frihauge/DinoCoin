@@ -4,7 +4,7 @@ block_cipher = None
 
 
 a = Analysis(['DinoPay.py'],
-             pathex=['../Modules', 'C:\\workspace\\priv\\DinoCoin\\DinoPay'],
+             pathex=['../Modules', 'c:\\workspace\\priv\\DinoCoin\\DinoPay'],
              binaries=[],
              datas=[],
              hiddenimports=[],
