@@ -11,17 +11,19 @@ import pytz
 
 class mpif():
     
-    def __init__(self, key=None, LocationId=None, url=None, Name=None):
+    def __init__(self, key=None, MerchantId="POSDKDC307", LocationId=None, url=None, Name=None):
         self.logger = logging.getLogger('DinoGui')
 
         self.url = 'https://sandprod-pos2.mobilepay.dk/API/V08/RegisterPoS'
-        self.MerchantId = "POSDKDC307"
+        self.MerchantId = MerchantId
         # self.locationname = "Gartnervej 4"
         self.PosId = ""
         self.PoSUnitId = None
         self.key = key
         self.url = url
+        self.Name = Name
         self.LocationId = LocationId
+        self.Checkedin = False
         if Name is None:
             self.Name = "Gartnervej 4"
         if LocationId is None:
@@ -70,12 +72,32 @@ class mpif():
         r = requests.post(url=self.url + method, data=data_json, headers=header)
         return self.responsehandler(r, method)
 
+    def StartUpReg(self):
+        success, PosId = self.RegisterPoS()
+        if success:
+            plist = self.GetPosList()
+            PosIds = plist.get('Poses', None)
+            if PosIds is not None:
+                for i in PosIds:
+                    payments = i.get('Payment', None)
+                    if payments is not None:
+                        Status = payments.get('Status', None)
+                        OrderId = payments.get('OrderId', None)
+                        Amount = payments.get('Amount', 0)
+                        ##self.PaymentRefund(OrderId, Amount)
+                        self.PaymentCancel()
+        else:
+            # Get a new posid
+            self.PosId = None
+            success, PosId = self.RegisterPoS()
+        return success, PosId
+             
     def RegisterPoS(self):
         data = {"MerchantId": self.MerchantId, "LocationId":self.LocationId, "PosId": self.PosId, "Name": self.Name}
         success, response = self.reqResp('RegisterPoS', data)
         self.PosId = self.findparaminresponse(response, 'PoSId')
         print (self.PosId)
-        return success
+        return success, self.PosId
        
     def UnRegisterPoS(self, PosId=None):
         if PosId is not None:
@@ -118,18 +140,27 @@ class mpif():
         success, response = self.reqResp('PaymentCancel', data)
         return success
 
+    def PaymentRefund(self, orderid, AmountPay):
+        Amount = str.format("{:.2f}", AmountPay)
+        BulkRef = "MP Bulk Reference"
+        data = {"MerchantId": self.MerchantId, "LocationId":self.LocationId, "PoSId": self.PosId, "OrderId":orderid, "Amount":Amount, "BulkRef":BulkRef}
+        success, response = self.reqResp('PaymentRefund', data)
+
     def PaymentStart(self, orderid, AmountPay):
+        self.Checkedin = False
         Amount = str.format("{:.2f}", AmountPay)
         BulkRef = "MP Bulk Reference"
         HmacVal = self.GetHamacPayload(orderid, Amount, BulkRef)
         data = {"MerchantId": self.MerchantId, "LocationId":self.LocationId, "PoSId": self.PosId, "OrderId":orderid, "Amount":Amount, "BulkRef":BulkRef, "Action":"Start", "CustomerTokenCalc":0, "HMAC":HmacVal}
-        
         success, response = self.reqResp('PaymentStart', data)
+        return success, response
         
     def GetPaymentStatus(self, orderid):
         data = {"MerchantId": self.MerchantId, "LocationId":self.LocationId, "PoSId": self.PosId, "Orderid":orderid}
         success, response = self.reqResp('GetPaymentStatus', data)
-        return response   
+        if success and response['PaymentStatus'] == 20:
+            self.Checkedin = True
+        return response
 
     def getNewOrderId(self):
         tz = pytz.timezone('Europe/Berlin')
@@ -159,14 +190,17 @@ if __name__ == '__main__':
         m = mpif()
         m.getNewOrderId()
         m.RegisterPoS()
-        m.GetPosList()
-        m.AssignPoSUnitIdToPos("100000625947428 ")
-        m.PaymentStart("123A124310", 1023.43)
+        m.AssignPoSUnitIdToPos("100000625947428")
+        m.PaymentStart("123A124311", 0.11)
+        m.PaymentStart("123A124310", 0.11)
         PayDoneStatus = False
         while (not PayDoneStatus):
-            suscces = m.GetPaymentStatus("123A124310")
-            PayDoneStatus = True 
+            res = m.GetPaymentStatus("123A124310")
+            PayDoneStatus = res['PaymentStatus'] != 30
+        stat = m.PaymentRefund("123A124310", 0.11)
+        print (stat)
         polist = m.GetPosList()
+        print("PosList " + str(polist['Poses']))
         for i in polist['Poses']:
             m.UnRegisterPoS(i['PosId'])
     except Exception as e:

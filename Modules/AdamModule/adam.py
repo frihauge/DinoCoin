@@ -19,14 +19,17 @@ class adam6000():
         self.logger = log
         self.host = host
         self.port = 1025
+        self.client = None
 
     def connect(self):
         self.client = ModbusClient(self.host)
-        stat = self.readmodulename()
-        return stat
+        stat = self.client is not None
+        return stat, stat
 
     def PulsePort(self, pulsescnt, portnum, pulsetime_low, pulsetime_high):
         stat = False
+        if pulsescnt == 0:
+            return True
         for _ in range(pulsescnt):
             self.SetOutputbit(portnum, 1)
             time.sleep(pulsetime_high / 1000)
@@ -69,7 +72,8 @@ class adam6000():
     def readmodulename(self):
         stat = False
         try:
-            self.client.send('$01M\r')
+            sendstr ='$01M\r'
+            self.client.send(sendstr.encode())
             rawresult = self.client.receive()
             res = rawresult[4:4]
             stat = True
