@@ -63,18 +63,23 @@ class mpif():
               
     def reqResp(self, method, contentdata):
     # #parsing response
-        tNow = datetime.utcnow()
-        utcnow = int(tNow.timestamp())
-        data_json = json.dumps(contentdata, separators=(",", ":"))
-        hmcode = self.calchmac(method, data_json, utcnow)
-        auth = str.format("{} {}", hmcode, utcnow)
-        header = {'Content-Type': 'application/json', 'Authorization': auth}
-        r = requests.post(url=self.url + method, data=data_json, headers=header)
-        return self.responsehandler(r, method)
+        try:
+            tNow = datetime.utcnow()
+            utcnow = int(tNow.timestamp())
+            data_json = json.dumps(contentdata, separators=(",", ":"))
+            hmcode = self.calchmac(method, data_json, utcnow)
+            auth = str.format("{} {}", hmcode, utcnow)
+            header = {'Content-Type': 'application/json', 'Authorization': auth}
+            r = requests.post(url=self.url + method, data=data_json, headers=header)
+            return self.responsehandler(r, method)
+        except Exception as e:
+            print("No Internet: " + str(e))
+            return False, 0
+        
 
     def StartUpReg(self):
         success, PosId = self.RegisterPoS()
-        if success:
+        if success and False:
             plist = self.GetPosList()
             PosIds = plist.get('Poses', None)
             if PosIds is not None:
@@ -93,10 +98,16 @@ class mpif():
         return success, PosId
              
     def RegisterPoS(self):
-        data = {"MerchantId": self.MerchantId, "LocationId":self.LocationId, "PosId": self.PosId, "Name": self.Name}
-        success, response = self.reqResp('RegisterPoS', data)
-        self.PosId = self.findparaminresponse(response, 'PoSId')
-        print (self.PosId)
+        print("RegisterPoS")
+        try:
+            data = {"MerchantId": self.MerchantId, "LocationId":self.LocationId, "PosId": self.PosId, "Name": self.Name}
+            success, response = self.reqResp('RegisterPoS', data)
+            self.PosId = self.findparaminresponse(response, 'PoSId')
+            print (self.PosId)
+        except Exception as e:
+            print("Registerpos exception: " + str(e))
+            return False, 0
+        
         return success, self.PosId
        
     def UnRegisterPoS(self, PosId=None):
@@ -145,7 +156,8 @@ class mpif():
         BulkRef = "MP Bulk Reference"
         data = {"MerchantId": self.MerchantId, "LocationId":self.LocationId, "PoSId": self.PosId, "OrderId":orderid, "Amount":Amount, "BulkRef":BulkRef}
         success, response = self.reqResp('PaymentRefund', data)
-
+        return success
+    
     def PaymentStart(self, orderid, AmountPay):
         self.Checkedin = False
         Amount = str.format("{:.2f}", AmountPay)
@@ -160,7 +172,7 @@ class mpif():
         success, response = self.reqResp('GetPaymentStatus', data)
         if success and response['PaymentStatus'] == 20:
             self.Checkedin = True
-        return response
+        return success, response
 
     def getNewOrderId(self):
         tz = pytz.timezone('Europe/Berlin')
@@ -191,6 +203,7 @@ if __name__ == '__main__':
         m.getNewOrderId()
         m.RegisterPoS()
         m.AssignPoSUnitIdToPos("100000625947428")
+        m.UnAssignPoSUnitIdToPos()
         m.PaymentStart("123A124311", 0.11)
         m.PaymentStart("123A124310", 0.11)
         PayDoneStatus = False

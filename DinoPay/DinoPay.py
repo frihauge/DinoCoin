@@ -19,6 +19,10 @@ sys.path.append('../Modules')
 from AdamModule import adam
 from MobilePay import MobilePayImpl
 logname = "DinoPay.log"
+AppName ="DinoPay"
+AppVersion  ="1.0"
+
+
 logging.basicConfig(filename=logname,
                             filemode='a',
                             format='%(asctime)s,%(msecs)d %(name)s %(levelname)s %(message)s',
@@ -79,11 +83,9 @@ class AppMain(tk.Tk):
         self.container.grid_rowconfigure(0, weight=1)
         self.container.grid_columnconfigure(0, weight=1)
         self.container.config(background = self.background)
-        self.setupadammodule()   
-        self.setup_mp() 
         # self.setupcoinoktimer()
         self.frames = {}
-        for F in (StartPage, PayWithMobilePay, StartPayment, SwipePayment, PaymentAccepted, PaymentFailed, VendingEmpty):
+        for F in (OfflinePage, StartPage, PayWithMobilePay, StartPayment, SwipePayment, PaymentAccepted, PaymentFailed, VendingEmpty):
             page_name = F.__name__
             frame = F(parent=self.container, controller=self)
             self.frames[page_name] = frame
@@ -94,6 +96,9 @@ class AppMain(tk.Tk):
             frame.grid(row=0, column=0, sticky="nsew")
             frame.configure(background=self.background)
         self.show_frame("PayWithMobilePay")
+        self.setupadammodule()   
+        if not self.setup_mp():
+            self.show_frame("OfflinePage") 
     def quit(self):
         self.root.destroy      
         
@@ -101,23 +106,35 @@ class AppMain(tk.Tk):
         print("Payment status")
         paied = False
         if self.mp is not None:
-            success = self.mp.GetPaymentStatus(self.orderid)
-            print(success)
-            paied = success['PaymentStatus'] ==100
-            idle = success['PaymentStatus'] ==10
+            success, response = self.mp.GetPaymentStatus(self.orderid)
+            print(response)
+            if success:
+                paied = response['PaymentStatus'] ==100
+                idle = response['PaymentStatus'] ==10
+                canceled = response['PaymentStatus'] ==40
+            else:
+                self.ft = Timer(5.0, self.FrameTimeOut, ["OfflinePage"])
+                self.ft.start() 
+                return
+                #self.show_frame("OfflinePage") 
             
         if self.mp.Checkedin:   
             self.show_frame("SwipePayment")
             self.mp.Checkedin = False   
-        if not paied and not idle:    
+        if not paied and not idle and not canceled:    
             self.after(1000, self.PaymentStatus)
         elif paied:
             self.pt.cancel()
             self.ft = Timer(5.0, self.FrameTimeOut, ["paied"]) 
             self.ft.start()    
             self.show_frame("PaymentAccepted") 
-            logging.info("PaymentAccepted, orderid: " + str(success['OrderId']))
-            self.paymentHandle(success)  
+            logging.info("PaymentAccepted, orderid: " + str(response['OrderId']))
+            self.paymentHandle(response)
+        elif canceled: 
+            self.pt.cancel()
+            self.ft = Timer(5.0, self.FrameTimeOut, ["PaymentFailed"]) 
+            self.ft.start()    
+            self.show_frame("PaymentFailed")     
         else:
             self.pt.cancel()
             self.ft = Timer(5.0, self.FrameTimeOut, ["PaymentFailed"]) 
@@ -140,11 +157,24 @@ class AppMain(tk.Tk):
            pulsecnt = self.PulseCntGetter(int(Amount))
            if self.iomodulestat:
                stat = self.iomodule.PulsePort(pulsecnt, self.pulseport, self.pulsetime_low, self.pulsetime_high)
-               paymentdata = self.paymentdatafile.get('Payment',[{}])
-               paymentstatus["Pulsecntstat"]  = stat  
+               paymentstatus['Pulsecntstat']= stat
+               self.paymentdatafile[paymentstatus['OrderId']]  = paymentstatus  
                self.WritePaymentFile(self.paymentdatafile)
+   
     def FrameTimeOut(self, stat):
-        self.show_frame("PayWithMobilePay")
+        if stat == "Offline":
+            self.show_frame("Offline")
+            self.ft = Timer(30.0, self.FrameTimeOut,["VendingEmpty"]) 
+            self.ft.start()
+            
+        elif not self.readveningemptystatus():
+            self.show_frame("VendingEmpty")
+            self.VendingEmpty = True
+            self.ft = Timer(30.0, self.FrameTimeOut,["VendingEmpty"]) 
+            self.ft.start()
+            return False
+        else:
+            self.show_frame("PayWithMobilePay")
                    
     def paymenttimeout(self, stat):
         print("Payment Time out!")
@@ -166,6 +196,7 @@ class AppMain(tk.Tk):
         
         if not self.readveningemptystatus():
             self.show_frame("VendingEmpty")
+            print("Vending Empty")
             self.VendingEmpty = True
             self.ft = Timer(5.0, self.FrameTimeOut,["VendingEmpty"]) 
             self.ft.start()
@@ -173,15 +204,23 @@ class AppMain(tk.Tk):
         self.orderid = self.mp.getNewOrderId()
         stat, resp = self.mp.PaymentStart(self.orderid, amount)
         if not stat:
-            self.mp.PaymentCancel(self.orderid, amount)
+            print ("Error code: " +str(resp))
+            self.mp.PaymentCancel()
+            if resp['StatusCode'] ==50:
+                print ("Payment already in progress: cancled" +str(resp))
+                stat, resp = self.mp.PaymentStart(self.orderid, amount)
+                if not stat:
+                    print ("Error code: " +str(resp))
+                    self.mp.PaymentCancel()
+                    
         frame = self.frames[page_name]
         frame.tkraise()
         time.sleep(0.01)
-        paymentstatus = self.mp.GetPaymentStatus(self.orderid)
-        paymentdata = self.paymentdatafile.get('Payment',[{}])
-        paymentstatus["Pulsecntstat"]  = "False"
-        paymentdata.append(paymentstatus)
-        self.paymentdatafile['Payment'] = paymentdata
+        succes, paymentstatus = self.mp.GetPaymentStatus(self.orderid)
+        paymentdata = self.paymentdatafile.get(self.orderid, {self.orderid:{}})
+        paymentstatus["Pulsecntstat"]  = False
+        paymentdata=paymentstatus
+        self.paymentdatafile[self.orderid] = paymentdata
         self.WritePaymentFile(self.paymentdatafile) 
         self.pt = Timer(30.0, self.paymenttimeout,["PaymentTimeOut"]) 
         self.pt.start()
@@ -206,7 +245,7 @@ class AppMain(tk.Tk):
             logging.info("Vending stat bit " + str(statbit))
             return statbit
         except:
-            return -1000
+            return 0
             
         
     def setupcoinoktimer(self):
@@ -232,16 +271,27 @@ class AppMain(tk.Tk):
             mpsetting['posid'] = posid
             appsettings['Mobilepay'] = mpsetting
             WriteSetupFile(appsettings)
+            logging.info("AssignPos" + str(PoSUnitIdToPos))
+            self.mp_stat = self.mp.AssignPoSUnitIdToPos(PoSUnitIdToPos)
+            self.runrefundonmissed()
         logging.info(self.mp_stat)
-        logging.info("AssignPos" + str(PoSUnitIdToPos))
-        self.mp_stat = self.mp.AssignPoSUnitIdToPos(PoSUnitIdToPos)
-        logging.info(self.mp_stat)
+
+        return self.mp_stat
+           
+    def runrefundonmissed(self):
         self.paymentdatafile = self.ReadPaymentFile()
-        lastpaymentparsed  = self.paymentdatafile['Payment'][-1]
-        if lastpaymentparsed['Pulsecntstat']=='False':
-            logging.info("Last Payment Failed: " +lastpaymentparsed)
-            #self.mp.PaymentRefund(lastpaymentparsed['OrderId'], lastpaymentparsed['Amount'])
-        
+        if len(self.paymentdatafile) > 1:
+            for key, value in self.paymentdatafile.items():
+                if value['Pulsecntstat'] != True:
+                    logging.info("Payment Failed: " +str(value))
+                    logging.info("Refund : " +str(key))
+                    refundbefore = self.paymentdatafile[key].get('Refund',False)
+                    if not refundbefore:
+                        self.paymentdatafile[key]['Refund']=True                  
+                        self.mp.PaymentRefund(value['OrderId'], value['Amount'])
+                        self.WritePaymentFile(self.paymentdatafile)
+        return True       
+    
     def WritePaymentFile(self,data):
         FilePath = 'C:\\ProgramData\\DinoCoin\\DinoPay\\'
         mainsetupfile =FilePath+ 'Payment.json'
@@ -266,7 +316,7 @@ class AppMain(tk.Tk):
             print ("Local DinoPaySetup exists and is readable")
         else:
             with io.open(mainsetupfile, 'w') as db_file:
-                db_file.write(json.dumps({'Payment':[]}))
+                db_file.write(json.dumps({}))
         data = None
         with io.open(mainsetupfile, 'r') as jsonFile:
             try:
@@ -353,7 +403,7 @@ class VendingEmpty(tk.Frame):
         self.controller = controller
         load = Image.open("img/vendingempty.png")
         render = ImageTk.PhotoImage(load)
-        label = tk.Label(self, text="VendingEmpty",background=controller.background, font=controller.title_font)
+        label = tk.Label(self, text="Automat tom",background=controller.background, font=controller.title_font)
         label.pack(side="top", fill="x", pady=5)
         button = tk.Button(self, image=render, text="Go to the start page",borderwidth=0,
                            command=lambda: controller.show_frame("PayWithMobilePay"))
@@ -389,6 +439,22 @@ class SwipePayment(tk.Frame):
         
         label = tk.Label(fr2, text=str, font=ft, background=controller.background)
         label.pack(side=tk.RIGHT, padx=0, pady=0)
+class OfflinePage(tk.Frame):
+
+    def __init__(self, parent, controller):
+        tk.Frame.__init__(self, parent)
+        self.controller = controller
+        label = tk.Label(self, text="MobilePay er offline", background=controller.background, font=controller.title_font)
+        label.pack(side="top", fill="x", pady=15)
+        fr2=Frame(self,bg=controller.background)
+        fr2.pack(fill=X, side=tk.BOTTOM, padx= 0,expand=YES)
+        ft = tkfont.Font(family='ApexSansMediumT', size=14, weight="bold")
+        
+        MPLogo = Image.open("img/MP_Logo2.png")
+        MPLogo_render = ImageTk.PhotoImage(MPLogo)
+        label = tk.Label(fr2, image=MPLogo_render,text="",background=controller.background)
+        label.image= MPLogo_render
+        label.pack(side=tk.RIGHT, padx=100,pady=0)
 
 class StartPayment(tk.Frame):
 
@@ -405,10 +471,7 @@ class StartPayment(tk.Frame):
         #                   command=lambda: controller.show_frame("PayWithMobilePay"))
         label.image = render
         label.pack(pady=80)
-        if controller.mp.Checkedin:
-            label = tk.Label(self, text="Godkend betalng i MobilePay", background=controller.background, font=controller.title_font)
-            label.pack(side="top", fill="x", pady=0)
-        
+       
         fr2=Frame(self,bg=controller.background)
         fr2.pack(fill=X, side=tk.BOTTOM, padx= 0,expand=YES)
         ft = tkfont.Font(family='ApexSansMediumT', size=14, weight="bold")
