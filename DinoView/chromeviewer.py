@@ -18,6 +18,7 @@ class cv():
         self.windowposition = windowpos
         self.driver = None
         self.setOptions()
+        self.pid = None
 
     def setOptions(self):
         self.chrome_options.add_argument("--no-sandbox")
@@ -30,14 +31,19 @@ class cv():
         # self.chrome_options.add_argument('--headless')
         self.chrome_options.add_argument("--kiosk")
         self.chrome_options.add_argument("--disable-password-manager-reauthentication")
-            
+    def stopbrowser(self):
+        try:
+            self.driver.close()
+        except Exception as e:
+            logging.error("main exception:" +str(e))
+                          
     def startbrowser(self):
         try:
             self.driver = webdriver.Chrome(options=self.chrome_options)
             self.winHnd = self.driver.window_handles[0];
             self.driver.get(self.url)
-            p = psutil.Process(self.driver.service.process.pid).children()[0].pid
-            hnd = get_hwnds(p)[0]
+            self.pid = psutil.Process(self.driver.service.process.pid).children()[0].pid
+            hnd = get_hwnds(self.pid)[0]
             win32gui.SetWindowPos(hnd, win32con.HWND_TOPMOST, 0,0,0,0, win32con.SWP_NOMOVE | win32con.SWP_NOSIZE)
         except Exception as e:
             logging.error("main exception:" +str(e)) 

@@ -1,3 +1,4 @@
-wget -c http://www.frihauge.dk/DinoPaySetup.exe
+wget -c http://www.frihauge.dk/DinoPaySetup.exe  
+
 
 

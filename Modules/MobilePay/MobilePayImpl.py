@@ -3,14 +3,13 @@ import json
 import hmac
 import hashlib
 import base64
-from datetime import datetime, timezone
+from datetime import datetime
 import requests
-import time
 import pytz
 
 
 class mpif():
-    
+
     def __init__(self, key=None, MerchantId="POSDKDC307", LocationId=None, url=None, Name=None):
         self.logger = logging.getLogger('DinoGui')
 
@@ -44,25 +43,24 @@ class mpif():
         MerchantSub = self.MerchantId[3:9]
         utfBytes = bytes(MerchantSub, 'ISO-8859-1')
         key = (hashlib.sha256(utfBytes).digest())
-        inbytes = bytes(payload, 'ISO-8859-1')
+        # inbytes = bytes(payload, 'ISO-8859-1')
         hcryp = hmac.new(key, bytes(payload, 'ISO-8859-1'), hashlib.sha256)
-        hmacstr = base64.b64encode(hcryp.digest()).decode()      
-        return hmacstr 
-    
+        hmacstr = base64.b64encode(hcryp.digest()).decode()
+        return hmacstr
+
     def GetHamacPayload(self, orderid, Amount, BulkRef):
         # self.PosId= "a123456-b123-c123-d123-e12345678901"
         # self.MerchantId= "POSDK99999"
         # self.LocationId= "88888"
         BulkRef = "MP Bulk Reference"
         alias = self.MerchantId + self.LocationId
-        
         payload = str.format("{0}#{1}#{2}#{3}#{4}#", alias, self.PosId, orderid, Amount, BulkRef)
         # payload = "POSDK9999988888#a123456-b123-c123-d123-e12345678901#123A124321#43.33#MP Bulk Reference#"
         payloadhmac = self.calcPayLoadHmac(payload)
         return payloadhmac
-              
+
     def reqResp(self, method, contentdata):
-    # #parsing response
+        # #parsing response
         try:
             tNow = datetime.utcnow()
             utcnow = int(tNow.timestamp())
@@ -75,7 +73,6 @@ class mpif():
         except Exception as e:
             print("No Internet: " + str(e))
             return False, 0
-        
 
     def StartUpReg(self):
         success, PosId = self.RegisterPoS()
@@ -86,17 +83,17 @@ class mpif():
                 for i in PosIds:
                     payments = i.get('Payment', None)
                     if payments is not None:
-                        Status = payments.get('Status', None)
-                        OrderId = payments.get('OrderId', None)
-                        Amount = payments.get('Amount', 0)
-                        ##self.PaymentRefund(OrderId, Amount)
+                        # Status = payments.get('Status', None)
+                        # OrderId = payments.get('OrderId', None)
+                        # Amount = payments.get('Amount', 0)
+                        # self.PaymentRefund(OrderId, Amount)
                         self.PaymentCancel()
         else:
             # Get a new posid
             self.PosId = None
             success, PosId = self.RegisterPoS()
         return success, PosId
-             
+
     def RegisterPoS(self):
         print("RegisterPoS")
         try:
@@ -107,18 +104,17 @@ class mpif():
         except Exception as e:
             print("Registerpos exception: " + str(e))
             return False, 0
-        
         return success, self.PosId
-       
+
     def UnRegisterPoS(self, PosId=None):
         if PosId is not None:
             uregPosId = PosId
-        else:    
+        else:
             uregPosId = self.PosId
-        data = {"MerchantId": self.MerchantId, "LocationId":self.LocationId, "PosId": uregPosId, "Name": self.Name}
+        data = {"MerchantId": self.MerchantId, "LocationId": self.LocationId, "PosId": uregPosId, "Name": self.Name}
         success, response = self.reqResp('UnRegisterPoS', data)
         return success
-    
+
     def AssignPoSUnitIdToPos(self, PoSUnitId):
         self.PoSUnitId = PoSUnitId
         if self.PoSUnitId is None or self.PoSUnitId == "":
@@ -130,45 +126,45 @@ class mpif():
     def UnAssignPoSUnitIdToPos(self):
         if self.PoSUnitId is None or self.PoSUnitId == "":
             return False
-        data = {"MerchantId": self.MerchantId, "LocationId":self.LocationId, "PosId": self.PosId, "PoSUnitId": self.PoSUnitId}
+        data = {"MerchantId": self.MerchantId, "LocationId": self.LocationId, "PosId": self.PosId, "PoSUnitId": self.PoSUnitId}
         success, response = self.reqResp('UnAssignPoSUnitIdToPoS', data)
         return success
-    
+
     def GetCurrentPayment(self):
         if self.PoSUnitId is None or self.PoSUnitId == "":
             return False
-        data = {"MerchantId": self.MerchantId, "LocationId":self.LocationId, "PosId": self.PosId}
+        data = {"MerchantId": self.MerchantId, "LocationId": self.LocationId, "PosId": self.PosId}
         success, response = self.reqResp('GetCurrentPayment', data)
         return success
 
     def GetPosList(self):
-        data = {"MerchantId": self.MerchantId, "LocationId":self.LocationId}
+        data = {"MerchantId": self.MerchantId, "LocationId": self.LocationId}
         success, response = self.reqResp('GetPosList', data)
         return response
 
     def PaymentCancel(self):
         data = {"MerchantId": self.MerchantId, "LocationId": self.LocationId, "PosId": self.PosId}
-        success, response = self.reqResp('PaymentCancel', data)
+        success, _ = self.reqResp('PaymentCancel', data)
         return success
 
     def PaymentRefund(self, orderid, AmountPay):
         Amount = str.format("{:.2f}", AmountPay)
         BulkRef = "MP Bulk Reference"
-        data = {"MerchantId": self.MerchantId, "LocationId":self.LocationId, "PoSId": self.PosId, "OrderId":orderid, "Amount":Amount, "BulkRef":BulkRef}
-        success, response = self.reqResp('PaymentRefund', data)
+        data = {"MerchantId": self.MerchantId, "LocationId": self.LocationId, "PoSId": self.PosId, "OrderId": orderid, "Amount": Amount, "BulkRef": BulkRef}
+        success, _ = self.reqResp('PaymentRefund', data)
         return success
-    
+
     def PaymentStart(self, orderid, AmountPay):
         self.Checkedin = False
         Amount = str.format("{:.2f}", AmountPay)
         BulkRef = "MP Bulk Reference"
         HmacVal = self.GetHamacPayload(orderid, Amount, BulkRef)
-        data = {"MerchantId": self.MerchantId, "LocationId":self.LocationId, "PoSId": self.PosId, "OrderId":orderid, "Amount":Amount, "BulkRef":BulkRef, "Action":"Start", "CustomerTokenCalc":0, "HMAC":HmacVal}
+        data = {"MerchantId": self.MerchantId, "LocationId": self.LocationId, "PoSId": self.PosId, "OrderId": orderid, "Amount": Amount, "BulkRef": BulkRef, "Action": "Start", "CustomerTokenCalc": 0, "HMAC": HmacVal}
         success, response = self.reqResp('PaymentStart', data)
         return success, response
-        
+
     def GetPaymentStatus(self, orderid):
-        data = {"MerchantId": self.MerchantId, "LocationId":self.LocationId, "PoSId": self.PosId, "Orderid":orderid}
+        data = {"MerchantId": self.MerchantId, "LocationId": self.LocationId, "PoSId": self.PosId, "Orderid": orderid}
         success, response = self.reqResp('GetPaymentStatus', data)
         if success and response['PaymentStatus'] == 20:
             self.Checkedin = True
@@ -180,7 +176,7 @@ class mpif():
         orderid = (hex(int(now.timestamp())))
         orderid = orderid[2:]
         return orderid
-       
+
     def findparaminresponse(self, resp, param):
         if param in resp:
             return resp[param]
@@ -189,6 +185,7 @@ class mpif():
 
     def responsehandler(self, response, method):
         success = False
+        print("Exe: " + str(method))
         print(response.status_code, response.reason)
         print(response)
         data = response.json()

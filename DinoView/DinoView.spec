@@ -4,7 +4,7 @@ block_cipher = None
 
 
 a = Analysis(['DinoView.py'],
-             pathex=['c:\\workspace\\priv\\DinoCoin\\DinoView'],
+             pathex=['c:\\workspace\\project\\Dinocoin\\SW\\DinoCoin\\DinoView'],
              binaries=[],
              datas=[],
              hiddenimports=[],

@@ -14,13 +14,32 @@ __date__    = "28042019"
 __version__ = "1.5_" +__date__
 
 def restart():
-    print("#Restart")
-    python = sys.executable
-    os.execl(python, python, * sys.argv)
+        """ Safely restart prism """
+        import os
+        import sys
+        import psutil
+        import logging
+
+        try:
+            Print("Restarting App")
+            p = psutil.Process(os.getpid())
+            for handler in p.open_files() + p.connections():
+                os.close(handler.fd)
+        except Exception as e:
+            logging.error(e)
+
+        python = sys.executable
+        os.execl(python, python, *sys.argv) 
 
 
 def DinoPrint():
-
+    x=datetime.today()
+    y = x.replace(day=x.day, hour=0, minute=0, second=0, microsecond=0) + timedelta(days=1)
+    delta_t=y-x       
+    secs=delta_t.total_seconds()
+    # secs =10
+    t = Timer(secs, restart)
+    t.start()
     root = tk.Tk()
     root.version = __version__
     root.appsettings = ReadSetupFile()
@@ -51,12 +70,7 @@ def ReadSetupFile():
 
 if __name__ == '__main__':
     try:
-        x=datetime.today()
-        y = x.replace(day=x.day, hour=1, minute=0, second=0, microsecond=0) + timedelta(days=1)
-        delta_t=y-x       
-        secs=delta_t.total_seconds()
-        t = Timer(secs, restart)
-        t.start()
+
         DinoPrint()
     except Exception as e:
         os.startfile(__file__)

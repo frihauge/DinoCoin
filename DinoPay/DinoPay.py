@@ -35,23 +35,26 @@ s = scheduler(time, time.sleep)
 
 
 def restart():
-    print("#Restart")
-    python = sys.executable
-    os.execl(python, python, * sys.argv)
+        """ Safely restart  """
+        import os
+        import sys
+        import psutil
+        import logging
 
-def RunTask(sc,rt,iomodule): 
-    print ("Check adam for coins ok ")
-    # do your stuff
-    vendingstat = iomodule.readinputbit(num)
-    if not vendingstat:
-        s.enter(rt, 1, RunTask, (sc,rt,))
-        self.show_frame("VendingEmpty")
+        try:
+            print("Restarting App")
+            p = psutil.Process(os.getpid())
+            for handler in p.open_files() + p.connections():
+                os.close(handler.fd)
+        except Exception as e:
+            logging.error(e)
+
+        python = sys.executable
+        os.execl(python, python, *sys.argv) 
+
+
 
 class AppMain(tk.Tk):
-    
-    
-    
-
     def __init__(self, *args, **kwargs):
         tk.Tk.__init__(self, *args, **kwargs)
         self.mp_stat = None
@@ -95,10 +98,15 @@ class AppMain(tk.Tk):
             # will be the one that is visible.
             frame.grid(row=0, column=0, sticky="nsew")
             frame.configure(background=self.background)
-        self.show_frame("PayWithMobilePay")
-        self.setupadammodule()   
-        if not self.setup_mp():
-            self.show_frame("OfflinePage") 
+          
+        self.setupadammodule() 
+        self.setup_mp()
+        if self.iomodulestat and self.mp_stat:
+            self.show_frame("PayWithMobilePay")
+        else:
+            self.ft = Timer(0.0, self.FrameTimeOut, ["OfflinePage"])
+            self.ft.start() 
+        
     def quit(self):
         self.root.destroy      
         
@@ -162,10 +170,14 @@ class AppMain(tk.Tk):
                self.WritePaymentFile(self.paymentdatafile)
    
     def FrameTimeOut(self, stat):
-        if stat == "Offline":
-            self.show_frame("Offline")
-            self.ft = Timer(30.0, self.FrameTimeOut,["VendingEmpty"]) 
-            self.ft.start()
+        if stat == "OfflinePage":
+            self.mp_stat, _ = self.mp.StartUpReg()
+            if not self.mp_stat:
+                self.show_frame("OfflinePage")
+                self.ft = Timer(30.0, self.FrameTimeOut,["OfflinePage"]) 
+                self.ft.start()
+            else:
+                restart()
             
         elif not self.readveningemptystatus():
             self.show_frame("VendingEmpty")
@@ -225,6 +237,7 @@ class AppMain(tk.Tk):
         self.pt = Timer(30.0, self.paymenttimeout,["PaymentTimeOut"]) 
         self.pt.start()
         self.after(10, self.PaymentStatus)
+
                   
     def setupadammodule(self):
         set = appsettings.get('Adam','')
@@ -238,9 +251,12 @@ class AppMain(tk.Tk):
         self.iomodule = adam.adam6000(logging, str(self.adamhost))
         self.iomodulestat,_ = self.iomodule.connect()
         logging.info("Connecting status: " + str(self.iomodulestat))
+        return self.iomodulestat
            
     def readveningemptystatus(self):
         try:
+            if self.debug:
+                return True
             statbit  = self.iomodule.readinputbit(int(self.VendingstatusPort))
             logging.info("Vending stat bit " + str(statbit))
             return statbit
@@ -467,10 +483,15 @@ class StartPayment(tk.Frame):
         load = Image.open("img/Confirm_Payment.png")
         render = ImageTk.PhotoImage(load)
         label = tk.Label(self, image=render,text="",background=controller.background)
-        #button = tk.Button(self, image=render, text="Go to the start page",background=controller.background,borderwidth=0,
-        #                   command=lambda: controller.show_frame("PayWithMobilePay"))
         label.image = render
         label.pack(pady=80)
+        
+        load = Image.open("img/back.png")
+        render = ImageTk.PhotoImage(load)
+        button = tk.Button(self, image=render, text="Go to the start page",bg=controller.background,borderwidth=0,
+                           command=lambda: controller.mp.PaymentCancel())
+        button.image = render
+        button.pack(pady=40)
        
         fr2=Frame(self,bg=controller.background)
         fr2.pack(fill=X, side=tk.BOTTOM, padx= 0,expand=YES)
@@ -578,9 +599,10 @@ if __name__ == '__main__':
         appsettings = ReadSetupFile()
         app = AppMain()
         x=datetime.today()
-        y = x.replace(day=x.day, hour=1, minute=0, second=0, microsecond=0) + timedelta(days=1)
+        y = x.replace(day=x.day, hour=0, minute=0, second=0, microsecond=0) + timedelta(days=1)
         delta_t=y-x       
         secs=delta_t.total_seconds()
+        #secs =10
         t = Timer(secs, restart)
         t.start()
         app.mainloop()

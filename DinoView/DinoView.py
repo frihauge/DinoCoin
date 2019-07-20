@@ -9,7 +9,7 @@ from datetime import datetime,timedelta
 from sched import scheduler
 import os,io
 import chromeviewer
-
+br = None
 logFormatter = logging.Formatter("%(asctime)s [%(threadName)-12.12s] [%(levelname)-5.5s]  %(message)s")
 rootLogger = logging.getLogger()
 
@@ -35,9 +35,27 @@ __date__    = "28042019"
 __version__ = "1.1_" +__date__
 
 def restart():
-    print("#Restart")
-    python = sys.executable
-    os.execl(python, python, * sys.argv)
+        """ Safely restart  """
+        import os
+        import sys
+        import psutil
+        import logging
+
+        try:
+            print("Restarting App")
+            br.stopbrowser()
+            os.system("taskkill /im chromedriver.exe /F")
+            p = psutil.Process(os.getpid())
+            for handler in p.open_files() + p.connections():
+                try:
+                    os.close(handler.fd)
+                except Exception as e:
+                    print(e)
+        except Exception as e:
+            logging.error(e)
+
+        python = sys.executable
+        os.execl(python, python, *sys.argv) 
 
 
 def RunTask(sc, br, rt): 
@@ -49,6 +67,14 @@ def RunTask(sc, br, rt):
        
 def DinoView():
     version = __version__
+    x=datetime.today()
+    print(x)
+    y = x.replace(day=x.day, hour=0, minute=0, second=0, microsecond=0) + timedelta(days=1)
+    delta_t=y-x       
+    secs=delta_t.total_seconds()
+    #secs =10
+    t = Timer(secs, restart)
+    t.start()
     print("App.Version: "+ version)
     if not os.path.isfile(httptrackpath):
         raise Exception('Cant find httptrack.exe in: '+httptrackpath)
@@ -65,8 +91,10 @@ def ShowBrowser(appsettings):
     url = r"file://"+FilePath+"/web/"+ webhost +"/foyer/" + screen +"/index.html"
     print ("URL: for view " + url)
     #DownLoadWeb(appsettings)
+    global br
     br = chromeviewer.cv(url,winpos)
     br.startbrowser()
+    
     return br
     
 
@@ -108,12 +136,6 @@ def ReadSetupFile():
 if __name__ == '__main__':
     try:
         appsettings = ReadSetupFile()
-        x=datetime.today()
-        y = x.replace(day=x.day, hour=1, minute=0, second=0, microsecond=0) + timedelta(days=1)
-        delta_t=y-x       
-        secs=delta_t.total_seconds()
-        t = Timer(secs, restart)
-        t.start()
         DinoView()
     except Exception as e:
         logging.error("main exception:" +str(e))

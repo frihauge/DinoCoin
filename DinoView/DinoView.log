@@ -8,3 +8,49 @@
   (Session info: chrome=75.0.3770.100)
   (Driver info: chromedriver=74.0.3729.6 (255758eccf3d244491b8a1317aa76e1ce10d57e9-refs/branch-heads/3729@{#29}),platform=Windows NT 10.0.17763 x86_64)
 
+2019-07-10 08:43:18,677 [Thread-6    ] [ERROR]  name 'Print' is not defined
+2019-07-10 08:44:00,138 [Thread-6    ] [ERROR]  [Errno 9] Bad file descriptor
+2019-07-10 08:45:36,308 [Thread-6    ] [ERROR]  [Errno 9] Bad file descriptor
+2019-07-10 08:47:43,045 [Thread-6    ] [ERROR]  [Errno 9] Bad file descriptor
+2019-07-10 08:50:20,457 [Thread-6    ] [ERROR]  [Errno 9] Bad file descriptor
+2019-07-10 08:50:40,383 [Thread-6    ] [ERROR]  [Errno 9] Bad file descriptor
+2019-07-10 08:52:28,930 [Thread-6    ] [ERROR]  [Errno 9] Bad file descriptor
+2019-07-10 09:09:09,900 [MainThread  ] [ERROR]  main exception:Message: chrome not reachable
+  (Session info: chrome=75.0.3770.100)
+  (Driver info: chromedriver=74.0.3729.6 (255758eccf3d244491b8a1317aa76e1ce10d57e9-refs/branch-heads/3729@{#29}),platform=Windows NT 10.0.17134 x86_64)
+
+2019-07-10 09:13:32,319 [MainThread  ] [ERROR]  main exception:'NoneType' object has no attribute 'switch_to'
+2019-07-10 09:14:58,351 [MainThread  ] [ERROR]  main exception:'NoneType' object has no attribute 'switch_to'
+2019-07-10 09:19:58,530 [MainThread  ] [ERROR]  main exception:Message: chrome not reachable
+  (Session info: chrome=75.0.3770.100)
+  (Driver info: chromedriver=74.0.3729.6 (255758eccf3d244491b8a1317aa76e1ce10d57e9-refs/branch-heads/3729@{#29}),platform=Windows NT 10.0.17134 x86_64)
+
+2019-07-10 09:29:18,587 [Thread-6    ] [ERROR]  [Errno 9] Bad file descriptor
+2019-07-10 09:30:27,926 [MainThread  ] [ERROR]  main exception:Message: chrome not reachable
+  (Session info: chrome=75.0.3770.100)
+  (Driver info: chromedriver=74.0.3729.6 (255758eccf3d244491b8a1317aa76e1ce10d57e9-refs/branch-heads/3729@{#29}),platform=Windows NT 10.0.17134 x86_64)
+
+2019-07-10 09:31:41,168 [Thread-6    ] [ERROR]  [Errno 9] Bad file descriptor
+2019-07-11 07:40:51,914 [Thread-6    ] [ERROR]  [Errno 9] Bad file descriptor
+2019-07-11 07:57:41,899 [Thread-6    ] [ERROR]  [Errno 9] Bad file descriptor
+2019-07-11 07:58:50,411 [Thread-6    ] [ERROR]  [Errno 9] Bad file descriptor
+2019-07-11 08:01:39,066 [Thread-6    ] [ERROR]  [Errno 9] Bad file descriptor
+2019-07-11 08:06:11,753 [Thread-6    ] [ERROR]  [Errno 9] Bad file descriptor
+2019-07-11 08:16:50,816 [Thread-6    ] [ERROR]  [Errno 9] Bad file descriptor
+2019-07-11 08:22:18,145 [MainThread  ] [ERROR]  main exception:Message: invalid session id
+  (Driver info: chromedriver=74.0.3729.6 (255758eccf3d244491b8a1317aa76e1ce10d57e9-refs/branch-heads/3729@{#29}),platform=Windows NT 10.0.17134 x86_64)
+
+2019-07-11 08:25:55,169 [MainThread  ] [ERROR]  main exception:Message: invalid session id
+  (Driver info: chromedriver=74.0.3729.6 (255758eccf3d244491b8a1317aa76e1ce10d57e9-refs/branch-heads/3729@{#29}),platform=Windows NT 10.0.17134 x86_64)
+
+2019-07-11 08:34:52,562 [MainThread  ] [ERROR]  main exception:Message: invalid session id
+  (Driver info: chromedriver=74.0.3729.6 (255758eccf3d244491b8a1317aa76e1ce10d57e9-refs/branch-heads/3729@{#29}),platform=Windows NT 10.0.17134 x86_64)
+
+2019-07-11 08:45:10,231 [MainThread  ] [ERROR]  main exception:Message: chrome not reachable
+  (Session info: chrome=75.0.3770.100)
+  (Driver info: chromedriver=74.0.3729.6 (255758eccf3d244491b8a1317aa76e1ce10d57e9-refs/branch-heads/3729@{#29}),platform=Windows NT 10.0.17134 x86_64)
+
+2019-07-11 10:43:50,793 [Thread-6    ] [WARNI]  Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x053E6290>: Failed to establish a new connection: [WinError 10061] Der kunne ikke oprettes forbindelse, fordi destinationscomputeren aktivt nægtede det')': /session/5d380ed47feec280110c51affb845766/window
+2019-07-11 10:43:51,796 [Thread-6    ] [WARNI]  Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x053E64D0>: Failed to establish a new connection: [WinError 10061] Der kunne ikke oprettes forbindelse, fordi destinationscomputeren aktivt nægtede det')': /session/5d380ed47feec280110c51affb845766/window
+2019-07-11 10:43:52,801 [Thread-6    ] [WARNI]  Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x053E65F0>: Failed to establish a new connection: [WinError 10061] Der kunne ikke oprettes forbindelse, fordi destinationscomputeren aktivt nægtede det')': /session/5d380ed47feec280110c51affb845766/window
+2019-07-11 10:43:53,804 [Thread-6    ] [ERROR]  main exception:HTTPConnectionPool(host='127.0.0.1', port=52792): Max retries exceeded with url: /session/5d380ed47feec280110c51affb845766/window (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x053E6750>: Failed to establish a new connection: [WinError 10061] Der kunne ikke oprettes forbindelse, fordi destinationscomputeren aktivt nægtede det'))
