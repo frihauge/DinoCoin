@@ -31,6 +31,9 @@ class cv():
         # self.chrome_options.add_argument('--headless')
         self.chrome_options.add_argument("--kiosk")
         self.chrome_options.add_argument("--disable-password-manager-reauthentication")
+        self.chrome_options.add_experimental_option('excludeSwitches', ["enable-automation"])
+        self.chrome_options.add_experimental_option('useAutomationExtension',False)
+  
     def stopbrowser(self):
         try:
             self.driver.close()
@@ -49,8 +52,9 @@ class cv():
             logging.error("main exception:" +str(e)) 
     
     def refreshbrowser(self):
-        self.driver.switch_to.window(self.driver.current_window_handle)
-        self.driver.refresh();
+        if self.driver is not None:
+            self.driver.switch_to.window(self.driver.current_window_handle)
+            self.driver.refresh();
         
     
 def get_hwnds(pid):

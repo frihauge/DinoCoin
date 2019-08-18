@@ -76,7 +76,7 @@ class mpif():
 
     def StartUpReg(self):
         success, PosId = self.RegisterPoS()
-        if success and False:
+        if success:
             plist = self.GetPosList()
             PosIds = plist.get('Poses', None)
             if PosIds is not None:
@@ -97,7 +97,7 @@ class mpif():
     def RegisterPoS(self):
         print("RegisterPoS")
         try:
-            data = {"MerchantId": self.MerchantId, "LocationId":self.LocationId, "PosId": self.PosId, "Name": self.Name}
+            data = {"MerchantId": self.MerchantId, "LocationId": self.LocationId, "PosId": self.PosId, "Name": self.Name}
             success, response = self.reqResp('RegisterPoS', data)
             self.PosId = self.findparaminresponse(response, 'PoSId')
             print (self.PosId)

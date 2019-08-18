@@ -14,10 +14,12 @@ from PIL import Image, ImageTk
 from datetime import datetime,timedelta
 from threading import Timer
 from _codecs import decode
-from pywinauto.win32defines import BACKGROUND_BLUE
+#from pywinauto.win32defines import BACKGROUND_BLUE
 sys.path.append('../Modules')
 from AdamModule import adam
 from MobilePay import MobilePayImpl
+from DinoDB import dinoDBif
+
 logname = "DinoPay.log"
 AppName ="DinoPay"
 AppVersion  ="1.0"
@@ -64,6 +66,10 @@ class AppMain(tk.Tk):
         self.debug = Appsetting.get('Debug',False)
         xpos = Appsetting.get ('xpos',0)
         fullscreen = Appsetting.get ('fullscreen',1)
+        usedb = Appsetting.get ('usedb',0)
+        if usedb:
+            self.paymentdb = dinoDBif.dinodbif(logging)
+            self.paymentdb.connect()
         self.title_font = tkfont.Font(family='ApexSansMediumT', size=36, weight="bold")
         self.background = 'white'
         root = tk.Tk._root(self)
@@ -124,7 +130,7 @@ class AppMain(tk.Tk):
                 self.ft = Timer(5.0, self.FrameTimeOut, ["OfflinePage"])
                 self.ft.start() 
                 return
-                #self.show_frame("OfflinePage") 
+
             
         if self.mp.Checkedin:   
             self.show_frame("SwipePayment")
@@ -205,19 +211,23 @@ class AppMain(tk.Tk):
 
     def InitPayment(self, page_name, amount=None):
         ## STart new payment
-        
+        self.VendingEmpty = False
         if not self.readveningemptystatus():
-            self.show_frame("VendingEmpty")
-            print("Vending Empty")
-            self.VendingEmpty = True
-            self.ft = Timer(5.0, self.FrameTimeOut,["VendingEmpty"]) 
-            self.ft.start()
-            return False
+            if not self.readveningemptystatus():
+                self.show_frame("VendingEmpty")
+                print("Vending Empty")
+                self.VendingEmpty = True
+                self.ft = Timer(5.0, self.FrameTimeOut,["VendingEmpty"]) 
+                self.ft.start()
+                return False
         self.orderid = self.mp.getNewOrderId()
         stat, resp = self.mp.PaymentStart(self.orderid, amount)
         if not stat:
             print ("Error code: " +str(resp))
-            self.mp.PaymentCancel()
+            if not self.mp.PaymentCancel():
+                return False
+            if 'StatusCode' not in  resp:
+                return False
             if resp['StatusCode'] ==50:
                 print ("Payment already in progress: cancled" +str(resp))
                 stat, resp = self.mp.PaymentStart(self.orderid, amount)
@@ -229,15 +239,19 @@ class AppMain(tk.Tk):
         frame.tkraise()
         time.sleep(0.01)
         succes, paymentstatus = self.mp.GetPaymentStatus(self.orderid)
-        paymentdata = self.paymentdatafile.get(self.orderid, {self.orderid:{}})
-        paymentstatus["Pulsecntstat"]  = False
-        paymentdata=paymentstatus
-        self.paymentdatafile[self.orderid] = paymentdata
-        self.WritePaymentFile(self.paymentdatafile) 
-        self.pt = Timer(30.0, self.paymenttimeout,["PaymentTimeOut"]) 
-        self.pt.start()
-        self.after(10, self.PaymentStatus)
-
+        if succes:
+            paymentdata = self.paymentdatafile.get(self.orderid, {self.orderid:{}})
+            paymentstatus["Pulsecntstat"]  = False
+            paymentdata=paymentstatus
+            self.paymentdatafile[self.orderid] = paymentdata
+            self.WritePaymentFile(self.paymentdatafile) 
+            self.pt = Timer(30.0, self.paymenttimeout,["PaymentTimeOut"]) 
+            self.pt.start()
+            self.after(10, self.PaymentStatus)
+    
+    def setuppaymentdb(self):
+        self.dbif = dinoDBif()
+        
                   
     def setupadammodule(self):
         set = appsettings.get('Adam','')
@@ -257,10 +271,12 @@ class AppMain(tk.Tk):
         try:
             if self.debug:
                 return True
+            self.iomodulestat,_ = self.iomodule.connect()
             statbit  = self.iomodule.readinputbit(int(self.VendingstatusPort))
             logging.info("Vending stat bit " + str(statbit))
             return statbit
         except:
+            logging.error("Error readveningemptystatus " + str(self.iomodule))
             return 0
             
         
@@ -274,7 +290,7 @@ class AppMain(tk.Tk):
         url = mpsetting.get ('url','https://sandprod-pos2.mobilepay.dk/API/V08/')
         PoSUnitIdToPos =  mpsetting.get('PoSUnitIdToPos','100000625947428')
         LocationId =  mpsetting.get('LocationId','00001')
-        Name=  mpsetting.get('Name','DinoCoin')
+        Name=  mpsetting.get('LocationName','DinoCoin')
         MerchantId = mpsetting.get('MerchantId','POSDKDC307')
         key = mpsetting.get('key','344A350B-0D2D-4D7D-B556-BC4E2673C882') 
         logging.info("Connecting Mobile pay ")
@@ -371,6 +387,7 @@ class PayWithMobilePay(tk.Frame):
         label.pack(side="top", fill="x", pady=0)
         label.image= MPLogo_render
         bgcolor='grey94'
+        # bgcolor='grey90'
         fr=Frame(self,bg=bgcolor)
         fr.pack(fill=X,side=TOP, pady= 0)
         fr=Frame(fr,bg=bgcolor)
@@ -484,7 +501,7 @@ class StartPayment(tk.Frame):
         render = ImageTk.PhotoImage(load)
         label = tk.Label(self, image=render,text="",background=controller.background)
         label.image = render
-        label.pack(pady=80)
+        label.pack(pady=50)
         
         load = Image.open("img/back.png")
         render = ImageTk.PhotoImage(load)
@@ -514,13 +531,13 @@ class PaymentFailed(tk.Frame):
         tk.Frame.__init__(self, parent)
         self.controller = controller
         label = tk.Label(self, text="Betaling ikke gennemført", background=controller.background, font=controller.title_font)
-        label.pack(side="top", fill="x", pady=5)
+        label.pack(side="top", fill="x", pady=15)
   
         load = Image.open("img/Payment failed.png")
         render = ImageTk.PhotoImage(load)
         label = tk.Label(self, image=render,text="",background=controller.background)
         label.image = render
-        label.pack(pady=150)
+        label.pack(pady=100)
         MPLogo = Image.open("img/MP_Logo2.png")
         MPLogo_render = ImageTk.PhotoImage(MPLogo)
         label = tk.Label(self, image=MPLogo_render,text="",background=controller.background)
@@ -580,7 +597,7 @@ def ReadSetupFile():
         print ("Local DinoPaySetup exists and is readable")
     else:
         with io.open(mainsetupfile, 'w') as db_file:
-            db_file.write(json.dumps({'Mobilepay':{'url':'https://sandprod-pos2.mobilepay.dk/API/V08/'},'App':{'xpos':2560},'Adam':{'host':"192.168.1.200",'pulseport':2,'pulseporttime_low_ms':100,'pulseporttime_high_ow_ms':300,'VendingstatusPort':1}}))
+            db_file.write(json.dumps({'Mobilepay':{'url':'https://sandprod-pos2.mobilepay.dk/API/V08/'},'App':{'xpos':2560},'Adam':{'host':"192.168.1.200",'pulseport':3,'pulseporttime_low_ms':100,'pulseporttime_high_ow_ms':300,'VendingstatusPort':1}}))
     data = None
     with io.open(mainsetupfile, 'r') as jsonFile:
         try:

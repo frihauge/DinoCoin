@@ -39,7 +39,7 @@ class adam6000():
         return stat
 
     def SetOutputbit(self, num, stat):
-        stat = self.client.write_coil(17 + int(num), stat)
+        stat = self.client.write_coil(16 + int(num), stat)
         return stat 
     
     def ClearCounter(self, num):
@@ -87,6 +87,8 @@ class adam6000():
 
 
 if __name__ == '__main__':
-    ad = adam6000(None, '192.168.50.15')
+    ad = adam6000(None, '192.168.1.200')
     ad.connect()
     print(ad.readcounter(1))
+    ad.SetOutputbit(0, 0)
+    print(ad.readinputbit(1))
