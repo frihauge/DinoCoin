@@ -23,6 +23,7 @@ class mpif():
         self.Name = Name
         self.LocationId = LocationId
         self.Checkedin = False
+
         if Name is None:
             self.Name = "Gartnervej 4"
         if LocationId is None:
@@ -142,6 +143,7 @@ class mpif():
         success, response = self.reqResp('GetPosList', data)
         return response
 
+    
     def PaymentCancel(self):
         data = {"MerchantId": self.MerchantId, "LocationId": self.LocationId, "PosId": self.PosId}
         success, _ = self.reqResp('PaymentCancel', data)
@@ -156,6 +158,7 @@ class mpif():
 
     def PaymentStart(self, orderid, AmountPay):
         self.Checkedin = False
+
         Amount = str.format("{:.2f}", AmountPay)
         BulkRef = "MP Bulk Reference"
         HmacVal = self.GetHamacPayload(orderid, Amount, BulkRef)

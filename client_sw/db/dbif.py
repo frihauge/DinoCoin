@@ -8,6 +8,7 @@ Frihauge IT
 import logging
 import random
 import mysql.connector
+from mysql.connector import pooling
 import os
 import time
 import datetime
@@ -19,6 +20,7 @@ class db_mysql():
         self.root = root
         self.logger = log
         self.mydb=None
+        self.connection_pool = None
         self.pcname = os.environ['COMPUTERNAME']
         self.FilePath = 'C:\\ProgramData\\DinoCoin\\DinoPrint\\'
        
@@ -30,14 +32,28 @@ class db_mysql():
         if self.connect():
             self.CreateTables()
             self.Download_to_local_json()
-            
+
+                   
     def connect(self):
         try:
-            self.mydb = mysql.connector.connect(host="mysql4.gigahost.dk",user="frihaugedk",passwd="Thisisnot4u", database="frihaugedk_dc2019",connect_timeout=2)
+            if self.connection_pool is not None:
+                self.mydb = self.connection_pool.get_connection()
+            #self.mydb = mysql.connector.connect(host="mysql4.gigahost.dk",user="frihaugedk",passwd="Thisisnot4u", database="frihaugedk_dc2019",connect_timeout=5)
+            else:
+                self.connectpooling()
+                if self.connection_pool is not None:
+                    self.mydb = self.connection_pool.get_connection()
+                else:
+                    self.logger.info("No database connection: ")
+                    self.network = False
+                    return False                
+    
         except Exception as e:
+            self.connection_pool = None
             self.logger.info("No database connection: " +str(e))
             self.network = False
             return False
+        
         self.mysqlconnected = self.mydb.is_connected()
         if not self.mysqlconnected:
             self.network = False
@@ -45,6 +61,37 @@ class db_mysql():
         self.logger.info("-----------Network Connected------------")
         self.network = True
         return True
+    def connectpooling(self):
+        try:
+            self.connection_pool = mysql.connector.pooling.MySQLConnectionPool(pool_name="pynative_pool",
+                                                                          pool_size=5,
+                                                                          pool_reset_session=True,
+                                                                          host='mysql4.gigahost.dk',
+                                                                          database='frihaugedk_dc2019',
+                                                                          user='frihaugedk',
+                                                                          password='Thisisnot4u',
+                                                                          connect_timeout=5)
+        
+            print ("Printing connection pool properties ")
+            print("Connection Pool Name - ", self.connection_pool.pool_name)
+            print("Connection Pool Size - ", self.connection_pool.pool_size)
+        
+            # Get connection object from a pool
+            self.mydb = self.connection_pool.get_connection()
+        
+        
+            if self.mydb.is_connected():
+               db_Info = self.mydb.get_server_info()
+               print("Connected to MySQL database using connection pool ... MySQL Server version on ",db_Info)
+        
+               cursor = self.mydb.cursor()
+               cursor.execute("select database();")
+               record = cursor.fetchone()
+               print ("Your connected to - ", record)
+               return
+        except Exception as e :
+            print ("Error while connecting to MySQL using Connection pool ", e)
+
     
     
     def CreateTables(self):
@@ -138,8 +185,8 @@ class db_mysql():
             with io.open(self.filename, 'w') as db_file:
                 db_file.write(json.dumps({"StationName": self.pcname}))
   
-    def Download_to_local_json(self):
-        if not self.network:
+    def Download_to_local_json(self, reconnecttry = True):
+        if not self.network and reconnecttry:
             self.logger.info("No DB connection tring to reconnect ")
             if not self.connect():
                 return False
@@ -289,7 +336,7 @@ class dbif():
 
     def getRandomPrice(self, prizeType): # 1 or 2
         self.logger.info("Downloading local prize file")
-        self.db_mysql.Download_to_local_json()
+        self.db_mysql.Download_to_local_json(reconnecttry=False)
             
         availbleprize = []
         availbleStockcnt = []
@@ -316,16 +363,22 @@ class dbif():
         for i in availbleprize:
             percentlist.append(int(i['Stock_cnt'])/sum)
         p = random.choices(availbleprize, percentlist, k=1)[0]
-        for idx in data['Prizes']:
-            if idx['id']==p['id']:
-                idx['Stock_cnt']-=1
-                idx['delivered']+=1
-                winnerLabel = idx['Name']
-                if idx['delivery_point'] == None:
-                    idx['delivery_point'] = ""
-                deliverypoint = idx['delivery_point']
-                break
-        # Update data 
+        try:
+            for idx in data['Prizes']:
+                if idx['id']==p['id']:
+                    idx['Stock_cnt']-=1
+                    if idx['delivered'] is None:
+                        idx['delivered'] = 0
+                    idx['delivered']+=1
+                    winnerLabel = idx['Name']
+                    if idx['delivery_point'] == None:
+                        idx['delivery_point'] = ""
+                    deliverypoint = idx['delivery_point']
+                    break
+        except Exception as e:
+            self.logger.error("Something wrong with prize :"+ str(p) +"Error: " +str(e))       
+                   
+            # Update data 
 
         # self.g.SaveFile(data)
         self.SaveFile(data['Prizes'])
@@ -333,8 +386,8 @@ class dbif():
             self.db_mysql.SaveWonData(p)
         return winnerLabel, deliverypoint
         
-    def download_file(self):
-      self.db_mysql.Download_to_local_json()  
+    def download_file(self,reconnecttry):
+      self.db_mysql.Download_to_local_json(reconnecttry)  
       
         
          

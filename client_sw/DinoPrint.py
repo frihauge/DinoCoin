@@ -10,7 +10,7 @@ from GUI import  MainGui
 __status__  = "production"
 # The following module attributes are no longer updated.
 
-__date__    = "28042019"
+__date__    = "18092019"
 __version__ = "1.5_" +__date__
 
 def restart():
@@ -38,8 +38,8 @@ def DinoPrint():
     delta_t=y-x       
     secs=delta_t.total_seconds()
     # secs =10
-    t = Timer(secs, restart)
-    t.start()
+    #t = Timer(secs, restart)
+    #t.start()
     root = tk.Tk()
     root.version = __version__
     root.appsettings = ReadSetupFile()

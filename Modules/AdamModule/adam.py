@@ -55,8 +55,8 @@ class adam6000():
     
     def readcounter(self, num):
         try:
-            rr = self.client.read_input_registers(0, 7)
-            cnt = rr.registers[num]
+            rr = self.client.read_input_registers(0, 8)
+            cnt = rr.registers[num*2]
             if False:
                 cnt = random.randint(0, 20)
 

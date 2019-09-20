@@ -2,6 +2,7 @@ import logging
 import json
 import subprocess
 import sys
+import shutil
 from datetime import datetime
 from threading import Timer
 from time import time, sleep
@@ -60,7 +61,9 @@ def restart():
 
 def RunTask(sc, br, rt): 
     print ("Doing stuff...")
+    print ("Updateweb")
     UpdateWeb()
+    print ("Refresh Browser")
     br.refreshbrowser()
    # do your stuff
     s.enter(rt, 1, RunTask, (sc,br,rt,))
@@ -106,6 +109,7 @@ def DownLoadWeb(appsettings):
     subprocess.call([httptrackpath, weburl, "-O", FilePath+"web"])
     
 def UpdateWeb():
+    shutil.rmtree(FilePath+"web")
     si = subprocess.STARTUPINFO()
     si.dwFlags |= subprocess.STARTF_USESHOWWINDOW
     client = appsettings.get("WebUrl","testdisplay") 

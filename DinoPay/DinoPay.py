@@ -56,27 +56,15 @@ def restart():
         os.execl(python, python, *sys.argv) 
 
 
-class pGui(Thread):
-    def __init__(self, frames):
-        ''' Constructor. '''
- 
-        Thread.__init__(self)
-        self.frames = frames
-        
-    def show_frame(self, page_name):
-        '''Show a frame for the given page name'''
-        frame = self.frames[page_name]
-        frame.tkraise()   
-        
-    def run(self):
-        self.show_frame("StartPayment")
     
 class AppMain(tk.Tk):
     def __init__(self, *args, **kwargs):
         tk.Tk.__init__(self, *args, **kwargs)
         self.mp_stat = None
+        self.activepayment = False
         self.iomodulestat = None
         self.paymentdatafile = None
+        self.VendingEmpty=False
         Appsetting =  appsettings.get('App', {'xpos':0})
         self.debug = Appsetting.get('Debug',False)
         xpos = Appsetting.get ('xpos',0)
@@ -119,7 +107,9 @@ class AppMain(tk.Tk):
             # will be the one that is visible.
             frame.grid(row=0, column=0, sticky="nsew")
             frame.configure(background=self.background)
-        self.setupadammodule() 
+        self.setupadammodule()
+        self.vs = Timer(5.0, self.VendingStatus) 
+        self.vs.start() 
         self.setup_mp()
         if self.iomodulestat and self.mp_stat:
             self.show_frame("PayWithMobilePay")
@@ -158,13 +148,15 @@ class AppMain(tk.Tk):
             self.pt.cancel()
             self.ft = Timer(5.0, self.FrameTimeOut, ["paied"]) 
             self.ft.start()    
-            self.show_frame("PaymentAccepted") 
+            self.show_frame("PaymentAccepted")
+            self.activepayment = False 
             logging.info("PaymentAccepted, orderid: " + str(response['OrderId']))
             self.paymentHandle(response)
         elif canceled: 
             self.pt.cancel()
             self.ft = Timer(5.0, self.FrameTimeOut, ["PaymentFailed"]) 
             self.ft.start()    
+            self.activepayment = False
             self.show_frame("PaymentFailed")     
         else:
             self.pt.cancel()
@@ -187,6 +179,7 @@ class AppMain(tk.Tk):
            Amount = paymentstatus['Amount']
            pulsecnt = self.PulseCntGetter(int(Amount))
            if self.iomodulestat:
+               print("Pulscnt : " + str(pulsecnt)+", Pulsport : " + str(self.pulseport)+", pulsetime_low : " + str(self.pulsetime_low)+", pulsetime_high : " + str(self.pulsetime_high))
                stat = self.iomodule.PulsePort(pulsecnt, self.pulseport, self.pulsetime_low, self.pulsetime_high)
                paymentstatus['Pulsecntstat']= stat
                self.paymentdatafile[paymentstatus['OrderId']]  = paymentstatus  
@@ -199,18 +192,31 @@ class AppMain(tk.Tk):
                 self.show_frame("OfflinePage")
                 self.ft = Timer(30.0, self.FrameTimeOut,["OfflinePage"]) 
                 self.ft.start()
-            else:
-                restart()
-            
-        elif not self.readveningemptystatus():
-            self.show_frame("VendingEmpty")
-            self.VendingEmpty = True
-            self.ft = Timer(20.0, self.FrameTimeOut,["VendingEmpty"]) 
-            self.ft.start()
-            return False
+        elif stat == "VendingEmpty" and self.VendingEmpty:
+            self.ft = Timer(1.0, self.FrameTimeOut,["VendingEmpty"]) 
+            self.ft.start()              
         else:
             self.show_frame("PayWithMobilePay")
-                   
+       
+    def VendingStatus(self):
+        if not self.readveningemptystatus():
+            if self.mp is not None:
+                if self.activepayment:
+                    self.mp.PaymentCancel()
+            self.show_frame("VendingEmpty")
+            if not self.VendingEmpty: 
+                self.VendingEmpty = True
+                self.ft = Timer(1.0, self.FrameTimeOut,["VendingEmpty"]) 
+                self.ft.start()
+          
+        else:
+            self.VendingEmpty = False
+            
+        self.vs = Timer(1.0, self.VendingStatus) 
+        self.vs.start()
+        return True
+          
+                        
     def paymenttimeout(self, stat):
         print("Payment Time out!")
          
@@ -229,20 +235,17 @@ class AppMain(tk.Tk):
 
     def InitPayment(self, page_name, amount=None):
         ## STart new payment
-        self.gui = pGui(self.frames) 
-        self.gui.start() 
-        time.sleep(10)
-        #self.show_frame(page_name)
+
+        self.show_frame(page_name)
         self.VendingEmpty = False
         if not self.readveningemptystatus():
             if not self.readveningemptystatus():
                 self.show_frame("VendingEmpty")
                 print("Vending Empty")
                 self.VendingEmpty = True
-                self.ft = Timer(5.0, self.FrameTimeOut,["VendingEmpty"]) 
-                self.ft.start()
                 return False
         self.orderid = self.mp.getNewOrderId()
+
         stat, resp = self.mp.PaymentStart(self.orderid, amount)
         if not stat:
             print ("Error code: " +str(resp))
@@ -260,6 +263,7 @@ class AppMain(tk.Tk):
 
         succes, paymentstatus = self.mp.GetPaymentStatus(self.orderid)
         if succes:
+            self.activepayment = True
             paymentdata = self.paymentdatafile.get(self.orderid, {self.orderid:{}})
             paymentstatus["Pulsecntstat"]  = False
             paymentdata=paymentstatus
@@ -298,7 +302,7 @@ class AppMain(tk.Tk):
                 return True
             self.iomodule.close()
             self.iomodulestat,_ = self.iomodule.connect()
-            time.sleep(0.200)
+            time.sleep(0.100)
             statbit  = self.iomodule.readinputbit(int(self.VendingstatusPort))
             logging.info("Vending stat bit " + str(statbit))
             return statbit

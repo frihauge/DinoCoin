@@ -21,21 +21,25 @@ class Prize(threading.Thread):
         self.prn = custom.custom( self.logger)
         
     def worker(self,prn_queue):
-        while not self.stopthread:
-            item = prn_queue.get()
-            # item = prn_queue.get(block=True, timeout=2)
-            if item is None:
-                break
-            if item == 1 or item == 2:
-                self.newprize(item)
-            elif item == 0 or item == 'loadloc':
-                self.load_prizelist_to_local()
-            elif item == -1:
-                self.logger.info("Quit Printer queue")  
-                self.stopthread = True
-            else:
-                self.logger.error("Wrong queue cmd:" + str(item))  
-            prn_queue.task_done()
+        try:
+            while not self.stopthread:
+                item = prn_queue.get()
+                # item = prn_queue.get(block=True, timeout=2)
+                self.logger.log(logging.INFO,"Queue print: "+ str(item))
+                if item is None:
+                    break
+                if item == 1 or item == 2:
+                    self.newprize(item)
+                elif item == 0 or item == 'loadloc':
+                    self.load_prizelist_to_local()
+                elif item == -1:
+                    self.logger.info("Quit Printer queue")  
+                    self.stopthread = True
+                else:
+                    self.logger.error("Wrong queue cmd:" + str(item))  
+                prn_queue.task_done()
+        except Exception as e:
+            self.logger.error("main exception:" +str(e))
 
     def newprize(self, prizetype):
 
@@ -45,5 +49,5 @@ class Prize(threading.Thread):
         return Winner_label
     
     def load_prizelist_to_local(self):
-        self.db.download_file()
+        self.db.download_file(reconnecttry=True)
         self.db.db_mysql.updatetimestamp()

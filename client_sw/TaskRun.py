@@ -26,6 +26,7 @@ class TaskRun():
             set =  self.appsettings.get('Adam', {'Adam':[{'host':"192.168.1.200"}]})
             self.timebetween_pulse = self.appsettings.get('timebetween_pulse',1) * 0.001
             self.adamhost = set[0]['host']
+            self.CounterInPort = self.appsettings.get('CounterInPort',0)
         except Exception as e:
             self.logger.error("Main setup error"+ str(e)) 
             self.adamhost = "192.168.1.100"  
@@ -57,7 +58,6 @@ class TaskRun():
     
     def runfast(self):
 
-        self.CounterInPort = 0
         stat = False
         self.cnt = self.iomodule.readcounter(self.CounterInPort)
         time.sleep(0.100)
@@ -67,6 +67,8 @@ class TaskRun():
             time.sleep(self.timebetween_pulse) # If between 2 pulses
             self.cnt = self.iomodule.readcounter(self.CounterInPort)
             if self.cnt == 1 or self.cnt==2:
+                if not self.t.is_alive():
+                    self.t.start()
                 prn_queue.put(self.cnt)
                 self.logger.log(logging.INFO,"Generateprize Type: "+ str(self.cnt))
             #if self.cnt == 1:
@@ -96,6 +98,11 @@ class TaskRun():
             prn_queue.put(2)
         if cmd == "q_loadloc":
             prn_queue.put('loadloc')
+        if cmd == "restart_thread":
+            self.logger.log(logging.INFO,"Is thread alive " +str(self.t.is_alive()))
+            if not self.t.is_alive():
+                self.logger.log(logging.INFO,"Thread not running")
+            self.t.start()
             
             
                 
