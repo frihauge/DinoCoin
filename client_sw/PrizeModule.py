@@ -21,8 +21,8 @@ class Prize(threading.Thread):
         self.prn = custom.custom( self.logger)
         
     def worker(self,prn_queue):
-        try:
-            while not self.stopthread:
+        while not self.stopthread:
+            try:
                 item = prn_queue.get()
                 # item = prn_queue.get(block=True, timeout=2)
                 self.logger.log(logging.INFO,"Queue print: "+ str(item))
@@ -38,8 +38,9 @@ class Prize(threading.Thread):
                 else:
                     self.logger.error("Wrong queue cmd:" + str(item))  
                 prn_queue.task_done()
-        except Exception as e:
-            self.logger.error("main exception:" +str(e))
+            except Exception as e:
+                self.logger.error("Prize Module Worker exception:" +str(e))
+            pass
 
     def newprize(self, prizetype):
 

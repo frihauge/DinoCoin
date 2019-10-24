@@ -349,6 +349,8 @@ class dbif():
         if 'Prizes' not in data:
             return "No prize in data"
         for da in data['Prizes']:
+            if da['Stock_cnt'] is None:
+                da['Stock_cnt']=0
             if da['PrizeType'] == prizeType and da['Stock_cnt'] > 0:
                 availbleprize.append(da)
         totalprizes = len(availbleprize)

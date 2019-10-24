@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: latin-1 -*-
 import logging
+from logging.handlers import RotatingFileHandler
 import unicodedata
 import json
 import os,io
@@ -8,6 +9,7 @@ import sys
 import tkinter as tk
 from sched import scheduler
 import time
+import urllib.request
 from threading import Thread
 from tkinter import *                
 from tkinter import font  as tkfont 
@@ -26,11 +28,20 @@ AppName ="DinoPay"
 AppVersion  ="1.0"
 
 
-logging.basicConfig(filename=logname,
-                            filemode='a',
-                            format='%(asctime)s,%(msecs)d %(name)s %(levelname)s %(message)s',
-                            datefmt='%H:%M:%S',
-                            level=logging.DEBUG)
+log_formatter = logging.Formatter('%(asctime)s %(levelname)s %(funcName)s(%(lineno)d) %(message)s')
+
+logFile = logname
+
+my_handler = RotatingFileHandler(logFile, mode='a', maxBytes=5*1024*1024, 
+                                 backupCount=2, encoding=None, delay=0)
+my_handler.setFormatter(log_formatter)
+my_handler.setLevel(logging.INFO)
+
+app_log = logging.getLogger('root')
+app_log.setLevel(logging.INFO)
+
+app_log.addHandler(my_handler)
+
 appsettings = 0
 s = scheduler(time, time.sleep)
 
@@ -71,7 +82,7 @@ class AppMain(tk.Tk):
         fullscreen = Appsetting.get ('fullscreen',1)
         usedb = Appsetting.get ('usedb',0)
         if usedb:
-            self.paymentdb = dinoDBif.dinodbif(logging)
+            self.paymentdb = dinoDBif.dinodbif(app_log)
             self.paymentdb.connect()
         self.title_font = tkfont.Font(family='ApexSansMediumT', size=36, weight="bold")
         self.background = 'white'
@@ -81,7 +92,7 @@ class AppMain(tk.Tk):
             root.state('zoomed')
         root.call('encoding', 'system', 'utf-8')
         wininfo =  ("Geo Info Screen high: " + str(root.winfo_screenheight()) + "Screen width: "+str(root.winfo_screenwidth()))
-        logging.info("WinInfo" + str(wininfo))
+        app_log.info("WinInfo" + str(wininfo))
         print (wininfo)
 
         localwin = ("{0}x{1}+{2}+0".format(root.winfo_screenwidth(), root.winfo_screenheight(), xpos))
@@ -95,7 +106,6 @@ class AppMain(tk.Tk):
         self.container.grid_rowconfigure(0, weight=1)
         self.container.grid_columnconfigure(0, weight=1)
         self.container.config(background = self.background)
-        # self.setupcoinoktimer()
         self.frames = {}
         for F in (OfflinePage, StartPage, PayWithMobilePay, StartPayment, SwipePayment, PaymentAccepted, PaymentFailed, VendingEmpty):
             page_name = F.__name__
@@ -150,7 +160,7 @@ class AppMain(tk.Tk):
             self.ft.start()    
             self.show_frame("PaymentAccepted")
             self.activepayment = False 
-            logging.info("PaymentAccepted, orderid: " + str(response['OrderId']))
+            app_log.info("PaymentAccepted, orderid: " + str(response['OrderId']))
             self.paymentHandle(response)
         elif canceled: 
             self.pt.cancel()
@@ -176,14 +186,19 @@ class AppMain(tk.Tk):
        
     def paymentHandle(self,paymentstatus):
         if(paymentstatus['PaymentStatus']==100):
-           Amount = paymentstatus['Amount']
-           pulsecnt = self.PulseCntGetter(int(Amount))
-           if self.iomodulestat:
-               print("Pulscnt : " + str(pulsecnt)+", Pulsport : " + str(self.pulseport)+", pulsetime_low : " + str(self.pulsetime_low)+", pulsetime_high : " + str(self.pulsetime_high))
-               stat = self.iomodule.PulsePort(pulsecnt, self.pulseport, self.pulsetime_low, self.pulsetime_high)
-               paymentstatus['Pulsecntstat']= stat
-               self.paymentdatafile[paymentstatus['OrderId']]  = paymentstatus  
-               self.WritePaymentFile(self.paymentdatafile)
+            Amount = paymentstatus['Amount']
+            pulsecnt = self.PulseCntGetter(int(Amount))
+            if self.iomodulestat:
+                try:
+                    print("Pulscnt : " + str(pulsecnt)+", Pulsport : " + str(self.pulseport)+", pulsetime_low : " + str(self.pulsetime_low)+", pulsetime_high : " + str(self.pulsetime_high))
+                    stat = self.iomodule.PulsePort(pulsecnt, self.pulseport, self.pulsetime_low, self.pulsetime_high)
+                    print("Stat: " +str(stat))
+                    paymentstatus['Pulsecntstat']= stat
+                    self.paymentdatafile[paymentstatus['OrderId']]  = paymentstatus  
+                    self.WritePaymentFile(self.paymentdatafile)
+                except Exception as e:
+                    print ("self.iomodule.PulsePort" + str(e))
+                    app_log.error("self.iomodule.PulsePort " + str(self.iomodule))
    
     def FrameTimeOut(self, stat):
         if stat == "OfflinePage":
@@ -199,7 +214,7 @@ class AppMain(tk.Tk):
             self.show_frame("PayWithMobilePay")
        
     def VendingStatus(self):
-        if not self.readveningemptystatus():
+        if not self.readveningemptystatus() :
             if self.mp is not None:
                 if self.activepayment:
                     self.mp.PaymentCancel()
@@ -215,14 +230,20 @@ class AppMain(tk.Tk):
         self.vs = Timer(1.0, self.VendingStatus) 
         self.vs.start()
         return True
-          
+    
+    def internet_on(self):
+        try:
+            urllib.request.urlopen('http://google.com', timeout=1)
+            return True
+        except urllib.request.URLError:
+            return False    
                         
     def paymenttimeout(self, stat):
         print("Payment Time out!")
          
         if self.mp is not None:
             print("Payment Time out!" + str(self.orderid))
-            logging.info("Payment TimeOut" + str(self.orderid))
+            app_log.info("Payment TimeOut" + str(self.orderid))
             self.mp.PaymentCancel()
             self.show_frame("PaymentFailed")
             self.ft = Timer(5.0, self.FrameTimeOut, [stat]) 
@@ -290,32 +311,34 @@ class AppMain(tk.Tk):
         self.pulsetime_high = set.get('pulseporttime_high_ms',100)
         
         self.VendingstatusPort = set.get('VendingstatusPort',3)
-        logging.info("Connecting iomodule ip " + str(self.adamhost))
-        self.iomodule = adam.adam6000(logging, str(self.adamhost))
+        app_log.info("Connecting iomodule ip " + str(self.adamhost))
+        
+     #   self.AdamTask = adam.AdamThreadSendTask(self, app_log, str(self.adamhost))
+     #   self.AdamTask.setcyclicdata(str(self.VendingstatusPort))
+     #   self.AdamTask.start()
+        self.iomodule = adam.adam6000(app_log, str(self.adamhost))
         self.iomodulestat,_ = self.iomodule.connect()
-        logging.info("Connecting status: " + str(self.iomodulestat))
+        app_log.info("Connecting status: " + str(self.iomodulestat))
         return self.iomodulestat
            
     def readveningemptystatus(self):
         try:
             if self.debug:
                 return True
-            self.iomodule.close()
-            self.iomodulestat,_ = self.iomodule.connect()
+           # while not adam.AdamValueQueue.empty():
+           #     item = adam.AdamValueQueue.get(block=True, timeout=2)
+            #self.iomodule.close()
+            #self.iomodulestat,_ = self.iomodule.connect()
             time.sleep(0.100)
             statbit  = self.iomodule.readinputbit(int(self.VendingstatusPort))
-            logging.info("Vending stat bit " + str(statbit))
+            app_log.info("Vending stat bit " + str(statbit))
             return statbit
         except Exception as e:
             print ("readveningemptystatus error" + str(e))
-            logging.error("Error readveningemptystatus " + str(self.iomodule))
+            app_log.error("Error readveningemptystatus " + str(self.iomodule))
             return 0
             
         
-    def setupcoinoktimer(self):
-        iscoinsleftok = appsettings.get("setupcoinoktimer",120)
-        s.enter(1, 1, RunTask, (s,iscoinsleftok, self.iomodule,))
-        s.run()
  
     def setup_mp(self):
         mpsetting =  appsettings.get('Mobilepay', {'url':'https://sandprod-pos2.mobilepay.dk/API/V08/','PoSUnitIdToPos':'100000625947428'})
@@ -325,9 +348,9 @@ class AppMain(tk.Tk):
         Name=  mpsetting.get('LocationName','DinoCoin')
         MerchantId = mpsetting.get('MerchantId','POSDKDC307')
         key = mpsetting.get('key','344A350B-0D2D-4D7D-B556-BC4E2673C882') 
-        logging.info("Connecting Mobile pay ")
+        app_log.info("Connecting Mobile pay ")
         self.mp = MobilePayImpl.mpif(key=key, MerchantId=MerchantId, LocationId=LocationId, url=url, Name=Name)
-        logging.info("RegisterPOS")
+        app_log.info("RegisterPOS")
         posid = mpsetting.setdefault('posid',None)
         self.mp.PosId = posid
         self.mp_stat, posid = self.mp.StartUpReg()
@@ -335,10 +358,10 @@ class AppMain(tk.Tk):
             mpsetting['posid'] = posid
             appsettings['Mobilepay'] = mpsetting
             WriteSetupFile(appsettings)
-            logging.info("AssignPos" + str(PoSUnitIdToPos))
+            app_log.info("AssignPos" + str(PoSUnitIdToPos))
             self.mp_stat = self.mp.AssignPoSUnitIdToPos(PoSUnitIdToPos)
             self.runrefundonmissed()
-        logging.info(self.mp_stat)
+        app_log.info(self.mp_stat)
 
         return self.mp_stat
            
@@ -347,8 +370,8 @@ class AppMain(tk.Tk):
         if len(self.paymentdatafile) > 1:
             for key, value in self.paymentdatafile.items():
                 if value['Pulsecntstat'] != True:
-                    logging.info("Payment Failed: " +str(value))
-                    logging.info("Refund : " +str(key))
+                    app_log.info("Payment Failed: " +str(value))
+                    app_log.info("Refund : " +str(key))
                     refundbefore = self.paymentdatafile[key].get('Refund',False)
                     if not refundbefore:
                         self.paymentdatafile[key]['Refund']=False
@@ -648,8 +671,8 @@ def ReadSetupFile():
 
 if __name__ == '__main__':
    # try:
-        logging.info("Running DinoPay")
-        logging.info("Reading Setupfile")
+        app_log.info("Running DinoPay")
+        app_log.info("Reading Setupfile")
         appsettings = ReadSetupFile()
         app = AppMain()
         x=datetime.today()
@@ -657,6 +680,6 @@ if __name__ == '__main__':
         delta_t=y-x       
         secs=delta_t.total_seconds()
         #secs =10
-        t = Timer(secs, restart)
-        t.start()
+       # t = Timer(secs, restart)
+       # t.start()
         app.mainloop()

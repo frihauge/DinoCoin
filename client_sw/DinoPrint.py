@@ -33,21 +33,21 @@ def restart():
 
 
 def DinoPrint():
+
     x=datetime.today()
     y = x.replace(day=x.day, hour=0, minute=0, second=0, microsecond=0) + timedelta(days=1)
     delta_t=y-x       
     secs=delta_t.total_seconds()
-    # secs =10
-    #t = Timer(secs, restart)
-    #t.start()
+# secs =10
+#t = Timer(secs, restart)
+#t.start()
     root = tk.Tk()
     root.version = __version__
     root.appsettings = ReadSetupFile()
     root.iconbitmap(r'DinoPrint.ico')
     app =MainGui.App(root)
     app.root.mainloop()
-    
-    
+
 def ReadSetupFile():
     FilePath = 'C:\\ProgramData\\DinoCoin\\DinoPrint\\'
     mainsetupfile =FilePath+ 'MainSetup.json'
@@ -69,12 +69,15 @@ def ReadSetupFile():
     return data       
 
 if __name__ == '__main__':
-    try:
-
-        DinoPrint()
-    except Exception as e:
-        os.startfile(__file__)
-        sys.exit()
-        logging.error("main exception:" +str(e))
+  
+    while True:
+        try:
+            DinoPrint()
+        except Exception as e:
+            os.startfile(__file__)
+            sys.exit()
+            logging.error("main exception:" +str(e))
+            pass
+        else:
+            break
         
-    

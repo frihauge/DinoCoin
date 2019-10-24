@@ -6,9 +6,69 @@
 """
 
 import time
-import random
+import threading
+import queue
 
 from pymodbus.client.sync import ModbusTcpClient as ModbusClient
+from cgi import log
+
+Set_Cmd = queue.Queue()
+AdamValueQueue = queue.Queue()
+
+
+class AdamThreadSendTask(threading.Thread):
+
+    def __init__(self, root, log, host):
+        super().__init__()
+        self.root = root
+        self.log = log
+        self.host = host
+        self.adam6050 = None
+        self._stop_event = threading.Event()
+        self.connectadam6050()
+        self.pulsescnt= 0
+        self.portnum= 0
+        self.pulsetime_low= 100
+        self.pulsetime_high= 100
+        self.cyclicdata = []
+
+    def setcyclicdata(self, ports):
+        self.cyclicdata = ports.split(",")
+
+    def PulsePortConf(self, portnum, pulsetime_low, pulsetime_high):
+        self.portnum=portnum
+        self.pulsetime_low=pulsetime_low
+        self.pulsetime_high=pulsetime_high
+
+    def connectadam6050(self):
+        self.adam6050 = adam6000(self.log, self.host)
+        self.adam6050.connect()
+
+    def run(self):
+        while not self._stop_event.is_set():
+            if not Set_Cmd.empty():
+                try:
+                    item = Set_Cmd.get(block=True, timeout=2)
+                    if item[0]=="Pulse":
+                        pulsescnt = item[1]
+                        self.adam6050.PulsePort(pulsescnt, self.portnum, self.pulsetime_low, self.pulsetime_high)
+                    if item[0]=="readport":
+                        portno = item[1]
+                        val = self.adam6050.readinputbit(portno)
+                        AdamValueQueue.put(("IOValue_" + str(portno), val))
+                    print(item)
+                    Set_Cmd.task_done()
+                except:
+                    print("Queue Error")
+            if len(self.cyclicdata) > 0:
+                for portno in self.cyclicdata:
+                    value=self.adam6050.readinputbit(int(portno))
+                    AdamValueQueue.put(("IOValue_" + str(portno), value))
+            time.sleep(0.2)
+
+    def stop(self):
+        self.stop = True
+        self._stop_event.set()
 
 
 class adam6000():
@@ -18,7 +78,6 @@ class adam6000():
         self.Description = "Setup SocketConnection to adam module"
         self.logger = log
         self.host = host
-        self.port = 1025
         self.client = None
 
     def connect(self):
@@ -52,14 +111,14 @@ class adam6000():
             return True
         else:
             return False
-    
+
     def readcounter(self, num):
         try:
-            rr = self.client.read_input_registers(0, 8)
-            cnt = rr.registers[num*2]
-            if False:
-                cnt = random.randint(0, 20)
-
+            rr = self.client.read_input_registers(0, 12)
+            # not using highbyte in this setup
+            # idxlow = num*2
+            # highbyte = rr.registers[idxlow+1] 
+            cnt = rr.registers[num * 2]
         except:
             self.logger.error("No connection to ADAM on ip: " + str(self.host))
             cnt = -1
@@ -87,8 +146,10 @@ class adam6000():
 
 
 if __name__ == '__main__':
-    ad = adam6000(None, '192.168.1.200')
-    ad.connect()
-    print(ad.readcounter(1))
-    ad.SetOutputbit(0, 0)
-    print(ad.readinputbit(1))
+    at = AdamThreadSendTask(None,None, '192.168.1.200')
+    at.start()
+    #ad = adam6000(None, '192.168.1.200')
+    #ad.connect()
+    #print(ad.readcounter(1))
+    #ad.SetOutputbit(0, 0)
+    #print(ad.readinputbit(1))

@@ -36,7 +36,8 @@ class cv():
   
     def stopbrowser(self):
         try:
-            self.driver.close()
+            if self.driver is not None:
+                self.driver.close()
         except Exception as e:
             logging.error("main exception:" +str(e))
                           
@@ -55,7 +56,8 @@ class cv():
         if self.driver is not None:
             self.driver.switch_to.window(self.driver.current_window_handle)
             self.driver.refresh();
-        
+        else:
+            raise Exception('Chromedriver == None') # Don't! If you catch, likely to hide bugs.
     
 def get_hwnds(pid):
     """return a list of window handlers based on it process id"""

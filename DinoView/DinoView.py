@@ -3,6 +3,7 @@ import json
 import subprocess
 import sys
 import shutil
+import urllib.request
 from datetime import datetime
 from threading import Timer
 from time import time, sleep
@@ -57,16 +58,30 @@ def restart():
 
         python = sys.executable
         os.execl(python, python, *sys.argv) 
-
+def internet_on():
+    try:
+        urllib.request.urlopen('http://google.com', timeout=1)
+        return True
+    except urllib.request.URLError:
+        return False
+    return False
 
 def RunTask(sc, br, rt): 
     print ("Doing stuff...")
-    print ("Updateweb")
-    UpdateWeb()
-    print ("Refresh Browser")
-    br.refreshbrowser()
+    if internet_on():
+        print("Network OK")
+        print ("Updateweb")
+        UpdateWeb()    
+        print ("Refresh Browser")
+        if internet_on():
+            br.refreshbrowser()
+        sc.enter(rt, 1, RunTask, (sc,br,rt,))
+    else:
+        print("Network DOWN!")
+        sc.enter(rt, 1, RunTask, (sc,br,rt,))
+
    # do your stuff
-    s.enter(rt, 1, RunTask, (sc,br,rt,))
+
        
 def DinoView():
     version = __version__
@@ -76,11 +91,18 @@ def DinoView():
     delta_t=y-x       
     secs=delta_t.total_seconds()
     #secs =10
-    t = Timer(secs, restart)
-    t.start()
+    #t = Timer(secs, restart)
+    #t.start()
     print("App.Version: "+ version)
     if not os.path.isfile(httptrackpath):
         raise Exception('Cant find httptrack.exe in: '+httptrackpath)
+    if not os.path.exists(FilePath+"web"):
+        try:
+            os.makedirs(FilePath+"web")
+        except Exception as e: 
+            print('make dirs error: ' + FilePath+"web", e)
+    
+    
     refreshtime = appsettings.get("refreshtime",120)
     br = ShowBrowser(appsettings)
     s.enter(1, 1, RunTask, (s,br,refreshtime,))
@@ -94,8 +116,9 @@ def ShowBrowser(appsettings):
     url = r"file://"+FilePath+"/web/"+ webhost +"/foyer/" + screen +"/index.html"
     print ("URL: for view " + url)
     #DownLoadWeb(appsettings)
-    global br
+    #global br
     br = chromeviewer.cv(url,winpos)
+    br.stopbrowser()
     br.startbrowser()
     
     return br
@@ -138,10 +161,17 @@ def ReadSetupFile():
     return data       
 
 if __name__ == '__main__':
-    try:
-        appsettings = ReadSetupFile()
-        DinoView()
-    except Exception as e:
-        logging.error("main exception:" +str(e))
-        
+    while True:
+        try:
+            appsettings = ReadSetupFile()
+            DinoView()
+        except Exception as e:
+            logging.error("main exception:" +str(e))
+            logging.error("Trying to kill chromedriver")
+            os.system("taskkill /im chromedriver.exe /F")
+            logging.error("Trying to kill chrome.exe")
+            os.system("taskkill /im chrome.exe /F")
+            pass
+        else:
+            break
     
