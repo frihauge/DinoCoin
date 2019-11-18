@@ -104,7 +104,7 @@ class db_mysql():
 
             sql = "INSERT IGNORE INTO Clients (clientname, Version) VALUES (%s,%s) on duplicate key update Version = %s"
             cur.execute(sql, (self.pcname, self.root.version, self.root.version))
-            cur.execute("CREATE TABLE IF NOT EXISTS PrizeTypes (id int(11) NOT NULL AUTO_INCREMENT, PrizeType INT,PrizeTypeName varchar(45), PRIMARY KEY (id))")
+            cur.execute("CREATE TABLE IF NOT EXISTS PrizeTypes (id int(11) NOT NULL AUTO_INCREMENT, PrizeType INT,PrizeTypeName varchar(45), PRIMARY KEY (id), UNIQUE(PrizeType))")
             sql = "INSERT IGNORE INTO Settings (clientname, Parameter, Value) VALUES (%s,%s,%s)"
             cur.execute(sql, (self.pcname, "Ad_URL", "http:\\helloWorld"))
             cur.execute("""INSERT IGNORE INTO PrizeTypes (PrizeType, PrizeTypeName) VALUES (1,"Standard_prize")""")
@@ -143,11 +143,13 @@ class db_mysql():
                                 ClientName varchar(45),
                                 PrizeType INT,
                                 Name varchar(45),
+                                Name_arab varchar(45),
                                 Description varchar(45),
                                 Stock_cnt INT,
                                 delivered INT,
                                 PrizeTypeDescription varchar(45),
                                 delivery_point varchar(45),
+                                delivery_point_arab varchar(45),
                                 FOREIGN KEY(ClientName) REFERENCES Clients(clientname), PRIMARY KEY (id))""")
 
         cur.execute(sql)
@@ -212,7 +214,7 @@ class db_mysql():
             return False
         
         self.logger.info("Downloading new prizefile")
-        sql = """SELECT id,  PrizeType, Name, Description, Stock_cnt, delivered, PrizeTypeDescription, delivery_point FROM `Prizes` WHERE `ClientName` = %s"""
+        sql = """SELECT id,  PrizeType, Name, Name_arab, Stock_cnt, delivered, PrizeTypeDescription, delivery_point, delivery_point_arab FROM `Prizes` WHERE `ClientName` = %s"""
         val = (self.pcname,)
         
         try:
@@ -261,8 +263,8 @@ class db_mysql():
                     self.logger.info("No connection to db setting network status = False" +str(e))
                     self.network = False
                     return False
-                sql = """UPDATE Prizes SET PrizeType=%s,Name=%s,Stock_cnt = %s, delivered = %s, Description =%s, delivery_point = %s WHERE id = %s"""
-                val = (prize["PrizeType"],prize['Name'],prize['Stock_cnt'],prize['delivered'],prize['Description'], prize["delivery_point"], prize["id"])
+                sql = """UPDATE Prizes SET PrizeType=%s,Name=%s,Name_arab=%s,Stock_cnt = %s, delivered = %s,  delivery_point = %s, delivery_point_arab = %s  WHERE id = %s"""
+                val = (prize["PrizeType"],prize['Name'],prize['Name_arab'],prize['Stock_cnt'],prize['delivered'], prize["delivery_point"],prize["delivery_point_arab"], prize["id"])
                 cur.execute(sql, val)
                 self.mydb.commit()
         except Exception as e:
@@ -365,17 +367,25 @@ class dbif():
         for i in availbleprize:
             percentlist.append(int(i['Stock_cnt'])/sum)
         p = random.choices(availbleprize, percentlist, k=1)[0]
+        
         try:
             for idx in data['Prizes']:
                 if idx['id']==p['id']:
-                    idx['Stock_cnt']-=1
                     if idx['delivered'] is None:
                         idx['delivered'] = 0
                     idx['delivered']+=1
-                    winnerLabel = idx['Name']
+                    if idx['Name_arab'] is None:
+                       idx['Name_arab'] = idx['Name'] 
                     if idx['delivery_point'] == None:
                         idx['delivery_point'] = ""
+                    if idx['delivery_point_arab'] == None:
+                        idx['delivery_point_arab'] = idx['delivery_point']                        
+                    # update data
+                    idx['Stock_cnt']-=1
+                    winnerLabel = idx['Name']
+                    winnerLabel_arab = idx['Name_arab']
                     deliverypoint = idx['delivery_point']
+                    deliverypoint_arab = idx['delivery_point_arab']                 
                     break
         except Exception as e:
             self.logger.error("Something wrong with prize :"+ str(p) +"Error: " +str(e))       
@@ -386,7 +396,8 @@ class dbif():
         self.SaveFile(data['Prizes'])
         if self.store_wonlog:
             self.db_mysql.SaveWonData(p)
-        return winnerLabel, deliverypoint
+  
+        return idx
         
     def download_file(self,reconnecttry):
       self.db_mysql.Download_to_local_json(reconnecttry)  

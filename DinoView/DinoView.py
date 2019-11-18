@@ -2,6 +2,7 @@ import logging
 import json
 import subprocess
 import sys
+import os
 import shutil
 import urllib.request
 from datetime import datetime
@@ -11,6 +12,9 @@ from datetime import datetime,timedelta
 from sched import scheduler
 import os,io
 import chromeviewer
+sys.path.append('../Modules')
+import tools.Internettools
+
 br = None
 logFormatter = logging.Formatter("%(asctime)s [%(threadName)-12.12s] [%(levelname)-5.5s]  %(message)s")
 rootLogger = logging.getLogger()
@@ -59,12 +63,8 @@ def restart():
         python = sys.executable
         os.execl(python, python, *sys.argv) 
 def internet_on():
-    try:
-        urllib.request.urlopen('http://google.com', timeout=1)
-        return True
-    except urllib.request.URLError:
-        return False
-    return False
+    return tools.Internettools.PingDinoCoinWeb()
+
 
 def RunTask(sc, br, rt): 
     print ("Doing stuff...")
@@ -113,9 +113,8 @@ def ShowBrowser(appsettings):
     screen = appsettings.get("WebUrl","testdisplay")
     winpos = appsettings.get("winpos","4000,0")
     url = r"file:///C:/ProgramData/DinoCoin/DinoView/web/www.dinocoin.frihauge.dk/foyer/testdisplay/index.html"
-    url = r"file://"+FilePath+"/web/"+ webhost +"/foyer/" + screen +"/index.html"
+    url = r"file://"+FilePath+"web/"+ webhost +"/foyer/" + screen +"/index.html"
     print ("URL: for view " + url)
-    #DownLoadWeb(appsettings)
     #global br
     br = chromeviewer.cv(url,winpos)
     br.stopbrowser()
@@ -125,19 +124,21 @@ def ShowBrowser(appsettings):
     
 
     
-    
-def DownLoadWeb(appsettings):
-    client = appsettings.get("WebUrl","testdisplay") 
-    weburl = r"http://www.dinocoin.frihauge.dk/foyer/"+ client
-    subprocess.call([httptrackpath, weburl, "-O", FilePath+"web"])
-    
 def UpdateWeb():
-    shutil.rmtree(FilePath+"web")
+    try:
+        shutil.rmtree(FilePath+"web_tmp")
+    except:
+        pass
     si = subprocess.STARTUPINFO()
     si.dwFlags |= subprocess.STARTF_USESHOWWINDOW
+    #flags =  """-qiC1%Ps2u1%s%uN0%I0p3DdK0H0%kf2A25000%f#f -F "Mozilla/4.5 (compatible; HTTrack 3.0x; Windows 98)" -%F "<!-- Mirrored from %s%s by HTTrack Website Copier/3.x [XR&CO'2014], %s -->" -%l "en, *" http://www.dinocoin.frihauge.dk/foyer/dinocoin1/ -O1 "C:\fri\dc" +*.png +*.gif +*.jpg +*.jpeg +*.css +*.js -ad.doubleclick.net/* -mime:application/foobar"""
+    flags =  """-qiC1%Ps2u1%s%uN0%I0p3DdK0H0%kf2A25000%f#f -F "Mozilla/4.5 (compatible; HTTrack 3.0x; Windows 98)" -%F "<!-- Mirrored from %s%s by HTTrack Website Copier/3.x [XR&CO'2014], %s -->" -%l "en, *"""
+    flags2 =  '+*.png +*.gif +*.jpg +*.jpeg +*.css +*.js -ad.doubleclick.net/* -mime:application/foobar'
+    
     client = appsettings.get("WebUrl","testdisplay") 
     weburl = r"http://www.dinocoin.frihauge.dk/foyer/"+ client
-    pinfo = subprocess.call([httptrackpath,"--update",weburl,"-O", FilePath+"web" ], startupinfo=si)
+    pinfo = subprocess.call([httptrackpath,flags,"--update", weburl,"-O1", FilePath+"web_tmp" ,flags2], startupinfo=si)
+    copytree(FilePath+"web_tmp", FilePath+"web")
     print(pinfo)
  
     
@@ -160,10 +161,19 @@ def ReadSetupFile():
         data = json.load(jsonFile) 
     return data       
 
+def copytree(src, dst, symlinks=False, ignore=None):
+    try:
+        shutil.rmtree(dst)
+    except:
+        pass
+    finally:
+        shutil.copytree(src, dst, symlinks=False, ignore=None, copy_function=shutil.copy, ignore_dangling_symlinks=False)
+        
 if __name__ == '__main__':
     while True:
         try:
             appsettings = ReadSetupFile()
+            UpdateWeb() 
             DinoView()
         except Exception as e:
             logging.error("main exception:" +str(e))

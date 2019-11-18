@@ -1,0 +1,375 @@
+2019-11-14 08:47:17,949 INFO <module>(712) Running DinoPay
+2019-11-14 08:47:17,950 INFO <module>(713) Reading Setupfile
+2019-11-14 08:47:18,082 INFO __init__(98) WinInfoGeo Info Screen high: 1200Screen width: 1600
+2019-11-14 08:47:18,232 INFO setupadammodule(343) Connecting iomodule ip 192.168.1.200
+2019-11-14 08:47:18,234 INFO setupadammodule(351) Connecting status: None
+2019-11-14 08:47:18,236 INFO setup_mp(389) Connecting Mobile pay 
+2019-11-14 08:47:18,237 INFO setup_mp(391) RegisterPOS
+2019-11-14 08:47:18,931 INFO setup_mp(399) AssignPos100000625947428
+2019-11-14 08:47:19,148 INFO runrefundonmissed(411) Payment Failed: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dc8870f', 'TransactionId': None, 'Amount': 100.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None, 'Pulsecntstat': False, 'Refund': False}
+2019-11-14 08:47:19,150 INFO runrefundonmissed(412) Refund : 5dc8870f
+2019-11-14 08:47:19,401 INFO runrefundonmissed(411) Payment Failed: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dc88775', 'TransactionId': None, 'Amount': 50.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None, 'Pulsecntstat': False, 'Refund': False}
+2019-11-14 08:47:19,401 INFO runrefundonmissed(412) Refund : 5dc88775
+2019-11-14 08:47:19,629 INFO runrefundonmissed(411) Payment Failed: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dc887a2', 'TransactionId': None, 'Amount': 50.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None, 'Pulsecntstat': False, 'Refund': False}
+2019-11-14 08:47:19,629 INFO runrefundonmissed(412) Refund : 5dc887a2
+2019-11-14 08:47:19,838 INFO runrefundonmissed(411) Payment Failed: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dc887c2', 'TransactionId': None, 'Amount': 100.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None, 'Pulsecntstat': False, 'Refund': False}
+2019-11-14 08:47:19,838 INFO runrefundonmissed(412) Refund : 5dc887c2
+2019-11-14 08:47:20,256 INFO runrefundonmissed(411) Payment Failed: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dc887c5', 'TransactionId': None, 'Amount': 50.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None, 'Pulsecntstat': False, 'Refund': False}
+2019-11-14 08:47:20,258 INFO runrefundonmissed(412) Refund : 5dc887c5
+2019-11-14 08:47:20,493 INFO runrefundonmissed(411) Payment Failed: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dc888c5', 'TransactionId': None, 'Amount': 100.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None, 'Pulsecntstat': False, 'Refund': False}
+2019-11-14 08:47:20,493 INFO runrefundonmissed(412) Refund : 5dc888c5
+2019-11-14 08:47:20,715 INFO runrefundonmissed(411) Payment Failed: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dc8f877', 'TransactionId': None, 'Amount': 50.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None, 'Pulsecntstat': False, 'Refund': False}
+2019-11-14 08:47:20,716 INFO runrefundonmissed(412) Refund : 5dc8f877
+2019-11-14 08:47:20,916 INFO runrefundonmissed(411) Payment Failed: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dc8f885', 'TransactionId': None, 'Amount': 50.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None, 'Pulsecntstat': False, 'Refund': False}
+2019-11-14 08:47:20,917 INFO runrefundonmissed(412) Refund : 5dc8f885
+2019-11-14 08:47:21,136 INFO runrefundonmissed(411) Payment Failed: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dc91a9b', 'TransactionId': None, 'Amount': 100.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None, 'Pulsecntstat': False, 'Refund': False}
+2019-11-14 08:47:21,136 INFO runrefundonmissed(412) Refund : 5dc91a9b
+2019-11-14 08:47:21,355 INFO runrefundonmissed(411) Payment Failed: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dc91ab7', 'TransactionId': None, 'Amount': 50.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None, 'Pulsecntstat': False, 'Refund': False}
+2019-11-14 08:47:21,355 INFO runrefundonmissed(412) Refund : 5dc91ab7
+2019-11-14 08:47:21,576 INFO runrefundonmissed(411) Payment Failed: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dc91ab9', 'TransactionId': None, 'Amount': 100.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None, 'Pulsecntstat': False, 'Refund': False}
+2019-11-14 08:47:21,576 INFO runrefundonmissed(412) Refund : 5dc91ab9
+2019-11-14 08:47:21,799 INFO runrefundonmissed(411) Payment Failed: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dc91aed', 'TransactionId': None, 'Amount': 50.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None, 'Pulsecntstat': False, 'Refund': False}
+2019-11-14 08:47:21,799 INFO runrefundonmissed(412) Refund : 5dc91aed
+2019-11-14 08:47:22,012 INFO runrefundonmissed(411) Payment Failed: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dc91aef', 'TransactionId': None, 'Amount': 100.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None, 'Pulsecntstat': False, 'Refund': False}
+2019-11-14 08:47:22,012 INFO runrefundonmissed(412) Refund : 5dc91aef
+2019-11-14 08:47:22,227 INFO runrefundonmissed(411) Payment Failed: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dc91af1', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None, 'Pulsecntstat': False, 'Refund': False}
+2019-11-14 08:47:22,228 INFO runrefundonmissed(412) Refund : 5dc91af1
+2019-11-14 08:47:22,441 INFO runrefundonmissed(411) Payment Failed: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dc91b0c', 'TransactionId': None, 'Amount': 100.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None, 'Pulsecntstat': False, 'Refund': False}
+2019-11-14 08:47:22,442 INFO runrefundonmissed(412) Refund : 5dc91b0c
+2019-11-14 08:47:22,652 INFO runrefundonmissed(411) Payment Failed: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dc91b0e', 'TransactionId': None, 'Amount': 50.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None, 'Pulsecntstat': False, 'Refund': False}
+2019-11-14 08:47:22,652 INFO runrefundonmissed(412) Refund : 5dc91b0e
+2019-11-14 08:47:22,872 INFO runrefundonmissed(411) Payment Failed: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dc9c493', 'TransactionId': None, 'Amount': 100.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None, 'Pulsecntstat': False, 'Refund': False}
+2019-11-14 08:47:22,873 INFO runrefundonmissed(412) Refund : 5dc9c493
+2019-11-14 08:47:23,064 INFO runrefundonmissed(411) Payment Failed: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dc9c494', 'TransactionId': None, 'Amount': 50.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None, 'Pulsecntstat': False, 'Refund': False}
+2019-11-14 08:47:23,064 INFO runrefundonmissed(412) Refund : 5dc9c494
+2019-11-14 08:47:23,276 INFO runrefundonmissed(411) Payment Failed: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dc9c603', 'TransactionId': None, 'Amount': 50.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None, 'Pulsecntstat': False, 'Refund': False}
+2019-11-14 08:47:23,276 INFO runrefundonmissed(412) Refund : 5dc9c603
+2019-11-14 08:47:23,489 INFO runrefundonmissed(411) Payment Failed: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dc9c60c', 'TransactionId': None, 'Amount': 50.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None, 'Pulsecntstat': False, 'Refund': False}
+2019-11-14 08:47:23,490 INFO runrefundonmissed(412) Refund : 5dc9c60c
+2019-11-14 08:47:23,686 INFO runrefundonmissed(411) Payment Failed: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dc9c60e', 'TransactionId': None, 'Amount': 100.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None, 'Pulsecntstat': False, 'Refund': False}
+2019-11-14 08:47:23,686 INFO runrefundonmissed(412) Refund : 5dc9c60e
+2019-11-14 08:47:23,895 INFO runrefundonmissed(411) Payment Failed: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dc9c610', 'TransactionId': None, 'Amount': 50.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None, 'Pulsecntstat': False, 'Refund': False}
+2019-11-14 08:47:23,896 INFO runrefundonmissed(412) Refund : 5dc9c610
+2019-11-14 08:47:24,113 INFO runrefundonmissed(411) Payment Failed: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dc9c612', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None, 'Pulsecntstat': False, 'Refund': False}
+2019-11-14 08:47:24,113 INFO runrefundonmissed(412) Refund : 5dc9c612
+2019-11-14 08:47:24,303 INFO runrefundonmissed(411) Payment Failed: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dc9c614', 'TransactionId': None, 'Amount': 50.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None, 'Pulsecntstat': False, 'Refund': False}
+2019-11-14 08:47:24,304 INFO runrefundonmissed(412) Refund : 5dc9c614
+2019-11-14 08:47:24,500 INFO runrefundonmissed(411) Payment Failed: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dc9c615', 'TransactionId': None, 'Amount': 50.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None, 'Pulsecntstat': False, 'Refund': False}
+2019-11-14 08:47:24,501 INFO runrefundonmissed(412) Refund : 5dc9c615
+2019-11-14 08:47:24,693 INFO runrefundonmissed(411) Payment Failed: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dc9c617', 'TransactionId': None, 'Amount': 100.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None, 'Pulsecntstat': False, 'Refund': False}
+2019-11-14 08:47:24,694 INFO runrefundonmissed(412) Refund : 5dc9c617
+2019-11-14 08:47:24,907 INFO runrefundonmissed(411) Payment Failed: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dccebe0', 'TransactionId': None, 'Amount': 100.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None, 'Pulsecntstat': False}
+2019-11-14 08:47:24,907 INFO runrefundonmissed(412) Refund : 5dccebe0
+2019-11-14 08:47:25,119 INFO runrefundonmissed(411) Payment Failed: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dccfc97', 'TransactionId': None, 'Amount': 50.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None, 'Pulsecntstat': False}
+2019-11-14 08:47:25,120 INFO runrefundonmissed(412) Refund : 5dccfc97
+2019-11-14 08:47:25,331 INFO setup_mp(402) True
+2019-11-18 14:13:24,406 INFO <module>(712) Running DinoPay
+2019-11-18 14:13:24,423 INFO <module>(713) Reading Setupfile
+2019-11-18 14:13:24,967 INFO __init__(98) WinInfoGeo Info Screen high: 1200Screen width: 1600
+2019-11-18 14:13:26,245 INFO setupadammodule(343) Connecting iomodule ip 192.168.1.200
+2019-11-18 14:13:26,247 INFO setupadammodule(351) Connecting status: None
+2019-11-18 14:13:26,249 INFO setup_mp(389) Connecting Mobile pay 
+2019-11-18 14:13:26,249 INFO setup_mp(391) RegisterPOS
+2019-11-18 14:13:27,433 INFO setup_mp(399) AssignPos100000625947428
+2019-11-18 14:13:27,731 INFO setup_mp(402) True
+2019-11-18 14:15:37,637 INFO <module>(712) Running DinoPay
+2019-11-18 14:15:37,638 INFO <module>(713) Reading Setupfile
+2019-11-18 14:15:37,740 INFO __init__(98) WinInfoGeo Info Screen high: 1200Screen width: 1600
+2019-11-18 14:15:37,891 INFO setupadammodule(343) Connecting iomodule ip 192.168.1.200
+2019-11-18 14:15:37,893 INFO setupadammodule(351) Connecting status: None
+2019-11-18 14:15:37,895 INFO setup_mp(389) Connecting Mobile pay 
+2019-11-18 14:15:37,895 INFO setup_mp(391) RegisterPOS
+2019-11-18 14:15:38,950 INFO setup_mp(399) AssignPos100000625947428
+2019-11-18 14:15:39,192 INFO setup_mp(402) True
+2019-11-18 14:16:50,412 INFO <module>(712) Running DinoPay
+2019-11-18 14:16:50,413 INFO <module>(713) Reading Setupfile
+2019-11-18 14:16:50,523 INFO __init__(98) WinInfoGeo Info Screen high: 1200Screen width: 1600
+2019-11-18 14:16:50,669 INFO setupadammodule(343) Connecting iomodule ip 192.168.1.200
+2019-11-18 14:16:50,671 INFO setupadammodule(351) Connecting status: None
+2019-11-18 14:16:50,674 INFO setup_mp(389) Connecting Mobile pay 
+2019-11-18 14:16:50,675 INFO setup_mp(391) RegisterPOS
+2019-11-18 14:16:51,738 INFO setup_mp(399) AssignPos100000625947428
+2019-11-18 14:16:51,987 INFO setup_mp(402) True
+2019-11-18 14:20:29,848 INFO <module>(712) Running DinoPay
+2019-11-18 14:20:29,848 INFO <module>(713) Reading Setupfile
+2019-11-18 14:20:29,950 INFO __init__(98) WinInfoGeo Info Screen high: 1200Screen width: 1600
+2019-11-18 14:20:30,091 INFO setupadammodule(343) Connecting iomodule ip 192.168.1.200
+2019-11-18 14:20:30,093 INFO setupadammodule(351) Connecting status: None
+2019-11-18 14:20:30,096 INFO setup_mp(389) Connecting Mobile pay 
+2019-11-18 14:20:30,097 INFO setup_mp(391) RegisterPOS
+2019-11-18 14:20:30,932 INFO setup_mp(399) AssignPos100000625947428
+2019-11-18 14:20:31,153 INFO setup_mp(402) True
+2019-11-18 14:21:25,580 INFO <module>(712) Running DinoPay
+2019-11-18 14:21:25,580 INFO <module>(713) Reading Setupfile
+2019-11-18 14:21:25,687 INFO __init__(98) WinInfoGeo Info Screen high: 1200Screen width: 1600
+2019-11-18 14:21:25,843 INFO setupadammodule(343) Connecting iomodule ip 192.168.1.200
+2019-11-18 14:21:25,845 INFO setupadammodule(351) Connecting status: None
+2019-11-18 14:21:25,848 INFO setup_mp(389) Connecting Mobile pay 
+2019-11-18 14:21:25,849 INFO setup_mp(391) RegisterPOS
+2019-11-18 14:21:26,733 INFO setup_mp(399) AssignPos100000625947428
+2019-11-18 14:21:32,217 INFO setup_mp(402) True
+2019-11-18 14:22:31,709 INFO paymenttimeout(270) Payment TimeOut5dd29afb
+2019-11-18 14:23:07,297 ERROR readveningemptystatus(376) Error readveningemptystatus 
+2019-11-18 19:06:04,371 INFO <module>(712) Running DinoPay
+2019-11-18 19:06:04,380 INFO <module>(713) Reading Setupfile
+2019-11-18 19:06:04,494 INFO __init__(98) WinInfoGeo Info Screen high: 1200Screen width: 1600
+2019-11-18 19:06:04,631 INFO setupadammodule(343) Connecting iomodule ip 192.168.1.200
+2019-11-18 19:06:04,632 INFO setupadammodule(351) Connecting status: None
+2019-11-18 19:06:04,634 INFO setup_mp(389) Connecting Mobile pay 
+2019-11-18 19:06:04,635 INFO setup_mp(391) RegisterPOS
+2019-11-18 19:06:05,599 INFO setup_mp(399) AssignPos100000625947428
+2019-11-18 19:06:05,810 INFO runrefundonmissed(411) Payment Failed: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd29af9', 'TransactionId': None, 'Amount': 100.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None, 'Pulsecntstat': False}
+2019-11-18 19:06:05,811 INFO runrefundonmissed(412) Refund : 5dd29af9
+2019-11-18 19:06:06,034 INFO runrefundonmissed(411) Payment Failed: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd29afb', 'TransactionId': None, 'Amount': 50.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None, 'Pulsecntstat': False}
+2019-11-18 19:06:06,034 INFO runrefundonmissed(412) Refund : 5dd29afb
+2019-11-18 19:06:06,291 INFO setup_mp(402) True
+2019-11-18 19:07:13,613 INFO PaymentStatus(168) PaymentAccepted, orderid: 5dd2ddce
+2019-11-18 19:07:15,865 INFO paymentHandle(210) Stat: True
+2019-11-18 19:10:01,365 INFO <module>(712) Running DinoPay
+2019-11-18 19:10:01,365 INFO <module>(713) Reading Setupfile
+2019-11-18 19:10:01,466 INFO __init__(98) WinInfoGeo Info Screen high: 1200Screen width: 1600
+2019-11-18 19:10:01,599 INFO setupadammodule(343) Connecting iomodule ip 192.168.1.200
+2019-11-18 19:10:01,601 INFO setupadammodule(351) Connecting status: None
+2019-11-18 19:10:01,603 INFO setup_mp(389) Connecting Mobile pay 
+2019-11-18 19:10:01,604 INFO setup_mp(391) RegisterPOS
+2019-11-18 19:10:02,956 INFO setup_mp(399) AssignPos100000625947428
+2019-11-18 19:10:03,205 INFO runrefundonmissed(411) Payment Failed: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd29af9', 'TransactionId': None, 'Amount': 100.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None, 'Pulsecntstat': False, 'Refund': False}
+2019-11-18 19:10:03,205 INFO runrefundonmissed(412) Refund : 5dd29af9
+2019-11-18 19:10:03,412 INFO runrefundonmissed(411) Payment Failed: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd29afb', 'TransactionId': None, 'Amount': 50.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None, 'Pulsecntstat': False, 'Refund': False}
+2019-11-18 19:10:03,412 INFO runrefundonmissed(412) Refund : 5dd29afb
+2019-11-18 19:10:03,701 INFO runrefundonmissed(411) Payment Failed: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd2dd8f', 'TransactionId': None, 'Amount': 100.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None, 'Pulsecntstat': False}
+2019-11-18 19:10:03,701 INFO runrefundonmissed(412) Refund : 5dd2dd8f
+2019-11-18 19:10:03,900 INFO setup_mp(402) True
+2019-11-18 19:10:24,317 INFO PaymentStatus(168) PaymentAccepted, orderid: 5dd2de7d
+2019-11-18 19:10:26,566 INFO paymentHandle(210) Stat: True
+2019-11-18 19:13:11,436 INFO <module>(716) Running DinoPay
+2019-11-18 19:13:11,436 INFO <module>(717) Reading Setupfile
+2019-11-18 19:13:11,534 INFO __init__(98) WinInfoGeo Info Screen high: 1200Screen width: 1600
+2019-11-18 19:13:11,673 INFO setupadammodule(347) Connecting iomodule ip 192.168.1.200
+2019-11-18 19:13:11,675 INFO setupadammodule(355) Connecting status: None
+2019-11-18 19:13:11,677 INFO setup_mp(393) Connecting Mobile pay 
+2019-11-18 19:13:11,677 INFO setup_mp(395) RegisterPOS
+2019-11-18 19:13:12,963 INFO setup_mp(403) AssignPos100000625947428
+2019-11-18 19:13:13,200 INFO runrefundonmissed(415) Payment Failed: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd29af9', 'TransactionId': None, 'Amount': 100.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None, 'Pulsecntstat': False, 'Refund': False}
+2019-11-18 19:13:13,201 INFO runrefundonmissed(416) Refund : 5dd29af9
+2019-11-18 19:13:13,425 INFO runrefundonmissed(415) Payment Failed: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd29afb', 'TransactionId': None, 'Amount': 50.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None, 'Pulsecntstat': False, 'Refund': False}
+2019-11-18 19:13:13,426 INFO runrefundonmissed(416) Refund : 5dd29afb
+2019-11-18 19:13:13,704 INFO runrefundonmissed(415) Payment Failed: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd2dd8f', 'TransactionId': None, 'Amount': 100.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None, 'Pulsecntstat': False, 'Refund': False}
+2019-11-18 19:13:13,706 INFO runrefundonmissed(416) Refund : 5dd2dd8f
+2019-11-18 19:13:13,977 INFO setup_mp(406) True
+2019-11-18 19:14:25,343 INFO PaymentStatus(168) PaymentAccepted, orderid: 5dd2df7c
+2019-11-18 19:14:27,449 INFO paymentHandle(210) Stat: True
+2019-11-18 19:14:46,031 INFO PaymentStatus(168) PaymentAccepted, orderid: 5dd2df8e
+2019-11-18 19:14:50,213 INFO paymentHandle(210) Stat: True
+2019-11-18 19:15:13,080 INFO PaymentStatus(168) PaymentAccepted, orderid: 5dd2dfa6
+2019-11-18 19:15:15,159 INFO paymentHandle(210) Stat: True
+2019-11-18 19:15:33,416 INFO PaymentStatus(168) PaymentAccepted, orderid: 5dd2dfbc
+2019-11-18 19:15:37,953 INFO paymentHandle(210) Stat: True
+2019-11-18 19:15:50,518 INFO PaymentStatus(168) PaymentAccepted, orderid: 5dd2dfce
+2019-11-18 19:15:54,721 INFO paymentHandle(210) Stat: True
+2019-11-18 19:16:04,992 INFO PaymentStatus(168) PaymentAccepted, orderid: 5dd2dfdc
+2019-11-18 19:16:09,384 INFO paymentHandle(210) Stat: True
+2019-11-18 19:18:45,808 INFO <module>(716) Running DinoPay
+2019-11-18 19:18:45,817 INFO <module>(717) Reading Setupfile
+2019-11-18 19:18:45,912 INFO __init__(98) WinInfoGeo Info Screen high: 1200Screen width: 1600
+2019-11-18 19:18:46,052 INFO setupadammodule(347) Connecting iomodule ip 192.168.1.200
+2019-11-18 19:18:46,053 INFO setupadammodule(355) Connecting status: None
+2019-11-18 19:18:46,056 INFO setup_mp(393) Connecting Mobile pay 
+2019-11-18 19:18:46,057 INFO setup_mp(395) RegisterPOS
+2019-11-18 19:18:47,196 INFO setup_mp(403) AssignPos100000625947428
+2019-11-18 19:18:47,480 INFO runrefundonmissed(415) Payment Failed: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd29af9', 'TransactionId': None, 'Amount': 100.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None, 'Pulsecntstat': False, 'Refund': False}
+2019-11-18 19:18:47,480 INFO runrefundonmissed(416) Refund : 5dd29af9
+2019-11-18 19:18:47,694 INFO runrefundonmissed(415) Payment Failed: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd29afb', 'TransactionId': None, 'Amount': 50.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None, 'Pulsecntstat': False, 'Refund': False}
+2019-11-18 19:18:47,695 INFO runrefundonmissed(416) Refund : 5dd29afb
+2019-11-18 19:18:47,971 INFO runrefundonmissed(415) Payment Failed: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd2dd8f', 'TransactionId': None, 'Amount': 100.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None, 'Pulsecntstat': False, 'Refund': False}
+2019-11-18 19:18:47,971 INFO runrefundonmissed(416) Refund : 5dd2dd8f
+2019-11-18 19:18:48,188 INFO runrefundonmissed(415) Payment Failed: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd2df3b', 'TransactionId': None, 'Amount': 50.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None, 'Pulsecntstat': False}
+2019-11-18 19:18:48,189 INFO runrefundonmissed(416) Refund : 5dd2df3b
+2019-11-18 19:18:48,424 INFO runrefundonmissed(415) Payment Failed: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd2df41', 'TransactionId': None, 'Amount': 50.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None, 'Pulsecntstat': False}
+2019-11-18 19:18:48,425 INFO runrefundonmissed(416) Refund : 5dd2df41
+2019-11-18 19:18:48,637 INFO runrefundonmissed(415) Payment Failed: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd2dfa2', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None, 'Pulsecntstat': False}
+2019-11-18 19:18:48,637 INFO runrefundonmissed(416) Refund : 5dd2dfa2
+2019-11-18 19:18:48,830 INFO runrefundonmissed(415) Payment Failed: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd2dfa4', 'TransactionId': None, 'Amount': 100.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None, 'Pulsecntstat': False}
+2019-11-18 19:18:48,831 INFO runrefundonmissed(416) Refund : 5dd2dfa4
+2019-11-18 19:18:49,031 INFO setup_mp(406) True
+2019-11-18 19:19:00,655 INFO PaymentStatus(166) PaymentAccepted, orderid: 5dd2e08a
+2019-11-18 19:19:05,233 INFO paymentHandle(210) Stat: True
+2019-11-18 19:19:20,990 INFO PaymentStatus(166) PaymentAccepted, orderid: 5dd2e09f
+2019-11-18 19:19:22,525 INFO paymentHandle(210) Stat: True
+2019-11-18 20:22:32,418 INFO <module>(716) Running DinoPay
+2019-11-18 20:22:32,419 INFO <module>(717) Reading Setupfile
+2019-11-18 20:22:32,548 INFO __init__(98) WinInfoGeo Info Screen high: 1200Screen width: 1600
+2019-11-18 20:22:32,717 INFO setupadammodule(347) Connecting iomodule ip 192.168.1.200
+2019-11-18 20:22:32,719 INFO setupadammodule(355) Connecting status: None
+2019-11-18 20:22:32,721 INFO setup_mp(393) Connecting Mobile pay 
+2019-11-18 20:22:32,722 INFO setup_mp(395) RegisterPOS
+2019-11-18 20:22:34,047 INFO setup_mp(403) AssignPos100000625947428
+2019-11-18 20:22:34,376 INFO runrefundonmissed(415) Payment Failed: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd29af9', 'TransactionId': None, 'Amount': 100.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None, 'Pulsecntstat': False, 'Refund': False}
+2019-11-18 20:22:34,376 INFO runrefundonmissed(416) Refund : 5dd29af9
+2019-11-18 20:22:34,707 INFO runrefundonmissed(415) Payment Failed: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd29afb', 'TransactionId': None, 'Amount': 50.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None, 'Pulsecntstat': False, 'Refund': False}
+2019-11-18 20:22:34,707 INFO runrefundonmissed(416) Refund : 5dd29afb
+2019-11-18 20:22:35,033 INFO runrefundonmissed(415) Payment Failed: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd2dd8f', 'TransactionId': None, 'Amount': 100.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None, 'Pulsecntstat': False, 'Refund': False}
+2019-11-18 20:22:35,033 INFO runrefundonmissed(416) Refund : 5dd2dd8f
+2019-11-18 20:22:35,335 INFO runrefundonmissed(415) Payment Failed: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd2df3b', 'TransactionId': None, 'Amount': 50.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None, 'Pulsecntstat': False, 'Refund': False}
+2019-11-18 20:22:35,335 INFO runrefundonmissed(416) Refund : 5dd2df3b
+2019-11-18 20:22:35,568 INFO runrefundonmissed(415) Payment Failed: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd2df41', 'TransactionId': None, 'Amount': 50.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None, 'Pulsecntstat': False, 'Refund': False}
+2019-11-18 20:22:35,569 INFO runrefundonmissed(416) Refund : 5dd2df41
+2019-11-18 20:22:35,802 INFO runrefundonmissed(415) Payment Failed: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd2dfa2', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None, 'Pulsecntstat': False, 'Refund': False}
+2019-11-18 20:22:35,802 INFO runrefundonmissed(416) Refund : 5dd2dfa2
+2019-11-18 20:22:36,043 INFO runrefundonmissed(415) Payment Failed: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd2dfa4', 'TransactionId': None, 'Amount': 100.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None, 'Pulsecntstat': False, 'Refund': False}
+2019-11-18 20:22:36,043 INFO runrefundonmissed(416) Refund : 5dd2dfa4
+2019-11-18 20:22:36,353 INFO setup_mp(406) True
+2019-11-18 20:25:04,619 INFO <module>(716) Running DinoPay
+2019-11-18 20:25:04,620 INFO <module>(717) Reading Setupfile
+2019-11-18 20:25:04,733 INFO __init__(98) WinInfoGeo Info Screen high: 1200Screen width: 1600
+2019-11-18 20:25:04,869 INFO setupadammodule(347) Connecting iomodule ip 192.168.1.200
+2019-11-18 20:25:04,871 INFO setupadammodule(355) Connecting status: None
+2019-11-18 20:25:04,873 INFO setup_mp(393) Connecting Mobile pay 
+2019-11-18 20:25:04,874 INFO setup_mp(395) RegisterPOS
+2019-11-18 20:25:06,090 INFO setup_mp(403) AssignPos100000625947428
+2019-11-18 20:25:06,336 INFO runrefundonmissed(415) Payment Failed: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd29af9', 'TransactionId': None, 'Amount': 100.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None, 'Pulsecntstat': False, 'Refund': False}
+2019-11-18 20:25:06,337 INFO runrefundonmissed(416) Refund : 5dd29af9
+2019-11-18 20:25:06,641 INFO runrefundonmissed(415) Payment Failed: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd29afb', 'TransactionId': None, 'Amount': 50.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None, 'Pulsecntstat': False, 'Refund': False}
+2019-11-18 20:25:06,641 INFO runrefundonmissed(416) Refund : 5dd29afb
+2019-11-18 20:25:06,891 INFO runrefundonmissed(415) Payment Failed: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd2dd8f', 'TransactionId': None, 'Amount': 100.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None, 'Pulsecntstat': False, 'Refund': False}
+2019-11-18 20:25:06,891 INFO runrefundonmissed(416) Refund : 5dd2dd8f
+2019-11-18 20:25:07,135 INFO runrefundonmissed(415) Payment Failed: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd2df3b', 'TransactionId': None, 'Amount': 50.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None, 'Pulsecntstat': False, 'Refund': False}
+2019-11-18 20:25:07,136 INFO runrefundonmissed(416) Refund : 5dd2df3b
+2019-11-18 20:25:07,446 INFO runrefundonmissed(415) Payment Failed: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd2df41', 'TransactionId': None, 'Amount': 50.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None, 'Pulsecntstat': False, 'Refund': False}
+2019-11-18 20:25:07,447 INFO runrefundonmissed(416) Refund : 5dd2df41
+2019-11-18 20:25:07,753 INFO runrefundonmissed(415) Payment Failed: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd2dfa2', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None, 'Pulsecntstat': False, 'Refund': False}
+2019-11-18 20:25:07,753 INFO runrefundonmissed(416) Refund : 5dd2dfa2
+2019-11-18 20:25:08,001 INFO runrefundonmissed(415) Payment Failed: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd2dfa4', 'TransactionId': None, 'Amount': 100.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None, 'Pulsecntstat': False, 'Refund': False}
+2019-11-18 20:25:08,001 INFO runrefundonmissed(416) Refund : 5dd2dfa4
+2019-11-18 20:25:08,247 INFO setup_mp(406) True
+2019-11-18 20:25:39,261 INFO <module>(716) Running DinoPay
+2019-11-18 20:25:39,262 INFO <module>(717) Reading Setupfile
+2019-11-18 20:25:39,355 INFO __init__(98) WinInfoGeo Info Screen high: 1200Screen width: 1600
+2019-11-18 20:25:39,489 INFO setupadammodule(347) Connecting iomodule ip 192.168.1.200
+2019-11-18 20:25:39,491 INFO setupadammodule(355) Connecting status: None
+2019-11-18 20:25:39,493 INFO setup_mp(393) Connecting Mobile pay 
+2019-11-18 20:25:39,494 INFO setup_mp(395) RegisterPOS
+2019-11-18 20:25:39,513 INFO setup_mp(406) False
+2019-11-18 20:27:37,158 INFO <module>(716) Running DinoPay
+2019-11-18 20:27:37,160 INFO <module>(717) Reading Setupfile
+2019-11-18 20:27:37,323 INFO __init__(98) WinInfoGeo Info Screen high: 1200Screen width: 1600
+2019-11-18 20:27:37,509 INFO setupadammodule(347) Connecting iomodule ip 192.168.1.200
+2019-11-18 20:27:37,510 INFO setupadammodule(355) Connecting status: None
+2019-11-18 20:27:37,514 INFO setup_mp(393) Connecting Mobile pay 
+2019-11-18 20:27:37,515 INFO setup_mp(395) RegisterPOS
+2019-11-18 20:27:48,134 INFO <module>(716) Running DinoPay
+2019-11-18 20:27:48,135 INFO <module>(717) Reading Setupfile
+2019-11-18 20:27:48,231 INFO __init__(98) WinInfoGeo Info Screen high: 1200Screen width: 1600
+2019-11-18 20:27:48,408 INFO setupadammodule(347) Connecting iomodule ip 192.168.1.200
+2019-11-18 20:27:48,410 INFO setupadammodule(355) Connecting status: None
+2019-11-18 20:27:48,413 INFO setup_mp(393) Connecting Mobile pay 
+2019-11-18 20:27:48,413 INFO setup_mp(395) RegisterPOS
+2019-11-18 20:27:48,432 INFO setup_mp(406) False
+2019-11-18 20:30:15,193 INFO <module>(716) Running DinoPay
+2019-11-18 20:30:15,193 INFO <module>(717) Reading Setupfile
+2019-11-18 20:30:15,282 INFO __init__(98) WinInfoGeo Info Screen high: 1200Screen width: 1600
+2019-11-18 20:30:15,409 INFO setupadammodule(347) Connecting iomodule ip 192.168.1.200
+2019-11-18 20:30:15,411 INFO setupadammodule(355) Connecting status: None
+2019-11-18 20:30:15,414 INFO setup_mp(393) Connecting Mobile pay 
+2019-11-18 20:30:15,414 INFO setup_mp(395) RegisterPOS
+2019-11-18 20:30:16,734 INFO setup_mp(403) AssignPos100000625947428
+2019-11-18 20:30:17,116 INFO runrefundonmissed(415) Payment Failed: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd29af9', 'TransactionId': None, 'Amount': 100.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None, 'Pulsecntstat': False, 'Refund': False}
+2019-11-18 20:30:17,116 INFO runrefundonmissed(416) Refund : 5dd29af9
+2019-11-18 20:30:17,692 INFO runrefundonmissed(415) Payment Failed: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd29afb', 'TransactionId': None, 'Amount': 50.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None, 'Pulsecntstat': False, 'Refund': False}
+2019-11-18 20:30:17,692 INFO runrefundonmissed(416) Refund : 5dd29afb
+2019-11-18 20:30:18,187 INFO runrefundonmissed(415) Payment Failed: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd2dd8f', 'TransactionId': None, 'Amount': 100.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None, 'Pulsecntstat': False, 'Refund': False}
+2019-11-18 20:30:18,188 INFO runrefundonmissed(416) Refund : 5dd2dd8f
+2019-11-18 20:30:18,942 INFO runrefundonmissed(415) Payment Failed: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd2df3b', 'TransactionId': None, 'Amount': 50.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None, 'Pulsecntstat': False, 'Refund': False}
+2019-11-18 20:30:18,943 INFO runrefundonmissed(416) Refund : 5dd2df3b
+2019-11-18 20:30:19,383 INFO runrefundonmissed(415) Payment Failed: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd2df41', 'TransactionId': None, 'Amount': 50.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None, 'Pulsecntstat': False, 'Refund': False}
+2019-11-18 20:30:19,385 INFO runrefundonmissed(416) Refund : 5dd2df41
+2019-11-18 20:30:19,739 INFO runrefundonmissed(415) Payment Failed: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd2dfa2', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None, 'Pulsecntstat': False, 'Refund': False}
+2019-11-18 20:30:19,739 INFO runrefundonmissed(416) Refund : 5dd2dfa2
+2019-11-18 20:30:20,025 INFO runrefundonmissed(415) Payment Failed: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd2dfa4', 'TransactionId': None, 'Amount': 100.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None, 'Pulsecntstat': False, 'Refund': False}
+2019-11-18 20:30:20,026 INFO runrefundonmissed(416) Refund : 5dd2dfa4
+2019-11-18 20:30:20,391 INFO setup_mp(406) True
+2019-11-18 20:35:04,904 INFO <module>(717) Running DinoPay
+2019-11-18 20:35:04,905 INFO <module>(718) Reading Setupfile
+2019-11-18 20:35:05,003 INFO __init__(98) WinInfoGeo Info Screen high: 1200Screen width: 1600
+2019-11-18 20:35:05,157 INFO setupadammodule(348) Connecting iomodule ip 192.168.1.200
+2019-11-18 20:35:05,159 INFO setupadammodule(356) Connecting status: None
+2019-11-18 20:35:05,162 INFO setup_mp(394) Connecting Mobile pay 
+2019-11-18 20:35:05,162 INFO setup_mp(396) RegisterPOS
+2019-11-18 20:35:05,187 INFO setup_mp(407) False
+2019-11-18 20:36:27,683 INFO <module>(717) Running DinoPay
+2019-11-18 20:36:27,684 INFO <module>(718) Reading Setupfile
+2019-11-18 20:36:27,779 INFO __init__(98) WinInfoGeo Info Screen high: 1200Screen width: 1600
+2019-11-18 20:36:27,908 INFO setupadammodule(348) Connecting iomodule ip 192.168.1.200
+2019-11-18 20:36:27,911 INFO setupadammodule(356) Connecting status: None
+2019-11-18 20:36:27,912 INFO setup_mp(394) Connecting Mobile pay 
+2019-11-18 20:36:27,913 INFO setup_mp(396) RegisterPOS
+2019-11-18 20:36:29,120 INFO setup_mp(404) AssignPos100000625947428
+2019-11-18 20:36:29,373 INFO runrefundonmissed(416) Payment Failed: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd29af9', 'TransactionId': None, 'Amount': 100.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None, 'Pulsecntstat': False, 'Refund': False}
+2019-11-18 20:36:29,374 INFO runrefundonmissed(417) Refund : 5dd29af9
+2019-11-18 20:36:29,633 INFO runrefundonmissed(416) Payment Failed: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd29afb', 'TransactionId': None, 'Amount': 50.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None, 'Pulsecntstat': False, 'Refund': False}
+2019-11-18 20:36:29,634 INFO runrefundonmissed(417) Refund : 5dd29afb
+2019-11-18 20:36:29,883 INFO runrefundonmissed(416) Payment Failed: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd2dd8f', 'TransactionId': None, 'Amount': 100.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None, 'Pulsecntstat': False, 'Refund': False}
+2019-11-18 20:36:29,883 INFO runrefundonmissed(417) Refund : 5dd2dd8f
+2019-11-18 20:36:30,130 INFO runrefundonmissed(416) Payment Failed: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd2df3b', 'TransactionId': None, 'Amount': 50.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None, 'Pulsecntstat': False, 'Refund': False}
+2019-11-18 20:36:30,131 INFO runrefundonmissed(417) Refund : 5dd2df3b
+2019-11-18 20:36:30,386 INFO runrefundonmissed(416) Payment Failed: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd2df41', 'TransactionId': None, 'Amount': 50.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None, 'Pulsecntstat': False, 'Refund': False}
+2019-11-18 20:36:30,387 INFO runrefundonmissed(417) Refund : 5dd2df41
+2019-11-18 20:36:30,925 INFO runrefundonmissed(416) Payment Failed: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd2dfa2', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None, 'Pulsecntstat': False, 'Refund': False}
+2019-11-18 20:36:30,926 INFO runrefundonmissed(417) Refund : 5dd2dfa2
+2019-11-18 20:36:31,461 INFO runrefundonmissed(416) Payment Failed: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd2dfa4', 'TransactionId': None, 'Amount': 100.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None, 'Pulsecntstat': False, 'Refund': False}
+2019-11-18 20:36:31,461 INFO runrefundonmissed(417) Refund : 5dd2dfa4
+2019-11-18 20:36:31,885 INFO setup_mp(407) True
+2019-11-18 20:37:52,563 INFO <module>(717) Running DinoPay
+2019-11-18 20:37:52,563 INFO <module>(718) Reading Setupfile
+2019-11-18 20:37:52,657 INFO __init__(98) WinInfoGeo Info Screen high: 1200Screen width: 1600
+2019-11-18 20:37:52,792 INFO setupadammodule(348) Connecting iomodule ip 192.168.1.200
+2019-11-18 20:37:52,795 INFO setupadammodule(356) Connecting status: None
+2019-11-18 20:37:52,797 INFO setup_mp(394) Connecting Mobile pay 
+2019-11-18 20:37:52,798 INFO setup_mp(396) RegisterPOS
+2019-11-18 20:37:54,998 INFO setup_mp(404) AssignPos100000625947428
+2019-11-18 20:37:55,316 INFO runrefundonmissed(416) Payment Failed: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd29af9', 'TransactionId': None, 'Amount': 100.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None, 'Pulsecntstat': False, 'Refund': False}
+2019-11-18 20:37:55,317 INFO runrefundonmissed(417) Refund : 5dd29af9
+2019-11-18 20:37:55,617 INFO runrefundonmissed(416) Payment Failed: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd29afb', 'TransactionId': None, 'Amount': 50.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None, 'Pulsecntstat': False, 'Refund': False}
+2019-11-18 20:37:55,618 INFO runrefundonmissed(417) Refund : 5dd29afb
+2019-11-18 20:37:55,988 INFO runrefundonmissed(416) Payment Failed: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd2dd8f', 'TransactionId': None, 'Amount': 100.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None, 'Pulsecntstat': False, 'Refund': False}
+2019-11-18 20:37:55,989 INFO runrefundonmissed(417) Refund : 5dd2dd8f
+2019-11-18 20:37:56,278 INFO runrefundonmissed(416) Payment Failed: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd2df3b', 'TransactionId': None, 'Amount': 50.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None, 'Pulsecntstat': False, 'Refund': False}
+2019-11-18 20:37:56,279 INFO runrefundonmissed(417) Refund : 5dd2df3b
+2019-11-18 20:37:56,580 INFO runrefundonmissed(416) Payment Failed: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd2df41', 'TransactionId': None, 'Amount': 50.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None, 'Pulsecntstat': False, 'Refund': False}
+2019-11-18 20:37:56,581 INFO runrefundonmissed(417) Refund : 5dd2df41
+2019-11-18 20:37:56,855 INFO runrefundonmissed(416) Payment Failed: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd2dfa2', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None, 'Pulsecntstat': False, 'Refund': False}
+2019-11-18 20:37:56,855 INFO runrefundonmissed(417) Refund : 5dd2dfa2
+2019-11-18 20:37:57,151 INFO runrefundonmissed(416) Payment Failed: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd2dfa4', 'TransactionId': None, 'Amount': 100.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None, 'Pulsecntstat': False, 'Refund': False}
+2019-11-18 20:37:57,151 INFO runrefundonmissed(417) Refund : 5dd2dfa4
+2019-11-18 20:37:57,428 INFO setup_mp(407) True
+2019-11-18 20:38:53,968 INFO <module>(717) Running DinoPay
+2019-11-18 20:38:53,969 INFO <module>(718) Reading Setupfile
+2019-11-18 20:38:54,063 INFO __init__(98) WinInfoGeo Info Screen high: 1200Screen width: 1600
+2019-11-18 20:38:54,192 INFO setupadammodule(348) Connecting iomodule ip 192.168.1.200
+2019-11-18 20:38:54,194 INFO setupadammodule(356) Connecting status: None
+2019-11-18 20:38:54,196 INFO setup_mp(394) Connecting Mobile pay 
+2019-11-18 20:38:54,197 INFO setup_mp(396) RegisterPOS
+2019-11-18 20:38:54,216 INFO setup_mp(407) False
+2019-11-18 20:40:01,676 INFO <module>(717) Running DinoPay
+2019-11-18 20:40:01,676 INFO <module>(718) Reading Setupfile
+2019-11-18 20:40:01,767 INFO __init__(98) WinInfoGeo Info Screen high: 1200Screen width: 1600
+2019-11-18 20:40:01,896 INFO setupadammodule(348) Connecting iomodule ip 192.168.1.200
+2019-11-18 20:40:01,898 INFO setupadammodule(356) Connecting status: None
+2019-11-18 20:40:01,901 INFO setup_mp(394) Connecting Mobile pay 
+2019-11-18 20:40:01,901 INFO setup_mp(396) RegisterPOS
+2019-11-18 20:40:03,276 INFO setup_mp(404) AssignPos100000625947428
+2019-11-18 20:40:03,576 INFO runrefundonmissed(416) Payment Failed: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd29af9', 'TransactionId': None, 'Amount': 100.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None, 'Pulsecntstat': False, 'Refund': False}
+2019-11-18 20:40:03,577 INFO runrefundonmissed(417) Refund : 5dd29af9
+2019-11-18 20:40:03,874 INFO runrefundonmissed(416) Payment Failed: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd29afb', 'TransactionId': None, 'Amount': 50.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None, 'Pulsecntstat': False, 'Refund': False}
+2019-11-18 20:40:03,875 INFO runrefundonmissed(417) Refund : 5dd29afb
+2019-11-18 20:40:04,166 INFO runrefundonmissed(416) Payment Failed: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd2dd8f', 'TransactionId': None, 'Amount': 100.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None, 'Pulsecntstat': False, 'Refund': False}
+2019-11-18 20:40:04,166 INFO runrefundonmissed(417) Refund : 5dd2dd8f
+2019-11-18 20:40:04,438 INFO runrefundonmissed(416) Payment Failed: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd2df3b', 'TransactionId': None, 'Amount': 50.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None, 'Pulsecntstat': False, 'Refund': False}
+2019-11-18 20:40:04,439 INFO runrefundonmissed(417) Refund : 5dd2df3b
+2019-11-18 20:40:04,710 INFO runrefundonmissed(416) Payment Failed: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd2df41', 'TransactionId': None, 'Amount': 50.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None, 'Pulsecntstat': False, 'Refund': False}
+2019-11-18 20:40:04,711 INFO runrefundonmissed(417) Refund : 5dd2df41
+2019-11-18 20:40:05,044 INFO runrefundonmissed(416) Payment Failed: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd2dfa2', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None, 'Pulsecntstat': False, 'Refund': False}
+2019-11-18 20:40:05,045 INFO runrefundonmissed(417) Refund : 5dd2dfa2
+2019-11-18 20:40:05,322 INFO runrefundonmissed(416) Payment Failed: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd2dfa4', 'TransactionId': None, 'Amount': 100.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None, 'Pulsecntstat': False, 'Refund': False}
+2019-11-18 20:40:05,323 INFO runrefundonmissed(417) Refund : 5dd2dfa4
+2019-11-18 20:40:05,591 INFO setup_mp(407) True

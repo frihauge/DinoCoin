@@ -8,12 +8,13 @@ prn_queue = queue.Queue()
 
 class Prize(threading.Thread):
     
-    def __init__(self, log, root):
+    def __init__(self, log, root, labeltype=0):
         threading.Thread.__init__(self)
         self.root = root
         self.Version = 1.0
         self.Description = "Module handlng prize"
         self._Prize = {0 : 'StdPrize', 1 : 'GoldPrize'}
+        self._LabelType = labeltype
         self.logger = log
         self.stopthread = False
         self.lock = threading.Lock()
@@ -44,10 +45,10 @@ class Prize(threading.Thread):
 
     def newprize(self, prizetype):
 
-        Winner_label,deliverypoint =  self.db.getRandomPrice(prizetype)   
-        self.logger.log(logging.INFO,"Prize Found: "+ str(Winner_label) + " DeliveryPoint: "+ deliverypoint) 
-        self.prn.printlabel(Winner_label, deliverypoint)
-        return Winner_label
+        winnerprize =  self.db.getRandomPrice(prizetype)   
+        self.logger.log(logging.INFO,"Prize Found: "+ str(winnerprize['Name']) + " DeliveryPoint: "+ winnerprize['delivery_point']) 
+        self.prn.printlabel(winnerprize, self._LabelType)
+        return winnerprize['Name']
     
     def load_prizelist_to_local(self):
         self.db.download_file(reconnecttry=True)

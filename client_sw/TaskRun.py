@@ -6,6 +6,7 @@ import sys
 from PrizeModule import Prize
 sys.path.append('../Modules')
 from AdamModule import adam
+import tools.Internettools
 from symbol import except_clause
 prn_queue = queue.Queue()
 
@@ -18,6 +19,7 @@ class TaskRun():
         self.root = root
         self.Description = "Module TaskRun"
         self.logger = log
+        self.labeltype = 0
         self.appsettings = self.root.appsettings
         self.timebetween_pulse = 0.001
         self.cnt = 0
@@ -27,6 +29,7 @@ class TaskRun():
             self.timebetween_pulse = self.appsettings.get('timebetween_pulse',1) * 0.001
             self.adamhost = set[0]['host']
             self.CounterInPort = self.appsettings.get('CounterInPort',0)
+            self.labeltype = self.appsettings.get('labeltype',0)
         except Exception as e:
             self.logger.error("Main setup error"+ str(e)) 
             self.adamhost = "192.168.1.100"  
@@ -35,7 +38,7 @@ class TaskRun():
         self.iomodule = adam.adam6000(self.logger, str(self.adamhost))
         self.logger.info("WaitTime from 1 puls cnt to 2 is: " + str(self.timebetween_pulse))
         succes = self.iomodule.connect()
-        self.pr = Prize(self.logger,self.root)
+        self.pr = Prize(self.logger,self.root, self.labeltype)
         self.t= threading.Thread(target=self.pr.worker, args=(prn_queue,))
         self.t.start()
         # start downloading file

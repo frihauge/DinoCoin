@@ -36,15 +36,32 @@ class custom():
 
 
 
-    def printlabel(self,prizeLabel, deliverypoint):
+    def printlabel(self, winnerprize, labeltype=0):
         ts = time.time()
-        self.days_catchup = (datetime.datetime.fromtimestamp(ts) + datetime.timedelta(days= 7)).strftime('d.%d/%m-%Y')
+        
+        if labeltype == 1:
+            self.days_catchup = (datetime.datetime.fromtimestamp(ts) + datetime.timedelta(days= 7)).strftime('%m/%d/%Y')
+        else:
+            self.days_catchup = (datetime.datetime.fromtimestamp(ts) + datetime.timedelta(days= 7)).strftime('d.%d/%m-%Y')
         filename = self.printfilepath+'\\receipt.pdf'
+        labeinfo = dict()
+        labeinfo["LabelInfo"] = dict()
+        labeinfo["delivery_point"] = dict()
+        labeinfo["LabelInfo"]['da'] = winnerprize['Name']
+        labeinfo["LabelInfo"]['en'] =winnerprize['Name']
+        labeinfo["LabelInfo"]['arab'] =winnerprize['Name_arab']
+        labeinfo["delivery_point"]['da'] =winnerprize['delivery_point']
+        labeinfo["delivery_point"]['en'] =winnerprize['delivery_point']
+        labeinfo["delivery_point"]['arab'] = winnerprize['delivery_point_arab']
+        
         try:
-            os.remove(filename)
+            try:
+                os.remove(filename)
+            except:
+                pass
             self.logger.info("Render receipt")
-            r = receiptrenderer.ReceiptRenderer(widthBuffer=20, offsetLeft=8)
-            r.render(filename, prizeLabel, ''.join(random.choice('0123456789') for _ in range(10)), ''.join(random.choice(string.ascii_uppercase + '0123456789') for _ in range(10)),deliverypoint,self.days_catchup)
+            r = receiptrenderer.ReceiptRenderer(widthBuffer=20, offsetLeft=8, labeltype=labeltype)
+            r.render(filename, labeinfo, ''.join(random.choice('0123456789') for _ in range(10)), ''.join(random.choice(string.ascii_uppercase + '0123456789') for _ in range(10)),self.days_catchup)
             time.sleep(.5)
             self.logger.info("Send to printer")
             printfileabs = os.path.abspath(filename)

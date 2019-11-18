@@ -16,15 +16,14 @@ class dinodbif():
         self.mydb = None
         self.pcname = os.environ['COMPUTERNAME']
         self.FilePath = 'C:\\ProgramData\\DinoCoin\\DinoPrint\\'
-       
-        self.filename =self.FilePath+ self.pcname + '_prize.json'
-        
+        self.filename = self.FilePath + self.pcname + '_prize.json'
+
         self.mysqlconnected = False
         self.network = False
         # self.createlocalfile()
         if self.connect():
             self.CreateTables()
-            
+
     def connect(self):
         try:
             self.mydb = mysql.connector.connect(host="mysql4.gigahost.dk",user="frihaugedk",passwd="Thisisnot4u", database="frihaugedk_dc2019",connect_timeout=2)

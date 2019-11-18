@@ -12,7 +12,6 @@ class mpif():
 
     def __init__(self, key=None, MerchantId="POSDKDC307", LocationId=None, url=None, Name=None):
         self.logger = logging.getLogger('DinoGui')
-
         self.url = 'https://sandprod-pos2.mobilepay.dk/API/V08/RegisterPoS'
         self.MerchantId = MerchantId
         # self.locationname = "Gartnervej 4"
@@ -195,8 +194,10 @@ class mpif():
         if response.status_code == 200:
             success = True
         return success, data
+    
 
 
+            
 if __name__ == '__main__':
     try:
         m = mpif()

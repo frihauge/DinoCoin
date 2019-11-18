@@ -2,5 +2,7 @@ eclipse.preferences.version=1
 encoding//DinoPay/DinoPay.py=latin1
 encoding//Modules/AdamModule/adam.py=utf-8
 encoding//Modules/DinoDB/dinoDBif.py=utf-8
+encoding//Modules/tools/Internettools.py=utf-8
 encoding//client_sw/customprinter/custom.py=utf-8
+encoding//client_sw/customprinter/receiptrenderer.py=UTF-8
 encoding//client_sw/db/dbif.py=utf-8

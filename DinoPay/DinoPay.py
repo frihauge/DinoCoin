@@ -16,13 +16,15 @@ from tkinter import font  as tkfont
 from PIL import Image, ImageTk
 from datetime import datetime,timedelta
 from threading import Timer
+import threading
+import queue
 from _codecs import decode
 #from pywinauto.win32defines import BACKGROUND_BLUE
 sys.path.append('../Modules')
 from AdamModule import adam
 from MobilePay import MobilePayImpl
 from DinoDB import dinoDBif
-
+import tools.Internettools
 logname = "DinoPay.log"
 AppName ="DinoPay"
 AppVersion  ="1.0"
@@ -76,6 +78,7 @@ class AppMain(tk.Tk):
         self.iomodulestat = None
         self.paymentdatafile = None
         self.VendingEmpty=False
+        self.offlinestat= False
         Appsetting =  appsettings.get('App', {'xpos':0})
         self.debug = Appsetting.get('Debug',False)
         xpos = Appsetting.get ('xpos',0)
@@ -119,9 +122,11 @@ class AppMain(tk.Tk):
             frame.configure(background=self.background)
         self.setupadammodule()
         self.vs = Timer(5.0, self.VendingStatus) 
+        self.offline = Timer(5.0, self.offlineStatus) 
+        self.offline.start()
         self.vs.start() 
         self.setup_mp()
-        if self.iomodulestat and self.mp_stat:
+        if  self.mp_stat:
             self.show_frame("PayWithMobilePay")
         else:
             self.ft = Timer(0.0, self.FrameTimeOut, ["OfflinePage"])
@@ -156,12 +161,12 @@ class AppMain(tk.Tk):
             self.after(1000, self.PaymentStatus)
         elif paied:
             self.pt.cancel()
-            self.ft = Timer(5.0, self.FrameTimeOut, ["paied"]) 
-            self.ft.start()    
             self.show_frame("PaymentAccepted")
             self.activepayment = False 
             app_log.info("PaymentAccepted, orderid: " + str(response['OrderId']))
             self.paymentHandle(response)
+            self.ft = Timer(5.0, self.FrameTimeOut, ["paied"]) 
+            self.ft.start() 
         elif canceled: 
             self.pt.cancel()
             self.ft = Timer(5.0, self.FrameTimeOut, ["PaymentFailed"]) 
@@ -170,6 +175,7 @@ class AppMain(tk.Tk):
             self.show_frame("PaymentFailed")     
         else:
             self.pt.cancel()
+            self.activepayment = False
             #self.ft = Timer(5.0, self.FrameTimeOut, ["PaymentFailed"]) 
             #self.ft.start()    
             #self.show_frame("PayWithMobilePay")     
@@ -185,20 +191,29 @@ class AppMain(tk.Tk):
         return res 
        
     def paymentHandle(self,paymentstatus):
+        stat = False
         if(paymentstatus['PaymentStatus']==100):
             Amount = paymentstatus['Amount']
             pulsecnt = self.PulseCntGetter(int(Amount))
-            if self.iomodulestat:
-                try:
-                    print("Pulscnt : " + str(pulsecnt)+", Pulsport : " + str(self.pulseport)+", pulsetime_low : " + str(self.pulsetime_low)+", pulsetime_high : " + str(self.pulsetime_high))
-                    stat = self.iomodule.PulsePort(pulsecnt, self.pulseport, self.pulsetime_low, self.pulsetime_high)
-                    print("Stat: " +str(stat))
-                    paymentstatus['Pulsecntstat']= stat
-                    self.paymentdatafile[paymentstatus['OrderId']]  = paymentstatus  
-                    self.WritePaymentFile(self.paymentdatafile)
-                except Exception as e:
-                    print ("self.iomodule.PulsePort" + str(e))
-                    app_log.error("self.iomodule.PulsePort " + str(self.iomodule))
+            try:
+                print("Pulscnt : " + str(pulsecnt)+", Pulsport : " + str(self.pulseport)+", pulsetime_low : " + str(self.pulsetime_low)+", pulsetime_high : " + str(self.pulsetime_high))
+                #stat = self.iomodule.PulsePort(pulsecnt, self.pulseport, self.pulsetime_low, self.pulsetime_high)
+                adam.Adam_Set_Cmd.put(("Pulse", pulsecnt))
+                #adam.Adam_Set_Cmd.join()  
+                item = adam.AdamPulseQueue.get(block=True, timeout=10)
+                while not adam.AdamPulseQueue.empty():
+                    item = adam.AdamPulseQueue.get(block=True, timeout=2)
+                if item is not None:
+                    if "Pulse_stat" in  item[0]: 
+                        stat = item[1]
+                print("Stat: " +str(stat))
+                app_log.info("Stat: " +str(stat))
+                paymentstatus['Pulsecntstat']= stat
+                self.paymentdatafile[paymentstatus['OrderId']]  = paymentstatus  
+                self.WritePaymentFile(self.paymentdatafile)
+            except Exception as e:
+                print ("self.iomodule.PulsePort" + str(e))
+                app_log.error("self.iomodule.PulsePort ")
    
     def FrameTimeOut(self, stat):
         if stat == "OfflinePage":
@@ -231,12 +246,26 @@ class AppMain(tk.Tk):
         self.vs.start()
         return True
     
+    def offlineStatus(self):
+        if not self.internet_on() :
+            self.offlinestat = True
+            self.show_frame("OfflinePage")  
+        else:
+            # Online again
+            if self.offlinestat:
+               self.offlinestat = False 
+               self.ft = Timer(1.0, self.FrameTimeOut,["PayWithMobilePay"]) 
+               self.ft.start()
+        self.offline = Timer(2.0, self.offlineStatus) 
+        self.offline.start()
+        return True
+    
     def internet_on(self):
-        try:
-            urllib.request.urlopen('http://google.com', timeout=1)
-            return True
-        except urllib.request.URLError:
-            return False    
+            istat = tools.Internettools.PingDinoCoinWeb() 
+            if not istat:
+                time.sleep(2)
+                istat = tools.Internettools.PingDinoCoinWeb() 
+            return istat
                         
     def paymenttimeout(self, stat):
         print("Payment Time out!")
@@ -254,19 +283,17 @@ class AppMain(tk.Tk):
         frame = self.frames[page_name]
         frame.tkraise()
 
-    def InitPayment(self, page_name, amount=None):
-        ## STart new payment
+    def startMobilePayment(self, page_name, amount=None):
+  ## STart new payment
 
-        self.show_frame(page_name)
         self.VendingEmpty = False
-        if not self.readveningemptystatus():
-            if not self.readveningemptystatus():
-                self.show_frame("VendingEmpty")
-                print("Vending Empty")
-                self.VendingEmpty = True
-                return False
+     #   if not self.readveningemptystatus():
+     #       if not self.readveningemptystatus():
+    #            self.show_frame("VendingEmpty")
+     #           print("Vending Empty")
+     #           self.VendingEmpty = True
+    #            return False
         self.orderid = self.mp.getNewOrderId()
-
         stat, resp = self.mp.PaymentStart(self.orderid, amount)
         if not stat:
             print ("Error code: " +str(resp))
@@ -293,7 +320,14 @@ class AppMain(tk.Tk):
             self.pt = Timer(30.0, self.paymenttimeout,["PaymentTimeOut"]) 
             self.pt.start()
             self.after(10, self.PaymentStatus)
-   
+ 
+    def InitPayment(self, page_name, amount=None):
+        #self.startMobilePayment(page_name, amount)
+        self.show_frame(page_name)
+        self.thread = Thread(target = self.startMobilePayment, args = (page_name, amount, ))
+        self.thread.start()
+        #thread.join()
+      
     def StartOver(self):
         self.mp.PaymentCancel()
         self.show_frame("PayWithMobilePay")
@@ -313,29 +347,38 @@ class AppMain(tk.Tk):
         self.VendingstatusPort = set.get('VendingstatusPort',3)
         app_log.info("Connecting iomodule ip " + str(self.adamhost))
         
-     #   self.AdamTask = adam.AdamThreadSendTask(self, app_log, str(self.adamhost))
-     #   self.AdamTask.setcyclicdata(str(self.VendingstatusPort))
-     #   self.AdamTask.start()
-        self.iomodule = adam.adam6000(app_log, str(self.adamhost))
-        self.iomodulestat,_ = self.iomodule.connect()
+        self.AdamTask = adam.AdamThreadSendTask(self, app_log, str(self.adamhost))
+        self.AdamTask.PulsePortConf(self.pulseport, self.pulsetime_low, self.pulsetime_high)
+       # self.AdamTask.setcyclicdata(str(self.VendingstatusPort))
+        self.AdamTask.start()
+     #   self.iomodule = adam.adam6000(app_log, str(self.adamhost))
+     #   self.iomodulestat,_ = self.iomodule.connect()
         app_log.info("Connecting status: " + str(self.iomodulestat))
         return self.iomodulestat
            
     def readveningemptystatus(self):
+        statbit = False
         try:
             if self.debug:
                 return True
-           # while not adam.AdamValueQueue.empty():
-           #     item = adam.AdamValueQueue.get(block=True, timeout=2)
+            
+            adam.Adam_Set_Cmd.put(("readport", self.VendingstatusPort))
+            #adam.Adam_Set_Cmd.join()  
+            item = adam.AdamValueQueue.get(block=True, timeout=15)
+            while not adam.AdamValueQueue.empty():
+                item = adam.AdamValueQueue.get(block=True, timeout=15)
+            
+                
             #self.iomodule.close()
             #self.iomodulestat,_ = self.iomodule.connect()
-            time.sleep(0.100)
-            statbit  = self.iomodule.readinputbit(int(self.VendingstatusPort))
-            app_log.info("Vending stat bit " + str(statbit))
+            # statbit  = self.iomodule.readinputbit(int(self.VendingstatusPort))
+            if item is not None:
+                if "IOValue_"+str(self.VendingstatusPort) in  item[0]: 
+                    statbit = item[1]
             return statbit
         except Exception as e:
             print ("readveningemptystatus error" + str(e))
-            app_log.error("Error readveningemptystatus " + str(self.iomodule))
+            app_log.error("Error readveningemptystatus ")
             return 0
             
         

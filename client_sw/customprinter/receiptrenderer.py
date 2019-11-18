@@ -6,12 +6,78 @@ logger = logging.getLogger(__name__)
 
 class ReceiptRenderer():
     """docstring for ReceiptRenderer"""
-    def __init__(self, size=(60, 70), widthBuffer=0, offsetLeft=0):
+    def __init__(self, size=(60, 70), widthBuffer=0, offsetLeft=0, labeltype=0):
         self.path = os.path.dirname(os.path.abspath(__file__))
+        if labeltype == 1:
+            size=(60, 110)
+        self.size = size
+        self.widthBuffer = widthBuffer
+        self.offsetLeft = offsetLeft
+        self.labeltype = labeltype
+        
+        
+        if self.labeltype == 0:
+            self.dansih_label()
+        if self.labeltype == 1:
+            self.englishgarab_label()
+               
+       
 
-        width = size[0]
+    def render(self, filename, labeinfo, barcode, control_code, datecatchup):
+        if isinstance(labeinfo,dict):
+            prize_en =  labeinfo["LabelInfo"]['en']
+            prize_arab =  labeinfo["LabelInfo"]['arab']
+            pickup_en =  labeinfo["delivery_point"]['en']
+            pickup_arab  =  labeinfo["delivery_point"]['arab']
+        else:
+            prize_en = labeinfo
+            prize_arab=labeinfo
+            pickup_en = datecatchup
+            pickup_arab= datecatchup
+            
+        if self.labeltype == 0:
+            return self.render_dk(filename, prize_en, barcode, control_code,pickup_en, datecatchup)
+        elif self.labeltype == 1:
+            return self.render_englisharab(filename, prize_en, prize_arab, barcode, control_code, pickup_en,  pickup_arab, datecatchup)
+        else:
+            return "Wrong label type"
+
+    def render_dk(self, location, prize_en, barcode, control_code, pickup_en, datecatchup):
+        try:
+            self.document["prize"] = prize_en
+            self.document["info"] = "Hent din præmie i " + pickup_en + " inden"
+            self.document["date"] = datecatchup
+            self.document["barcode"] = barcode
+            self.document["control_code"] = "Kontrolkode:\n" + control_code
+            self.document.render(location)
+        except Exception as e:
+            logger.error("Error Rendering ticket" +str(e))
+            print(e)  
+            return e
+        
+    def render_englisharab(self, filename, prize_en, prize_arab, barcode_en, control_code_en, pickup_en,  pickup_arab, datecatchup):
+        try:
+            self.document["prize_en"] = prize_en
+            self.document["prize_arab"] = prize_arab
+            
+            self.document["pickup_en"] = "Get you prize in " + pickup_en + " before"
+            self.document["pickup_arab"] = """الفائزم """ + pickup_arab + " قبل"
+            self.document["date_en"] = datecatchup
+            self.document["date_arab"] = datecatchup
+            self.document["barcode_en"] = barcode_en
+            self.document["control_code_en"] = "Verification code:\n" + control_code_en
+            self.document.render(filename)
+        except Exception as e:
+            logger.error("Error Rendering ticket" +str(e))
+            print(e)  
+            return e
+        
+    def dansih_label(self):
+            
+        offsetLeft = self.offsetLeft
+        width = self.size[0]
         removeTwoLinesOffset = 25
-        height = max(width + widthBuffer + 5, size[1])
+        height = max(width + self.widthBuffer + 5, self.size[1])
         # margin is 2% of width
         margin = width * 0.02
         endLeft = width - margin
@@ -68,7 +134,7 @@ class ReceiptRenderer():
                 'foreground': 0, 
                 'background': 0, 
                 'align': 'C', 
-                'text': 'Hent din præmie i informationen inden ', 
+                'text': 'Hent din prÃ¦mie i informationen inden ', 
                 'priority': 2, 
             },
             { 
@@ -147,169 +213,32 @@ class ReceiptRenderer():
             },
             #{ 'name': 'box', 'type': 'B', 'x1': offsetLeft + margin, 'y1': margin, 'x2': offsetLeft + width - margin, 'y2': height - margin, 'font': 'Arial', 'size': 0.0, 'bold': 0, 'italic': 0, 'underline': 0, 'foreground': 0, 'background': 0, 'align': 'I', 'text': None, 'priority': 0, },
         ]
-        self.document = Template(format=(width + widthBuffer, height), elements = self.elements, orientation="P")
+        self.document = Template(format=(width + self.widthBuffer, height), elements = self.elements, orientation="P")
         self.document.pdf.add_font('FlamencoD', '', 'flamenn_0.ttf', uni=True)
         self.document.pdf.add_font( 'DINEngschrift LT', 'I', 'lte50845.ttf', uni=True)
         self.document.pdf.add_font('Hobo', 'B', 'hobo.ttf', uni=True)
         
         self.document.add_page()
-
-    def render(self, location, prize, barcode, control_code, info_text, datecatchup):
-        try:
-            self.document["prize"] = prize
-            self.document["info"] = "Hent din præmie i " + info_text + " inden"
-            self.document["date"] = datecatchup
-            self.document["barcode"] = barcode
-            self.document["control_code"] = "Kontrolkode:\n" + control_code
-            self.document.render(location)
-        except Exception as e:
-            logger.error("Error Rendering ticket" +str(e))
-            print(e)  
-            return e
-
-    def dansih_label(self):
-        elements = [
-            { 
-                'name': 'title', 
-                'type': 'T', 
-                'x1': offsetLeft + margin, 
-                'y1': margin, 
-                'x2': offsetLeft + endLeft, 
-                'y2': height * 0.2, 
-                'font': "FlamencoD", 
-                'size': 32.0, 
-                'bold': 0, 
-                'italic': 0, 
-                'underline': 0, 
-                'foreground': 0, 
-                'background': 0, 
-                'align': 'C', 
-                'text': 'Tillykke', 
-                'priority': 2, 
-            },
-            { 
-                'name': 'subtitle', 
-                'type': 'T', 
-                'x1': offsetLeft + margin, 
-                'y1': height * 0.2, 
-                'x2': offsetLeft + endLeft, 
-                'y2': height * 0.3, 
-                'font': "FlamencoD", 
-                'size': 15.0, 
-                'bold': 0, 
-                'italic': 0, 
-                'underline': 0, 
-                'foreground': 0, 
-                'background': 0, 
-                'align': 'C', 
-                'text': 'Du har vundet:', 
-                'priority': 2, 
-            },
-            { 
-                'name': 'info', 
-                'type': 'T', 
-                'x1': offsetLeft + margin, 
-                'y1': height * 0.48, 
-                'x2': offsetLeft + endLeft, 
-                'y2': height * 0.48, 
-                'font': "DINEngschrift LT", 
-                'size': 10.0, 
-                'bold': 0, 
-                'italic': 1, 
-                'underline': 0, 
-                'foreground': 0, 
-                'background': 0, 
-                'align': 'C', 
-                'text': 'Hent din præmie i informationen inden ', 
-                'priority': 2, 
-            },
-            { 
-                'name': 'date', 
-                'type': 'T', 
-                'x1': offsetLeft + margin, 
-                'y1': height * 0.78 - removeTwoLinesOffset, 
-                'x2': offsetLeft + endLeft, 
-                'y2': height * 0.88 - removeTwoLinesOffset, 
-                'font': "DINEngschrift LT", 
-                'size': 10.0, 
-                'bold': 0, 
-                'italic': 1, 
-                'underline': 0, 
-                'foreground': 0, 
-                'background': 0, 
-                'align': 'C', 
-                'text': 'Dags dato', 
-                'priority': 2, 
-            },
-            { 
-                'name': 'prize', 
-                'type': 'T', 
-                'x1': offsetLeft + margin, 
-                'y1': height * 0.35, 
-                'x2': offsetLeft + width - margin, 
-                'y2': height * 0.42, 
-                'font': "Hobo", 
-                'size': 16.0, 
-                'bold': 1, 
-                'italic': 0, 
-                'underline': 0, 
-                'foreground': 0, 
-                'background': 0, 
-                'align': 'C', 
-                'text': '', 
-                'priority': 2, 
-                'multiline': True,
-            },
-            { 
-                'name': 'barcode', 
-                'type': 'BC', 
-                'x1': offsetLeft + margin + width * 0.05, 
-                'y1': height - margin - height * 0.1 - removeTwoLinesOffset, 
-                'x2': offsetLeft + width / 2 - margin, 
-                'y2': height - margin - 2 - removeTwoLinesOffset, 
-                'font': 'Interleaved 2of5 NT', 
-                'size': 1, 
-                'bold': 0, 
-                'italic': 0, 
-                'underline': 0, 
-                'foreground': 0, 
-                'background': 0, 
-                'align': 'I', 
-                'text': '8120081878', 
-                'priority': 3, 
-            },
-            { 
-                'name': 'control_code', 
-                'type': 'T', 
-                'x1': offsetLeft + width / 2 + margin, 
-                'y1': height - 11 - margin - removeTwoLinesOffset, 
-                'x2': offsetLeft + endLeft, 
-                'y2': height - 6 - margin - removeTwoLinesOffset, 
-                'font': 'Arial', 
-                'size': 8.0, 
-                'bold': 0, 
-                'italic': 0, 
-                'underline': 0, 
-                'foreground': 0x000000, 
-                'background': 0x000000, 
-                'align': 'R', 
-                'text': 'Kontrolkode:\nAkdj32', 
-                'priority': 3, 
-                'multiline': True,
-            },
-            #{ 'name': 'box', 'type': 'B', 'x1': offsetLeft + margin, 'y1': margin, 'x2': offsetLeft + width - margin, 'y2': height - margin, 'font': 'Arial', 'size': 0.0, 'bold': 0, 'italic': 0, 'underline': 0, 'foreground': 0, 'background': 0, 'align': 'I', 'text': None, 'priority': 0, },
-        ]
-        return  elements
         
     def englishgarab_label(self):
-        elements = [
+   
+        offsetLeft = self.offsetLeft
+        width = self.size[0]
+        removeTwoLinesOffset = 25
+        height = max(width + self.widthBuffer + 5, self.size[1])
+        # margin is 2% of width
+        margin = width * 0.02
+        endLeft = width - margin
+        top = margin + 8
+         
+        self.elements = [
             { 
-                'name': 'title', 
+                'name': 'title_en', 
                 'type': 'T', 
                 'x1': offsetLeft + margin, 
-                'y1': margin, 
+                'y1': top+5, 
                 'x2': offsetLeft + endLeft, 
-                'y2': height * 0.2, 
+                'y2':top+5, 
                 'font': "FlamencoD", 
                 'size': 32.0, 
                 'bold': 0, 
@@ -318,16 +247,16 @@ class ReceiptRenderer():
                 'foreground': 0, 
                 'background': 0, 
                 'align': 'C', 
-                'text': 'Tillykke', 
+                'text': 'Winner!', 
                 'priority': 2, 
             },
             { 
-                'name': 'subtitle', 
+                'name': 'subtitle_en', 
                 'type': 'T', 
                 'x1': offsetLeft + margin, 
-                'y1': height * 0.2, 
+                'y1': top +12, 
                 'x2': offsetLeft + endLeft, 
-                'y2': height * 0.3, 
+                'y2': top +12, 
                 'font': "FlamencoD", 
                 'size': 15.0, 
                 'bold': 0, 
@@ -336,52 +265,16 @@ class ReceiptRenderer():
                 'foreground': 0, 
                 'background': 0, 
                 'align': 'C', 
-                'text': 'Du har vundet:', 
+                'text': 'you have won', 
                 'priority': 2, 
             },
             { 
-                'name': 'info', 
+                'name': 'prize_en', 
                 'type': 'T', 
                 'x1': offsetLeft + margin, 
-                'y1': height * 0.48, 
-                'x2': offsetLeft + endLeft, 
-                'y2': height * 0.48, 
-                'font': "DINEngschrift LT", 
-                'size': 10.0, 
-                'bold': 0, 
-                'italic': 1, 
-                'underline': 0, 
-                'foreground': 0, 
-                'background': 0, 
-                'align': 'C', 
-                'text': 'Hent din præmie i informationen inden ', 
-                'priority': 2, 
-            },
-            { 
-                'name': 'date', 
-                'type': 'T', 
-                'x1': offsetLeft + margin, 
-                'y1': height * 0.78 - removeTwoLinesOffset, 
-                'x2': offsetLeft + endLeft, 
-                'y2': height * 0.88 - removeTwoLinesOffset, 
-                'font': "DINEngschrift LT", 
-                'size': 10.0, 
-                'bold': 0, 
-                'italic': 1, 
-                'underline': 0, 
-                'foreground': 0, 
-                'background': 0, 
-                'align': 'C', 
-                'text': 'Dags dato', 
-                'priority': 2, 
-            },
-            { 
-                'name': 'prize', 
-                'type': 'T', 
-                'x1': offsetLeft + margin, 
-                'y1': height * 0.35, 
+                'y1':  top +20, 
                 'x2': offsetLeft + width - margin, 
-                'y2': height * 0.42, 
+                'y2':  top +20, 
                 'font': "Hobo", 
                 'size': 16.0, 
                 'bold': 1, 
@@ -390,17 +283,54 @@ class ReceiptRenderer():
                 'foreground': 0, 
                 'background': 0, 
                 'align': 'C', 
-                'text': '', 
+                'text': 'Teddy Bear', 
                 'priority': 2, 
                 'multiline': True,
             },
             { 
-                'name': 'barcode', 
+                'name': 'pickup_en', 
+                'type': 'T', 
+                'x1': offsetLeft + margin, 
+                'y1':  top +27,
+                'x2': offsetLeft + endLeft, 
+                'y2':  top +27, 
+                'font': "DINEngschrift LT", 
+                'size': 10.0, 
+                'bold': 0, 
+                'italic': 1, 
+                'underline': 0, 
+                'foreground': 0, 
+                'background': 0, 
+                'align': 'C', 
+                'text': 'Get your prize in Smoke-in before', 
+                'priority': 2, 
+            },
+            { 
+                'name': 'date_en', 
+                'type': 'T', 
+                'x1': offsetLeft + margin, 
+                'y1':  top +31, 
+                'x2': offsetLeft + endLeft, 
+                'y2':  top +31,  
+                'font': "DINEngschrift LT", 
+                'size': 10.0, 
+                'bold': 0, 
+                'italic': 1, 
+                'underline': 0, 
+                'foreground': 0, 
+                'background': 0, 
+                'align': 'C', 
+                'text': 'Todays date', 
+                'priority': 2, 
+            },
+
+            { 
+                'name': 'barcode_en', 
                 'type': 'BC', 
                 'x1': offsetLeft + margin + width * 0.05, 
-                'y1': height - margin - height * 0.1 - removeTwoLinesOffset, 
+                'y1': top +40, 
                 'x2': offsetLeft + width / 2 - margin, 
-                'y2': height - margin - 2 - removeTwoLinesOffset, 
+                'y2': top +50, 
                 'font': 'Interleaved 2of5 NT', 
                 'size': 1, 
                 'bold': 0, 
@@ -413,12 +343,12 @@ class ReceiptRenderer():
                 'priority': 3, 
             },
             { 
-                'name': 'control_code', 
+                'name': 'control_code_en', 
                 'type': 'T', 
                 'x1': offsetLeft + width / 2 + margin, 
-                'y1': height - 11 - margin - removeTwoLinesOffset, 
-                'x2': offsetLeft + endLeft, 
-                'y2': height - 6 - margin - removeTwoLinesOffset, 
+                'y1': top +40, 
+                'x2': offsetLeft + endLeft+2, 
+                'y2': top +44, 
                 'font': 'Arial', 
                 'size': 8.0, 
                 'bold': 0, 
@@ -431,10 +361,111 @@ class ReceiptRenderer():
                 'priority': 3, 
                 'multiline': True,
             },
+              { 
+                'name': 'title_arab', 
+                'type': 'T', 
+                'x1': offsetLeft + margin, 
+                'y1': top +62, 
+                'x2': offsetLeft + endLeft, 
+                'y2': top +62, 
+                'font': "DejaVu", 
+                'size': 32.0, 
+                'bold': 0, 
+                'italic': 0, 
+                'underline': 0, 
+                'foreground': 0, 
+                'background': 0, 
+                'align': 'C', 
+                'text': u"""لقد فزت """,
+                'priority': 2, 
+            },
+            { 
+
+                'name': 'subtitle_arab', 
+                'type': 'T', 
+                'x1': offsetLeft + margin, 
+                'y1': top +72, 
+                'x2': offsetLeft + endLeft, 
+                'y2': top +72, 
+                'font': "DejaVu", 
+                'size': 15.0, 
+                'bold': 0, 
+                'italic': 0, 
+                'underline': 0, 
+                'foreground': 0, 
+                'background': 0, 
+                'align': 'C', 
+                'text': u"""لقد فزت""", 
+                'priority': 2, 
+            },
+            { 
+                'name': 'prize_arab', 
+                'type': 'T', 
+                'x1': offsetLeft + margin, 
+                'y1': top +81, 
+                'x2': offsetLeft + width - margin, 
+                'y2': top +81, 
+                'font': "DejaVu", 
+                'size': 16.0, 
+                'bold': 0, 
+                'italic': 0, 
+                'underline': 0, 
+                'foreground': 0, 
+                'background': 0, 
+                'align': 'C', 
+                'text': '', 
+                'priority': 2, 
+                'multiline': True,
+            },
+            { 
+                'name': 'pickup_arab', 
+                'type': 'T', 
+                'x1': offsetLeft + margin, 
+                'y1': top +89, 
+                'x2': offsetLeft + endLeft, 
+                'y2': top +89, 
+                'font': "DejaVu", 
+                'size': 10.0, 
+                'bold': 0, 
+                'italic': 0, 
+                'underline': 0, 
+                'foreground': 0, 
+                'background': 0, 
+                'align': 'C', 
+                'text': 'الحصول على الجائزة الخاصة بك من قب,',
+                'priority': 2, 
+            },
+            { 
+                'name': 'date_arab', 
+                'type': 'T', 
+                'x1': offsetLeft + margin, 
+                'y1': top +95, 
+                'x2': offsetLeft + endLeft, 
+                'y2': top +95, 
+                'font': "DejaVu", 
+                'size': 10.0, 
+                'bold': 0, 
+                'italic': 0, 
+                'underline': 0, 
+                'foreground': 0, 
+                'background': 0, 
+                'align': 'C', 
+                'text': 'ريخ اليوم', 
+                'priority': 2, 
+            },
+
             #{ 'name': 'box', 'type': 'B', 'x1': offsetLeft + margin, 'y1': margin, 'x2': offsetLeft + width - margin, 'y2': height - margin, 'font': 'Arial', 'size': 0.0, 'bold': 0, 'italic': 0, 'underline': 0, 'foreground': 0, 'background': 0, 'align': 'I', 'text': None, 'priority': 0, },
         ]
-        return  elements        
+        self.document = Template(format=(width + self.widthBuffer, height), elements = self.elements, orientation="P")
+        self.document.pdf.add_font('FlamencoD', '', 'flamenn_0.ttf', uni=True)
+        self.document.pdf.add_font( 'DINEngschrift LT', 'I', 'lte50845.ttf', uni=True)
+        self.document.pdf.add_font('Hobo', 'B', 'hobo.ttf', uni=True)
+        self.document.pdf.add_font('DejaVu', '', 'DejaVuSansCondensed.ttf', uni=True)
+       
+        
+        self.document.add_page()       
         
 if __name__ == '__main__':
-    r = ReceiptRenderer(widthBuffer=20, offsetLeft=8)
-    r.render("receipt_test.pdf", "Superfantastiske", "1231231231", "V3RY53CR37","afhentet i information inden  \n\r dagas dato ")
+    r = ReceiptRenderer(size = (60,120), widthBuffer=20, offsetLeft=8,labeltype=1)
+    #r.render("receipt_test.pdf", "Superfantastiske", "1231231231", "V3RY53CR37",'d.12/12-2019')
+    r.render_englisharab(filename="receipt_test.pdf", prize_en="Teddy Bear", prize_arab="Teddy Bear", barcode_en="1231231231", control_code_en="V3RY53CR37",pickup_en="Smoke-In",pickup_arab='Smoke-In' ,datecatchup='d.12/12-2019')
