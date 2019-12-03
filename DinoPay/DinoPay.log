@@ -1,375 +1,612 @@
-2019-11-14 08:47:17,949 INFO <module>(712) Running DinoPay
-2019-11-14 08:47:17,950 INFO <module>(713) Reading Setupfile
-2019-11-14 08:47:18,082 INFO __init__(98) WinInfoGeo Info Screen high: 1200Screen width: 1600
-2019-11-14 08:47:18,232 INFO setupadammodule(343) Connecting iomodule ip 192.168.1.200
-2019-11-14 08:47:18,234 INFO setupadammodule(351) Connecting status: None
-2019-11-14 08:47:18,236 INFO setup_mp(389) Connecting Mobile pay 
-2019-11-14 08:47:18,237 INFO setup_mp(391) RegisterPOS
-2019-11-14 08:47:18,931 INFO setup_mp(399) AssignPos100000625947428
-2019-11-14 08:47:19,148 INFO runrefundonmissed(411) Payment Failed: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dc8870f', 'TransactionId': None, 'Amount': 100.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None, 'Pulsecntstat': False, 'Refund': False}
-2019-11-14 08:47:19,150 INFO runrefundonmissed(412) Refund : 5dc8870f
-2019-11-14 08:47:19,401 INFO runrefundonmissed(411) Payment Failed: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dc88775', 'TransactionId': None, 'Amount': 50.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None, 'Pulsecntstat': False, 'Refund': False}
-2019-11-14 08:47:19,401 INFO runrefundonmissed(412) Refund : 5dc88775
-2019-11-14 08:47:19,629 INFO runrefundonmissed(411) Payment Failed: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dc887a2', 'TransactionId': None, 'Amount': 50.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None, 'Pulsecntstat': False, 'Refund': False}
-2019-11-14 08:47:19,629 INFO runrefundonmissed(412) Refund : 5dc887a2
-2019-11-14 08:47:19,838 INFO runrefundonmissed(411) Payment Failed: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dc887c2', 'TransactionId': None, 'Amount': 100.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None, 'Pulsecntstat': False, 'Refund': False}
-2019-11-14 08:47:19,838 INFO runrefundonmissed(412) Refund : 5dc887c2
-2019-11-14 08:47:20,256 INFO runrefundonmissed(411) Payment Failed: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dc887c5', 'TransactionId': None, 'Amount': 50.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None, 'Pulsecntstat': False, 'Refund': False}
-2019-11-14 08:47:20,258 INFO runrefundonmissed(412) Refund : 5dc887c5
-2019-11-14 08:47:20,493 INFO runrefundonmissed(411) Payment Failed: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dc888c5', 'TransactionId': None, 'Amount': 100.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None, 'Pulsecntstat': False, 'Refund': False}
-2019-11-14 08:47:20,493 INFO runrefundonmissed(412) Refund : 5dc888c5
-2019-11-14 08:47:20,715 INFO runrefundonmissed(411) Payment Failed: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dc8f877', 'TransactionId': None, 'Amount': 50.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None, 'Pulsecntstat': False, 'Refund': False}
-2019-11-14 08:47:20,716 INFO runrefundonmissed(412) Refund : 5dc8f877
-2019-11-14 08:47:20,916 INFO runrefundonmissed(411) Payment Failed: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dc8f885', 'TransactionId': None, 'Amount': 50.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None, 'Pulsecntstat': False, 'Refund': False}
-2019-11-14 08:47:20,917 INFO runrefundonmissed(412) Refund : 5dc8f885
-2019-11-14 08:47:21,136 INFO runrefundonmissed(411) Payment Failed: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dc91a9b', 'TransactionId': None, 'Amount': 100.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None, 'Pulsecntstat': False, 'Refund': False}
-2019-11-14 08:47:21,136 INFO runrefundonmissed(412) Refund : 5dc91a9b
-2019-11-14 08:47:21,355 INFO runrefundonmissed(411) Payment Failed: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dc91ab7', 'TransactionId': None, 'Amount': 50.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None, 'Pulsecntstat': False, 'Refund': False}
-2019-11-14 08:47:21,355 INFO runrefundonmissed(412) Refund : 5dc91ab7
-2019-11-14 08:47:21,576 INFO runrefundonmissed(411) Payment Failed: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dc91ab9', 'TransactionId': None, 'Amount': 100.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None, 'Pulsecntstat': False, 'Refund': False}
-2019-11-14 08:47:21,576 INFO runrefundonmissed(412) Refund : 5dc91ab9
-2019-11-14 08:47:21,799 INFO runrefundonmissed(411) Payment Failed: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dc91aed', 'TransactionId': None, 'Amount': 50.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None, 'Pulsecntstat': False, 'Refund': False}
-2019-11-14 08:47:21,799 INFO runrefundonmissed(412) Refund : 5dc91aed
-2019-11-14 08:47:22,012 INFO runrefundonmissed(411) Payment Failed: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dc91aef', 'TransactionId': None, 'Amount': 100.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None, 'Pulsecntstat': False, 'Refund': False}
-2019-11-14 08:47:22,012 INFO runrefundonmissed(412) Refund : 5dc91aef
-2019-11-14 08:47:22,227 INFO runrefundonmissed(411) Payment Failed: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dc91af1', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None, 'Pulsecntstat': False, 'Refund': False}
-2019-11-14 08:47:22,228 INFO runrefundonmissed(412) Refund : 5dc91af1
-2019-11-14 08:47:22,441 INFO runrefundonmissed(411) Payment Failed: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dc91b0c', 'TransactionId': None, 'Amount': 100.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None, 'Pulsecntstat': False, 'Refund': False}
-2019-11-14 08:47:22,442 INFO runrefundonmissed(412) Refund : 5dc91b0c
-2019-11-14 08:47:22,652 INFO runrefundonmissed(411) Payment Failed: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dc91b0e', 'TransactionId': None, 'Amount': 50.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None, 'Pulsecntstat': False, 'Refund': False}
-2019-11-14 08:47:22,652 INFO runrefundonmissed(412) Refund : 5dc91b0e
-2019-11-14 08:47:22,872 INFO runrefundonmissed(411) Payment Failed: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dc9c493', 'TransactionId': None, 'Amount': 100.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None, 'Pulsecntstat': False, 'Refund': False}
-2019-11-14 08:47:22,873 INFO runrefundonmissed(412) Refund : 5dc9c493
-2019-11-14 08:47:23,064 INFO runrefundonmissed(411) Payment Failed: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dc9c494', 'TransactionId': None, 'Amount': 50.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None, 'Pulsecntstat': False, 'Refund': False}
-2019-11-14 08:47:23,064 INFO runrefundonmissed(412) Refund : 5dc9c494
-2019-11-14 08:47:23,276 INFO runrefundonmissed(411) Payment Failed: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dc9c603', 'TransactionId': None, 'Amount': 50.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None, 'Pulsecntstat': False, 'Refund': False}
-2019-11-14 08:47:23,276 INFO runrefundonmissed(412) Refund : 5dc9c603
-2019-11-14 08:47:23,489 INFO runrefundonmissed(411) Payment Failed: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dc9c60c', 'TransactionId': None, 'Amount': 50.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None, 'Pulsecntstat': False, 'Refund': False}
-2019-11-14 08:47:23,490 INFO runrefundonmissed(412) Refund : 5dc9c60c
-2019-11-14 08:47:23,686 INFO runrefundonmissed(411) Payment Failed: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dc9c60e', 'TransactionId': None, 'Amount': 100.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None, 'Pulsecntstat': False, 'Refund': False}
-2019-11-14 08:47:23,686 INFO runrefundonmissed(412) Refund : 5dc9c60e
-2019-11-14 08:47:23,895 INFO runrefundonmissed(411) Payment Failed: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dc9c610', 'TransactionId': None, 'Amount': 50.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None, 'Pulsecntstat': False, 'Refund': False}
-2019-11-14 08:47:23,896 INFO runrefundonmissed(412) Refund : 5dc9c610
-2019-11-14 08:47:24,113 INFO runrefundonmissed(411) Payment Failed: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dc9c612', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None, 'Pulsecntstat': False, 'Refund': False}
-2019-11-14 08:47:24,113 INFO runrefundonmissed(412) Refund : 5dc9c612
-2019-11-14 08:47:24,303 INFO runrefundonmissed(411) Payment Failed: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dc9c614', 'TransactionId': None, 'Amount': 50.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None, 'Pulsecntstat': False, 'Refund': False}
-2019-11-14 08:47:24,304 INFO runrefundonmissed(412) Refund : 5dc9c614
-2019-11-14 08:47:24,500 INFO runrefundonmissed(411) Payment Failed: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dc9c615', 'TransactionId': None, 'Amount': 50.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None, 'Pulsecntstat': False, 'Refund': False}
-2019-11-14 08:47:24,501 INFO runrefundonmissed(412) Refund : 5dc9c615
-2019-11-14 08:47:24,693 INFO runrefundonmissed(411) Payment Failed: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dc9c617', 'TransactionId': None, 'Amount': 100.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None, 'Pulsecntstat': False, 'Refund': False}
-2019-11-14 08:47:24,694 INFO runrefundonmissed(412) Refund : 5dc9c617
-2019-11-14 08:47:24,907 INFO runrefundonmissed(411) Payment Failed: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dccebe0', 'TransactionId': None, 'Amount': 100.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None, 'Pulsecntstat': False}
-2019-11-14 08:47:24,907 INFO runrefundonmissed(412) Refund : 5dccebe0
-2019-11-14 08:47:25,119 INFO runrefundonmissed(411) Payment Failed: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dccfc97', 'TransactionId': None, 'Amount': 50.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None, 'Pulsecntstat': False}
-2019-11-14 08:47:25,120 INFO runrefundonmissed(412) Refund : 5dccfc97
-2019-11-14 08:47:25,331 INFO setup_mp(402) True
-2019-11-18 14:13:24,406 INFO <module>(712) Running DinoPay
-2019-11-18 14:13:24,423 INFO <module>(713) Reading Setupfile
-2019-11-18 14:13:24,967 INFO __init__(98) WinInfoGeo Info Screen high: 1200Screen width: 1600
-2019-11-18 14:13:26,245 INFO setupadammodule(343) Connecting iomodule ip 192.168.1.200
-2019-11-18 14:13:26,247 INFO setupadammodule(351) Connecting status: None
-2019-11-18 14:13:26,249 INFO setup_mp(389) Connecting Mobile pay 
-2019-11-18 14:13:26,249 INFO setup_mp(391) RegisterPOS
-2019-11-18 14:13:27,433 INFO setup_mp(399) AssignPos100000625947428
-2019-11-18 14:13:27,731 INFO setup_mp(402) True
-2019-11-18 14:15:37,637 INFO <module>(712) Running DinoPay
-2019-11-18 14:15:37,638 INFO <module>(713) Reading Setupfile
-2019-11-18 14:15:37,740 INFO __init__(98) WinInfoGeo Info Screen high: 1200Screen width: 1600
-2019-11-18 14:15:37,891 INFO setupadammodule(343) Connecting iomodule ip 192.168.1.200
-2019-11-18 14:15:37,893 INFO setupadammodule(351) Connecting status: None
-2019-11-18 14:15:37,895 INFO setup_mp(389) Connecting Mobile pay 
-2019-11-18 14:15:37,895 INFO setup_mp(391) RegisterPOS
-2019-11-18 14:15:38,950 INFO setup_mp(399) AssignPos100000625947428
-2019-11-18 14:15:39,192 INFO setup_mp(402) True
-2019-11-18 14:16:50,412 INFO <module>(712) Running DinoPay
-2019-11-18 14:16:50,413 INFO <module>(713) Reading Setupfile
-2019-11-18 14:16:50,523 INFO __init__(98) WinInfoGeo Info Screen high: 1200Screen width: 1600
-2019-11-18 14:16:50,669 INFO setupadammodule(343) Connecting iomodule ip 192.168.1.200
-2019-11-18 14:16:50,671 INFO setupadammodule(351) Connecting status: None
-2019-11-18 14:16:50,674 INFO setup_mp(389) Connecting Mobile pay 
-2019-11-18 14:16:50,675 INFO setup_mp(391) RegisterPOS
-2019-11-18 14:16:51,738 INFO setup_mp(399) AssignPos100000625947428
-2019-11-18 14:16:51,987 INFO setup_mp(402) True
-2019-11-18 14:20:29,848 INFO <module>(712) Running DinoPay
-2019-11-18 14:20:29,848 INFO <module>(713) Reading Setupfile
-2019-11-18 14:20:29,950 INFO __init__(98) WinInfoGeo Info Screen high: 1200Screen width: 1600
-2019-11-18 14:20:30,091 INFO setupadammodule(343) Connecting iomodule ip 192.168.1.200
-2019-11-18 14:20:30,093 INFO setupadammodule(351) Connecting status: None
-2019-11-18 14:20:30,096 INFO setup_mp(389) Connecting Mobile pay 
-2019-11-18 14:20:30,097 INFO setup_mp(391) RegisterPOS
-2019-11-18 14:20:30,932 INFO setup_mp(399) AssignPos100000625947428
-2019-11-18 14:20:31,153 INFO setup_mp(402) True
-2019-11-18 14:21:25,580 INFO <module>(712) Running DinoPay
-2019-11-18 14:21:25,580 INFO <module>(713) Reading Setupfile
-2019-11-18 14:21:25,687 INFO __init__(98) WinInfoGeo Info Screen high: 1200Screen width: 1600
-2019-11-18 14:21:25,843 INFO setupadammodule(343) Connecting iomodule ip 192.168.1.200
-2019-11-18 14:21:25,845 INFO setupadammodule(351) Connecting status: None
-2019-11-18 14:21:25,848 INFO setup_mp(389) Connecting Mobile pay 
-2019-11-18 14:21:25,849 INFO setup_mp(391) RegisterPOS
-2019-11-18 14:21:26,733 INFO setup_mp(399) AssignPos100000625947428
-2019-11-18 14:21:32,217 INFO setup_mp(402) True
-2019-11-18 14:22:31,709 INFO paymenttimeout(270) Payment TimeOut5dd29afb
-2019-11-18 14:23:07,297 ERROR readveningemptystatus(376) Error readveningemptystatus 
-2019-11-18 19:06:04,371 INFO <module>(712) Running DinoPay
-2019-11-18 19:06:04,380 INFO <module>(713) Reading Setupfile
-2019-11-18 19:06:04,494 INFO __init__(98) WinInfoGeo Info Screen high: 1200Screen width: 1600
-2019-11-18 19:06:04,631 INFO setupadammodule(343) Connecting iomodule ip 192.168.1.200
-2019-11-18 19:06:04,632 INFO setupadammodule(351) Connecting status: None
-2019-11-18 19:06:04,634 INFO setup_mp(389) Connecting Mobile pay 
-2019-11-18 19:06:04,635 INFO setup_mp(391) RegisterPOS
-2019-11-18 19:06:05,599 INFO setup_mp(399) AssignPos100000625947428
-2019-11-18 19:06:05,810 INFO runrefundonmissed(411) Payment Failed: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd29af9', 'TransactionId': None, 'Amount': 100.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None, 'Pulsecntstat': False}
-2019-11-18 19:06:05,811 INFO runrefundonmissed(412) Refund : 5dd29af9
-2019-11-18 19:06:06,034 INFO runrefundonmissed(411) Payment Failed: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd29afb', 'TransactionId': None, 'Amount': 50.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None, 'Pulsecntstat': False}
-2019-11-18 19:06:06,034 INFO runrefundonmissed(412) Refund : 5dd29afb
-2019-11-18 19:06:06,291 INFO setup_mp(402) True
-2019-11-18 19:07:13,613 INFO PaymentStatus(168) PaymentAccepted, orderid: 5dd2ddce
-2019-11-18 19:07:15,865 INFO paymentHandle(210) Stat: True
-2019-11-18 19:10:01,365 INFO <module>(712) Running DinoPay
-2019-11-18 19:10:01,365 INFO <module>(713) Reading Setupfile
-2019-11-18 19:10:01,466 INFO __init__(98) WinInfoGeo Info Screen high: 1200Screen width: 1600
-2019-11-18 19:10:01,599 INFO setupadammodule(343) Connecting iomodule ip 192.168.1.200
-2019-11-18 19:10:01,601 INFO setupadammodule(351) Connecting status: None
-2019-11-18 19:10:01,603 INFO setup_mp(389) Connecting Mobile pay 
-2019-11-18 19:10:01,604 INFO setup_mp(391) RegisterPOS
-2019-11-18 19:10:02,956 INFO setup_mp(399) AssignPos100000625947428
-2019-11-18 19:10:03,205 INFO runrefundonmissed(411) Payment Failed: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd29af9', 'TransactionId': None, 'Amount': 100.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None, 'Pulsecntstat': False, 'Refund': False}
-2019-11-18 19:10:03,205 INFO runrefundonmissed(412) Refund : 5dd29af9
-2019-11-18 19:10:03,412 INFO runrefundonmissed(411) Payment Failed: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd29afb', 'TransactionId': None, 'Amount': 50.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None, 'Pulsecntstat': False, 'Refund': False}
-2019-11-18 19:10:03,412 INFO runrefundonmissed(412) Refund : 5dd29afb
-2019-11-18 19:10:03,701 INFO runrefundonmissed(411) Payment Failed: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd2dd8f', 'TransactionId': None, 'Amount': 100.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None, 'Pulsecntstat': False}
-2019-11-18 19:10:03,701 INFO runrefundonmissed(412) Refund : 5dd2dd8f
-2019-11-18 19:10:03,900 INFO setup_mp(402) True
-2019-11-18 19:10:24,317 INFO PaymentStatus(168) PaymentAccepted, orderid: 5dd2de7d
-2019-11-18 19:10:26,566 INFO paymentHandle(210) Stat: True
-2019-11-18 19:13:11,436 INFO <module>(716) Running DinoPay
-2019-11-18 19:13:11,436 INFO <module>(717) Reading Setupfile
-2019-11-18 19:13:11,534 INFO __init__(98) WinInfoGeo Info Screen high: 1200Screen width: 1600
-2019-11-18 19:13:11,673 INFO setupadammodule(347) Connecting iomodule ip 192.168.1.200
-2019-11-18 19:13:11,675 INFO setupadammodule(355) Connecting status: None
-2019-11-18 19:13:11,677 INFO setup_mp(393) Connecting Mobile pay 
-2019-11-18 19:13:11,677 INFO setup_mp(395) RegisterPOS
-2019-11-18 19:13:12,963 INFO setup_mp(403) AssignPos100000625947428
-2019-11-18 19:13:13,200 INFO runrefundonmissed(415) Payment Failed: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd29af9', 'TransactionId': None, 'Amount': 100.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None, 'Pulsecntstat': False, 'Refund': False}
-2019-11-18 19:13:13,201 INFO runrefundonmissed(416) Refund : 5dd29af9
-2019-11-18 19:13:13,425 INFO runrefundonmissed(415) Payment Failed: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd29afb', 'TransactionId': None, 'Amount': 50.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None, 'Pulsecntstat': False, 'Refund': False}
-2019-11-18 19:13:13,426 INFO runrefundonmissed(416) Refund : 5dd29afb
-2019-11-18 19:13:13,704 INFO runrefundonmissed(415) Payment Failed: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd2dd8f', 'TransactionId': None, 'Amount': 100.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None, 'Pulsecntstat': False, 'Refund': False}
-2019-11-18 19:13:13,706 INFO runrefundonmissed(416) Refund : 5dd2dd8f
-2019-11-18 19:13:13,977 INFO setup_mp(406) True
-2019-11-18 19:14:25,343 INFO PaymentStatus(168) PaymentAccepted, orderid: 5dd2df7c
-2019-11-18 19:14:27,449 INFO paymentHandle(210) Stat: True
-2019-11-18 19:14:46,031 INFO PaymentStatus(168) PaymentAccepted, orderid: 5dd2df8e
-2019-11-18 19:14:50,213 INFO paymentHandle(210) Stat: True
-2019-11-18 19:15:13,080 INFO PaymentStatus(168) PaymentAccepted, orderid: 5dd2dfa6
-2019-11-18 19:15:15,159 INFO paymentHandle(210) Stat: True
-2019-11-18 19:15:33,416 INFO PaymentStatus(168) PaymentAccepted, orderid: 5dd2dfbc
-2019-11-18 19:15:37,953 INFO paymentHandle(210) Stat: True
-2019-11-18 19:15:50,518 INFO PaymentStatus(168) PaymentAccepted, orderid: 5dd2dfce
-2019-11-18 19:15:54,721 INFO paymentHandle(210) Stat: True
-2019-11-18 19:16:04,992 INFO PaymentStatus(168) PaymentAccepted, orderid: 5dd2dfdc
-2019-11-18 19:16:09,384 INFO paymentHandle(210) Stat: True
-2019-11-18 19:18:45,808 INFO <module>(716) Running DinoPay
-2019-11-18 19:18:45,817 INFO <module>(717) Reading Setupfile
-2019-11-18 19:18:45,912 INFO __init__(98) WinInfoGeo Info Screen high: 1200Screen width: 1600
-2019-11-18 19:18:46,052 INFO setupadammodule(347) Connecting iomodule ip 192.168.1.200
-2019-11-18 19:18:46,053 INFO setupadammodule(355) Connecting status: None
-2019-11-18 19:18:46,056 INFO setup_mp(393) Connecting Mobile pay 
-2019-11-18 19:18:46,057 INFO setup_mp(395) RegisterPOS
-2019-11-18 19:18:47,196 INFO setup_mp(403) AssignPos100000625947428
-2019-11-18 19:18:47,480 INFO runrefundonmissed(415) Payment Failed: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd29af9', 'TransactionId': None, 'Amount': 100.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None, 'Pulsecntstat': False, 'Refund': False}
-2019-11-18 19:18:47,480 INFO runrefundonmissed(416) Refund : 5dd29af9
-2019-11-18 19:18:47,694 INFO runrefundonmissed(415) Payment Failed: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd29afb', 'TransactionId': None, 'Amount': 50.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None, 'Pulsecntstat': False, 'Refund': False}
-2019-11-18 19:18:47,695 INFO runrefundonmissed(416) Refund : 5dd29afb
-2019-11-18 19:18:47,971 INFO runrefundonmissed(415) Payment Failed: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd2dd8f', 'TransactionId': None, 'Amount': 100.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None, 'Pulsecntstat': False, 'Refund': False}
-2019-11-18 19:18:47,971 INFO runrefundonmissed(416) Refund : 5dd2dd8f
-2019-11-18 19:18:48,188 INFO runrefundonmissed(415) Payment Failed: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd2df3b', 'TransactionId': None, 'Amount': 50.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None, 'Pulsecntstat': False}
-2019-11-18 19:18:48,189 INFO runrefundonmissed(416) Refund : 5dd2df3b
-2019-11-18 19:18:48,424 INFO runrefundonmissed(415) Payment Failed: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd2df41', 'TransactionId': None, 'Amount': 50.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None, 'Pulsecntstat': False}
-2019-11-18 19:18:48,425 INFO runrefundonmissed(416) Refund : 5dd2df41
-2019-11-18 19:18:48,637 INFO runrefundonmissed(415) Payment Failed: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd2dfa2', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None, 'Pulsecntstat': False}
-2019-11-18 19:18:48,637 INFO runrefundonmissed(416) Refund : 5dd2dfa2
-2019-11-18 19:18:48,830 INFO runrefundonmissed(415) Payment Failed: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd2dfa4', 'TransactionId': None, 'Amount': 100.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None, 'Pulsecntstat': False}
-2019-11-18 19:18:48,831 INFO runrefundonmissed(416) Refund : 5dd2dfa4
-2019-11-18 19:18:49,031 INFO setup_mp(406) True
-2019-11-18 19:19:00,655 INFO PaymentStatus(166) PaymentAccepted, orderid: 5dd2e08a
-2019-11-18 19:19:05,233 INFO paymentHandle(210) Stat: True
-2019-11-18 19:19:20,990 INFO PaymentStatus(166) PaymentAccepted, orderid: 5dd2e09f
-2019-11-18 19:19:22,525 INFO paymentHandle(210) Stat: True
-2019-11-18 20:22:32,418 INFO <module>(716) Running DinoPay
-2019-11-18 20:22:32,419 INFO <module>(717) Reading Setupfile
-2019-11-18 20:22:32,548 INFO __init__(98) WinInfoGeo Info Screen high: 1200Screen width: 1600
-2019-11-18 20:22:32,717 INFO setupadammodule(347) Connecting iomodule ip 192.168.1.200
-2019-11-18 20:22:32,719 INFO setupadammodule(355) Connecting status: None
-2019-11-18 20:22:32,721 INFO setup_mp(393) Connecting Mobile pay 
-2019-11-18 20:22:32,722 INFO setup_mp(395) RegisterPOS
-2019-11-18 20:22:34,047 INFO setup_mp(403) AssignPos100000625947428
-2019-11-18 20:22:34,376 INFO runrefundonmissed(415) Payment Failed: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd29af9', 'TransactionId': None, 'Amount': 100.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None, 'Pulsecntstat': False, 'Refund': False}
-2019-11-18 20:22:34,376 INFO runrefundonmissed(416) Refund : 5dd29af9
-2019-11-18 20:22:34,707 INFO runrefundonmissed(415) Payment Failed: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd29afb', 'TransactionId': None, 'Amount': 50.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None, 'Pulsecntstat': False, 'Refund': False}
-2019-11-18 20:22:34,707 INFO runrefundonmissed(416) Refund : 5dd29afb
-2019-11-18 20:22:35,033 INFO runrefundonmissed(415) Payment Failed: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd2dd8f', 'TransactionId': None, 'Amount': 100.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None, 'Pulsecntstat': False, 'Refund': False}
-2019-11-18 20:22:35,033 INFO runrefundonmissed(416) Refund : 5dd2dd8f
-2019-11-18 20:22:35,335 INFO runrefundonmissed(415) Payment Failed: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd2df3b', 'TransactionId': None, 'Amount': 50.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None, 'Pulsecntstat': False, 'Refund': False}
-2019-11-18 20:22:35,335 INFO runrefundonmissed(416) Refund : 5dd2df3b
-2019-11-18 20:22:35,568 INFO runrefundonmissed(415) Payment Failed: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd2df41', 'TransactionId': None, 'Amount': 50.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None, 'Pulsecntstat': False, 'Refund': False}
-2019-11-18 20:22:35,569 INFO runrefundonmissed(416) Refund : 5dd2df41
-2019-11-18 20:22:35,802 INFO runrefundonmissed(415) Payment Failed: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd2dfa2', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None, 'Pulsecntstat': False, 'Refund': False}
-2019-11-18 20:22:35,802 INFO runrefundonmissed(416) Refund : 5dd2dfa2
-2019-11-18 20:22:36,043 INFO runrefundonmissed(415) Payment Failed: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd2dfa4', 'TransactionId': None, 'Amount': 100.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None, 'Pulsecntstat': False, 'Refund': False}
-2019-11-18 20:22:36,043 INFO runrefundonmissed(416) Refund : 5dd2dfa4
-2019-11-18 20:22:36,353 INFO setup_mp(406) True
-2019-11-18 20:25:04,619 INFO <module>(716) Running DinoPay
-2019-11-18 20:25:04,620 INFO <module>(717) Reading Setupfile
-2019-11-18 20:25:04,733 INFO __init__(98) WinInfoGeo Info Screen high: 1200Screen width: 1600
-2019-11-18 20:25:04,869 INFO setupadammodule(347) Connecting iomodule ip 192.168.1.200
-2019-11-18 20:25:04,871 INFO setupadammodule(355) Connecting status: None
-2019-11-18 20:25:04,873 INFO setup_mp(393) Connecting Mobile pay 
-2019-11-18 20:25:04,874 INFO setup_mp(395) RegisterPOS
-2019-11-18 20:25:06,090 INFO setup_mp(403) AssignPos100000625947428
-2019-11-18 20:25:06,336 INFO runrefundonmissed(415) Payment Failed: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd29af9', 'TransactionId': None, 'Amount': 100.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None, 'Pulsecntstat': False, 'Refund': False}
-2019-11-18 20:25:06,337 INFO runrefundonmissed(416) Refund : 5dd29af9
-2019-11-18 20:25:06,641 INFO runrefundonmissed(415) Payment Failed: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd29afb', 'TransactionId': None, 'Amount': 50.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None, 'Pulsecntstat': False, 'Refund': False}
-2019-11-18 20:25:06,641 INFO runrefundonmissed(416) Refund : 5dd29afb
-2019-11-18 20:25:06,891 INFO runrefundonmissed(415) Payment Failed: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd2dd8f', 'TransactionId': None, 'Amount': 100.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None, 'Pulsecntstat': False, 'Refund': False}
-2019-11-18 20:25:06,891 INFO runrefundonmissed(416) Refund : 5dd2dd8f
-2019-11-18 20:25:07,135 INFO runrefundonmissed(415) Payment Failed: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd2df3b', 'TransactionId': None, 'Amount': 50.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None, 'Pulsecntstat': False, 'Refund': False}
-2019-11-18 20:25:07,136 INFO runrefundonmissed(416) Refund : 5dd2df3b
-2019-11-18 20:25:07,446 INFO runrefundonmissed(415) Payment Failed: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd2df41', 'TransactionId': None, 'Amount': 50.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None, 'Pulsecntstat': False, 'Refund': False}
-2019-11-18 20:25:07,447 INFO runrefundonmissed(416) Refund : 5dd2df41
-2019-11-18 20:25:07,753 INFO runrefundonmissed(415) Payment Failed: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd2dfa2', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None, 'Pulsecntstat': False, 'Refund': False}
-2019-11-18 20:25:07,753 INFO runrefundonmissed(416) Refund : 5dd2dfa2
-2019-11-18 20:25:08,001 INFO runrefundonmissed(415) Payment Failed: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd2dfa4', 'TransactionId': None, 'Amount': 100.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None, 'Pulsecntstat': False, 'Refund': False}
-2019-11-18 20:25:08,001 INFO runrefundonmissed(416) Refund : 5dd2dfa4
-2019-11-18 20:25:08,247 INFO setup_mp(406) True
-2019-11-18 20:25:39,261 INFO <module>(716) Running DinoPay
-2019-11-18 20:25:39,262 INFO <module>(717) Reading Setupfile
-2019-11-18 20:25:39,355 INFO __init__(98) WinInfoGeo Info Screen high: 1200Screen width: 1600
-2019-11-18 20:25:39,489 INFO setupadammodule(347) Connecting iomodule ip 192.168.1.200
-2019-11-18 20:25:39,491 INFO setupadammodule(355) Connecting status: None
-2019-11-18 20:25:39,493 INFO setup_mp(393) Connecting Mobile pay 
-2019-11-18 20:25:39,494 INFO setup_mp(395) RegisterPOS
-2019-11-18 20:25:39,513 INFO setup_mp(406) False
-2019-11-18 20:27:37,158 INFO <module>(716) Running DinoPay
-2019-11-18 20:27:37,160 INFO <module>(717) Reading Setupfile
-2019-11-18 20:27:37,323 INFO __init__(98) WinInfoGeo Info Screen high: 1200Screen width: 1600
-2019-11-18 20:27:37,509 INFO setupadammodule(347) Connecting iomodule ip 192.168.1.200
-2019-11-18 20:27:37,510 INFO setupadammodule(355) Connecting status: None
-2019-11-18 20:27:37,514 INFO setup_mp(393) Connecting Mobile pay 
-2019-11-18 20:27:37,515 INFO setup_mp(395) RegisterPOS
-2019-11-18 20:27:48,134 INFO <module>(716) Running DinoPay
-2019-11-18 20:27:48,135 INFO <module>(717) Reading Setupfile
-2019-11-18 20:27:48,231 INFO __init__(98) WinInfoGeo Info Screen high: 1200Screen width: 1600
-2019-11-18 20:27:48,408 INFO setupadammodule(347) Connecting iomodule ip 192.168.1.200
-2019-11-18 20:27:48,410 INFO setupadammodule(355) Connecting status: None
-2019-11-18 20:27:48,413 INFO setup_mp(393) Connecting Mobile pay 
-2019-11-18 20:27:48,413 INFO setup_mp(395) RegisterPOS
-2019-11-18 20:27:48,432 INFO setup_mp(406) False
-2019-11-18 20:30:15,193 INFO <module>(716) Running DinoPay
-2019-11-18 20:30:15,193 INFO <module>(717) Reading Setupfile
-2019-11-18 20:30:15,282 INFO __init__(98) WinInfoGeo Info Screen high: 1200Screen width: 1600
-2019-11-18 20:30:15,409 INFO setupadammodule(347) Connecting iomodule ip 192.168.1.200
-2019-11-18 20:30:15,411 INFO setupadammodule(355) Connecting status: None
-2019-11-18 20:30:15,414 INFO setup_mp(393) Connecting Mobile pay 
-2019-11-18 20:30:15,414 INFO setup_mp(395) RegisterPOS
-2019-11-18 20:30:16,734 INFO setup_mp(403) AssignPos100000625947428
-2019-11-18 20:30:17,116 INFO runrefundonmissed(415) Payment Failed: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd29af9', 'TransactionId': None, 'Amount': 100.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None, 'Pulsecntstat': False, 'Refund': False}
-2019-11-18 20:30:17,116 INFO runrefundonmissed(416) Refund : 5dd29af9
-2019-11-18 20:30:17,692 INFO runrefundonmissed(415) Payment Failed: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd29afb', 'TransactionId': None, 'Amount': 50.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None, 'Pulsecntstat': False, 'Refund': False}
-2019-11-18 20:30:17,692 INFO runrefundonmissed(416) Refund : 5dd29afb
-2019-11-18 20:30:18,187 INFO runrefundonmissed(415) Payment Failed: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd2dd8f', 'TransactionId': None, 'Amount': 100.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None, 'Pulsecntstat': False, 'Refund': False}
-2019-11-18 20:30:18,188 INFO runrefundonmissed(416) Refund : 5dd2dd8f
-2019-11-18 20:30:18,942 INFO runrefundonmissed(415) Payment Failed: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd2df3b', 'TransactionId': None, 'Amount': 50.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None, 'Pulsecntstat': False, 'Refund': False}
-2019-11-18 20:30:18,943 INFO runrefundonmissed(416) Refund : 5dd2df3b
-2019-11-18 20:30:19,383 INFO runrefundonmissed(415) Payment Failed: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd2df41', 'TransactionId': None, 'Amount': 50.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None, 'Pulsecntstat': False, 'Refund': False}
-2019-11-18 20:30:19,385 INFO runrefundonmissed(416) Refund : 5dd2df41
-2019-11-18 20:30:19,739 INFO runrefundonmissed(415) Payment Failed: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd2dfa2', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None, 'Pulsecntstat': False, 'Refund': False}
-2019-11-18 20:30:19,739 INFO runrefundonmissed(416) Refund : 5dd2dfa2
-2019-11-18 20:30:20,025 INFO runrefundonmissed(415) Payment Failed: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd2dfa4', 'TransactionId': None, 'Amount': 100.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None, 'Pulsecntstat': False, 'Refund': False}
-2019-11-18 20:30:20,026 INFO runrefundonmissed(416) Refund : 5dd2dfa4
-2019-11-18 20:30:20,391 INFO setup_mp(406) True
-2019-11-18 20:35:04,904 INFO <module>(717) Running DinoPay
-2019-11-18 20:35:04,905 INFO <module>(718) Reading Setupfile
-2019-11-18 20:35:05,003 INFO __init__(98) WinInfoGeo Info Screen high: 1200Screen width: 1600
-2019-11-18 20:35:05,157 INFO setupadammodule(348) Connecting iomodule ip 192.168.1.200
-2019-11-18 20:35:05,159 INFO setupadammodule(356) Connecting status: None
-2019-11-18 20:35:05,162 INFO setup_mp(394) Connecting Mobile pay 
-2019-11-18 20:35:05,162 INFO setup_mp(396) RegisterPOS
-2019-11-18 20:35:05,187 INFO setup_mp(407) False
-2019-11-18 20:36:27,683 INFO <module>(717) Running DinoPay
-2019-11-18 20:36:27,684 INFO <module>(718) Reading Setupfile
-2019-11-18 20:36:27,779 INFO __init__(98) WinInfoGeo Info Screen high: 1200Screen width: 1600
-2019-11-18 20:36:27,908 INFO setupadammodule(348) Connecting iomodule ip 192.168.1.200
-2019-11-18 20:36:27,911 INFO setupadammodule(356) Connecting status: None
-2019-11-18 20:36:27,912 INFO setup_mp(394) Connecting Mobile pay 
-2019-11-18 20:36:27,913 INFO setup_mp(396) RegisterPOS
-2019-11-18 20:36:29,120 INFO setup_mp(404) AssignPos100000625947428
-2019-11-18 20:36:29,373 INFO runrefundonmissed(416) Payment Failed: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd29af9', 'TransactionId': None, 'Amount': 100.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None, 'Pulsecntstat': False, 'Refund': False}
-2019-11-18 20:36:29,374 INFO runrefundonmissed(417) Refund : 5dd29af9
-2019-11-18 20:36:29,633 INFO runrefundonmissed(416) Payment Failed: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd29afb', 'TransactionId': None, 'Amount': 50.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None, 'Pulsecntstat': False, 'Refund': False}
-2019-11-18 20:36:29,634 INFO runrefundonmissed(417) Refund : 5dd29afb
-2019-11-18 20:36:29,883 INFO runrefundonmissed(416) Payment Failed: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd2dd8f', 'TransactionId': None, 'Amount': 100.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None, 'Pulsecntstat': False, 'Refund': False}
-2019-11-18 20:36:29,883 INFO runrefundonmissed(417) Refund : 5dd2dd8f
-2019-11-18 20:36:30,130 INFO runrefundonmissed(416) Payment Failed: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd2df3b', 'TransactionId': None, 'Amount': 50.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None, 'Pulsecntstat': False, 'Refund': False}
-2019-11-18 20:36:30,131 INFO runrefundonmissed(417) Refund : 5dd2df3b
-2019-11-18 20:36:30,386 INFO runrefundonmissed(416) Payment Failed: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd2df41', 'TransactionId': None, 'Amount': 50.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None, 'Pulsecntstat': False, 'Refund': False}
-2019-11-18 20:36:30,387 INFO runrefundonmissed(417) Refund : 5dd2df41
-2019-11-18 20:36:30,925 INFO runrefundonmissed(416) Payment Failed: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd2dfa2', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None, 'Pulsecntstat': False, 'Refund': False}
-2019-11-18 20:36:30,926 INFO runrefundonmissed(417) Refund : 5dd2dfa2
-2019-11-18 20:36:31,461 INFO runrefundonmissed(416) Payment Failed: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd2dfa4', 'TransactionId': None, 'Amount': 100.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None, 'Pulsecntstat': False, 'Refund': False}
-2019-11-18 20:36:31,461 INFO runrefundonmissed(417) Refund : 5dd2dfa4
-2019-11-18 20:36:31,885 INFO setup_mp(407) True
-2019-11-18 20:37:52,563 INFO <module>(717) Running DinoPay
-2019-11-18 20:37:52,563 INFO <module>(718) Reading Setupfile
-2019-11-18 20:37:52,657 INFO __init__(98) WinInfoGeo Info Screen high: 1200Screen width: 1600
-2019-11-18 20:37:52,792 INFO setupadammodule(348) Connecting iomodule ip 192.168.1.200
-2019-11-18 20:37:52,795 INFO setupadammodule(356) Connecting status: None
-2019-11-18 20:37:52,797 INFO setup_mp(394) Connecting Mobile pay 
-2019-11-18 20:37:52,798 INFO setup_mp(396) RegisterPOS
-2019-11-18 20:37:54,998 INFO setup_mp(404) AssignPos100000625947428
-2019-11-18 20:37:55,316 INFO runrefundonmissed(416) Payment Failed: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd29af9', 'TransactionId': None, 'Amount': 100.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None, 'Pulsecntstat': False, 'Refund': False}
-2019-11-18 20:37:55,317 INFO runrefundonmissed(417) Refund : 5dd29af9
-2019-11-18 20:37:55,617 INFO runrefundonmissed(416) Payment Failed: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd29afb', 'TransactionId': None, 'Amount': 50.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None, 'Pulsecntstat': False, 'Refund': False}
-2019-11-18 20:37:55,618 INFO runrefundonmissed(417) Refund : 5dd29afb
-2019-11-18 20:37:55,988 INFO runrefundonmissed(416) Payment Failed: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd2dd8f', 'TransactionId': None, 'Amount': 100.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None, 'Pulsecntstat': False, 'Refund': False}
-2019-11-18 20:37:55,989 INFO runrefundonmissed(417) Refund : 5dd2dd8f
-2019-11-18 20:37:56,278 INFO runrefundonmissed(416) Payment Failed: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd2df3b', 'TransactionId': None, 'Amount': 50.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None, 'Pulsecntstat': False, 'Refund': False}
-2019-11-18 20:37:56,279 INFO runrefundonmissed(417) Refund : 5dd2df3b
-2019-11-18 20:37:56,580 INFO runrefundonmissed(416) Payment Failed: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd2df41', 'TransactionId': None, 'Amount': 50.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None, 'Pulsecntstat': False, 'Refund': False}
-2019-11-18 20:37:56,581 INFO runrefundonmissed(417) Refund : 5dd2df41
-2019-11-18 20:37:56,855 INFO runrefundonmissed(416) Payment Failed: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd2dfa2', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None, 'Pulsecntstat': False, 'Refund': False}
-2019-11-18 20:37:56,855 INFO runrefundonmissed(417) Refund : 5dd2dfa2
-2019-11-18 20:37:57,151 INFO runrefundonmissed(416) Payment Failed: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd2dfa4', 'TransactionId': None, 'Amount': 100.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None, 'Pulsecntstat': False, 'Refund': False}
-2019-11-18 20:37:57,151 INFO runrefundonmissed(417) Refund : 5dd2dfa4
-2019-11-18 20:37:57,428 INFO setup_mp(407) True
-2019-11-18 20:38:53,968 INFO <module>(717) Running DinoPay
-2019-11-18 20:38:53,969 INFO <module>(718) Reading Setupfile
-2019-11-18 20:38:54,063 INFO __init__(98) WinInfoGeo Info Screen high: 1200Screen width: 1600
-2019-11-18 20:38:54,192 INFO setupadammodule(348) Connecting iomodule ip 192.168.1.200
-2019-11-18 20:38:54,194 INFO setupadammodule(356) Connecting status: None
-2019-11-18 20:38:54,196 INFO setup_mp(394) Connecting Mobile pay 
-2019-11-18 20:38:54,197 INFO setup_mp(396) RegisterPOS
-2019-11-18 20:38:54,216 INFO setup_mp(407) False
-2019-11-18 20:40:01,676 INFO <module>(717) Running DinoPay
-2019-11-18 20:40:01,676 INFO <module>(718) Reading Setupfile
-2019-11-18 20:40:01,767 INFO __init__(98) WinInfoGeo Info Screen high: 1200Screen width: 1600
-2019-11-18 20:40:01,896 INFO setupadammodule(348) Connecting iomodule ip 192.168.1.200
-2019-11-18 20:40:01,898 INFO setupadammodule(356) Connecting status: None
-2019-11-18 20:40:01,901 INFO setup_mp(394) Connecting Mobile pay 
-2019-11-18 20:40:01,901 INFO setup_mp(396) RegisterPOS
-2019-11-18 20:40:03,276 INFO setup_mp(404) AssignPos100000625947428
-2019-11-18 20:40:03,576 INFO runrefundonmissed(416) Payment Failed: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd29af9', 'TransactionId': None, 'Amount': 100.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None, 'Pulsecntstat': False, 'Refund': False}
-2019-11-18 20:40:03,577 INFO runrefundonmissed(417) Refund : 5dd29af9
-2019-11-18 20:40:03,874 INFO runrefundonmissed(416) Payment Failed: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd29afb', 'TransactionId': None, 'Amount': 50.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None, 'Pulsecntstat': False, 'Refund': False}
-2019-11-18 20:40:03,875 INFO runrefundonmissed(417) Refund : 5dd29afb
-2019-11-18 20:40:04,166 INFO runrefundonmissed(416) Payment Failed: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd2dd8f', 'TransactionId': None, 'Amount': 100.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None, 'Pulsecntstat': False, 'Refund': False}
-2019-11-18 20:40:04,166 INFO runrefundonmissed(417) Refund : 5dd2dd8f
-2019-11-18 20:40:04,438 INFO runrefundonmissed(416) Payment Failed: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd2df3b', 'TransactionId': None, 'Amount': 50.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None, 'Pulsecntstat': False, 'Refund': False}
-2019-11-18 20:40:04,439 INFO runrefundonmissed(417) Refund : 5dd2df3b
-2019-11-18 20:40:04,710 INFO runrefundonmissed(416) Payment Failed: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd2df41', 'TransactionId': None, 'Amount': 50.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None, 'Pulsecntstat': False, 'Refund': False}
-2019-11-18 20:40:04,711 INFO runrefundonmissed(417) Refund : 5dd2df41
-2019-11-18 20:40:05,044 INFO runrefundonmissed(416) Payment Failed: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd2dfa2', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None, 'Pulsecntstat': False, 'Refund': False}
-2019-11-18 20:40:05,045 INFO runrefundonmissed(417) Refund : 5dd2dfa2
-2019-11-18 20:40:05,322 INFO runrefundonmissed(416) Payment Failed: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd2dfa4', 'TransactionId': None, 'Amount': 100.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None, 'Pulsecntstat': False, 'Refund': False}
-2019-11-18 20:40:05,323 INFO runrefundonmissed(417) Refund : 5dd2dfa4
-2019-11-18 20:40:05,591 INFO setup_mp(407) True
+2019-11-20 20:20:57,246 INFO <module>(719) Running DinoPay
+2019-11-20 20:20:57,247 INFO <module>(720) Reading Setupfile
+2019-11-20 20:20:57,392 INFO __init__(98) WinInfoGeo Info Screen high: 1080Screen width: 1920
+2019-11-20 20:20:57,577 INFO setupadammodule(349) Connecting iomodule ip 192.168.1.200
+2019-11-20 20:20:57,579 INFO setupadammodule(357) Connecting status: None
+2019-11-20 20:20:57,583 INFO setup_mp(395) Connecting Mobile pay 
+2019-11-20 20:20:57,583 INFO setup_mp(397) RegisterPOS
+2019-11-20 20:20:58,611 INFO setup_mp(405) AssignPos100000625947428
+2019-11-20 20:20:58,856 INFO setup_mp(410) True
+2019-11-20 20:27:10,261 INFO <module>(720) Running DinoPay
+2019-11-20 20:27:10,261 INFO <module>(721) Reading Setupfile
+2019-11-20 20:27:13,850 INFO __init__(98) WinInfoGeo Info Screen high: 1080Screen width: 1920
+2019-11-20 20:27:13,998 INFO setupadammodule(349) Connecting iomodule ip 192.168.1.200
+2019-11-20 20:27:14,000 INFO setupadammodule(357) Connecting status: None
+2019-11-20 20:27:14,002 INFO setup_mp(395) Connecting Mobile pay 
+2019-11-20 20:27:14,002 INFO setup_mp(397) RegisterPOS
+2019-11-20 20:27:15,055 INFO setup_mp(405) AssignPos100000625947428
+2019-11-20 20:27:15,298 INFO setup_mp(410) True
+2019-11-20 20:27:17,348 ERROR <module>(735) main exception:division by zero
+2019-11-20 20:27:35,196 INFO <module>(720) Running DinoPay
+2019-11-20 20:27:35,197 INFO <module>(721) Reading Setupfile
+2019-11-20 20:27:35,922 INFO __init__(98) WinInfoGeo Info Screen high: 1080Screen width: 1920
+2019-11-20 20:27:36,061 INFO setupadammodule(349) Connecting iomodule ip 192.168.1.200
+2019-11-20 20:27:36,063 INFO setupadammodule(357) Connecting status: None
+2019-11-20 20:27:36,065 INFO setup_mp(395) Connecting Mobile pay 
+2019-11-20 20:27:36,066 INFO setup_mp(397) RegisterPOS
+2019-11-20 20:27:37,038 INFO setup_mp(405) AssignPos100000625947428
+2019-11-20 20:27:37,281 INFO setup_mp(410) True
+2019-11-20 20:27:38,548 ERROR <module>(735) main exception:division by zero
+2019-11-20 20:27:47,062 INFO <module>(720) Running DinoPay
+2019-11-20 20:27:47,246 INFO <module>(721) Reading Setupfile
+2019-11-20 20:27:47,901 INFO __init__(98) WinInfoGeo Info Screen high: 1080Screen width: 1920
+2019-11-20 20:27:48,215 ERROR <module>(735) main exception:image "pyimage18" doesn't exist
+2019-11-20 20:28:08,407 INFO <module>(720) Running DinoPay
+2019-11-20 20:28:08,407 INFO <module>(721) Reading Setupfile
+2019-11-20 20:28:16,842 INFO __init__(98) WinInfoGeo Info Screen high: 1080Screen width: 1920
+2019-11-20 20:28:16,997 INFO setupadammodule(349) Connecting iomodule ip 192.168.1.200
+2019-11-20 20:28:16,999 INFO setupadammodule(357) Connecting status: None
+2019-11-20 20:28:17,001 INFO setup_mp(395) Connecting Mobile pay 
+2019-11-20 20:28:17,002 INFO setup_mp(397) RegisterPOS
+2019-11-20 20:28:18,048 INFO setup_mp(405) AssignPos100000625947428
+2019-11-20 20:28:18,293 INFO setup_mp(410) True
+2019-11-20 20:30:43,014 INFO <module>(720) Running DinoPay
+2019-11-20 20:30:43,015 INFO <module>(721) Reading Setupfile
+2019-11-20 20:30:43,122 INFO __init__(98) WinInfoGeo Info Screen high: 1080Screen width: 1920
+2019-11-20 20:30:43,267 INFO setupadammodule(349) Connecting iomodule ip 192.168.1.200
+2019-11-20 20:30:43,269 INFO setupadammodule(357) Connecting status: None
+2019-11-20 20:30:43,272 INFO setup_mp(395) Connecting Mobile pay 
+2019-11-20 20:30:43,273 INFO setup_mp(397) RegisterPOS
+2019-11-20 20:30:44,269 INFO setup_mp(405) AssignPos100000625947428
+2019-11-20 20:30:44,514 INFO setup_mp(410) True
+2019-11-20 20:30:44,515 ERROR <module>(735) main exception:division by zero
+2019-11-20 20:30:44,515 ERROR <module>(736) Error on line 724
+2019-11-20 20:35:00,035 INFO <module>(724) Running DinoPay
+2019-11-20 20:35:00,035 INFO <module>(725) Reading Setupfile
+2019-11-20 20:35:00,133 INFO __init__(98) WinInfoGeo Info Screen high: 1080Screen width: 1920
+2019-11-20 20:35:00,278 INFO setupadammodule(351) Connecting iomodule ip 192.168.1.200
+2019-11-20 20:35:00,280 INFO setupadammodule(359) Connecting status: None
+2019-11-20 20:35:00,283 INFO setup_mp(397) Connecting Mobile pay 
+2019-11-20 20:35:00,283 INFO setup_mp(399) RegisterPOS
+2019-11-20 20:35:01,306 INFO setup_mp(407) AssignPos100000625947428
+2019-11-20 20:35:01,546 INFO setup_mp(412) True
+2019-11-20 20:35:04,205 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd59567', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:35:05,416 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd59567', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:35:06,632 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd59567', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:35:07,847 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd59567', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:35:09,087 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd59567', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:35:10,322 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd59567', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:35:11,559 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 100, 'OrderId': '5dd59567', 'TransactionId': '34596670', 'Amount': 200.0, 'CustomerId': 'AF9C0634-2AC7-4432-8F34-B87C14A9D02B', 'CustomerToken': None, 'CustomerReceiptToken': '4fc6f9f550414087bb78afb25f24bb33'}
+2019-11-20 20:35:11,561 INFO PaymentStatus(167) PaymentAccepted, orderid: 5dd59567
+2019-11-20 20:35:15,793 INFO paymentHandle(211) Stat: True
+2019-11-20 20:35:22,474 ERROR paymentHandle(218) error in self.iomodule.PulsePort 
+2019-11-20 20:36:02,172 INFO <module>(724) Running DinoPay
+2019-11-20 20:36:02,173 INFO <module>(725) Reading Setupfile
+2019-11-20 20:36:02,279 INFO __init__(98) WinInfoGeo Info Screen high: 1080Screen width: 1920
+2019-11-20 20:36:02,428 INFO setupadammodule(351) Connecting iomodule ip 192.168.1.200
+2019-11-20 20:36:02,430 INFO setupadammodule(359) Connecting status: None
+2019-11-20 20:36:02,433 INFO setup_mp(397) Connecting Mobile pay 
+2019-11-20 20:36:02,433 INFO setup_mp(399) RegisterPOS
+2019-11-20 20:36:03,718 INFO setup_mp(407) AssignPos100000625947428
+2019-11-20 20:36:03,964 INFO setup_mp(412) True
+2019-11-20 20:36:08,390 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd595a7', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:36:09,608 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 20, 'OrderId': '5dd595a7', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': 'AF9C0634-2AC7-4432-8F34-B87C14A9D02B', 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:36:10,814 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 20, 'OrderId': '5dd595a7', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': 'AF9C0634-2AC7-4432-8F34-B87C14A9D02B', 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:36:12,045 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 100, 'OrderId': '5dd595a7', 'TransactionId': '51516168', 'Amount': 200.0, 'CustomerId': 'AF9C0634-2AC7-4432-8F34-B87C14A9D02B', 'CustomerToken': None, 'CustomerReceiptToken': '037abdb20436494aab36e67381d1a64f'}
+2019-11-20 20:36:12,047 INFO PaymentStatus(167) PaymentAccepted, orderid: 5dd595a7
+2019-11-20 20:36:16,134 INFO paymentHandle(211) Stat: True
+2019-11-20 20:36:22,546 ERROR paymentHandle(218) error in self.iomodule.PulsePort 
+2019-11-20 20:36:23,454 ERROR printerrorlog(717) Error o exception:division by zero
+2019-11-20 20:36:23,454 ERROR printerrorlog(718) Error on line 215
+2019-11-20 20:37:11,222 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd595e6', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:37:12,440 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd595e6', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:37:13,689 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd595e6', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:37:14,921 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd595e6', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:37:16,145 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd595e6', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:37:17,362 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd595e6', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:37:18,593 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd595e6', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:37:19,825 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd595e6', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:37:21,074 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd595e6', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:37:22,321 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd595e6', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:37:23,549 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd595e6', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:37:24,797 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd595e6', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:37:26,024 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 20, 'OrderId': '5dd595e6', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': 'AF9C0634-2AC7-4432-8F34-B87C14A9D02B', 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:37:27,285 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 20, 'OrderId': '5dd595e6', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': 'AF9C0634-2AC7-4432-8F34-B87C14A9D02B', 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:37:28,524 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 10, 'OrderId': '', 'TransactionId': '', 'Amount': 0.0, 'CustomerId': '', 'CustomerToken': None, 'CustomerReceiptToken': ''}
+2019-11-20 20:37:42,454 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 20, 'OrderId': '5dd59605', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': 'AF9C0634-2AC7-4432-8F34-B87C14A9D02B', 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:37:43,685 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 20, 'OrderId': '5dd59605', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': 'AF9C0634-2AC7-4432-8F34-B87C14A9D02B', 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:37:44,921 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 20, 'OrderId': '5dd59605', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': 'AF9C0634-2AC7-4432-8F34-B87C14A9D02B', 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:37:46,140 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 20, 'OrderId': '5dd59605', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': 'AF9C0634-2AC7-4432-8F34-B87C14A9D02B', 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:37:47,340 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 20, 'OrderId': '5dd59605', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': 'AF9C0634-2AC7-4432-8F34-B87C14A9D02B', 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:37:48,564 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 20, 'OrderId': '5dd59605', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': 'AF9C0634-2AC7-4432-8F34-B87C14A9D02B', 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:37:49,785 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 20, 'OrderId': '5dd59605', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': 'AF9C0634-2AC7-4432-8F34-B87C14A9D02B', 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:37:51,055 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 20, 'OrderId': '5dd59605', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': 'AF9C0634-2AC7-4432-8F34-B87C14A9D02B', 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:37:52,263 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 100, 'OrderId': '5dd59605', 'TransactionId': '24655562', 'Amount': 200.0, 'CustomerId': 'AF9C0634-2AC7-4432-8F34-B87C14A9D02B', 'CustomerToken': None, 'CustomerReceiptToken': 'ff5646cf88a547fabcb08fdeb905fb0d'}
+2019-11-20 20:37:52,265 INFO PaymentStatus(167) PaymentAccepted, orderid: 5dd59605
+2019-11-20 20:38:02,265 ERROR paymentHandle(218) error in self.iomodule.PulsePort 
+2019-11-20 20:38:02,266 ERROR printerrorlog(717) Error o exception:
+2019-11-20 20:38:02,266 ERROR printerrorlog(718) Error on line 204
+2019-11-20 20:38:45,458 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd59644', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:38:46,696 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd59644', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:38:47,917 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd59644', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:38:49,148 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd59644', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:38:50,371 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 20, 'OrderId': '5dd59644', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': 'AF9C0634-2AC7-4432-8F34-B87C14A9D02B', 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:38:51,599 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 100, 'OrderId': '5dd59644', 'TransactionId': '71408049', 'Amount': 200.0, 'CustomerId': 'AF9C0634-2AC7-4432-8F34-B87C14A9D02B', 'CustomerToken': None, 'CustomerReceiptToken': '9d143c6cd3a343f6b63be5e44c84c346'}
+2019-11-20 20:38:51,602 INFO PaymentStatus(167) PaymentAccepted, orderid: 5dd59644
+2019-11-20 20:38:56,191 INFO paymentHandle(211) Stat: True
+2019-11-20 20:38:56,193 ERROR paymentHandle(218) error in self.iomodule.PulsePort 
+2019-11-20 20:38:56,193 ERROR printerrorlog(717) Error o exception:division by zero
+2019-11-20 20:38:56,193 ERROR printerrorlog(718) Error on line 215
+2019-11-20 20:41:13,658 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd596d8', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:41:14,936 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd596d8', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:41:16,231 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd596d8', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:41:17,513 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd596d8', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:41:18,727 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd596d8', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:41:19,938 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd596d8', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:41:21,179 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd596d8', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:41:22,472 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd596d8', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:41:23,689 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd596d8', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:41:24,917 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd596d8', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:41:26,127 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd596d8', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:41:27,409 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd596d8', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:41:28,631 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd596d8', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:41:29,855 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd596d8', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:41:31,145 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd596d8', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:41:32,428 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd596d8', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:41:33,667 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd596d8', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:41:34,946 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd596d8', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:41:36,225 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd596d8', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:41:37,496 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd596d8', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:41:38,727 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd596d8', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:41:39,956 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd596d8', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:41:41,232 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd596d8', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:41:42,515 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd596d8', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:41:43,363 INFO paymenttimeout(278) Payment TimeOut: 5dd596d8
+2019-11-20 20:41:43,791 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 10, 'OrderId': '', 'TransactionId': '', 'Amount': 0.0, 'CustomerId': '', 'CustomerToken': None, 'CustomerReceiptToken': ''}
+2019-11-20 20:42:49,259 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 20, 'OrderId': '5dd59738', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': 'AF9C0634-2AC7-4432-8F34-B87C14A9D02B', 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:42:50,548 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 80, 'OrderId': '5dd59738', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': 'AF9C0634-2AC7-4432-8F34-B87C14A9D02B', 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:42:51,774 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 100, 'OrderId': '5dd59738', 'TransactionId': '75304895', 'Amount': 200.0, 'CustomerId': 'AF9C0634-2AC7-4432-8F34-B87C14A9D02B', 'CustomerToken': None, 'CustomerReceiptToken': '0328ad55cf61429cbbbbd51136c307e2'}
+2019-11-20 20:42:51,776 INFO PaymentStatus(167) PaymentAccepted, orderid: 5dd59738
+2019-11-20 20:42:56,285 INFO paymentHandle(211) Stat: True
+2019-11-20 20:42:56,287 ERROR paymentHandle(218) error in self.iomodule.PulsePort 
+2019-11-20 20:42:56,288 ERROR printerrorlog(717) Error o exception:division by zero
+2019-11-20 20:42:56,288 ERROR printerrorlog(718) Error on line 215
+2019-11-20 20:43:04,034 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd59746', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:43:05,456 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd59746', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:43:06,744 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd59746', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:43:07,965 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd59746', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:43:09,199 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd59746', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:43:10,493 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd59746', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:43:11,709 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd59746', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:43:12,941 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd59746', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:43:14,217 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd59746', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:43:15,492 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd59746', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:43:16,769 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd59746', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:43:18,052 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd59746', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:43:19,266 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd59746', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:43:20,549 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd59746', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:43:21,776 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd59746', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:43:23,065 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd59746', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:43:24,275 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd59746', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:43:25,556 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd59746', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:43:26,827 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd59746', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:43:28,035 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd59746', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:43:29,272 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd59746', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:43:30,500 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd59746', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:43:31,719 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd59746', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:43:32,931 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd59746', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:43:33,559 INFO paymenttimeout(278) Payment TimeOut: 5dd59746
+2019-11-20 20:43:34,133 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 10, 'OrderId': '', 'TransactionId': '', 'Amount': 0.0, 'CustomerId': '', 'CustomerToken': None, 'CustomerReceiptToken': ''}
+2019-11-20 20:44:00,876 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 20, 'OrderId': '5dd59780', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': 'AF9C0634-2AC7-4432-8F34-B87C14A9D02B', 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:44:02,098 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 20, 'OrderId': '5dd59780', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': 'AF9C0634-2AC7-4432-8F34-B87C14A9D02B', 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:44:03,303 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 100, 'OrderId': '5dd59780', 'TransactionId': '91916239', 'Amount': 200.0, 'CustomerId': 'AF9C0634-2AC7-4432-8F34-B87C14A9D02B', 'CustomerToken': None, 'CustomerReceiptToken': 'bb70ac3362654c0ea6963f51df860cae'}
+2019-11-20 20:44:03,305 INFO PaymentStatus(167) PaymentAccepted, orderid: 5dd59780
+2019-11-20 20:44:07,492 INFO paymentHandle(211) Stat: True
+2019-11-20 20:44:07,494 ERROR paymentHandle(218) error in self.iomodule.PulsePort 
+2019-11-20 20:44:07,494 ERROR printerrorlog(717) Error o exception:division by zero
+2019-11-20 20:44:07,494 ERROR printerrorlog(718) Error on line 215
+2019-11-20 20:44:14,820 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd5978e', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:44:16,060 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd5978e', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:44:17,330 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd5978e', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:44:18,566 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd5978e', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:44:19,848 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd5978e', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:44:21,060 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd5978e', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:44:22,297 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd5978e', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:44:23,532 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd5978e', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:44:24,810 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd5978e', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:44:26,043 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd5978e', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:44:27,335 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd5978e', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:44:28,613 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd5978e', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:44:29,835 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 20, 'OrderId': '5dd5978e', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': 'AF9C0634-2AC7-4432-8F34-B87C14A9D02B', 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:44:31,110 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 20, 'OrderId': '5dd5978e', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': 'AF9C0634-2AC7-4432-8F34-B87C14A9D02B', 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:44:32,347 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 40, 'OrderId': '5dd5978e', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': 'AF9C0634-2AC7-4432-8F34-B87C14A9D02B', 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:45:00,219 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 20, 'OrderId': '5dd597bb', 'TransactionId': None, 'Amount': 100.0, 'CustomerId': 'AF9C0634-2AC7-4432-8F34-B87C14A9D02B', 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:45:01,465 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 20, 'OrderId': '5dd597bb', 'TransactionId': None, 'Amount': 100.0, 'CustomerId': 'AF9C0634-2AC7-4432-8F34-B87C14A9D02B', 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:45:02,701 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 20, 'OrderId': '5dd597bb', 'TransactionId': None, 'Amount': 100.0, 'CustomerId': 'AF9C0634-2AC7-4432-8F34-B87C14A9D02B', 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:45:03,908 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 20, 'OrderId': '5dd597bb', 'TransactionId': None, 'Amount': 100.0, 'CustomerId': 'AF9C0634-2AC7-4432-8F34-B87C14A9D02B', 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:45:05,112 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 20, 'OrderId': '5dd597bb', 'TransactionId': None, 'Amount': 100.0, 'CustomerId': 'AF9C0634-2AC7-4432-8F34-B87C14A9D02B', 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:45:06,350 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 100, 'OrderId': '5dd597bb', 'TransactionId': '55313518', 'Amount': 100.0, 'CustomerId': 'AF9C0634-2AC7-4432-8F34-B87C14A9D02B', 'CustomerToken': None, 'CustomerReceiptToken': '67647e29044f4b56b65e4369cb74e35b'}
+2019-11-20 20:45:06,352 INFO PaymentStatus(167) PaymentAccepted, orderid: 5dd597bb
+2019-11-20 20:45:37,720 INFO paymentHandle(211) Stat: True
+2019-11-20 20:45:37,723 ERROR paymentHandle(218) error in self.iomodule.PulsePort 
+2019-11-20 20:45:37,723 ERROR printerrorlog(717) Error o exception:division by zero
+2019-11-20 20:45:37,724 ERROR printerrorlog(718) Error on line 215
+2019-11-20 20:46:27,441 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd59812', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:46:28,668 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd59812', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:46:29,883 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd59812', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:46:31,108 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd59812', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:46:32,381 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 80, 'OrderId': '5dd59812', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': 'AF9C0634-2AC7-4432-8F34-B87C14A9D02B', 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:46:33,591 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 100, 'OrderId': '5dd59812', 'TransactionId': '12865528', 'Amount': 200.0, 'CustomerId': 'AF9C0634-2AC7-4432-8F34-B87C14A9D02B', 'CustomerToken': None, 'CustomerReceiptToken': '31e7edfbfdde4607bc58ef1dbe132616'}
+2019-11-20 20:46:33,593 INFO PaymentStatus(167) PaymentAccepted, orderid: 5dd59812
+2019-11-20 20:46:46,483 INFO paymentHandle(211) Stat: True
+2019-11-20 20:46:46,485 ERROR paymentHandle(218) error in self.iomodule.PulsePort 
+2019-11-20 20:46:46,486 ERROR printerrorlog(717) Error o exception:division by zero
+2019-11-20 20:46:46,486 ERROR printerrorlog(718) Error on line 215
+2019-11-20 20:49:18,820 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd598be', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:49:20,061 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd598be', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:49:21,315 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd598be', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:49:22,546 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd598be', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:49:23,771 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd598be', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:49:24,998 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd598be', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:49:26,215 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd598be', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:49:27,437 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd598be', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:49:28,672 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd598be', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:49:29,909 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd598be', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:49:31,196 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd598be', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:49:32,421 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd598be', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:49:33,657 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd598be', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:49:34,871 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd598be', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:49:36,102 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 20, 'OrderId': '5dd598be', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': 'AF9C0634-2AC7-4432-8F34-B87C14A9D02B', 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:49:37,320 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 100, 'OrderId': '5dd598be', 'TransactionId': '55005363', 'Amount': 200.0, 'CustomerId': 'AF9C0634-2AC7-4432-8F34-B87C14A9D02B', 'CustomerToken': None, 'CustomerReceiptToken': '940db6029a0a4e3ca2c014830534dcff'}
+2019-11-20 20:49:37,322 INFO PaymentStatus(167) PaymentAccepted, orderid: 5dd598be
+2019-11-20 20:49:48,216 INFO paymentHandle(211) Stat: True
+2019-11-20 20:50:58,244 INFO <module>(724) Running DinoPay
+2019-11-20 20:50:58,244 INFO <module>(725) Reading Setupfile
+2019-11-20 20:50:58,353 INFO __init__(98) WinInfoGeo Info Screen high: 1080Screen width: 1920
+2019-11-20 20:50:58,510 INFO setupadammodule(351) Connecting iomodule ip 192.168.1.200
+2019-11-20 20:50:58,512 INFO setupadammodule(359) Connecting status: None
+2019-11-20 20:50:58,514 INFO setup_mp(397) Connecting Mobile pay 
+2019-11-20 20:50:58,515 INFO setup_mp(399) RegisterPOS
+2019-11-20 20:50:59,706 INFO setup_mp(407) AssignPos100000625947428
+2019-11-20 20:50:59,947 INFO setup_mp(412) True
+2019-11-20 20:51:01,756 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd59925', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:51:02,993 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd59925', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:51:04,212 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd59925', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:51:05,430 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd59925', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:51:06,658 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd59925', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:51:07,886 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd59925', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:51:09,129 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd59925', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:51:10,349 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 20, 'OrderId': '5dd59925', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': 'AF9C0634-2AC7-4432-8F34-B87C14A9D02B', 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:51:11,565 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 100, 'OrderId': '5dd59925', 'TransactionId': '117345234', 'Amount': 200.0, 'CustomerId': 'AF9C0634-2AC7-4432-8F34-B87C14A9D02B', 'CustomerToken': None, 'CustomerReceiptToken': '7c19ddf027ff4ed7badd7ee027fca387'}
+2019-11-20 20:51:11,568 INFO PaymentStatus(167) PaymentAccepted, orderid: 5dd59925
+2019-11-20 20:51:14,359 INFO paymentHandle(202) Pulscnt : 20, Pulsport : 3, pulsetime_low : 100, pulsetime_high : 100
+2019-11-20 20:51:22,774 INFO paymentHandle(213) Stat: True
+2019-11-20 20:51:50,694 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 20, 'OrderId': '5dd59955', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': 'AF9C0634-2AC7-4432-8F34-B87C14A9D02B', 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:51:51,927 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 20, 'OrderId': '5dd59955', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': 'AF9C0634-2AC7-4432-8F34-B87C14A9D02B', 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:51:53,159 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 100, 'OrderId': '5dd59955', 'TransactionId': '106271005', 'Amount': 200.0, 'CustomerId': 'AF9C0634-2AC7-4432-8F34-B87C14A9D02B', 'CustomerToken': None, 'CustomerReceiptToken': '44cc7c36aeb94b169dc52c10de08bb5b'}
+2019-11-20 20:51:53,161 INFO PaymentStatus(167) PaymentAccepted, orderid: 5dd59955
+2019-11-20 20:52:05,422 INFO paymentHandle(202) Pulscnt : 20, Pulsport : 3, pulsetime_low : 100, pulsetime_high : 100
+2019-11-20 20:52:10,153 INFO paymentHandle(213) Stat: True
+2019-11-20 20:52:21,711 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd59974', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:52:22,968 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd59974', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:52:24,215 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd59974', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:52:25,466 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd59974', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:52:26,709 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 20, 'OrderId': '5dd59974', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': 'AF9C0634-2AC7-4432-8F34-B87C14A9D02B', 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:52:27,967 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 20, 'OrderId': '5dd59974', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': 'AF9C0634-2AC7-4432-8F34-B87C14A9D02B', 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:52:29,204 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 100, 'OrderId': '5dd59974', 'TransactionId': '13988984', 'Amount': 200.0, 'CustomerId': 'AF9C0634-2AC7-4432-8F34-B87C14A9D02B', 'CustomerToken': None, 'CustomerReceiptToken': '5135385d54b943c0beb173d06220b05f'}
+2019-11-20 20:52:29,206 INFO PaymentStatus(167) PaymentAccepted, orderid: 5dd59974
+2019-11-20 20:52:35,935 INFO paymentHandle(202) Pulscnt : 20, Pulsport : 3, pulsetime_low : 100, pulsetime_high : 100
+2019-11-20 20:52:40,714 INFO paymentHandle(213) Stat: True
+2019-11-20 20:53:27,457 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd599b6', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:53:28,682 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd599b6', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:53:29,920 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd599b6', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:53:31,143 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd599b6', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:53:32,381 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 20, 'OrderId': '5dd599b6', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': 'AF9C0634-2AC7-4432-8F34-B87C14A9D02B', 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:53:33,614 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 100, 'OrderId': '5dd599b6', 'TransactionId': '9684487', 'Amount': 200.0, 'CustomerId': 'AF9C0634-2AC7-4432-8F34-B87C14A9D02B', 'CustomerToken': None, 'CustomerReceiptToken': '963d12ab29db459c9ca027b8b8b37de2'}
+2019-11-20 20:53:33,616 INFO PaymentStatus(167) PaymentAccepted, orderid: 5dd599b6
+2019-11-20 20:53:42,307 INFO paymentHandle(202) Pulscnt : 20, Pulsport : 3, pulsetime_low : 100, pulsetime_high : 100
+2019-11-20 20:53:47,076 INFO paymentHandle(213) Stat: True
+2019-11-20 20:55:44,755 INFO <module>(724) Running DinoPay
+2019-11-20 20:55:44,756 INFO <module>(725) Reading Setupfile
+2019-11-20 20:55:44,856 INFO __init__(98) WinInfoGeo Info Screen high: 1080Screen width: 1920
+2019-11-20 20:55:45,003 INFO setupadammodule(351) Connecting iomodule ip 192.168.1.200
+2019-11-20 20:55:45,004 INFO setupadammodule(359) Connecting status: None
+2019-11-20 20:55:45,008 INFO setup_mp(397) Connecting Mobile pay 
+2019-11-20 20:55:45,008 INFO setup_mp(399) RegisterPOS
+2019-11-20 20:55:46,258 INFO setup_mp(407) AssignPos100000625947428
+2019-11-20 20:55:46,511 INFO setup_mp(412) True
+2019-11-20 20:55:48,525 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd59a43', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:55:49,759 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd59a43', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:55:51,004 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd59a43', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:55:52,239 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd59a43', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:55:53,488 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd59a43', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:55:54,720 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd59a43', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:55:55,949 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd59a43', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:55:57,189 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd59a43', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:55:58,406 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd59a43', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:55:59,644 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd59a43', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:56:00,852 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd59a43', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:56:02,068 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 20, 'OrderId': '5dd59a43', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': 'AF9C0634-2AC7-4432-8F34-B87C14A9D02B', 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:56:03,300 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 20, 'OrderId': '5dd59a43', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': 'AF9C0634-2AC7-4432-8F34-B87C14A9D02B', 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:56:04,530 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 100, 'OrderId': '5dd59a43', 'TransactionId': '658178', 'Amount': 200.0, 'CustomerId': 'AF9C0634-2AC7-4432-8F34-B87C14A9D02B', 'CustomerToken': None, 'CustomerReceiptToken': '7c0b0d15a4e84bea83a541bd7f40feb8'}
+2019-11-20 20:56:04,531 INFO PaymentStatus(167) PaymentAccepted, orderid: 5dd59a43
+2019-11-20 20:56:15,127 INFO paymentHandle(202) Pulscnt : 20, Pulsport : 3, pulsetime_low : 300, pulsetime_high : 100
+2019-11-20 20:56:23,456 INFO paymentHandle(213) Stat: True
+2019-11-20 20:56:43,559 INFO <module>(725) Running DinoPay
+2019-11-20 20:56:43,559 INFO <module>(726) Reading Setupfile
+2019-11-20 20:56:43,657 INFO __init__(98) WinInfoGeo Info Screen high: 1080Screen width: 1920
+2019-11-20 20:56:43,797 INFO setupadammodule(352) Connecting iomodule ip 192.168.1.200
+2019-11-20 20:56:43,799 INFO setupadammodule(360) Connecting status: None
+2019-11-20 20:56:43,801 INFO setup_mp(398) Connecting Mobile pay 
+2019-11-20 20:56:43,802 INFO setup_mp(400) RegisterPOS
+2019-11-20 20:56:45,011 INFO setup_mp(408) AssignPos100000625947428
+2019-11-20 20:56:45,259 INFO setup_mp(413) True
+2019-11-20 20:56:47,046 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd59a7e', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:56:48,275 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd59a7e', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:56:49,512 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd59a7e', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:56:50,739 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd59a7e', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:56:51,954 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd59a7e', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:56:53,175 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd59a7e', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:56:54,409 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 20, 'OrderId': '5dd59a7e', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': 'AF9C0634-2AC7-4432-8F34-B87C14A9D02B', 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:56:55,633 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 100, 'OrderId': '5dd59a7e', 'TransactionId': '68743821', 'Amount': 200.0, 'CustomerId': 'AF9C0634-2AC7-4432-8F34-B87C14A9D02B', 'CustomerToken': None, 'CustomerReceiptToken': '940d1e8d50a04167a072dbc7f344b867'}
+2019-11-20 20:56:55,635 INFO PaymentStatus(167) PaymentAccepted, orderid: 5dd59a7e
+2019-11-20 20:56:55,635 INFO paymentHandle(203) Pulscnt : 10, Pulsport : 3, pulsetime_low : 300, pulsetime_high : 100
+2019-11-20 20:56:59,877 INFO paymentHandle(213) Stat: True
+2019-11-20 20:57:08,110 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd59a93', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:57:09,334 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd59a93', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:57:10,566 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd59a93', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:57:11,789 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 20, 'OrderId': '5dd59a93', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': 'AF9C0634-2AC7-4432-8F34-B87C14A9D02B', 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:57:13,005 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 20, 'OrderId': '5dd59a93', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': 'AF9C0634-2AC7-4432-8F34-B87C14A9D02B', 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:57:14,240 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 100, 'OrderId': '5dd59a93', 'TransactionId': '117553892', 'Amount': 200.0, 'CustomerId': 'AF9C0634-2AC7-4432-8F34-B87C14A9D02B', 'CustomerToken': None, 'CustomerReceiptToken': 'cfc28eefa9e04e1aac712aa329d247a5'}
+2019-11-20 20:57:14,243 INFO PaymentStatus(167) PaymentAccepted, orderid: 5dd59a93
+2019-11-20 20:57:14,243 INFO paymentHandle(203) Pulscnt : 10, Pulsport : 3, pulsetime_low : 300, pulsetime_high : 100
+2019-11-20 20:57:18,363 INFO paymentHandle(213) Stat: True
+2019-11-20 20:57:28,213 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd59aa7', 'TransactionId': None, 'Amount': 100.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:57:29,449 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 20, 'OrderId': '5dd59aa7', 'TransactionId': None, 'Amount': 100.0, 'CustomerId': 'AF9C0634-2AC7-4432-8F34-B87C14A9D02B', 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:57:30,685 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 80, 'OrderId': '5dd59aa7', 'TransactionId': None, 'Amount': 100.0, 'CustomerId': 'AF9C0634-2AC7-4432-8F34-B87C14A9D02B', 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:57:31,911 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 100, 'OrderId': '5dd59aa7', 'TransactionId': '24138750', 'Amount': 100.0, 'CustomerId': 'AF9C0634-2AC7-4432-8F34-B87C14A9D02B', 'CustomerToken': None, 'CustomerReceiptToken': 'd67ba95193b64f86a457a04603a8b58f'}
+2019-11-20 20:57:31,913 INFO PaymentStatus(167) PaymentAccepted, orderid: 5dd59aa7
+2019-11-20 20:57:31,914 INFO paymentHandle(203) Pulscnt : 10, Pulsport : 3, pulsetime_low : 300, pulsetime_high : 100
+2019-11-20 20:57:36,251 INFO paymentHandle(213) Stat: True
+2019-11-20 20:57:45,473 INFO <module>(724) Running DinoPay
+2019-11-20 20:57:45,474 INFO <module>(725) Reading Setupfile
+2019-11-20 20:57:45,579 INFO __init__(98) WinInfoGeo Info Screen high: 1080Screen width: 1920
+2019-11-20 20:57:45,724 INFO setupadammodule(351) Connecting iomodule ip 192.168.1.200
+2019-11-20 20:57:45,726 INFO setupadammodule(359) Connecting status: None
+2019-11-20 20:57:45,728 INFO setup_mp(397) Connecting Mobile pay 
+2019-11-20 20:57:45,728 INFO setup_mp(399) RegisterPOS
+2019-11-20 20:57:46,920 INFO setup_mp(407) AssignPos100000625947428
+2019-11-20 20:57:47,143 INFO setup_mp(412) True
+2019-11-20 20:58:39,519 INFO <module>(724) Running DinoPay
+2019-11-20 20:58:39,520 INFO <module>(725) Reading Setupfile
+2019-11-20 20:58:39,621 INFO __init__(98) WinInfoGeo Info Screen high: 1080Screen width: 1920
+2019-11-20 20:58:39,767 INFO setupadammodule(351) Connecting iomodule ip 192.168.1.200
+2019-11-20 20:58:39,769 INFO setupadammodule(359) Connecting status: None
+2019-11-20 20:58:39,771 INFO setup_mp(397) Connecting Mobile pay 
+2019-11-20 20:58:39,772 INFO setup_mp(399) RegisterPOS
+2019-11-20 20:58:40,894 INFO setup_mp(407) AssignPos100000625947428
+2019-11-20 20:58:41,187 INFO setup_mp(412) True
+2019-11-20 20:58:43,294 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd59af2', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:58:44,507 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd59af2', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:58:45,798 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd59af2', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:58:47,024 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd59af2', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:58:48,305 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd59af2', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:58:49,531 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd59af2', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:58:50,803 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd59af2', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:58:52,026 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd59af2', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:58:53,315 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd59af2', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:58:54,529 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 20, 'OrderId': '5dd59af2', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': 'AF9C0634-2AC7-4432-8F34-B87C14A9D02B', 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:58:55,734 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 100, 'OrderId': '5dd59af2', 'TransactionId': '58802713', 'Amount': 200.0, 'CustomerId': 'AF9C0634-2AC7-4432-8F34-B87C14A9D02B', 'CustomerToken': None, 'CustomerReceiptToken': 'a603dc8c30824c12b06cb6972b4ed6a0'}
+2019-11-20 20:58:55,736 INFO PaymentStatus(167) PaymentAccepted, orderid: 5dd59af2
+2019-11-20 20:58:55,737 INFO paymentHandle(202) Pulscnt : 20, Pulsport : 3, pulsetime_low : 300, pulsetime_high : 100
+2019-11-20 20:59:04,110 INFO paymentHandle(212) Stat: True
+2019-11-20 20:59:32,520 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd59b23', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:59:33,792 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 10, 'OrderId': '', 'TransactionId': '', 'Amount': 0.0, 'CustomerId': '', 'CustomerToken': None, 'CustomerReceiptToken': ''}
+2019-11-20 20:59:35,269 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd59b26', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:59:36,486 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd59b26', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:59:37,703 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd59b26', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:59:38,979 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd59b26', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:59:40,189 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd59b26', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:59:41,404 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd59b26', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 20:59:42,682 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 100, 'OrderId': '5dd59b26', 'TransactionId': '59001706', 'Amount': 200.0, 'CustomerId': 'AF9C0634-2AC7-4432-8F34-B87C14A9D02B', 'CustomerToken': None, 'CustomerReceiptToken': '7f984cf2892f4a1da465caaa1f53536a'}
+2019-11-20 20:59:42,684 INFO PaymentStatus(167) PaymentAccepted, orderid: 5dd59b26
+2019-11-20 20:59:42,684 INFO paymentHandle(202) Pulscnt : 20, Pulsport : 3, pulsetime_low : 300, pulsetime_high : 100
+2019-11-20 20:59:51,049 INFO paymentHandle(212) Stat: True
+2019-11-20 21:00:12,764 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd59b4c', 'TransactionId': None, 'Amount': 50.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 21:00:14,036 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 10, 'OrderId': '', 'TransactionId': '', 'Amount': 0.0, 'CustomerId': '', 'CustomerToken': None, 'CustomerReceiptToken': ''}
+2019-11-20 21:00:30,579 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd59b5d', 'TransactionId': None, 'Amount': 50.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 21:00:31,792 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd59b5d', 'TransactionId': None, 'Amount': 50.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 21:00:33,082 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd59b5d', 'TransactionId': None, 'Amount': 50.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 21:00:34,363 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd59b5d', 'TransactionId': None, 'Amount': 50.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 21:00:35,657 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd59b5d', 'TransactionId': None, 'Amount': 50.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 21:00:36,858 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 20, 'OrderId': '5dd59b5d', 'TransactionId': None, 'Amount': 50.0, 'CustomerId': 'AF9C0634-2AC7-4432-8F34-B87C14A9D02B', 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 21:00:38,126 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 100, 'OrderId': '5dd59b5d', 'TransactionId': '4763681', 'Amount': 50.0, 'CustomerId': 'AF9C0634-2AC7-4432-8F34-B87C14A9D02B', 'CustomerToken': None, 'CustomerReceiptToken': '51b7b8befdde491b9f3da75bcbe37276'}
+2019-11-20 21:00:38,128 INFO PaymentStatus(167) PaymentAccepted, orderid: 5dd59b5d
+2019-11-20 21:00:38,128 INFO paymentHandle(202) Pulscnt : 5, Pulsport : 3, pulsetime_low : 300, pulsetime_high : 100
+2019-11-20 21:00:40,618 INFO paymentHandle(212) Stat: True
+2019-11-20 21:02:03,273 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd59bba', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 21:02:04,545 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd59bba', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 21:02:05,830 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd59bba', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 21:02:07,046 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd59bba', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 21:02:08,328 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 20, 'OrderId': '5dd59bba', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': 'AF9C0634-2AC7-4432-8F34-B87C14A9D02B', 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 21:02:09,621 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 20, 'OrderId': '5dd59bba', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': 'AF9C0634-2AC7-4432-8F34-B87C14A9D02B', 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 21:02:10,830 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 100, 'OrderId': '5dd59bba', 'TransactionId': '32240596', 'Amount': 200.0, 'CustomerId': 'AF9C0634-2AC7-4432-8F34-B87C14A9D02B', 'CustomerToken': None, 'CustomerReceiptToken': '06dd63561ba1479ba37485e2fba7e96c'}
+2019-11-20 21:02:10,832 INFO PaymentStatus(167) PaymentAccepted, orderid: 5dd59bba
+2019-11-20 21:02:10,832 INFO paymentHandle(202) Pulscnt : 20, Pulsport : 3, pulsetime_low : 300, pulsetime_high : 100
+2019-11-20 21:02:18,988 INFO paymentHandle(212) Stat: True
+2019-11-20 21:02:57,336 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd59bf0', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 21:02:58,615 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd59bf0', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 21:02:59,901 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd59bf0', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 21:03:01,183 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd59bf0', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 21:03:02,413 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd59bf0', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 21:03:03,697 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd59bf0', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 21:03:04,974 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 20, 'OrderId': '5dd59bf0', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': 'AF9C0634-2AC7-4432-8F34-B87C14A9D02B', 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 21:03:06,189 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 100, 'OrderId': '5dd59bf0', 'TransactionId': '120118624', 'Amount': 200.0, 'CustomerId': 'AF9C0634-2AC7-4432-8F34-B87C14A9D02B', 'CustomerToken': None, 'CustomerReceiptToken': 'd183585e7219480eb728087dc1e939e7'}
+2019-11-20 21:03:06,190 INFO PaymentStatus(167) PaymentAccepted, orderid: 5dd59bf0
+2019-11-20 21:03:06,191 INFO paymentHandle(202) Pulscnt : 20, Pulsport : 3, pulsetime_low : 300, pulsetime_high : 100
+2019-11-20 21:03:14,613 INFO paymentHandle(212) Stat: True
+2019-11-20 21:03:27,101 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd59c0e', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 21:03:28,386 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd59c0e', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 21:03:29,662 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd59c0e', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 21:03:30,944 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd59c0e', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 21:03:32,221 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd59c0e', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 21:03:33,438 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd59c0e', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 21:03:34,720 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 100, 'OrderId': '5dd59c0e', 'TransactionId': '12756367', 'Amount': 200.0, 'CustomerId': 'AF9C0634-2AC7-4432-8F34-B87C14A9D02B', 'CustomerToken': None, 'CustomerReceiptToken': 'cfb91e283b1b4d4e9bb0792f26202b81'}
+2019-11-20 21:03:34,722 INFO PaymentStatus(167) PaymentAccepted, orderid: 5dd59c0e
+2019-11-20 21:03:34,723 INFO paymentHandle(202) Pulscnt : 20, Pulsport : 3, pulsetime_low : 300, pulsetime_high : 100
+2019-11-20 21:03:42,856 INFO paymentHandle(212) Stat: True
+2019-11-20 21:03:49,846 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd59c24', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 21:03:51,133 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 20, 'OrderId': '5dd59c24', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': 'AF9C0634-2AC7-4432-8F34-B87C14A9D02B', 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 21:03:52,400 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 20, 'OrderId': '5dd59c24', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': 'AF9C0634-2AC7-4432-8F34-B87C14A9D02B', 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 21:03:53,672 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 100, 'OrderId': '5dd59c24', 'TransactionId': '108527583', 'Amount': 200.0, 'CustomerId': 'AF9C0634-2AC7-4432-8F34-B87C14A9D02B', 'CustomerToken': None, 'CustomerReceiptToken': 'fc2d5d1ac6854629920ba53869aa55b8'}
+2019-11-20 21:03:53,675 INFO PaymentStatus(167) PaymentAccepted, orderid: 5dd59c24
+2019-11-20 21:03:53,676 INFO paymentHandle(202) Pulscnt : 20, Pulsport : 3, pulsetime_low : 300, pulsetime_high : 100
+2019-11-20 21:04:01,766 INFO paymentHandle(212) Stat: True
+2019-11-20 21:04:08,952 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 20, 'OrderId': '5dd59c38', 'TransactionId': None, 'Amount': 100.0, 'CustomerId': 'AF9C0634-2AC7-4432-8F34-B87C14A9D02B', 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 21:04:10,163 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 20, 'OrderId': '5dd59c38', 'TransactionId': None, 'Amount': 100.0, 'CustomerId': 'AF9C0634-2AC7-4432-8F34-B87C14A9D02B', 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 21:04:11,446 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 20, 'OrderId': '5dd59c38', 'TransactionId': None, 'Amount': 100.0, 'CustomerId': 'AF9C0634-2AC7-4432-8F34-B87C14A9D02B', 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 21:04:12,735 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 100, 'OrderId': '5dd59c38', 'TransactionId': '59518518', 'Amount': 100.0, 'CustomerId': 'AF9C0634-2AC7-4432-8F34-B87C14A9D02B', 'CustomerToken': None, 'CustomerReceiptToken': '10b2706533714b009f569b1ccd172636'}
+2019-11-20 21:04:12,739 INFO PaymentStatus(167) PaymentAccepted, orderid: 5dd59c38
+2019-11-20 21:04:12,739 INFO paymentHandle(202) Pulscnt : 10, Pulsport : 3, pulsetime_low : 300, pulsetime_high : 100
+2019-11-20 21:04:17,244 INFO paymentHandle(212) Stat: True
+2019-11-20 21:04:23,825 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd59c47', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 21:04:25,046 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd59c47', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 21:04:26,328 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd59c47', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 21:04:27,603 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd59c47', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 21:04:28,883 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd59c47', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 21:04:30,165 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd59c47', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 21:04:31,450 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd59c47', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 21:04:32,667 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd59c47', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 21:04:33,951 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd59c47', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 21:04:35,226 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 20, 'OrderId': '5dd59c47', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': 'AF9C0634-2AC7-4432-8F34-B87C14A9D02B', 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 21:04:36,504 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 20, 'OrderId': '5dd59c47', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': 'AF9C0634-2AC7-4432-8F34-B87C14A9D02B', 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 21:04:37,769 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 100, 'OrderId': '5dd59c47', 'TransactionId': '151030', 'Amount': 200.0, 'CustomerId': 'AF9C0634-2AC7-4432-8F34-B87C14A9D02B', 'CustomerToken': None, 'CustomerReceiptToken': '498f4d9d728e4b3a9ed2078d1daccb7e'}
+2019-11-20 21:04:37,773 INFO PaymentStatus(167) PaymentAccepted, orderid: 5dd59c47
+2019-11-20 21:04:37,773 INFO paymentHandle(202) Pulscnt : 20, Pulsport : 3, pulsetime_low : 300, pulsetime_high : 100
+2019-11-20 21:04:46,117 INFO paymentHandle(212) Stat: True
+2019-11-20 21:04:52,688 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd59c63', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 21:04:53,974 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd59c63', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 21:04:55,189 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd59c63', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 21:04:56,454 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 80, 'OrderId': '5dd59c63', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': 'AF9C0634-2AC7-4432-8F34-B87C14A9D02B', 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 21:04:57,662 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 100, 'OrderId': '5dd59c63', 'TransactionId': '99093622', 'Amount': 200.0, 'CustomerId': 'AF9C0634-2AC7-4432-8F34-B87C14A9D02B', 'CustomerToken': None, 'CustomerReceiptToken': '24998375d2bc4a719cce66cfb66a62a4'}
+2019-11-20 21:04:57,664 INFO PaymentStatus(167) PaymentAccepted, orderid: 5dd59c63
+2019-11-20 21:04:57,664 INFO paymentHandle(202) Pulscnt : 20, Pulsport : 3, pulsetime_low : 300, pulsetime_high : 100
+2019-11-20 21:05:05,937 INFO paymentHandle(212) Stat: True
+2019-11-20 21:05:12,730 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd59c77', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 21:05:14,013 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd59c77', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 21:05:15,291 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 20, 'OrderId': '5dd59c77', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': 'AF9C0634-2AC7-4432-8F34-B87C14A9D02B', 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 21:05:16,567 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 100, 'OrderId': '5dd59c77', 'TransactionId': '94789125', 'Amount': 200.0, 'CustomerId': 'AF9C0634-2AC7-4432-8F34-B87C14A9D02B', 'CustomerToken': None, 'CustomerReceiptToken': '5d4ab49dbe1c45cd890c9c0af575e8e7'}
+2019-11-20 21:05:16,569 INFO PaymentStatus(167) PaymentAccepted, orderid: 5dd59c77
+2019-11-20 21:05:16,570 INFO paymentHandle(202) Pulscnt : 20, Pulsport : 3, pulsetime_low : 300, pulsetime_high : 100
+2019-11-20 21:05:24,851 INFO paymentHandle(212) Stat: True
+2019-11-20 21:05:33,034 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd59c8c', 'TransactionId': None, 'Amount': 50.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 21:05:34,307 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd59c8c', 'TransactionId': None, 'Amount': 50.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 21:05:35,524 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 20, 'OrderId': '5dd59c8c', 'TransactionId': None, 'Amount': 50.0, 'CustomerId': 'AF9C0634-2AC7-4432-8F34-B87C14A9D02B', 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 21:05:36,793 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 20, 'OrderId': '5dd59c8c', 'TransactionId': None, 'Amount': 50.0, 'CustomerId': 'AF9C0634-2AC7-4432-8F34-B87C14A9D02B', 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 21:05:38,010 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 20, 'OrderId': '5dd59c8c', 'TransactionId': None, 'Amount': 50.0, 'CustomerId': 'AF9C0634-2AC7-4432-8F34-B87C14A9D02B', 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 21:05:39,221 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 100, 'OrderId': '5dd59c8c', 'TransactionId': '47420329', 'Amount': 50.0, 'CustomerId': 'AF9C0634-2AC7-4432-8F34-B87C14A9D02B', 'CustomerToken': None, 'CustomerReceiptToken': 'ec0d8c35137d45e59515086587668ba9'}
+2019-11-20 21:05:39,222 INFO PaymentStatus(167) PaymentAccepted, orderid: 5dd59c8c
+2019-11-20 21:05:39,223 INFO paymentHandle(202) Pulscnt : 5, Pulsport : 3, pulsetime_low : 300, pulsetime_high : 100
+2019-11-20 21:05:41,310 INFO paymentHandle(212) Stat: True
+2019-11-20 21:05:52,986 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd59ca0', 'TransactionId': None, 'Amount': 100.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 21:05:54,268 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd59ca0', 'TransactionId': None, 'Amount': 100.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 21:05:55,541 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 20, 'OrderId': '5dd59ca0', 'TransactionId': None, 'Amount': 100.0, 'CustomerId': 'AF9C0634-2AC7-4432-8F34-B87C14A9D02B', 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 21:05:56,816 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 20, 'OrderId': '5dd59ca0', 'TransactionId': None, 'Amount': 100.0, 'CustomerId': 'AF9C0634-2AC7-4432-8F34-B87C14A9D02B', 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 21:05:58,042 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 100, 'OrderId': '5dd59ca0', 'TransactionId': '73565130', 'Amount': 100.0, 'CustomerId': 'AF9C0634-2AC7-4432-8F34-B87C14A9D02B', 'CustomerToken': None, 'CustomerReceiptToken': 'ed36420c270e4d3b904e5296f119c08a'}
+2019-11-20 21:05:58,044 INFO PaymentStatus(167) PaymentAccepted, orderid: 5dd59ca0
+2019-11-20 21:05:58,044 INFO paymentHandle(202) Pulscnt : 10, Pulsport : 3, pulsetime_low : 300, pulsetime_high : 100
+2019-11-20 21:06:02,202 INFO paymentHandle(212) Stat: True
+2019-11-20 21:06:09,446 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd59cb0', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 21:06:10,723 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd59cb0', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 21:06:11,939 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd59cb0', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 21:06:13,156 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd59cb0', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 21:06:14,442 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 20, 'OrderId': '5dd59cb0', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': 'AF9C0634-2AC7-4432-8F34-B87C14A9D02B', 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 21:06:15,723 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 20, 'OrderId': '5dd59cb0', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': 'AF9C0634-2AC7-4432-8F34-B87C14A9D02B', 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 21:06:16,934 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 20, 'OrderId': '5dd59cb0', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': 'AF9C0634-2AC7-4432-8F34-B87C14A9D02B', 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 21:06:18,218 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 20, 'OrderId': '5dd59cb0', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': 'AF9C0634-2AC7-4432-8F34-B87C14A9D02B', 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 21:06:19,430 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 100, 'OrderId': '5dd59cb0', 'TransactionId': '108636744', 'Amount': 200.0, 'CustomerId': 'AF9C0634-2AC7-4432-8F34-B87C14A9D02B', 'CustomerToken': None, 'CustomerReceiptToken': '59684f60fc3446b3aa6cfd466337e4b7'}
+2019-11-20 21:06:19,432 INFO PaymentStatus(167) PaymentAccepted, orderid: 5dd59cb0
+2019-11-20 21:06:19,433 INFO paymentHandle(202) Pulscnt : 20, Pulsport : 3, pulsetime_low : 300, pulsetime_high : 100
+2019-11-20 21:06:27,745 INFO paymentHandle(212) Stat: True
+2019-11-20 21:06:34,370 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 20, 'OrderId': '5dd59cc9', 'TransactionId': None, 'Amount': 100.0, 'CustomerId': 'AF9C0634-2AC7-4432-8F34-B87C14A9D02B', 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 21:06:35,597 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 20, 'OrderId': '5dd59cc9', 'TransactionId': None, 'Amount': 100.0, 'CustomerId': 'AF9C0634-2AC7-4432-8F34-B87C14A9D02B', 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 21:06:36,825 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 20, 'OrderId': '5dd59cc9', 'TransactionId': None, 'Amount': 100.0, 'CustomerId': 'AF9C0634-2AC7-4432-8F34-B87C14A9D02B', 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 21:06:38,036 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 100, 'OrderId': '5dd59cc9', 'TransactionId': '84539863', 'Amount': 100.0, 'CustomerId': 'AF9C0634-2AC7-4432-8F34-B87C14A9D02B', 'CustomerToken': None, 'CustomerReceiptToken': 'becb4c38d3a347228c7bd32f0f6688e5'}
+2019-11-20 21:06:38,039 INFO PaymentStatus(167) PaymentAccepted, orderid: 5dd59cc9
+2019-11-20 21:06:38,039 INFO paymentHandle(202) Pulscnt : 10, Pulsport : 3, pulsetime_low : 300, pulsetime_high : 100
+2019-11-20 21:06:42,314 INFO paymentHandle(212) Stat: True
+2019-11-20 21:06:49,211 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd59cd8', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 21:06:50,440 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd59cd8', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 21:06:51,762 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd59cd8', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 21:06:53,015 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd59cd8', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 21:06:54,226 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 20, 'OrderId': '5dd59cd8', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': 'AF9C0634-2AC7-4432-8F34-B87C14A9D02B', 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 21:06:55,513 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 20, 'OrderId': '5dd59cd8', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': 'AF9C0634-2AC7-4432-8F34-B87C14A9D02B', 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 21:06:56,749 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 20, 'OrderId': '5dd59cd8', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': 'AF9C0634-2AC7-4432-8F34-B87C14A9D02B', 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 21:06:57,960 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 100, 'OrderId': '5dd59cd8', 'TransactionId': '62282243', 'Amount': 200.0, 'CustomerId': 'AF9C0634-2AC7-4432-8F34-B87C14A9D02B', 'CustomerToken': None, 'CustomerReceiptToken': '6418726136bd4410b6d66197febba39c'}
+2019-11-20 21:06:57,962 INFO PaymentStatus(167) PaymentAccepted, orderid: 5dd59cd8
+2019-11-20 21:06:57,963 INFO paymentHandle(202) Pulscnt : 20, Pulsport : 3, pulsetime_low : 300, pulsetime_high : 100
+2019-11-20 21:07:06,342 INFO paymentHandle(212) Stat: True
+2019-11-20 21:07:33,776 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd59d05', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 21:07:35,005 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd59d05', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 21:07:36,283 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd59d05', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 21:07:37,501 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd59d05', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 21:07:38,800 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd59d05', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 21:07:40,035 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 20, 'OrderId': '5dd59d05', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': 'AF9C0634-2AC7-4432-8F34-B87C14A9D02B', 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 21:07:41,322 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 20, 'OrderId': '5dd59d05', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': 'AF9C0634-2AC7-4432-8F34-B87C14A9D02B', 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 21:07:42,543 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 20, 'OrderId': '5dd59d05', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': 'AF9C0634-2AC7-4432-8F34-B87C14A9D02B', 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 21:07:43,776 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 20, 'OrderId': '5dd59d05', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': 'AF9C0634-2AC7-4432-8F34-B87C14A9D02B', 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 21:07:44,991 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 40, 'OrderId': '5dd59d05', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': 'AF9C0634-2AC7-4432-8F34-B87C14A9D02B', 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 21:07:51,845 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 20, 'OrderId': '5dd59d17', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': 'AF9C0634-2AC7-4432-8F34-B87C14A9D02B', 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 21:07:53,066 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 100, 'OrderId': '5dd59d17', 'TransactionId': '10708447', 'Amount': 200.0, 'CustomerId': 'AF9C0634-2AC7-4432-8F34-B87C14A9D02B', 'CustomerToken': None, 'CustomerReceiptToken': '621a15d14adc46d2a423cc52fb8e88f8'}
+2019-11-20 21:07:53,068 INFO PaymentStatus(167) PaymentAccepted, orderid: 5dd59d17
+2019-11-20 21:07:53,068 INFO paymentHandle(202) Pulscnt : 20, Pulsport : 3, pulsetime_low : 300, pulsetime_high : 100
+2019-11-20 21:08:01,369 INFO paymentHandle(212) Stat: True
+2019-11-20 21:29:00,887 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd5a20c', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 21:29:02,104 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd5a20c', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 21:29:03,348 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd5a20c', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 21:29:04,638 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd5a20c', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 21:29:05,865 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd5a20c', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 21:29:07,154 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd5a20c', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 21:29:08,445 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd5a20c', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 21:29:09,685 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd5a20c', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 21:29:10,963 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd5a20c', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 21:29:12,203 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd5a20c', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 21:29:13,446 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 30, 'OrderId': '5dd5a20c', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': None, 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 21:29:14,675 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 20, 'OrderId': '5dd5a20c', 'TransactionId': None, 'Amount': 200.0, 'CustomerId': 'AF9C0634-2AC7-4432-8F34-B87C14A9D02B', 'CustomerToken': None, 'CustomerReceiptToken': None}
+2019-11-20 21:29:15,889 INFO PaymentStatus(151) PaymentStatus,Succes  mp response: {'PosId': '72fa5320-1de3-4b0a-913b-c37f7830888c', 'PaymentStatus': 100, 'OrderId': '5dd5a20c', 'TransactionId': '39109825', 'Amount': 200.0, 'CustomerId': 'AF9C0634-2AC7-4432-8F34-B87C14A9D02B', 'CustomerToken': None, 'CustomerReceiptToken': '5b6aa499befa41d7bd40a3e7311611be'}
+2019-11-20 21:29:15,892 INFO PaymentStatus(167) PaymentAccepted, orderid: 5dd5a20c
+2019-11-20 21:29:15,893 INFO paymentHandle(202) Pulscnt : 20, Pulsport : 3, pulsetime_low : 300, pulsetime_high : 100
+2019-11-20 21:29:24,162 INFO paymentHandle(212) Stat: True
+2019-11-25 09:04:52,253 INFO <module>(734) Running DinoPay
+2019-11-25 09:04:52,254 INFO <module>(735) Reading Setupfile
+2019-11-25 09:04:52,913 INFO __init__(97) WinInfoGeo Info Screen high: 1200Screen width: 1600
+2019-11-25 09:04:53,950 INFO setupadammodule(352) Connecting iomodule ip 192.168.1.200
+2019-11-25 09:04:53,952 INFO setupadammodule(360) Connecting status: None
+2019-11-25 09:04:53,968 INFO setup_mp(398) Connecting Mobile pay 
+2019-11-25 09:04:53,968 INFO setup_mp(400) RegisterPOS
+2019-11-25 09:04:55,185 INFO setup_mp(408) AssignPos100000625947428
+2019-11-25 09:04:55,434 INFO setup_mp(413) True
+2019-11-25 19:16:39,363 INFO <module>(738) Running DinoPay
+2019-11-25 19:16:39,363 INFO <module>(739) Reading Setupfile
+2019-11-25 19:16:39,879 INFO __init__(98) WinInfoGeo Info Screen high: 1080Screen width: 1920
+2019-11-25 19:16:49,228 INFO <module>(738) Running DinoPay
+2019-11-25 19:16:49,229 INFO <module>(739) Reading Setupfile
+2019-11-25 19:16:49,319 INFO __init__(98) WinInfoGeo Info Screen high: 1080Screen width: 1920
+2019-11-25 19:16:49,463 INFO setupadammodule(353) Connecting iomodule ip 192.168.1.200
+2019-11-25 19:16:49,465 INFO setupadammodule(361) Connecting status: None
+2019-11-25 19:16:49,468 INFO setup_mp(399) Connecting Mobile pay 
+2019-11-25 19:16:49,468 INFO setup_mp(401) RegisterPOS
+2019-11-25 19:16:50,313 INFO setup_mp(409) AssignPos100000625947428
+2019-11-25 19:16:50,583 INFO setup_mp(414) True
+2019-11-25 19:20:45,286 INFO <module>(737) Running DinoPay
+2019-11-25 19:20:45,287 INFO <module>(738) Reading Setupfile
+2019-11-25 19:20:45,387 ERROR <module>(752) main exception:'NoneType' object has no attribute 'get'
+2019-11-25 19:20:45,387 ERROR <module>(753) Error on line 741
+2019-11-25 19:21:12,577 INFO <module>(737) Running DinoPay
+2019-11-25 19:21:12,578 INFO <module>(738) Reading Setupfile
+2019-11-25 19:21:56,460 INFO <module>(737) Running DinoPay
+2019-11-25 19:21:56,461 INFO <module>(738) Reading Setupfile
+2019-11-25 19:22:04,349 ERROR <module>(752) main exception:'module' object is not callable
+2019-11-25 19:22:04,351 ERROR <module>(753) Error on line 741
+2019-11-25 19:22:11,797 INFO <module>(737) Running DinoPay
+2019-11-25 19:22:11,798 INFO <module>(738) Reading Setupfile
+2019-11-25 19:23:37,442 ERROR <module>(752) main exception:'module' object is not callable
+2019-11-25 19:23:37,442 ERROR <module>(753) Error on line 741
+2019-11-25 19:23:56,767 INFO <module>(737) Running DinoPay
+2019-11-25 19:23:56,768 INFO <module>(738) Reading Setupfile
+2019-11-25 19:27:20,835 INFO <module>(738) Running DinoPay
+2019-11-25 19:27:20,836 INFO <module>(739) Reading Setupfile
+2019-11-25 19:27:26,554 ERROR <module>(753) main exception:printerrorlog() takes 1 positional argument but 2 were given
+2019-11-25 19:27:26,558 ERROR <module>(754) Error on line 742
+2019-12-03 12:27:04,506 INFO <module>(738) Running DinoPay
+2019-12-03 12:27:04,507 INFO <module>(739) Reading Setupfile

@@ -19,7 +19,8 @@ from . import receiptrenderer
 
 class custom():
     
-    def __init__(self, log):
+    def __init__(self, log, root):
+        self.root = root
         self.Version = 1.0
         self.Description = "Setup Custom printer"
         self.logger = log
@@ -60,7 +61,7 @@ class custom():
             except:
                 pass
             self.logger.info("Render receipt")
-            r = receiptrenderer.ReceiptRenderer(widthBuffer=20, offsetLeft=8, labeltype=labeltype)
+            r = receiptrenderer.ReceiptRenderer(root=self.root,widthBuffer=20, offsetLeft=8, labeltype=labeltype)
             r.render(filename, labeinfo, ''.join(random.choice('0123456789') for _ in range(10)), ''.join(random.choice(string.ascii_uppercase + '0123456789') for _ in range(10)),self.days_catchup)
             time.sleep(.5)
             self.logger.info("Send to printer")

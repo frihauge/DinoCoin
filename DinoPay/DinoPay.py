@@ -23,12 +23,12 @@ from _codecs import decode
 sys.path.append('../Modules')
 from AdamModule import adam
 from MobilePay import MobilePayImpl
-from DinoDB import dinoDBif
+from db import dbpayif
 import tools.Internettools
 logname = "DinoPay.log"
 AppName ="DinoPay"
 AppVersion  ="1.0"
-
+FilePath = 'C:\\ProgramData\\DinoCoin\\DinoPay\\'
 
 log_formatter = logging.Formatter('%(asctime)s %(levelname)s %(funcName)s(%(lineno)d) %(message)s')
 
@@ -41,7 +41,6 @@ my_handler.setLevel(logging.INFO)
 
 app_log = logging.getLogger('root')
 app_log.setLevel(logging.INFO)
-
 app_log.addHandler(my_handler)
 
 appsettings = 0
@@ -73,6 +72,7 @@ def restart():
 class AppMain(tk.Tk):
     def __init__(self, *args, **kwargs):
         tk.Tk.__init__(self, *args, **kwargs)
+        self.root = self
         self.mp_stat = None
         self.activepayment = False
         self.iomodulestat = None
@@ -83,10 +83,11 @@ class AppMain(tk.Tk):
         self.debug = Appsetting.get('Debug',False)
         xpos = Appsetting.get ('xpos',0)
         fullscreen = Appsetting.get ('fullscreen',1)
-        usedb = Appsetting.get ('usedb',0)
-        if usedb:
-            self.paymentdb = dinoDBif.dinodbif(app_log)
+        self.usedb = Appsetting.get ('usedb',False)
+        if self.usedb:
+            self.paymentdb = dbpayif.dbpayifthread(app_log,self.root)
             self.paymentdb.connect()
+            self.paymentdb.start() 
         self.title_font = tkfont.Font(family='ApexSansMediumT', size=36, weight="bold")
         self.background = 'white'
         root = tk.Tk._root(self)
@@ -148,6 +149,7 @@ class AppMain(tk.Tk):
                 paied = response['PaymentStatus'] ==100
                 idle = response['PaymentStatus'] ==10
                 canceled = response['PaymentStatus'] ==40
+                app_log.info("PaymentStatus,Succes  mp response: " + str(response))
             else:
                 self.ft = Timer(5.0, self.FrameTimeOut, ["OfflinePage"])
                 self.ft.start() 
@@ -198,6 +200,7 @@ class AppMain(tk.Tk):
             try:
                 print("Pulscnt : " + str(pulsecnt)+", Pulsport : " + str(self.pulseport)+", pulsetime_low : " + str(self.pulsetime_low)+", pulsetime_high : " + str(self.pulsetime_high))
                 #stat = self.iomodule.PulsePort(pulsecnt, self.pulseport, self.pulsetime_low, self.pulsetime_high)
+                app_log.info("Pulscnt : " + str(pulsecnt)+", Pulsport : " + str(self.pulseport)+", pulsetime_low : " + str(self.pulsetime_low)+", pulsetime_high : " + str(self.pulsetime_high))
                 adam.Adam_Set_Cmd.put(("Pulse", pulsecnt))
                 #adam.Adam_Set_Cmd.join()  
                 item = adam.AdamPulseQueue.get(block=True, timeout=10)
@@ -211,9 +214,13 @@ class AppMain(tk.Tk):
                 paymentstatus['Pulsecntstat']= stat
                 self.paymentdatafile[paymentstatus['OrderId']]  = paymentstatus  
                 self.WritePaymentFile(self.paymentdatafile)
+                if self.usedb:
+                    self.WritePaymentdb(self.paymentdatafile)
+        
             except Exception as e:
                 print ("self.iomodule.PulsePort" + str(e))
-                app_log.error("self.iomodule.PulsePort ")
+                app_log.error("error in self.iomodule.PulsePort ")
+                printerrorlog(e)
    
     def FrameTimeOut(self, stat):
         if stat == "OfflinePage":
@@ -272,7 +279,7 @@ class AppMain(tk.Tk):
          
         if self.mp is not None:
             print("Payment Time out!" + str(self.orderid))
-            app_log.info("Payment TimeOut" + str(self.orderid))
+            app_log.info("Payment TimeOut: " + str(self.orderid))
             self.mp.PaymentCancel()
             self.show_frame("PaymentFailed")
             self.ft = Timer(5.0, self.FrameTimeOut, [stat]) 
@@ -333,8 +340,6 @@ class AppMain(tk.Tk):
         self.show_frame("PayWithMobilePay")
     
     
-    def setuppaymentdb(self):
-        self.dbif = dinoDBif()
         
                   
     def setupadammodule(self):
@@ -403,13 +408,14 @@ class AppMain(tk.Tk):
             WriteSetupFile(appsettings)
             app_log.info("AssignPos" + str(PoSUnitIdToPos))
             self.mp_stat = self.mp.AssignPoSUnitIdToPos(PoSUnitIdToPos)
-            self.runrefundonmissed()
+            self.paymentdatafile = self.ReadPaymentFile()
+       
+            # self.runrefundonmissed()
         app_log.info(self.mp_stat)
 
         return self.mp_stat
            
     def runrefundonmissed(self):
-        self.paymentdatafile = self.ReadPaymentFile()
         if len(self.paymentdatafile) > 1:
             for key, value in self.paymentdatafile.items():
                 if value['Pulsecntstat'] != True:
@@ -423,6 +429,18 @@ class AppMain(tk.Tk):
                             self.paymentdatafile[key]['Refund']=True
                         self.WritePaymentFile(self.paymentdatafile)
         return True       
+    
+    
+        
+    def WritePaymentdb(self,data):
+        try:
+            item = (data, True)
+            dbinQueue.put(item, block=True, timeout=None)
+            dbinQueue.join()       
+            queue.put(data, True)
+        except Exception as e: 
+            print('Error in write database: ')
+            printerrorlog(e)
     
     def WritePaymentFile(self,data):
         FilePath = 'C:\\ProgramData\\DinoCoin\\DinoPay\\'
@@ -709,20 +727,33 @@ def ReadSetupFile():
             print('Error in setup file: ' + mainsetupfile, e)
     return data
 
-
+def printerrorlog(e):
+    app_log.error("Error o exception:" +str(e))
+    app_log.error('Error on line {}'.format(sys.exc_info()[-1].tb_lineno))   
 
 
 if __name__ == '__main__':
-   # try:
-        app_log.info("Running DinoPay")
-        app_log.info("Reading Setupfile")
-        appsettings = ReadSetupFile()
-        app = AppMain()
-        x=datetime.today()
-        y = x.replace(day=x.day, hour=0, minute=0, second=0, microsecond=0) + timedelta(days=1)
-        delta_t=y-x       
-        secs=delta_t.total_seconds()
+    while True:
+        try:
+            app_log.info("Running DinoPay")
+            app_log.info("Reading Setupfile")
+            
+            appsettings = ReadSetupFile()
+            app = AppMain()
+            x=datetime.today()
+            y = x.replace(day=x.day, hour=0, minute=0, second=0, microsecond=0) + timedelta(days=1)
+            delta_t=y-x       
+            secs=delta_t.total_seconds()
         #secs =10
        # t = Timer(secs, restart)
        # t.start()
-        app.mainloop()
+            app.mainloop()
+        
+        except Exception as e:
+            app_log.error("main exception:" +str(e))
+            app_log.error('Error on line {}'.format(sys.exc_info()[-1].tb_lineno))
+            time.sleep(60)
+            pass
+        else:
+            break
+            

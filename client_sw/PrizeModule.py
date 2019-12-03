@@ -19,7 +19,7 @@ class Prize(threading.Thread):
         self.stopthread = False
         self.lock = threading.Lock()
         self.db = dbif.dbif(self.logger,self.root)
-        self.prn = custom.custom( self.logger)
+        self.prn = custom.custom( self.logger,self.root)
         
     def worker(self,prn_queue):
         while not self.stopthread:

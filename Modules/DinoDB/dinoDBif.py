@@ -20,9 +20,6 @@ class dinodbif():
 
         self.mysqlconnected = False
         self.network = False
-        # self.createlocalfile()
-        if self.connect():
-            self.CreateTables()
 
     def connect(self):
         try:
@@ -38,7 +35,31 @@ class dinodbif():
         self.logger.info("-----------Network Connected------------")
         self.network = True
         return True
+    
+    def CreateTablePrize(self):
+        try:
+            cur = self.mydb.cursor()
 
+            cur.execute("CREATE TABLE IF NOT EXISTS Clients (id int(11) NOT NULL AUTO_INCREMENT,clientname varchar(45),PC_Alias varchar(45),Version varchar(45),LastOnline TIMESTAMP, PRIMARY KEY (id), UNIQUE (clientname))")
+            cur.execute("CREATE TABLE IF NOT EXISTS Settings (id int(11) NOT NULL AUTO_INCREMENT,clientname varchar(45),Parameter varchar(45),Value varchar(128), PRIMARY KEY (id),UNIQUE (clientname, Parameter))")
+            cur.execute("CREATE TABLE IF NOT EXISTS won_prizes (id int(11) NOT NULL AUTO_INCREMENT, client_id INT, prize_id INT,time TIMESTAMP, PRIMARY KEY (id))")
+
+            sql = "INSERT IGNORE INTO Clients (clientname, Version) VALUES (%s,%s) on duplicate key update Version = %s"
+            cur.execute(sql, (self.pcname, self.root.version, self.root.version))
+            cur.execute("CREATE TABLE IF NOT EXISTS PrizeTypes (id int(11) NOT NULL AUTO_INCREMENT, PrizeType INT,PrizeTypeName varchar(45), PRIMARY KEY (id), UNIQUE(PrizeType))")
+            sql = "INSERT IGNORE INTO Settings (clientname, Parameter, Value) VALUES (%s,%s,%s)"
+            cur.execute(sql, (self.pcname, "Ad_URL", "http:\\helloWorld"))
+            cur.execute("""INSERT IGNORE INTO PrizeTypes (PrizeType, PrizeTypeName) VALUES (1,"Standard_prize")""")
+            cur.execute("""INSERT IGNORE INTO PrizeTypes (PrizeType, PrizeTypeName) VALUES (2,"Special_prize")""")
+            self.mydb.commit()
+            self.updatetimestamp()
+            self.CreatePrizetableExist()
+            print(self.mydb)
+        except Exception as e:
+              self.logger.error("Error after connect !! "+e)
+              self.network = False
+        return True
+    
     def CreateTablesPayment(self):
         try:
             cur = self.mydb.cursor()

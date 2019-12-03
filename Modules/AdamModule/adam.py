@@ -121,7 +121,7 @@ class adam6000():
 
     def readcounter(self, num):
         try:
-            rr = self.client.read_input_registers(0, 12)
+            rr = self.client.read_input_registers(0, 18)
             # not using highbyte in this setup
             # idxlow = num*2
             # highbyte = rr.registers[idxlow+1] 

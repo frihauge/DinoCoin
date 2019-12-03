@@ -1,5 +1,6 @@
 eclipse.preferences.version=1
 encoding//DinoPay/DinoPay.py=latin1
+encoding//DinoPay/db/dbpayif.py=utf-8
 encoding//Modules/AdamModule/adam.py=utf-8
 encoding//Modules/DinoDB/dinoDBif.py=utf-8
 encoding//Modules/tools/Internettools.py=utf-8

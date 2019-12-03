@@ -138,7 +138,8 @@ def UpdateWeb():
     client = appsettings.get("WebUrl","testdisplay") 
     weburl = r"http://www.dinocoin.frihauge.dk/foyer/"+ client
     pinfo = subprocess.call([httptrackpath,flags,"--update", weburl,"-O1", FilePath+"web_tmp" ,flags2], startupinfo=si)
-    copytree(FilePath+"web_tmp", FilePath+"web")
+    if internet_on():
+        copytree(FilePath+"web_tmp", FilePath+"web")
     print(pinfo)
  
     
