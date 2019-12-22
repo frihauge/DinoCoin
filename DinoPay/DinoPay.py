@@ -9,6 +9,7 @@ import sys
 import tkinter as tk
 from sched import scheduler
 import time
+from datetime import datetime
 import urllib.request
 from threading import Thread
 from tkinter import *                
@@ -27,7 +28,8 @@ from db import dbpayif
 import tools.Internettools
 logname = "DinoPay.log"
 AppName ="DinoPay"
-AppVersion  ="1.0"
+
+AppVersion  =datetime.now().strftime("%Y%m%d_%H%M%S")
 FilePath = 'C:\\ProgramData\\DinoCoin\\DinoPay\\'
 
 log_formatter = logging.Formatter('%(asctime)s %(levelname)s %(funcName)s(%(lineno)d) %(message)s')
@@ -81,13 +83,21 @@ class AppMain(tk.Tk):
         self.offlinestat= False
         Appsetting =  appsettings.get('App', {'xpos':0})
         self.debug = Appsetting.get('Debug',False)
+        self.amounts_puls = Appsetting.get('amounts_puls',{})
+        self.testpayment = False
+        
         xpos = Appsetting.get ('xpos',0)
         fullscreen = Appsetting.get ('fullscreen',1)
-        self.usedb = Appsetting.get ('usedb',False)
-        if self.usedb:
-            self.paymentdb = dbpayif.dbpayifthread(app_log,self.root)
+        
+        self.usedb = Appsetting.get ('usedb',True)
+        if self.internet_on() and self.usedb :
+            self.dbinQueue = queue.Queue()
+            self.dboutQueue = queue.Queue()
+            self.paymentdb = dbpayif.dbpayifthread(app_log,self.root,self.dbinQueue,self.dboutQueue)
             self.paymentdb.connect()
-            self.paymentdb.start() 
+            self.paymentdb.start()
+
+           
         self.title_font = tkfont.Font(family='ApexSansMediumT', size=36, weight="bold")
         self.background = 'white'
         root = tk.Tk._root(self)
@@ -174,7 +184,15 @@ class AppMain(tk.Tk):
             self.ft = Timer(5.0, self.FrameTimeOut, ["PaymentFailed"]) 
             self.ft.start()    
             self.activepayment = False
-            self.show_frame("PaymentFailed")     
+            self.show_frame("PaymentFailed")
+        elif idle:
+           # self.setup_mp()
+            self.pt.cancel()
+            self.ft = Timer(5.0, self.FrameTimeOut, ["PaymentFailed"]) 
+            self.ft.start()    
+            self.activepayment = False
+            self.show_frame("PaymentFailed")
+            return      
         else:
             self.pt.cancel()
             self.activepayment = False
@@ -183,12 +201,7 @@ class AppMain(tk.Tk):
             #self.show_frame("PayWithMobilePay")     
         
     def PulseCntGetter(self, amount):
-        switcher = {
-                    50: 5,
-                    100: 10,
-                    200: 20,
-                    }
-        res = switcher.get(amount, 0)
+        res = self.amounts_puls.get(str(amount), 0)
         print (res)
         return res 
        
@@ -212,16 +225,17 @@ class AppMain(tk.Tk):
                 print("Stat: " +str(stat))
                 app_log.info("Stat: " +str(stat))
                 paymentstatus['Pulsecntstat']= stat
-                self.paymentdatafile[paymentstatus['OrderId']]  = paymentstatus  
-                self.WritePaymentFile(self.paymentdatafile)
-                if self.usedb:
-                    self.WritePaymentdb(self.paymentdatafile)
+                self.paymentdatafile[paymentstatus['OrderId']].update(paymentstatus)  
+                self.storepaymentdata(self.paymentdatafile,self.paymentdatafile[paymentstatus['OrderId']])
+
+     
         
             except Exception as e:
                 print ("self.iomodule.PulsePort" + str(e))
                 app_log.error("error in self.iomodule.PulsePort ")
                 printerrorlog(e)
-   
+    
+      
     def FrameTimeOut(self, stat):
         if stat == "OfflinePage":
             self.mp_stat, _ = self.mp.StartUpReg()
@@ -263,6 +277,7 @@ class AppMain(tk.Tk):
                self.offlinestat = False 
                self.ft = Timer(1.0, self.FrameTimeOut,["PayWithMobilePay"]) 
                self.ft.start()
+            self.checkRefundQueue()
         self.offline = Timer(2.0, self.offlineStatus) 
         self.offline.start()
         return True
@@ -273,7 +288,29 @@ class AppMain(tk.Tk):
                 time.sleep(2)
                 istat = tools.Internettools.PingDinoCoinWeb() 
             return istat
-                        
+    
+    def checkRefundQueue(self):
+        try:
+            item = ((None,'REFUND'))
+            self.dbinQueue.put(item, block=True, timeout=None)
+            self.dbinQueue.join()
+            return True       
+
+        except Exception as e: 
+            print('Error in write database: ')
+            printerrorlog(e)
+        
+        
+    def processrefund(self, data):
+        for key, value in data.items():
+            refundbefore = data[key].get('RefundAmount',0)
+            if not refundbefore:
+                        data[key]['Refund']=False
+                        success = self.mp.PaymentRefund(value['OrderId'], value['Amount'])
+                        if success:
+                            data[key]['RefundAmount']=value['Amount']
+                            self.storepaymentdata(self.paymentdatafile, data[key])
+
     def paymenttimeout(self, stat):
         print("Payment Time out!")
          
@@ -281,6 +318,8 @@ class AppMain(tk.Tk):
             print("Payment Time out!" + str(self.orderid))
             app_log.info("Payment TimeOut: " + str(self.orderid))
             self.mp.PaymentCancel()
+            #mee put in here
+            self.PaymentStatus() 
             self.show_frame("PaymentFailed")
             self.ft = Timer(5.0, self.FrameTimeOut, [stat]) 
             self.ft.start()
@@ -317,13 +356,18 @@ class AppMain(tk.Tk):
                     
 
         succes, paymentstatus = self.mp.GetPaymentStatus(self.orderid)
+        app_log.info("self.mp.GetPaymentStatus() " + str(self.orderid))
         if succes:
             self.activepayment = True
             paymentdata = self.paymentdatafile.get(self.orderid, {self.orderid:{}})
             paymentstatus["Pulsecntstat"]  = False
+            paymentstatus["RefundAmount"]  = 0
+            paymentstatus["Refund"]  = False
+            
+            
             paymentdata=paymentstatus
             self.paymentdatafile[self.orderid] = paymentdata
-            self.WritePaymentFile(self.paymentdatafile) 
+            self.storepaymentdata(self.paymentdatafile,paymentdata) 
             self.pt = Timer(30.0, self.paymenttimeout,["PaymentTimeOut"]) 
             self.pt.start()
             self.after(10, self.PaymentStatus)
@@ -391,13 +435,18 @@ class AppMain(tk.Tk):
     def setup_mp(self):
         mpsetting =  appsettings.get('Mobilepay', {'url':'https://sandprod-pos2.mobilepay.dk/API/V08/','PoSUnitIdToPos':'100000625947428'})
         url = mpsetting.get ('url','https://sandprod-pos2.mobilepay.dk/API/V08/')
+        
         PoSUnitIdToPos =  mpsetting.get('PoSUnitIdToPos','100000625947428')
         LocationId =  mpsetting.get('LocationId','00001')
         Name=  mpsetting.get('LocationName','DinoCoin')
         MerchantId = mpsetting.get('MerchantId','POSDKDC307')
         key = mpsetting.get('key','344A350B-0D2D-4D7D-B556-BC4E2673C882') 
-        app_log.info("Connecting Mobile pay ")
-        self.mp = MobilePayImpl.mpif(key=key, MerchantId=MerchantId, LocationId=LocationId, url=url, Name=Name)
+        self.testpayment = mpsetting.get('testpayment',False)
+        app_log.info("Connecting Mobile pay ")         
+        if self.testpayment:
+            self.mp = MobilePayImpl.mpif(key='344A350B-0D2D-4D7D-B556-BC4E2673C882', MerchantId='POSDKDC307', LocationId='00001', url='https://sandprod-pos2.mobilepay.dk/API/V08/', Name='DinoCoin')
+        else:
+            self.mp = MobilePayImpl.mpif(key=key, MerchantId=MerchantId, LocationId=LocationId, url=url, Name=Name)
         app_log.info("RegisterPOS")
         posid = mpsetting.setdefault('posid',None)
         self.mp.PosId = posid
@@ -427,17 +476,37 @@ class AppMain(tk.Tk):
                         success = self.mp.PaymentRefund(value['OrderId'], value['Amount'])
                         if success:
                             self.paymentdatafile[key]['Refund']=True
-                        self.WritePaymentFile(self.paymentdatafile)
+                        self.storepaymentdata(self.paymentdatafile)
         return True       
     
-    
+    def storepaymentdata(self,alldata, data_thistransac=None):
+        self.WritePaymentFile(alldata)
+        if self.usedb and data_thistransac is not None:
+            data_thistransac["sysmode"]  = self.testpayment
+            self.WritePaymentdb(data_thistransac)    
+     
+    def WriteRefunddb(self,data):
+        try:
+            item = (data,'REFUND_PAIED')
+            self.dbinQueue.put(item, block=True, timeout=10)
+            item = self.dboutQueue.get(block=True, timeout=10)
+            print(item)
+            #self.dbinQueue.join()
+            return True    
+        
+        except Exception as e: 
+            print('Error in write database: ')
+            printerrorlog(e)
         
     def WritePaymentdb(self,data):
         try:
-            item = (data, True)
-            dbinQueue.put(item, block=True, timeout=None)
-            dbinQueue.join()       
-            queue.put(data, True)
+            item = (data,'PAY')
+            self.dbinQueue.put(item, block=True, timeout=10)
+            item = self.dboutQueue.get(block=True, timeout=10)
+            print(item)
+            #self.dbinQueue.join()
+            return True       
+
         except Exception as e: 
             print('Error in write database: ')
             printerrorlog(e)
@@ -448,6 +517,7 @@ class AppMain(tk.Tk):
         try:
             with io.open(mainsetupfile, 'w') as setfile:
                 setfile.write(json.dumps(data))
+       
         except Exception as e: 
             print('Error in setup write file: ' + mainsetupfile, e)
             
@@ -510,9 +580,12 @@ class PayWithMobilePay(tk.Frame):
         fr.pack(fill=X,side=TOP, pady= 0)
         fr=Frame(fr,bg=bgcolor)
         fr.pack(side=TOP, pady= 30)
-        
+        twenty = Image.open("img/20kr.png")
+        twenty_render = ImageTk.PhotoImage(twenty)
+   
+        twentyfive = Image.open("img/25kr.png")
+        twentyfive_render = ImageTk.PhotoImage(twentyfive)
         fifty = Image.open("img/50kr.png")
-        #fifty.resize((10, 10), Image.ANTIALIAS)
         fifty_render = ImageTk.PhotoImage(fifty)
         hundred = Image.open("img/100kr.png")
         hundred_render = ImageTk.PhotoImage(hundred)
@@ -526,20 +599,37 @@ class PayWithMobilePay(tk.Frame):
             button_01.pack(side=tk.LEFT, padx=15)
             button_1.pack(side=tk.LEFT, padx=15)
             
-        button_50 = tk.Button(fr, image=fifty_render, bg=bgcolor, activebackground=bgcolor, text="50 Kr",  borderwidth=0,
+        if '20' in self.controller.amounts_puls:
+            button_20 = tk.Button(fr, image=twenty_render, bg=bgcolor, activebackground=bgcolor, text="20 Kr",  borderwidth=0,
+                           command=lambda:controller.InitPayment("StartPayment",20))
+            button_20.image = twenty_render
+            button_20.pack(side=tk.LEFT, padx=15)
+        if '25' in self.controller.amounts_puls:
+            button_25 = tk.Button(fr, image=twentyfive_render, bg=bgcolor, activebackground=bgcolor, text="25 Kr",  borderwidth=0,
+                           command=lambda:controller.InitPayment("StartPayment",25))
+            button_25.image = twentyfive_render
+            button_25.pack(side=tk.LEFT, padx=15)
+            
+        if '50' in self.controller.amounts_puls:    
+            button_50 = tk.Button(fr, image=fifty_render, bg=bgcolor, activebackground=bgcolor, text="50 Kr",  borderwidth=0,
                            command=lambda:controller.InitPayment("StartPayment",50))
 
-        button_50.image = fifty_render
-        button_100 = tk.Button(fr, image=hundred_render,bg=bgcolor, activebackground=bgcolor, borderwidth=0, text="100 Kr",
+            button_50.image = fifty_render
+            button_50.pack(side=tk.LEFT, padx=15)
+        if '100' in self.controller.amounts_puls:    
+            button_100 = tk.Button(fr, image=hundred_render,bg=bgcolor, activebackground=bgcolor, borderwidth=0, text="100 Kr",
                            command=lambda: controller.InitPayment("StartPayment",100))
-        button_100.image = hundred_render
-        button_200 = tk.Button(fr, image=twohundred_render, bg=bgcolor, activebackground=bgcolor,borderwidth=0, text="200 Kr",
+            button_100.image = hundred_render
+            button_100.pack(side=tk.LEFT, padx=15)
+        if '200' in self.controller.amounts_puls:    
+           button_200 = tk.Button(fr, image=twohundred_render, bg=bgcolor, activebackground=bgcolor,borderwidth=0, text="200 Kr",
                            command=lambda: controller.InitPayment("StartPayment",200))
-        button_200.image = twohundred_render
+           button_200.image = twohundred_render
+           button_200.pack(side=tk.LEFT, padx=15)
+       
         
-        button_50.pack(side=tk.LEFT, padx=15)
-        button_100.pack(side=tk.LEFT, padx=15)
-        button_200.pack(side=tk.LEFT, padx=15)
+        
+        
         fr2=Frame(self,bg=controller.background)
         fr2.pack(fill=Y, side=TOP, pady= 0)
        
@@ -736,6 +826,8 @@ if __name__ == '__main__':
     while True:
         try:
             app_log.info("Running DinoPay")
+            app_log.info(AppVersion)
+            print("Version: "+ AppVersion)
             app_log.info("Reading Setupfile")
             
             appsettings = ReadSetupFile()
@@ -750,6 +842,7 @@ if __name__ == '__main__':
             app.mainloop()
         
         except Exception as e:
+            print("main exception:" +str(e))
             app_log.error("main exception:" +str(e))
             app_log.error('Error on line {}'.format(sys.exc_info()[-1].tb_lineno))
             time.sleep(60)

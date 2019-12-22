@@ -63,7 +63,10 @@ def ReadSetupFile():
         print ("Local mainsetupfile exists and is readable")
     else:
         with io.open(mainsetupfile, 'w') as db_file:
-            db_file.write(json.dumps({'Adam':[{'host':"192.168.1.200"}]}))
+            db_file.write(json.dumps({'Adam':[{'host':"192.168.1.200"}],
+                                     'timebetween_pulse':200,
+                                     'CounterInPort':8,
+                                     "labeltype":0}))
     data = None
     with io.open(mainsetupfile, 'r') as jsonFile:
         data = json.load(jsonFile) 

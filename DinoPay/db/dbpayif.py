@@ -17,21 +17,24 @@ sys.path.append('../Modules')
 from DinoDB import dinoDBif
 import queue
 import threading
-Set_Cmd = queue.Queue()
-dbinQueue = queue.Queue()
+
+
 dbOutQueuedbinQueue = queue.Queue()
     
 class dbpayifthread(threading.Thread):
-    def __init__(self, log, root):
+    def __init__(self, log, root,dbinQueue,dboutQueue):
         super().__init__()
         self.root = root
-        self.logger = log
+        self.log = log
         self.mydb=None
         self.connection_pool = None
         self.pcname = os.environ['COMPUTERNAME']
         self.mysqlconnected = False
         self.network = False
         self.dbpay = None
+        self.dbinQueue = dbinQueue
+        self.dboutQueue= dboutQueue
+        self._stop_event = threading.Event()
         
        # self.createlocalfile()
                  #  self.Download_to_local_json()
@@ -39,39 +42,40 @@ class dbpayifthread(threading.Thread):
         
     def run(self):
         while not self._stop_event.is_set():
-            if not dbinQueuedbinQueue.empty():
+            if not self.dbinQueue.empty():
                 try:
-                    item = dbinQueue.get(block=True, timeout=2)
-                    if item[0] == "PAY":
-                        pulsescnt = item[1]
-                        if self.setpayement():    
-                            dboutQueue.put(("DB_OK", stat))
+                    item = self.dbinQueue.get(block=True, timeout=2)
+                    print("DB IN CMD Received: "+ item[1])
+                    self.log.info(str("DB IN CMD Received: "+ item[1]))
+                    if item[1] == "PAY":
+                        if self.dbpay.InsertPayement(item[0]):    
+                            self.dboutQueue.put(("DB_OK", ))
+                            print("OK dboutQueue")
                         else:
-                            dboutQueue.put(("error", stat))
-                                
-                    if item[0] == "readport":
-                        portno = item[1]
-                        val = self.adam6050.readinputbit(portno)
-                        AdamValueQueue.put(("IOValue_" + str(portno), val))
+                            print("""self.dboutQueue.put(("error", ))""")
+                            self.dboutQueue.put(("error", ))
+                    elif item[1] =="REFUND":
+                       refunddata = self.dbpay.GetAllRefund()
+                       if len(refunddata):
+                           self.dboutQueue.put(("REFUND DATA", refunddata))
+                           self.root.processrefund(refunddata)   
+
                     # print(item)
                 except Exception as e:
-                    AdamValueQueue.put(("No Connection",None))
                     print(e)
                     print("Queue Error")
+                    self.printerrorlog(e)
                 finally:
-                    Adam_Set_Cmd.task_done()
+                    self.dbinQueue.task_done()
 
-            if len(self.cyclicdata) > 0:
-                for portno in self.cyclicdata:
-                    value = self.adam6050.readinputbit(int(portno))
-                    AdamValueQueue.put(("IOValue_" + str(portno), value))
 
             time.sleep(0.3)
                       
     def connect(self):
         try:
-            self.dbpay = dinodbif(self.log)
-            self.dbpay.CreateTablesPayment()
+            self.dbpay = dinoDBif.dinodbif(self.log)
+            self.dbpay.connect();
+            self.dbpay.CreateTablesPayment()          
         except Exception as e:
             self.printerrorlog(e)
             
@@ -85,14 +89,7 @@ class dbpayifthread(threading.Thread):
         for x in rv:
             print(x)
             
-    def CheckifDatainPrizes(self):
-        cur = self.mydb.cursor()
-        sql = ("SELECT count(*) FROM `Prizes` WHERE `ClientName` = %s")
-        val = (self.pcname,)
-        cur.execute(sql, val)
-        rv = cur.fetchall()
-        for x in rv:
-            print(x)
+
         
     def writepayment(self, data):
         item = (data, True)
@@ -158,23 +155,7 @@ class dbpayifthread(threading.Thread):
             return False     
         return True
     
-    def insert_prizewon(self,pdata):
-        ts = time.time()
-        self.timestamp = datetime.datetime.fromtimestamp(ts).strftime('%Y-%m-%d %H:%M:%S')
-        try:
-            for prize in pdata:
-                try:
-                    cur = self.mydb.cursor()
-                except Exception as e:
-                    self.logger.info("No connection to db" +str(e))
-                    self.network = False
-                    return False
-                sql = ("""INSERT IGNORE INTO won_prizes (client_id, prize_id, time) VALUES (%s,%s,%s)""")
-                val = (pdata["id"],prize['id'],self.timestamp)
-                cur.execute(sql, val)
-                self.mydb.commit()
-        except Exception as e:
-            self.logger.error("Json dataread error: " , str(e))
+
             
     def Update_Values_LocalJsonTodb(self):
         data = self.ReadFile()
@@ -229,9 +210,9 @@ class dbpayifthread(threading.Thread):
         return data        
 
 
-    def printerrorlog(e):
-        app_log.error("Error o exception:" +str(e))
-        app_log.error('Error on line {}'.format(sys.exc_info()[-1].tb_lineno))   
+    def printerrorlog(self, e):
+        self.log.error("Error o exception:" +str(e))
+        self.log.error('Error on line {}'.format(sys.exc_info()[-1].tb_lineno))   
   
      
         

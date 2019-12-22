@@ -101,7 +101,7 @@ class db_mysql():
             cur.execute("CREATE TABLE IF NOT EXISTS Clients (id int(11) NOT NULL AUTO_INCREMENT,clientname varchar(45),PC_Alias varchar(45),Version varchar(45),LastOnline TIMESTAMP, PRIMARY KEY (id), UNIQUE (clientname))")
             cur.execute("CREATE TABLE IF NOT EXISTS Settings (id int(11) NOT NULL AUTO_INCREMENT,clientname varchar(45),Parameter varchar(45),Value varchar(128), PRIMARY KEY (id),UNIQUE (clientname, Parameter))")
             cur.execute("CREATE TABLE IF NOT EXISTS won_prizes (id int(11) NOT NULL AUTO_INCREMENT, client_id INT, prize_id INT,time TIMESTAMP, PRIMARY KEY (id))")
-
+            cur.execute("CREATE TABLE IF NOT EXISTS Control (id int(11) NOT NULL AUTO_INCREMENT,client_id INT,Control_type varchar(45),Value varchar(128), PRIMARY KEY (id))")
             sql = "INSERT IGNORE INTO Clients (clientname, Version) VALUES (%s,%s) on duplicate key update Version = %s"
             cur.execute(sql, (self.pcname, self.root.version, self.root.version))
             cur.execute("CREATE TABLE IF NOT EXISTS PrizeTypes (id int(11) NOT NULL AUTO_INCREMENT, PrizeType INT,PrizeTypeName varchar(45), PRIMARY KEY (id), UNIQUE(PrizeType))")
@@ -109,15 +109,32 @@ class db_mysql():
             cur.execute(sql, (self.pcname, "Ad_URL", "http:\\helloWorld"))
             cur.execute("""INSERT IGNORE INTO PrizeTypes (PrizeType, PrizeTypeName) VALUES (1,"Standard_prize")""")
             cur.execute("""INSERT IGNORE INTO PrizeTypes (PrizeType, PrizeTypeName) VALUES (2,"Special_prize")""")
+            # Insert Control table std elements
+
             self.mydb.commit()
             self.updatetimestamp()
             self.CreatePrizetableExist()
+        
             print(self.mydb)
         except Exception as e:
               self.logger.error("Error after connect !! "+e)
               self.network = False
         return True
-    
+    '''
+        def Insert_Control_table(self):
+            try:
+               cur.execute("""INSERT IGNORE INTO Control (Control_type) VALUES ("Make_prize")""")            
+              cur.execute("""INSERT IGNORE INTO Control (Control_type, PrizeTypeName) VALUES ("Make_prize")""")
+           cur = self.mydb.cursor()
+           sql = "INSERT IGNORE INTO Control (Control_type,Value) VALUES (%s,%s)"
+            cur.execute(sql, (self.pcname, self.root.version, self.root.version))
+            val = (0,self.pcname, prize["PrizeType"],prize['Name'],prize['Description'],prize['Stock_cnt'],prize['delivered'],prize['PrizeTypeDescription'], prize['delivery_point'])
+            cur.execute(sql, val)
+            self.mydb.commit()
+        except:
+            self.network = False
+            return None
+    '''
     def DoesTablesExist(self):
         cur = self.mydb.cursor()
         cur.execute("SHOW TABLES")
@@ -374,7 +391,7 @@ class dbif():
                     if idx['delivered'] is None:
                         idx['delivered'] = 0
                     idx['delivered']+=1
-                    if idx['Name_arab'] is None:
+                    if not idx['Name_arab']:
                        idx['Name_arab'] = idx['Name'] 
                     if idx['delivery_point'] == None:
                         idx['delivery_point'] = ""

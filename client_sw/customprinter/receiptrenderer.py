@@ -80,11 +80,12 @@ class ReceiptRenderer():
         offset_subtitle = 10
         
         offset_prizetext = 25
-        offset_barcode = 37
-        offset_controlcode=37
-        offset_delivery = 62
-        offset_date = 70
-        
+        offset_delivery = 37
+        offset_date = 45
+        offset_barcode = 60
+        offset_controlcode=60
+        offset_warn = 73
+                
         width = self.size[0]
         removeTwoLinesOffset = 25
         height = max(width + self.widthBuffer + 5, self.size[1])
@@ -101,7 +102,7 @@ class ReceiptRenderer():
                 'x2': offsetLeft + endLeft, 
                 'y2': top, 
                 'font': "FlamencoD", 
-                'size': 32.0, 
+                'size': 40.0, 
                 'bold': 0, 
                 'italic': 0, 
                 'underline': 0, 
@@ -119,7 +120,7 @@ class ReceiptRenderer():
                 'x2': offsetLeft + endLeft, 
                 'y2': top+offset_subtitle, 
                 'font': "FlamencoD", 
-                'size': 15.0, 
+                'size': 22.0, 
                 'bold': 0, 
                 'italic': 0, 
                 'underline': 0, 
@@ -138,7 +139,7 @@ class ReceiptRenderer():
                 'x2': offsetLeft + width - margin, 
                 'y2': top+offset_prizetext, 
                 'font': "Hobo", 
-                'size': 16.0, 
+                'size': 22.0, 
                 'bold': 1, 
                 'italic': 0, 
                 'underline': 0, 
@@ -194,7 +195,7 @@ class ReceiptRenderer():
                 'x2': offsetLeft + endLeft, 
                 'y2': top+offset_delivery,  
                 'font': "DINEngschrift LT", 
-                'size': 10.0, 
+                'size': 15.0, 
                 'bold': 0, 
                 'italic': 1, 
                 'underline': 0, 
@@ -212,7 +213,7 @@ class ReceiptRenderer():
                 'x2': offsetLeft + endLeft, 
                 'y2': top+offset_date, 
                 'font': "DINEngschrift LT", 
-                'size': 10.0, 
+                'size': 15.0, 
                 'bold': 0, 
                 'italic': 1, 
                 'underline': 0, 
@@ -220,6 +221,24 @@ class ReceiptRenderer():
                 'background': 0, 
                 'align': 'C', 
                 'text': 'Dags dato', 
+                'priority': 2, 
+            },
+            { 
+                'name': 'Warning', 
+                'type': 'T', 
+                'x1': offsetLeft + margin, 
+                'y1': top+offset_warn, 
+                'x2': offsetLeft + endLeft, 
+                'y2': top+offset_warn, 
+                'font': "DINEngschrift LT", 
+                'size': 7.0, 
+                'bold': 0, 
+                'italic': 1, 
+                'underline': 0, 
+                'foreground': 0, 
+                'background': 0, 
+                'align': 'C', 
+                'text': 'Gevinsten kan ikke ombyttes til andre gevinster', 
                 'priority': 2, 
             },
             #{ 'name': 'box', 'type': 'B', 'x1': offsetLeft + margin, 'y1': margin, 'x2': offsetLeft + width - margin, 'y2': height - margin, 'font': 'Arial', 'size': 0.0, 'bold': 0, 'italic': 0, 'underline': 0, 'foreground': 0, 'background': 0, 'align': 'I', 'text': None, 'priority': 0, },
@@ -238,11 +257,12 @@ class ReceiptRenderer():
         offset_subtitle_en = 15
         
         offset_prizetext_en = 26
-        offset_delivery_en = 35
-        offset_date_en = 39
-        offset_barcode_en = 45
-        offset_controlcode_en=47
-        
+        offset_delivery_en = 38
+        offset_date_en = 44
+        offset_barcode_en = 50
+        offset_controlcode_en=50
+
+           
         offset_title_arab = 67
         offset_subtitle_arab = 77
         offset_prizetext_arab = 88
@@ -267,7 +287,7 @@ class ReceiptRenderer():
                 'x2': offsetLeft + endLeft, 
                 'y2':top+5, 
                 'font': "FlamencoD", 
-                'size': 32.0, 
+                'size': 40.0, 
                 'bold': 0, 
                 'italic': 0, 
                 'underline': 0, 
@@ -285,7 +305,7 @@ class ReceiptRenderer():
                 'x2': offsetLeft + endLeft, 
                 'y2': top +offset_subtitle_en, 
                 'font': "FlamencoD", 
-                'size': 15.0, 
+                'size': 22.0, 
                 'bold': 0, 
                 'italic': 0, 
                 'underline': 0, 
@@ -303,7 +323,7 @@ class ReceiptRenderer():
                 'x2': offsetLeft + width - margin, 
                 'y2':  top +offset_prizetext_en, 
                 'font': "Hobo", 
-                'size': 16.0, 
+                'size': 22.0, 
                 'bold': 1, 
                 'italic': 0, 
                 'underline': 0, 
@@ -322,7 +342,7 @@ class ReceiptRenderer():
                 'x2': offsetLeft + endLeft, 
                 'y2':  top +offset_delivery_en, 
                 'font': "DINEngschrift LT", 
-                'size': 10.0, 
+                'size': 15.0, 
                 'bold': 0, 
                 'italic': 1, 
                 'underline': 0, 
@@ -340,7 +360,7 @@ class ReceiptRenderer():
                 'x2': offsetLeft + endLeft, 
                 'y2':  top +offset_date_en,  
                 'font': "DINEngschrift LT", 
-                'size': 10.0, 
+                'size': 15.0, 
                 'bold': 0, 
                 'italic': 1, 
                 'underline': 0, 
@@ -502,7 +522,7 @@ if __name__ == '__main__':
     labeinfo["delivery_point"]['da'] ='Smoke-In'
     labeinfo["delivery_point"]['en'] ='Smoke-In'
     labeinfo["delivery_point"]['arab'] = 'Smoke-In'
-    r = ReceiptRenderer(widthBuffer=20, offsetLeft=8,labeltype=1)
+    r = ReceiptRenderer(widthBuffer=20, offsetLeft=8,labeltype=0)
    # r.render("receipt_test.pdf", labeinfo, "1231231231", "V3RY53CR37",'d.12/12-2019')
    # r.render_englisharab(filename="receipt_test.pdf", prize_en="Teddy Bear", prize_arab="Teddy Bear", barcode_en="1231231231", control_code_en="V3RY53CR37",pickup_en="Smoke-In",pickup_arab='Smoke-In' ,datecatchup='d.12/12-2019')
     r.render("receipt_test.pdf", labeinfo, "1231231231", "V3RY53CR37",'d.12/12-2019')

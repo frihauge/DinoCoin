@@ -195,13 +195,32 @@ class mpif():
             success = True
         return success, data
     
-
-
+def refundfrom(ordernummer,belob):
+    m = mpif()
+    
+    m.url = 'https://mobilepaypos2.danskebank.dk/API/V08/'
+    m.key ='36619E65-9C01-4B94-92CD-2B22A041CEFC'
+    m.MerchantId = 'POSDK64549'
+    m.PosId  = 'ad4b491f-036e-40f0-9d53-276c34de98fb'
+        #m.AssignPoSUnitIdToPos("100000625947428")
+    m.LocationId ='00001'
+    m.Name ='Broen shopping'
+    m.RegisterPoS()
+    res = m.GetPaymentStatus("5dfd1b17")
+    print(res)
+    m.PaymentRefund(ordernummer, belob)
+    print(res)
+   
+ 
             
 if __name__ == '__main__':
     try:
+        #refundfrom("5dfd1b17",20.00)
+        
         m = mpif()
-        m.getNewOrderId()
+        #live
+     
+        #m.getNewOrderId()
         m.RegisterPoS()
         m.AssignPoSUnitIdToPos("100000625947428")
         m.UnAssignPoSUnitIdToPos()
