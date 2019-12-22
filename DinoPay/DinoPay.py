@@ -309,7 +309,7 @@ class AppMain(tk.Tk):
                         success = self.mp.PaymentRefund(value['OrderId'], value['Amount'])
                         if success:
                             data[key]['RefundAmount']=value['Amount']
-                            self.storepaymentdata(self.paymentdatafile, data[key])
+                            self.WriteRefunddb(data[key])
 
     def paymenttimeout(self, stat):
         print("Payment Time out!")

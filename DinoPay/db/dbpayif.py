@@ -59,6 +59,13 @@ class dbpayifthread(threading.Thread):
                        if len(refunddata):
                            self.dboutQueue.put(("REFUND DATA", refunddata))
                            self.root.processrefund(refunddata)   
+                    elif item[1] =="REFUND_PAIED":
+                        if self.dbpay.InsertRefund(item[0]):    
+                            self.dboutQueue.put(("DB_OK", ))
+                            print("OK dboutQueue")
+                  
+                           
+                           
 
                     # print(item)
                 except Exception as e:
