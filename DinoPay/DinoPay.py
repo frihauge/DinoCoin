@@ -29,6 +29,9 @@ import tools.Internettools
 logname = "DinoPay.log"
 AppName ="DinoPay"
 
+__date__    = "22-01-2020"
+__version__ = "1.2_" +__date__
+
 AppVersion  =datetime.now().strftime("%Y%m%d_%H%M%S")
 FilePath = 'C:\\ProgramData\\DinoCoin\\DinoPay\\'
 
@@ -75,12 +78,16 @@ class AppMain(tk.Tk):
     def __init__(self, *args, **kwargs):
         tk.Tk.__init__(self, *args, **kwargs)
         self.root = self
+        self.AppVersion = __version__
+        self.mp = None
         self.mp_stat = None
         self.activepayment = False
         self.iomodulestat = None
         self.paymentdatafile = None
         self.VendingEmpty=False
         self.offlinestat= False
+        self.dbinQueue = None
+        self.dboutQueue = None
         Appsetting =  appsettings.get('App', {'xpos':0})
         self.debug = Appsetting.get('Debug',False)
         self.amounts_puls = Appsetting.get('amounts_puls',{})
@@ -89,13 +96,7 @@ class AppMain(tk.Tk):
         xpos = Appsetting.get ('xpos',0)
         fullscreen = Appsetting.get ('fullscreen',1)
         
-        self.usedb = Appsetting.get ('usedb',True)
-        if self.internet_on() and self.usedb :
-            self.dbinQueue = queue.Queue()
-            self.dboutQueue = queue.Queue()
-            self.paymentdb = dbpayif.dbpayifthread(app_log,self.root,self.dbinQueue,self.dboutQueue)
-            self.paymentdb.connect()
-            self.paymentdb.start()
+
 
            
         self.title_font = tkfont.Font(family='ApexSansMediumT', size=36, weight="bold")
@@ -140,8 +141,17 @@ class AppMain(tk.Tk):
         if  self.mp_stat:
             self.show_frame("PayWithMobilePay")
         else:
-            self.ft = Timer(0.0, self.FrameTimeOut, ["OfflinePage"])
-            self.ft.start() 
+            self.ft = Timer(5.0, self.FrameTimeOut, ["OfflinePage"])
+            self.ft.start()
+        ## Using Database  
+        self.usedb = Appsetting.get ('usedb',True)
+        if self.internet_on() and self.usedb :
+            self.dbinQueue = queue.Queue()
+            self.dboutQueue = queue.Queue()
+            self.paymentdb = dbpayif.dbpayifthread(app_log,self.root,self.dbinQueue,self.dboutQueue)
+            self.paymentdb.connect()
+            self.paymentdb.start()
+        self.checkRefundQueue()# Start the refund timer
         
     def quit(self):
         self.root.destroy      
@@ -154,7 +164,7 @@ class AppMain(tk.Tk):
         paied = False
         if self.mp is not None:
             success, response = self.mp.GetPaymentStatus(self.orderid)
-            print(response)
+            consoleprint(response, singleline=True)
             if success:
                 paied = response['PaymentStatus'] ==100
                 idle = response['PaymentStatus'] ==10
@@ -191,7 +201,7 @@ class AppMain(tk.Tk):
             self.ft = Timer(5.0, self.FrameTimeOut, ["PaymentFailed"]) 
             self.ft.start()    
             self.activepayment = False
-            self.show_frame("PaymentFailed")
+            #self.show_frame("PaymentFailed")
             return      
         else:
             self.pt.cancel()
@@ -214,19 +224,17 @@ class AppMain(tk.Tk):
                 print("Pulscnt : " + str(pulsecnt)+", Pulsport : " + str(self.pulseport)+", pulsetime_low : " + str(self.pulsetime_low)+", pulsetime_high : " + str(self.pulsetime_high))
                 #stat = self.iomodule.PulsePort(pulsecnt, self.pulseport, self.pulsetime_low, self.pulsetime_high)
                 app_log.info("Pulscnt : " + str(pulsecnt)+", Pulsport : " + str(self.pulseport)+", pulsetime_low : " + str(self.pulsetime_low)+", pulsetime_high : " + str(self.pulsetime_high))
-                adam.Adam_Set_Cmd.put(("Pulse", pulsecnt))
+                self.AdamPulseQueue.queue.clear()
+                self.Adam_Set_Cmd.put(("Pulse", pulsecnt))
+                time.sleep(1)
                 #adam.Adam_Set_Cmd.join()  
-                item = adam.AdamPulseQueue.get(block=True, timeout=10)
-                while not adam.AdamPulseQueue.empty():
-                    item = adam.AdamPulseQueue.get(block=True, timeout=2)
+                item = self.AdamPulseQueue.get(block=True, timeout=10)
+                while not self.AdamPulseQueue.empty():
+                    item = self.AdamPulseQueue.get(block=True, timeout=2)
                 if item is not None:
                     if "Pulse_stat" in  item[0]: 
                         stat = item[1]
                 print("Stat: " +str(stat))
-                app_log.info("Stat: " +str(stat))
-                paymentstatus['Pulsecntstat']= stat
-                self.paymentdatafile[paymentstatus['OrderId']].update(paymentstatus)  
-                self.storepaymentdata(self.paymentdatafile,self.paymentdatafile[paymentstatus['OrderId']])
 
      
         
@@ -234,11 +242,17 @@ class AppMain(tk.Tk):
                 print ("self.iomodule.PulsePort" + str(e))
                 app_log.error("error in self.iomodule.PulsePort ")
                 printerrorlog(e)
-    
+            finally:
+                app_log.info("Stat: " +str(stat))
+                paymentstatus['Pulsecntstat']= stat
+                self.paymentdatafile[paymentstatus['OrderId']].update(paymentstatus)  
+                self.storepaymentdata(self.paymentdatafile,self.paymentdatafile[paymentstatus['OrderId']])
+
       
     def FrameTimeOut(self, stat):
         if stat == "OfflinePage":
-            self.mp_stat, _ = self.mp.StartUpReg()
+            if self.mp is not None and self.mp.ping_mp():
+                self.mp_stat, _ = self.mp.StartUpReg()
             if not self.mp_stat:
                 self.show_frame("OfflinePage")
                 self.ft = Timer(30.0, self.FrameTimeOut,["OfflinePage"]) 
@@ -276,40 +290,64 @@ class AppMain(tk.Tk):
             if self.offlinestat:
                self.offlinestat = False 
                self.ft = Timer(1.0, self.FrameTimeOut,["PayWithMobilePay"]) 
-               self.ft.start()
-            self.checkRefundQueue()
-        self.offline = Timer(2.0, self.offlineStatus) 
+               if not self.ft.isAlive():
+                   self.ft.start()
+            #self.checkRefundQueue()
+        self.offline = Timer(3.0, self.offlineStatus) 
         self.offline.start()
         return True
     
     def internet_on(self):
-            istat = tools.Internettools.PingDinoCoinWeb() 
+            istat = tools.Internettools.PingDinoCoinWeb()
             if not istat:
                 time.sleep(2)
                 istat = tools.Internettools.PingDinoCoinWeb() 
+                self.mp = None;
+            if istat:
+                if self.mp is not None: 
+                    istat = self.mp.ping_mp()
+                else:
+                    self.setup_mp()
+                    istat = self.mp.ping_mp()
+                        
             return istat
     
     def checkRefundQueue(self):
+        if self.dbinQueue is None:
+            return False
         try:
             item = ((None,'REFUND'))
             self.dbinQueue.put(item, block=True, timeout=None)
             self.dbinQueue.join()
+            item = self.dboutQueue.get(block=True, timeout=1)
+            if item[0] == 'REFUND DATA':
+                if len(item[1]):
+                    print("Process Refund")
+                    app_log.info("Process refund: " + str(item[1]))
+                    self.processrefund(item[1])
+                    
+            self.checkRefundQueuetimer = Timer(300, self.checkRefundQueue,) 
+            self.checkRefundQueuetimer.start()
             return True       
 
         except Exception as e: 
-            print('Error in write database: ')
+            print('Error in checkRefundQueue: ')
             printerrorlog(e)
         
         
     def processrefund(self, data):
         for key, value in data.items():
             refundbefore = data[key].get('RefundAmount',0)
+            # full refund
             if not refundbefore:
+                        data[key]['RefundAmount'] = value['Amount']
                         data[key]['Refund']=False
                         success = self.mp.PaymentRefund(value['OrderId'], value['Amount'])
                         if success:
-                            data[key]['RefundAmount']=value['Amount']
+                            value['Amount']  = data[key]['RefundAmount']*-1
                             self.WriteRefunddb(data[key])
+                        else:
+                          print("Refund not succeded: "+ str(data[key]))  
 
     def paymenttimeout(self, stat):
         print("Payment Time out!")
@@ -340,6 +378,9 @@ class AppMain(tk.Tk):
      #           self.VendingEmpty = True
     #            return False
         self.orderid = self.mp.getNewOrderId()
+        if not self.mp.ping_mp():
+          #  self.offline.start()
+            return False
         stat, resp = self.mp.PaymentStart(self.orderid, amount)
         if not stat:
             print ("Error code: " +str(resp))
@@ -356,6 +397,7 @@ class AppMain(tk.Tk):
                     
 
         succes, paymentstatus = self.mp.GetPaymentStatus(self.orderid)
+        consoleprint(paymentstatus)
         app_log.info("self.mp.GetPaymentStatus() " + str(self.orderid))
         if succes:
             self.activepayment = True
@@ -395,13 +437,13 @@ class AppMain(tk.Tk):
         
         self.VendingstatusPort = set.get('VendingstatusPort',3)
         app_log.info("Connecting iomodule ip " + str(self.adamhost))
-        
-        self.AdamTask = adam.AdamThreadSendTask(self, app_log, str(self.adamhost))
+        self.AdamValueQueue = queue.Queue()
+        self.Adam_Set_Cmd= queue.Queue()
+        self.AdamPulseQueue= queue.Queue()
+        self.AdamTask = adam.AdamThreadSendTask(self, app_log, str(self.adamhost),self.Adam_Set_Cmd,self.AdamValueQueue,self.AdamPulseQueue)
         self.AdamTask.PulsePortConf(self.pulseport, self.pulsetime_low, self.pulsetime_high)
        # self.AdamTask.setcyclicdata(str(self.VendingstatusPort))
         self.AdamTask.start()
-     #   self.iomodule = adam.adam6000(app_log, str(self.adamhost))
-     #   self.iomodulestat,_ = self.iomodule.connect()
         app_log.info("Connecting status: " + str(self.iomodulestat))
         return self.iomodulestat
            
@@ -411,11 +453,11 @@ class AppMain(tk.Tk):
             if self.debug:
                 return True
             
-            adam.Adam_Set_Cmd.put(("readport", self.VendingstatusPort))
+            self.Adam_Set_Cmd.put(("readport", self.VendingstatusPort))
             #adam.Adam_Set_Cmd.join()  
-            item = adam.AdamValueQueue.get(block=True, timeout=15)
-            while not adam.AdamValueQueue.empty():
-                item = adam.AdamValueQueue.get(block=True, timeout=15)
+            item = self.AdamValueQueue.get(block=True, timeout=15)
+            while not self.AdamValueQueue.empty():
+                item = self.AdamValueQueue.get(block=True, timeout=15)
             
                 
             #self.iomodule.close()
@@ -437,6 +479,7 @@ class AppMain(tk.Tk):
         url = mpsetting.get ('url','https://sandprod-pos2.mobilepay.dk/API/V08/')
         
         PoSUnitIdToPos =  mpsetting.get('PoSUnitIdToPos','100000625947428')
+      
         LocationId =  mpsetting.get('LocationId','00001')
         Name=  mpsetting.get('LocationName','DinoCoin')
         MerchantId = mpsetting.get('MerchantId','POSDKDC307')
@@ -452,11 +495,15 @@ class AppMain(tk.Tk):
         self.mp.PosId = posid
         self.mp_stat, posid = self.mp.StartUpReg()
         if self.mp_stat:
+            print("Mobilepay startup reg passed")
             mpsetting['posid'] = posid
             appsettings['Mobilepay'] = mpsetting
             WriteSetupFile(appsettings)
             app_log.info("AssignPos" + str(PoSUnitIdToPos))
             self.mp_stat = self.mp.AssignPoSUnitIdToPos(PoSUnitIdToPos)
+            if not self.mp_stat:
+                print("Mobilepay can't assign PoSUnitIdToPos: "+ str(PoSUnitIdToPos))
+            print("Assign Posunitid to POS: PASSED")
             self.paymentdatafile = self.ReadPaymentFile()
        
             # self.runrefundonmissed()
@@ -486,12 +533,14 @@ class AppMain(tk.Tk):
             self.WritePaymentdb(data_thistransac)    
      
     def WriteRefunddb(self,data):
+        if self.dbinQueue is None:
+            return False
         try:
             item = (data,'REFUND_PAIED')
             self.dbinQueue.put(item, block=True, timeout=10)
+            self.dbinQueue.join()
             item = self.dboutQueue.get(block=True, timeout=10)
             print(item)
-            #self.dbinQueue.join()
             return True    
         
         except Exception as e: 
@@ -499,12 +548,15 @@ class AppMain(tk.Tk):
             printerrorlog(e)
         
     def WritePaymentdb(self,data):
+        if self.dbinQueue is None:
+            return False
         try:
             item = (data,'PAY')
             self.dbinQueue.put(item, block=True, timeout=10)
+            self.dbinQueue.join()
             item = self.dboutQueue.get(block=True, timeout=10)
             print(item)
-            #self.dbinQueue.join()
+            
             return True       
 
         except Exception as e: 
@@ -817,6 +869,13 @@ def ReadSetupFile():
             print('Error in setup file: ' + mainsetupfile, e)
     return data
 
+def consoleprint(txt, singleline=False):
+    now = datetime.now()
+    date_time = now.strftime("%m-%d-%Y %H:%M:%S ")
+    if not singleline:
+        print(date_time + str(txt))
+    else:        
+        print(date_time + str(txt), end='\r')
 def printerrorlog(e):
     app_log.error("Error o exception:" +str(e))
     app_log.error('Error on line {}'.format(sys.exc_info()[-1].tb_lineno))   

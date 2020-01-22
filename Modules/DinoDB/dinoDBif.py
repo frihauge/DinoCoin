@@ -15,13 +15,13 @@ import sys
 
 
 class dinodbif():
-    def __init__(self, log):
+    def __init__(self, root, log):
         self.logger = log
         self.mydb = None
         self.pcname = os.environ['COMPUTERNAME']
         self.FilePath = 'C:\\ProgramData\\DinoCoin\\DinoPrint\\'
         self.filename = self.FilePath + self.pcname + '_prize.json'
-
+        self.rootversion = root.AppVersion
         self.mysqlconnected = False
         self.network = False
         self.clientid = None
@@ -44,7 +44,7 @@ class dinodbif():
     
     def reconnect (self):
         if not self.mydb.is_connected():
-            print("reconnect")
+            print("Mysql Reconneect")
             self.connect()
             
     def GetAllRefund(self):
@@ -58,55 +58,65 @@ class dinodbif():
                             OrderId,
                             PaymentStatus,
                             Amount,
-                            TransactionId, 
-                            Pulsecntstat, 
-                            RefundAmount, 
+                            TransactionId,
+                            Pulsecntstat,
+                            RefundAmount,
                             Refund FROM Payments WHERE PaymentStatus=100 AND RefundAmount=0 AND Refund =1 AND ClientID = %s""" % (self.clientid)
             cur.execute(sql)
             rows = cur.fetchall()
             i = 0
             for row in rows:
                 i = i+1
-                refunddict[i]= {"PosId": row[0],
+                refunddict[i] = {"PosId": row[0],
                                 "OrderId": row[1],
-                                "PaymentStatus": row[2], 
-                                "Amount": row[3], 
-                                "TransactionId": row[4], 
-                                "Pulsecntstat": row[5], 
-                                "RefundAmount": row[6], 
+                                "PaymentStatus": row[2],
+                                "Amount": row[3],
+                                "TransactionId": row[4],
+                                "Pulsecntstat": row[5],
+                                "RefundAmount": row[6],
                                 "Refund": row[7]}
+                
+            self.mydb.commit()
             return refunddict
         except Exception as e:
-            self.logger.error("Error GetAllRefund !! "+str(e))
+            self.logger.error("Error GetAllRefund !! " + str(e))
             self.network = False
             self.printerrorlog(e)
             return None
 
+    def InsertRefund(self, data):
+        if data is None:
+            self.logger.error("Data input is none!")
+            return None
+        try:
 
-def InsertRefund(self, data):
-    if data is None:
-        self.logger.error("Data input is none!")
-        return None
-    try:
-        self.reconnect()
-        cur = self.mydb.cursor()
-        ts = time.time()
-        self.timestamp = datetime.datetime.fromtimestamp(ts).strftime('%Y-%m-%d %H:%M:%S')
-        sqldict = dict()
-        sqldict['ClientId'] = self.clientid
-        sqldict['Time'] = self.timestamp
-        sqldict.update(data)
-        sql = """UPDATE Payments SET Time=%s, RefundAmount=%s) WHERE (ClientId=%s,OrderId=%) """
-        val = (sqldict['Time'],sqldict['RefundAmount'],sqldict['ClientId'],sqldict['OrderId'] )
-        cur.execute(sql, val)
-        self.mydb.commit()
-        return True
-    except Exception as e:
-        self.network = False           
-        self.logger.error("Error after connect !! "+str(e))
-        self.network = False
-        self.printerrorlog(e)
-        return None
+            self.reconnect()
+            cur = self.mydb.cursor()
+            ts = time.time()
+            self.timestamp = datetime.datetime.fromtimestamp(ts).strftime('%Y-%m-%d %H:%M:%S')
+            sqldict = dict()
+            sqldict['ClientId'] = self.clientid
+            sqldict['Time'] = self.timestamp
+            sqldict.update(data)
+            sql = """INSERT INTO Payments (id,ClientId, Time, PosId, OrderId,TransactionId, Amount, RefundAmount,Refund) VALUES (%s, %s,%s, %s, %s, %s, %s, %s, %s)
+            ON DUPLICATE KEY UPDATE Time = VALUES(Time), Amount = VALUES(Amount), RefundAmount = VALUES(RefundAmount)"""
+            val = (0,sqldict['ClientId'],
+                   sqldict['Time'],
+                   sqldict['PosId'],
+                   sqldict['OrderId'],
+                   sqldict['TransactionId'],
+                   sqldict['Amount'],
+                   sqldict['RefundAmount'],
+                   sqldict['Refund'])
+            cur.execute(sql, val)
+            self.mydb.commit()
+            return True
+        except Exception as e:
+            self.network = False           
+            self.logger.error("Error after connect !! "+str(e))
+            self.network = False
+            self.printerrorlog(e)
+            return None
 
     def InsertPayement(self, data):
         if data is None:
@@ -122,9 +132,21 @@ def InsertRefund(self, data):
             sqldict['ClientId'] = self.clientid
             sqldict['Time'] = self.timestamp
             sqldict.update(data)
-            sql = """INSERT INTO Payments (id,ClientId, Time,sysmode, PosId, PaymentStatus, OrderId,TransactionId, Amount,CustomerId,CustomerReceiptToken, Pulsecntstat,RefundAmount, Refund) VALUES (%s,%s, %s,%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
-            ON DUPLICATE KEY UPDATE TransactionId = VALUES(TransactionId),PaymentStatus = VALUES(PaymentStatus),CustomerId = VALUES(CustomerId),CustomerReceiptToken = VALUES(CustomerReceiptToken),RefundAmount = VALUES(RefundAmount),Refund = VALUES(Refund),Pulsecntstat = VALUES(Pulsecntstat)"""
-            val = (0,sqldict['ClientId'],sqldict['Time'],sqldict['sysmode'],sqldict['PosId'],sqldict['PaymentStatus'],sqldict['OrderId'],sqldict['TransactionId'],sqldict['Amount'],sqldict['CustomerId'],sqldict['CustomerReceiptToken'],sqldict['Pulsecntstat'],sqldict['RefundAmount'],sqldict['Refund'])
+            sql = """INSERT INTO Payments (id,ClientId, Time,sysmode, PosId, PaymentStatus, OrderId,TransactionId, Amount,CustomerId,CustomerReceiptToken, Pulsecntstat, RefundAmount,Refund) VALUES (%s,%s,%s,%s, %s,%s, %s, %s, %s, %s, %s, %s, %s, %s)
+            ON DUPLICATE KEY UPDATE Time = VALUES(Time), TransactionId = VALUES(TransactionId),PaymentStatus = VALUES(PaymentStatus),CustomerId = VALUES(CustomerId),CustomerReceiptToken = VALUES(CustomerReceiptToken),Pulsecntstat = VALUES(Pulsecntstat)"""
+            val = (0,sqldict['ClientId'],
+                   sqldict['Time'],
+                   sqldict['sysmode'],
+                   sqldict['PosId'],
+                   sqldict['PaymentStatus'],
+                   sqldict['OrderId'],
+                   sqldict['TransactionId'],
+                   sqldict['Amount'],
+                   sqldict['CustomerId'],
+                   sqldict['CustomerReceiptToken'],
+                   sqldict['Pulsecntstat'],
+                   sqldict['RefundAmount'],
+                   sqldict['Refund'])
             cur.execute(sql, val)
             self.mydb.commit()
             return True
@@ -168,8 +190,12 @@ def InsertRefund(self, data):
                                 RefundAmount INT,
                                 Refund BOOLEAN,
                                 FOREIGN KEY(ClientId) REFERENCES Clients(id), PRIMARY KEY (id),
-                                UNIQUE KEY `id_order` (`ClientId`,`OrderId`))""")
+                                UNIQUE KEY `id_order` (`ClientId`,`OrderId`,`Refund`))""")
             cur.execute(sql)
+            cur.execute("CREATE TABLE IF NOT EXISTS PayApp_info (id int(11) NOT NULL AUTO_INCREMENT,clientname varchar(45),PC_Alias varchar(45),Version varchar(45),LastOnline TIMESTAMP, PRIMARY KEY (id), UNIQUE (clientname))")
+            sql = "INSERT IGNORE INTO PayApp_info (clientname, Version) VALUES (%s,%s) on duplicate key update Version = %s"
+            cur.execute(sql, (self.pcname, self.rootversion, self.rootversion))
+        
             self.mydb.commit()
         except Exception as e:
             self.logger.error("Error after connect !! "+e)

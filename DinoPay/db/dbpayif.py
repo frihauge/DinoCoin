@@ -25,6 +25,7 @@ class dbpayifthread(threading.Thread):
     def __init__(self, log, root,dbinQueue,dboutQueue):
         super().__init__()
         self.root = root
+        self.rootversion = root.AppVersion
         self.log = log
         self.mydb=None
         self.connection_pool = None
@@ -45,9 +46,8 @@ class dbpayifthread(threading.Thread):
             if not self.dbinQueue.empty():
                 try:
                     item = self.dbinQueue.get(block=True, timeout=2)
-                    print("DB IN CMD Received: "+ item[1])
-                    self.log.info(str("DB IN CMD Received: "+ item[1]))
                     if item[1] == "PAY":
+                        self.log.info(str("DB IN CMD Received: "+ item[1]))
                         if self.dbpay.InsertPayement(item[0]):    
                             self.dboutQueue.put(("DB_OK", ))
                             print("OK dboutQueue")
@@ -56,16 +56,12 @@ class dbpayifthread(threading.Thread):
                             self.dboutQueue.put(("error", ))
                     elif item[1] =="REFUND":
                        refunddata = self.dbpay.GetAllRefund()
-                       if len(refunddata):
-                           self.dboutQueue.put(("REFUND DATA", refunddata))
-                           self.root.processrefund(refunddata)   
+                       self.dboutQueue.put(("REFUND DATA", refunddata))
+                           #self.root.processrefund(refunddata)   
                     elif item[1] =="REFUND_PAIED":
                         if self.dbpay.InsertRefund(item[0]):    
                             self.dboutQueue.put(("DB_OK", ))
                             print("OK dboutQueue")
-                  
-                           
-                           
 
                     # print(item)
                 except Exception as e:
@@ -80,7 +76,7 @@ class dbpayifthread(threading.Thread):
                       
     def connect(self):
         try:
-            self.dbpay = dinoDBif.dinodbif(self.log)
+            self.dbpay = dinoDBif.dinodbif(self.root, self.log)
             self.dbpay.connect();
             self.dbpay.CreateTablesPayment()          
         except Exception as e:

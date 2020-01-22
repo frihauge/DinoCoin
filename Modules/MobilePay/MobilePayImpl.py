@@ -32,6 +32,10 @@ class mpif():
         if url is None:
             self.url = "https://sandprod-pos2.mobilepay.dk/API/V08/"
 
+    def ping_mp(self):
+        success,_ = self.GetUniquePosId()
+        return success
+    
     def calchmac(self, method, contentbody, utctime):
         com_url = self.url + method
         clearstr = str.format("{} {} {}", com_url, contentbody, utctime)
@@ -59,7 +63,7 @@ class mpif():
         payloadhmac = self.calcPayLoadHmac(payload)
         return payloadhmac
 
-    def reqResp(self, method, contentdata):
+    def reqResp(self, method, contentdata, console_log=True):
         # #parsing response
         try:
             tNow = datetime.utcnow()
@@ -69,7 +73,7 @@ class mpif():
             auth = str.format("{} {}", hmcode, utcnow)
             header = {'Content-Type': 'application/json', 'Authorization': auth}
             r = requests.post(url=self.url + method, data=data_json, headers=header)
-            return self.responsehandler(r, method)
+            return self.responsehandler(r, method,console_log)
         except Exception as e:
             print("No Internet: " + str(e))
             return False, 0
@@ -99,8 +103,9 @@ class mpif():
         try:
             data = {"MerchantId": self.MerchantId, "LocationId": self.LocationId, "PosId": self.PosId, "Name": self.Name}
             success, response = self.reqResp('RegisterPoS', data)
-            self.PosId = self.findparaminresponse(response, 'PoSId')
-            print (self.PosId)
+            if success:
+                self.PosId = self.findparaminresponse(response, 'PoSId')
+                print (self.PosId)
         except Exception as e:
             print("Registerpos exception: " + str(e))
             return False, 0
@@ -141,6 +146,11 @@ class mpif():
         data = {"MerchantId": self.MerchantId, "LocationId": self.LocationId}
         success, response = self.reqResp('GetPosList', data)
         return response
+    
+    def GetUniquePosId(self):
+        data = {"MerchantId": self.MerchantId, "LocationId": self.LocationId}
+        success, response = self.reqResp('GetUniquePosId', data, console_log=False)
+        return success,response
 
     
     def PaymentCancel(self):
@@ -167,7 +177,7 @@ class mpif():
 
     def GetPaymentStatus(self, orderid):
         data = {"MerchantId": self.MerchantId, "LocationId": self.LocationId, "PoSId": self.PosId, "Orderid": orderid}
-        success, response = self.reqResp('GetPaymentStatus', data)
+        success, response = self.reqResp('GetPaymentStatus', data, console_log=False)
         if success and response['PaymentStatus'] == 20:
             self.Checkedin = True
         return success, response
@@ -185,11 +195,12 @@ class mpif():
         else:
             return None
 
-    def responsehandler(self, response, method):
+    def responsehandler(self, response, method, console_log=True):
         success = False
-        print("Exe: " + str(method))
-        print(response.status_code, response.reason)
-        print(response)
+        if console_log:
+            print("Exe: " + str(method))
+            print(response.status_code, response.reason)
+            print(response)
         data = response.json()
         if response.status_code == 200:
             success = True

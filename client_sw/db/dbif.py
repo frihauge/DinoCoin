@@ -375,7 +375,7 @@ class dbif():
         totalprizes = len(availbleprize)
         if totalprizes == 0: # No more stuck
             self.logger.error("No more availble prizes with prizetype:"+ str(prizeType))
-            return "Ingen Præmie","Ingen steder"
+            return self.emptylabelinfo()
         sum = 0
         for i in availbleprize:
             sum = sum + int(i['Stock_cnt'])
@@ -415,6 +415,12 @@ class dbif():
             self.db_mysql.SaveWonData(p)
   
         return idx
+    
+    def emptylabelinfo(self): 
+       # emptyprice = dict()
+        emptyprice ={'Name': 'Ingen Gevinst', 'Name_arab': 'Empty Prize',  'PrizeTypeDescription': 'Standard_prize', 'delivery_point': 'Gevinst tom', 'delivery_point_arab': 'Empty Prices Gevinst'}
+
+        return emptyprice
         
     def download_file(self,reconnecttry):
       self.db_mysql.Download_to_local_json(reconnecttry)  

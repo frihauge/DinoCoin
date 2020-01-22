@@ -16,7 +16,7 @@ class ReceiptRenderer():
         self.offsetLeft = offsetLeft
         self.labeltype = labeltype
         
-        
+
         if self.labeltype == 0:
             self.dansih_label()
         if self.labeltype == 1:
@@ -52,7 +52,7 @@ class ReceiptRenderer():
             self.document["control_code"] = "Kontrolkode:\n" + control_code
             self.document.render(location)
         except Exception as e:
-            logger.error("Error Rendering ticket" +str(e))
+            logger.error("Error Rendering ticket render_dk" +str(e))
             print(e)  
             return e
         
@@ -69,12 +69,12 @@ class ReceiptRenderer():
             self.document["control_code_en"] = "Verification code:\n" + control_code_en
             self.document.render(filename)
         except Exception as e:
-            logger.error("Error Rendering ticket" +str(e))
+            logger.error("Error Rendering render_englisharab ticket" +str(e))
             print(e)  
             return e
         
     def dansih_label(self):
-            
+        logger.info("Rendering ticket dansih_label")   
         offsetLeft = self.offsetLeft
         top_offset = 8
         offset_subtitle = 10
