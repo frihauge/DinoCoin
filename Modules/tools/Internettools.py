@@ -10,10 +10,10 @@ import time
 from numpy.distutils.fcompiler import none
 
 
-def PingDinoCoinWeb(ping_adress='http://www.dinocoin.frihauge.dk/connecttest.txt', timeout=10):
+def PingDinoCoinWeb(ping_adress='http://www.dinocoin.frihauge.dk/connecttest.txt', timeout=3):
     try:
         f = None
-        for i in range(3):
+        for i in range(2):
             try:
                 req = urllib.request.Request(ping_adress)
                 f = urllib.request.urlopen(req, timeout=timeout)

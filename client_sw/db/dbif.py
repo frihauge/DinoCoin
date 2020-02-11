@@ -67,7 +67,7 @@ class db_mysql():
                                                                           pool_size=5,
                                                                           pool_reset_session=True,
                                                                           host='mysql4.gigahost.dk',
-                                                                          database='frihaugedk_dc2019',
+                                                                          database='frihaugedk_dc2020',
                                                                           user='frihaugedk',
                                                                           password='Thisisnot4u',
                                                                           connect_timeout=5)
@@ -102,6 +102,8 @@ class db_mysql():
             cur.execute("CREATE TABLE IF NOT EXISTS Settings (id int(11) NOT NULL AUTO_INCREMENT,clientname varchar(45),Parameter varchar(45),Value varchar(128), PRIMARY KEY (id),UNIQUE (clientname, Parameter))")
             cur.execute("CREATE TABLE IF NOT EXISTS won_prizes (id int(11) NOT NULL AUTO_INCREMENT, client_id INT, prize_id INT,time TIMESTAMP, PRIMARY KEY (id))")
             cur.execute("CREATE TABLE IF NOT EXISTS Control (id int(11) NOT NULL AUTO_INCREMENT,client_id INT,Control_type varchar(45),Value varchar(128), PRIMARY KEY (id))")
+            cur.execute("CREATE TABLE IF NOT EXISTS Store_Logo ( `id` INT NOT NULL , `name` TEXT NOT NULL , `photo` BLOB NOT NULL , PRIMARY KEY (`id`))")
+           
             sql = "INSERT IGNORE INTO Clients (clientname, Version) VALUES (%s,%s) on duplicate key update Version = %s"
             cur.execute(sql, (self.pcname, self.root.version, self.root.version))
             cur.execute("CREATE TABLE IF NOT EXISTS PrizeTypes (id int(11) NOT NULL AUTO_INCREMENT, PrizeType INT,PrizeTypeName varchar(45), PRIMARY KEY (id), UNIQUE(PrizeType))")

@@ -43,8 +43,11 @@ class dinodbif():
         return True
     
     def reconnect (self):
-        if not self.mydb.is_connected():
-            print("Mysql Reconneect")
+        try:
+            if not self.mydb.is_connected():
+                print("Mysql Reconneect")
+                self.connect()
+        except:
             self.connect()
             
     def GetAllRefund(self):

@@ -20,6 +20,7 @@ from threading import Timer
 import threading
 import queue
 from _codecs import decode
+from numpy.f2py.auxfuncs import throw_error
 #from pywinauto.win32defines import BACKGROUND_BLUE
 sys.path.append('../Modules')
 from AdamModule import adam
@@ -29,17 +30,17 @@ import tools.Internettools
 logname = "DinoPay.log"
 AppName ="DinoPay"
 
-__date__    = "22-01-2020"
+__date__    = "07-02-2020"
 __version__ = "1.2_" +__date__
 
-AppVersion  =datetime.now().strftime("%Y%m%d_%H%M%S")
+AppVersion  =__version__
 FilePath = 'C:\\ProgramData\\DinoCoin\\DinoPay\\'
 
 log_formatter = logging.Formatter('%(asctime)s %(levelname)s %(funcName)s(%(lineno)d) %(message)s')
 
 logFile = logname
 
-my_handler = RotatingFileHandler(logFile, mode='a', maxBytes=5*1024*1024, 
+my_handler = RotatingFileHandler("c:\\temp\\"+logFile, mode='a', maxBytes=5*1024*1024, 
                                  backupCount=2, encoding=None, delay=0)
 my_handler.setFormatter(log_formatter)
 my_handler.setLevel(logging.INFO)
@@ -50,7 +51,6 @@ app_log.addHandler(my_handler)
 
 appsettings = 0
 s = scheduler(time, time.sleep)
-
 
 
 
@@ -196,7 +196,6 @@ class AppMain(tk.Tk):
             self.activepayment = False
             self.show_frame("PaymentFailed")
         elif idle:
-           # self.setup_mp()
             self.pt.cancel()
             self.ft = Timer(5.0, self.FrameTimeOut, ["PaymentFailed"]) 
             self.ft.start()    
@@ -282,17 +281,19 @@ class AppMain(tk.Tk):
         return True
     
     def offlineStatus(self):
-        if not self.internet_on() :
-            self.offlinestat = True
-            self.show_frame("OfflinePage")  
-        else:
-            # Online again
-            if self.offlinestat:
-               self.offlinestat = False 
-               self.ft = Timer(1.0, self.FrameTimeOut,["PayWithMobilePay"]) 
-               if not self.ft.isAlive():
-                   self.ft.start()
-            #self.checkRefundQueue()
+        # if machine is empty don't check for internet 
+        if not self.VendingEmpty:
+            if not self.internet_on() :
+                self.offlinestat = True
+                self.show_frame("OfflinePage")  
+            else:
+                # Online again
+                if self.offlinestat:
+                   self.offlinestat = False 
+                   self.ft = Timer(1.0, self.FrameTimeOut,["PayWithMobilePay"]) 
+                   if not self.ft.isAlive():
+                       self.ft.start()
+                #self.checkRefundQueue()
         self.offline = Timer(3.0, self.offlineStatus) 
         self.offline.start()
         return True
@@ -307,6 +308,7 @@ class AppMain(tk.Tk):
                 if self.mp is not None: 
                     istat = self.mp.ping_mp()
                 else:
+                    self.paymentdb.connect()
                     self.setup_mp()
                     istat = self.mp.ping_mp()
                         
@@ -365,7 +367,10 @@ class AppMain(tk.Tk):
     def show_frame(self, page_name):
         '''Show a frame for the given page name'''
         frame = self.frames[page_name]
-        frame.tkraise()
+        try:
+            frame.tkraise()
+        except:
+            raise Exception('Frame thread seemes to be terminated')
 
     def startMobilePayment(self, page_name, amount=None):
   ## STart new payment
@@ -875,13 +880,14 @@ def consoleprint(txt, singleline=False):
     if not singleline:
         print(date_time + str(txt))
     else:        
-        print(date_time + str(txt), end='\r')
+        print(date_time + str(txt), end='\r\n')
 def printerrorlog(e):
     app_log.error("Error o exception:" +str(e))
     app_log.error('Error on line {}'.format(sys.exc_info()[-1].tb_lineno))   
 
 
 if __name__ == '__main__':
+
     while True:
         try:
             app_log.info("Running DinoPay")
