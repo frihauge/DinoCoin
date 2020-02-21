@@ -68,8 +68,11 @@ def ReadSetupFile():
                                      'CounterInPort':8,
                                      "labeltype":0}))
     data = None
-    with io.open(mainsetupfile, 'r') as jsonFile:
-        data = json.load(jsonFile) 
+    try:
+        with io.open(mainsetupfile, 'r') as jsonFile:
+            data = json.load(jsonFile)
+    except Exception as e:
+        print("Error in MainSetup file: "+ str(e))
     return data       
 
 if __name__ == '__main__':

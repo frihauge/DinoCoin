@@ -48,13 +48,19 @@ class custom():
         labeinfo = dict()
         labeinfo["LabelInfo"] = dict()
         labeinfo["delivery_point"] = dict()
+        labeinfo["delivery_point_logo"] = dict()
+        
         labeinfo["LabelInfo"]['da'] = winnerprize['Name']
         labeinfo["LabelInfo"]['en'] =winnerprize['Name']
         labeinfo["LabelInfo"]['arab'] =winnerprize['Name_arab']
+        
         labeinfo["delivery_point"]['da'] =winnerprize['delivery_point']
         labeinfo["delivery_point"]['en'] =winnerprize['delivery_point']
         labeinfo["delivery_point"]['arab'] = winnerprize['delivery_point_arab']
         
+        labeinfo["delivery_point_logo"]['da'] =winnerprize['delivery_point_logo']
+        labeinfo["delivery_point_logo"]['en'] =winnerprize['delivery_point_logo']
+        labeinfo["delivery_point_logo"]['arab'] = winnerprize['delivery_point_logo']
         try:
             try:
                 os.remove(filename)

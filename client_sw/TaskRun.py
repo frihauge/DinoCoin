@@ -6,6 +6,7 @@ import sys
 from PrizeModule import Prize
 sys.path.append('../Modules')
 from AdamModule import adam
+from MQTTModule import Dino_MQTT
 import tools.Internettools
 from symbol import except_clause
 prn_queue = queue.Queue()
@@ -38,6 +39,9 @@ class TaskRun():
         self.iomodule = adam.adam6000(self.logger, str(self.adamhost))
         self.logger.info("WaitTime from 1 puls cnt to 2 is: " + str(self.timebetween_pulse))
         succes = self.iomodule.connect()
+        #mqtt
+        self.mqttt = Dino_MQTT.MQTT(self, self.logger)
+        self.mqttt.start()
         self.pr = Prize(self.logger,self.root, self.labeltype)
         self.t= threading.Thread(target=self.pr.worker, args=(prn_queue,))
         self.t.start()

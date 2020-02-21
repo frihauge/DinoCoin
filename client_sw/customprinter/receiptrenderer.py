@@ -1,6 +1,7 @@
 from fpdf import Template, FPDF
 import os
 import logging
+from PIL import Image
 #fpdf = FPDF()
 logger = logging.getLogger(__name__)
 
@@ -30,6 +31,9 @@ class ReceiptRenderer():
             prize_arab =  labeinfo["LabelInfo"]['arab']
             pickup_en =  labeinfo["delivery_point"]['en']
             pickup_arab  =  labeinfo["delivery_point"]['arab']
+            pickuplogo_en =  labeinfo["delivery_point_logo"]['en']
+            pickuplogo_arab  =  labeinfo["delivery_point_logo"]['arab']
+            
         else:
             prize_en = labeinfo
             prize_arab=labeinfo
@@ -37,31 +41,35 @@ class ReceiptRenderer():
             pickup_arab= datecatchup
             
         if self.labeltype == 0:
-            return self.render_dk(filename, prize_en, barcode, control_code,pickup_en, datecatchup)
+            return self.render_dk(filename, prize_en, barcode, control_code,pickup_en, pickuplogo_en, datecatchup)
         elif self.labeltype == 1:
-            return self.render_englisharab(filename, prize_en, prize_arab, barcode, control_code, pickup_en,  pickup_arab, datecatchup)
+            return self.render_englisharab(filename, prize_en, prize_arab, barcode, control_code, pickup_en, pickuplogo_en, pickup_arab, datecatchup)
         else:
             return "Wrong label type"
 
-    def render_dk(self, location, prize_en, barcode, control_code, pickup_en, datecatchup):
+    def render_dk(self, location, prize_en, barcode, control_code, pickup_en, pickuplogo_en, datecatchup):
         try:
             self.document["prize"] = prize_en
             self.document["info"] = "Hent din præmie i " + pickup_en + " inden"
             self.document["date"] = datecatchup
             self.document["barcode"] = barcode
             self.document["control_code"] = "Kontrolkode:\n" + control_code
+            self.document["Afhent_logo"] = pickuplogo_en
+              
             self.document.render(location)
         except Exception as e:
             logger.error("Error Rendering ticket render_dk" +str(e))
             print(e)  
             return e
         
-    def render_englisharab(self, filename, prize_en, prize_arab, barcode_en, control_code_en, pickup_en,  pickup_arab, datecatchup):
+    def render_englisharab(self, filename, prize_en, prize_arab, barcode_en, control_code_en, pickup_en, pickuplogo_en, pickup_arab, datecatchup):
         try:
             self.document["prize_en"] = prize_en
             self.document["prize_arab"] = prize_arab
             
             self.document["pickup_en"] = "Get you prize in " + pickup_en + " before"
+            self.document["pickuplogo_en"] = pickuplogo_en
+            
             self.document["pickup_arab"] = """الفائزم """ + pickup_arab + " قبل"
             self.document["date_en"] = datecatchup
             self.document["date_arab"] = datecatchup
@@ -72,16 +80,31 @@ class ReceiptRenderer():
             logger.error("Error Rendering render_englisharab ticket" +str(e))
             print(e)  
             return e
-        
+    
+    def render_arab(self, filename, prize_arab, barcode_en, control_code_en, pickup_arab, datecatchup):
+        try:
+            self.document["prize_arab"] = prize_arab
+            self.document["pickup_arab"] = """الفائزم """ + pickup_arab + " قبل"
+            self.document["date_en"] = datecatchup
+            self.document["date_arab"] = datecatchup
+            self.document["barcode_en"] = barcode_en
+            self.document["control_code_en"] = "Verification code:\n" + control_code_en
+            self.document.render(filename)
+        except Exception as e:
+            logger.error("Error Rendering render_englisharab ticket" +str(e))
+            print(e)  
+            return e
     def dansih_label(self):
         logger.info("Rendering ticket dansih_label")   
         offsetLeft = self.offsetLeft
         top_offset = 8
         offset_subtitle = 10
+        offset_prizetext = 22
+        offset_delivery = 30
+        offset_date = 35
         
-        offset_prizetext = 25
-        offset_delivery = 37
-        offset_date = 45
+        offset_delivery_logo = 39
+        offset_delivery_logo_hight=0
         offset_barcode = 60
         offset_controlcode=60
         offset_warn = 73
@@ -205,6 +228,25 @@ class ReceiptRenderer():
                 'text': 'Hent din prÃ¦mie i informationen inden ', 
                 'priority': 2, 
             },
+           #   { 'name': 'company_logo', 'type': 'I', 'x1': 20.0, 'y1': 17.0, 'x2': 78.0, 'y2': 30.0, 'font': None, 'size': 0.0, 'bold': 0, 'italic': 0, 'underline': 0, 'foreground': 0, 'background': 0, 'align': 'I', 'text': 'logo', 'priority': 2, },
+             
+            { 
+                'name': 'Afhent_logo', 
+                'type': 'I', 
+                'x1': 25,   
+                'y1':  top+offset_delivery_logo,  
+                'x2': 25, 
+                'y2':  top+offset_delivery_logo+20,
+                'size': 3, 
+                'bold': 0, 
+                'italic': 0, 
+                'underline': 0, 
+                'foreground': 0, 
+                'background': 0, 
+                'align': 'I', 
+                'text': 'logo', 
+                'priority': 3, 
+            },
             { 
                 'name': 'date', 
                 'type': 'T', 
@@ -253,22 +295,22 @@ class ReceiptRenderer():
     def englishgarab_label(self):
    
         offsetLeft = self.offsetLeft
-        top_offset = 6
-        offset_subtitle_en = 15
+        top_offset = 5
+        offset_subtitle_en = 13
         
-        offset_prizetext_en = 26
-        offset_delivery_en = 38
-        offset_date_en = 44
+        offset_prizetext_en = 22
+        offset_delivery_en = 29
+        offset_date_en = 34
+        offset_delivery_logo=36
         offset_barcode_en = 50
         offset_controlcode_en=50
-
-           
-        offset_title_arab = 67
-        offset_subtitle_arab = 77
-        offset_prizetext_arab = 88
-        offset_delivery_arab = 98
-        offset_date_arab = 105
-        
+          
+        offset_title_arab = 66
+        offset_subtitle_arab = 73
+        offset_prizetext_arab = 82
+        offset_delivery_arab = 89
+        offset_date_arab = 94
+        offset_delivery_logo2=96
         
         width = self.size[0]
         removeTwoLinesOffset = 25
@@ -287,7 +329,7 @@ class ReceiptRenderer():
                 'x2': offsetLeft + endLeft, 
                 'y2':top+5, 
                 'font': "FlamencoD", 
-                'size': 40.0, 
+                'size': 35.0, 
                 'bold': 0, 
                 'italic': 0, 
                 'underline': 0, 
@@ -370,6 +412,23 @@ class ReceiptRenderer():
                 'text': 'Todays date', 
                 'priority': 2, 
             },
+            {
+                'name': 'pickuplogo_en', 
+                'type': 'I', 
+                'x1': 25,   
+                'y1':  top+offset_delivery_logo,  
+                'x2': 25, 
+                'y2':  top+offset_delivery_logo+13,
+                'size': 3, 
+                'bold': 0, 
+                'italic': 0, 
+                'underline': 0, 
+                'foreground': 0, 
+                'background': 0, 
+                'align': 'I', 
+                'text': 'logo', 
+                'priority': 3, 
+                },
 
             { 
                 'name': 'barcode_en', 
@@ -416,7 +475,7 @@ class ReceiptRenderer():
                 'x2': offsetLeft + endLeft, 
                 'y2': top +offset_title_arab, 
                 'font': "DejaVu", 
-                'size': 32.0, 
+                'size': 27.0, 
                 'bold': 0, 
                 'italic': 0, 
                 'underline': 0, 
@@ -500,6 +559,24 @@ class ReceiptRenderer():
                 'text': 'ريخ اليوم', 
                 'priority': 2, 
             },
+            {
+                'name': 'pickuplogo_en', 
+                'type': 'I', 
+                'x1': 25,   
+                'y1':  top+offset_delivery_logo2,  
+                'x2': 25, 
+                'y2':  top+offset_delivery_logo2+13,
+                'size': 3, 
+                'bold': 0, 
+                'italic': 0, 
+                'underline': 0, 
+                'foreground': 0, 
+                'background': 0, 
+                'align': 'I', 
+                'text': 'logo', 
+                'priority': 3, 
+                },
+
 
             #{ 'name': 'box', 'type': 'B', 'x1': offsetLeft + margin, 'y1': margin, 'x2': offsetLeft + width - margin, 'y2': height - margin, 'font': 'Arial', 'size': 0.0, 'bold': 0, 'italic': 0, 'underline': 0, 'foreground': 0, 'background': 0, 'align': 'I', 'text': None, 'priority': 0, },
         ]
@@ -516,13 +593,18 @@ if __name__ == '__main__':
     labeinfo = dict()
     labeinfo["LabelInfo"] = dict()
     labeinfo["delivery_point"] = dict()
+    labeinfo["delivery_point_logo"] = dict()
     labeinfo["LabelInfo"]['da'] = 'Superfantastiske'
     labeinfo["LabelInfo"]['en'] ='Teddy Bear'
     labeinfo["LabelInfo"]['arab'] ='Teddy Bear'
     labeinfo["delivery_point"]['da'] ='Smoke-In'
     labeinfo["delivery_point"]['en'] ='Smoke-In'
     labeinfo["delivery_point"]['arab'] = 'Smoke-In'
-    r = ReceiptRenderer(widthBuffer=20, offsetLeft=8,labeltype=0)
+    labeinfo["delivery_point_logo"]['da'] = "C:\\ProgramData\\DinoCoin\\DinoPrint\\logo\\Dinocoin-02.png"
+    labeinfo["delivery_point_logo"]['en'] = "C:\\ProgramData\\DinoCoin\\DinoPrint\\logo\\Dinocoin-02.png"
+    labeinfo["delivery_point_logo"]['arab'] = "C:\\ProgramData\\DinoCoin\\DinoPrint\\logo\\Dinocoin-02.png"
+
+    r = ReceiptRenderer(widthBuffer=20, offsetLeft=8,labeltype=1)
    # r.render("receipt_test.pdf", labeinfo, "1231231231", "V3RY53CR37",'d.12/12-2019')
    # r.render_englisharab(filename="receipt_test.pdf", prize_en="Teddy Bear", prize_arab="Teddy Bear", barcode_en="1231231231", control_code_en="V3RY53CR37",pickup_en="Smoke-In",pickup_arab='Smoke-In' ,datecatchup='d.12/12-2019')
     r.render("receipt_test.pdf", labeinfo, "1231231231", "V3RY53CR37",'d.12/12-2019')

@@ -14,25 +14,39 @@ import time
 import datetime
 import json
 import io
+import requests
+import shutil
+from urllib.parse import urlparse
 
 class db_mysql():
     def __init__(self, log, root):
         self.root = root
         self.logger = log
+        self.appsettings = self.root.appsettings
         self.mydb=None
         self.connection_pool = None
         self.pcname = os.environ['COMPUTERNAME']
         self.FilePath = 'C:\\ProgramData\\DinoCoin\\DinoPrint\\'
-       
+        
+        self.dbsettings = self.appsettings.get('DBSET', {})
+        self.host = self.dbsettings.get('host', "mysql4.gigahost.dk")
+        self.database = self.dbsettings.get('database', 'frihaugedk_dc2019')
+        self.user = self.dbsettings.get('user', 'frihaugedk')
+        self.connect_timeout = self.dbsettings.get('connect_timeout', 5)
+        self.passwd="Thisisnot4u"
         self.filename =self.FilePath+ self.pcname + '_prize.json'
         
         self.mysqlconnected = False
         self.network = False
+        self.logofilepath = self.FilePath+"logo\\"
+        if not os.path.isdir(self.logofilepath):
+            os.mkdir(self.logofilepath)       # line B
+        
         self.createlocalfile()
         if self.connect():
             self.CreateTables()
             self.Download_to_local_json()
-
+           #self.Update_Values_LocalJsonTodb()
                    
     def connect(self):
         try:
@@ -66,11 +80,11 @@ class db_mysql():
             self.connection_pool = mysql.connector.pooling.MySQLConnectionPool(pool_name="pynative_pool",
                                                                           pool_size=5,
                                                                           pool_reset_session=True,
-                                                                          host='mysql4.gigahost.dk',
-                                                                          database='frihaugedk_dc2020',
-                                                                          user='frihaugedk',
-                                                                          password='Thisisnot4u',
-                                                                          connect_timeout=5)
+                                                                          host=self.host,
+                                                                          database=self.database,
+                                                                          user=self.user,
+                                                                          password=self.passwd,
+                                                                          connect_timeout=self.connect_timeout)
         
             print ("Printing connection pool properties ")
             print("Connection Pool Name - ", self.connection_pool.pool_name)
@@ -169,6 +183,7 @@ class db_mysql():
                                 PrizeTypeDescription varchar(45),
                                 delivery_point varchar(45),
                                 delivery_point_arab varchar(45),
+                                delivery_point_logo BLOB,
                                 FOREIGN KEY(ClientName) REFERENCES Clients(clientname), PRIMARY KEY (id))""")
 
         cur.execute(sql)
@@ -233,7 +248,7 @@ class db_mysql():
             return False
         
         self.logger.info("Downloading new prizefile")
-        sql = """SELECT id,  PrizeType, Name, Name_arab, Stock_cnt, delivered, PrizeTypeDescription, delivery_point, delivery_point_arab FROM `Prizes` WHERE `ClientName` = %s"""
+        sql = """SELECT id,  PrizeType, Name, Name_arab, Stock_cnt, delivered, delivery_point, delivery_point_arab, delivery_point_logo FROM `Prizes` WHERE `ClientName` = %s"""
         val = (self.pcname,)
         
         try:
@@ -244,13 +259,37 @@ class db_mysql():
             if not len(rv):
                 return False
             for result in rv:
-                json_data.append(dict(zip(row_headers,result)))
+                lst = list(result)
+                
+                if lst[8] is not None:
+                    lst[8] = result[8].decode('utf-8')
+                    if lst[8] is not None and lst[8] !='':
+                        url = self.extractimageurl(lst[8])
+                        url = lst[8]
+                        self.SaveImage(url)
+                json_data.append(dict(zip(row_headers,tuple(lst))))
+       
+                #self.write_Image_file("image.png",result[10])
             self.SaveFile(json_data)
         except Exception as e:
             self.network = False
             return False     
         return True
     
+    def extractimageurl(self, data):
+        arr = data.split('http')
+        cnt =  len(arr)
+        url = 'http'+str(arr[cnt-1])
+        return url
+    
+    def SaveImage(self,data):
+        url = self.extractimageurl(data)
+        resp = requests.get(url, stream=True)
+        a = urlparse(data)
+        imgfilename = os.path.basename(a.path)
+        with open(self.logofilepath + imgfilename, 'wb') as out_file:
+            shutil.copyfileobj(resp.raw, out_file)
+            
     def insert_prizewon(self,pdata):
         ts = time.time()
         self.timestamp = datetime.datetime.fromtimestamp(ts).strftime('%Y-%m-%d %H:%M:%S')
@@ -285,9 +324,9 @@ class db_mysql():
                 sql = """UPDATE Prizes SET PrizeType=%s,Name=%s,Name_arab=%s,Stock_cnt = %s, delivered = %s,  delivery_point = %s, delivery_point_arab = %s  WHERE id = %s"""
                 val = (prize["PrizeType"],prize['Name'],prize['Name_arab'],prize['Stock_cnt'],prize['delivered'], prize["delivery_point"],prize["delivery_point_arab"], prize["id"])
                 cur.execute(sql, val)
-                self.mydb.commit()
+            self.mydb.commit()
         except Exception as e:
-            #self.logger.error("Json dataread error: " , str(e))
+            self.logger.error("Json dataread error: " , str(e))
             self.network = False
             return None
         
@@ -297,13 +336,13 @@ class db_mysql():
             self.logger.error("Data input is none!")
             return None
         try:
-            for prize in data:
+            for prize in data['Prizes']:
                 cur = self.mydb.cursor()
-                sql = """INSERT INTO Prizes (ID,ClientName, PrizeType, Name, Description,Stock_cnt, delivered, PrizeTypeDescription, delivery_point") VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)"""
-                val = (0,self.pcname, prize["PrizeType"],prize['Name'],prize['Description'],prize['Stock_cnt'],prize['delivered'],prize['PrizeTypeDescription'], prize['delivery_point'])
+                sql = """INSERT INTO Prizes (ID,ClientName, PrizeType, Name, Stock_cnt, delivered, delivery_point) VALUES ( %s, %s, %s, %s, %s, %s, %s)"""
+                val = (0,self.pcname, prize["PrizeType"],prize['Name'],prize['Stock_cnt'],prize['delivered'], prize['delivery_point'])
                 cur.execute(sql, val)
             self.mydb.commit()
-        except:
+        except Exception as e:
             self.network = False
             return None
             
@@ -337,7 +376,7 @@ class db_mysql():
         if self.network:
             self.Update_Values_LocalJsonTodb()      
         
-           
+     
 class dbif():
 
     def __init__(self, log, root):
@@ -404,7 +443,8 @@ class dbif():
                     winnerLabel = idx['Name']
                     winnerLabel_arab = idx['Name_arab']
                     deliverypoint = idx['delivery_point']
-                    deliverypoint_arab = idx['delivery_point_arab']                 
+                    deliverypoint_arab = idx['delivery_point_arab']  
+                    idx['delivery_point_logo']=self.db_mysql.extractimageurl(idx['delivery_point_logo'])               
                     break
         except Exception as e:
             self.logger.error("Something wrong with prize :"+ str(p) +"Error: " +str(e))       

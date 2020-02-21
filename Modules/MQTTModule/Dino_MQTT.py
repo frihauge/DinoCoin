@@ -7,64 +7,57 @@
 
 import time
 import threading
-
-import paho.mqtt.client as pmqtt
-
+import pika
 from cgi import log
 
 
 class MQTT(threading.Thread):
 
-    def __init__(self, root, log, host):
+    def __init__(self, root, log):
         super().__init__()
         self.root = root
         self.log = log
-        self.host = host
-        self.mqtt = pmqtt
         self._stop_event = threading.Event()
+        self.channel=None
+        self.connection = None
+        self.url = 'amqp://gwvdueip:ZNzoi01UgQCttefdytXjUEDnzQYaHa6L@hawk.rmq.cloudamqp.com/gwvdueip'
+        self.binding_key="topic_website"
+        self.newexchange = 'topic_website'
         self.connect()
-        self.pulsescnt = 0
-        self.portnum = 0
-        self.pulsetime_low = 100
-        self.pulsetime_high = 100
-        self.cyclicdata = []
-
-
+        
     def connect(self):
-        self.mqttc= self.mqtt.Client()
-        self.mqttc.on_connect=self.on_connect
-        self.mqttc.on_message=self.on_message
+        params = pika.URLParameters(self.url)
+        self.connection = pika.BlockingConnection(params)
+        self.channel = self.connection.channel() # start a channel
+        self.channel.exchange_declare(exchange='topic_website', exchange_type='topic')
+
+        result = self.channel.queue_declare('', exclusive=True)
+        queue_name = result.method.queue
+
+        if not self.binding_key:
+           self.binding_key="#"
+        self.channel.queue_bind(exchange=self.newexchange, queue=queue_name, routing_key=self.binding_key)
+        self.channel.exchange_bind(destination=self.newexchange, source='amq.topic', routing_key='topic_website_route')
+        self.channel.basic_consume(queue=queue_name, on_message_callback=callback, auto_ack=True)
+        print(' [*] Waiting for logs. To exit press CTRL+C')
 
     def run(self):
         while not self._stop_event.is_set():
-            self.mqttc.loop()
-                    # print(item)
-                except Exception as e:
-                    AdamValueQueue.put(("No Connection",None))
-                    print(e)
-                    print("Queue Error")
-                finally:
-                    Adam_Set_Cmd.task_done()
-
-            if len(self.cyclicdata) > 0:
-                for portno in self.cyclicdata:
-                    value = self.adam6050.readinputbit(int(portno))
-                    AdamValueQueue.put(("IOValue_" + str(portno), value))
-
-            time.sleep(0.3)
+            self.channel.start_consuming()
 
     def stop(self):
         self.stop = True
+        self.channel.stop_consuming(consumer_tag=None)
         self._stop_event.set()
+
+
+def callback(ch, method, properties, body):
+    print(" [x] %r:%r" % (method.routing_key, body))
 
 
 
 
 if __name__ == '__main__':
-    at = AdamThreadSendTask(None,None, '192.168.1.200')
+    at = MQTT(None,None)
     at.start()
-    #ad = adam6000(None, '192.168.1.200')
-    #ad.connect()
-    #print(ad.readcounter(1))
-    #ad.SetOutputbit(0, 0)
-    #print(ad.readinputbit(1))
+   
